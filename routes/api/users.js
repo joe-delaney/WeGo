@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
+const passport = require('passport');
 
 //User sign up backend route
 router.post('/signup', (req, res) => {
@@ -68,6 +69,22 @@ router.post('/login', (req, res) => {
                     }
                 })
         })
+})
+
+// Protected route for the current user
+router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+    res.json({
+        id: req.user.id,
+        email: req.user.email,
+        password: req.user.password,
+        fname: req.user.fname,
+        lname: req.user.lname,
+        age: req.user.age,
+        pronouns: req.user.pronouns,
+        jobTitle: req.user.jobTitle,
+        education: req.user.education,
+        interests: req.user.interests
+    });
 })
 
 
