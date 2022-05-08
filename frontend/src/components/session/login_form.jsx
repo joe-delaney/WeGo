@@ -27,6 +27,12 @@ export default class LoginForm extends React.Component {
         //Login the user
         this.props.login(this.state);
 
+        //Reset the state
+        this.setState({
+            email: "",
+            password: ""
+        })
+
         //Close the login modal
         this.toggleModal();
     }

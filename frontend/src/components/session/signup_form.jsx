@@ -24,6 +24,7 @@ export default class SignupForm extends React.Component {
         this.nextPage = this.nextPage.bind(this);
         this.handleSignup = this.handleSignup.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
+        this.goBack = this.goBack.bind(this);
     }
 
     handleInput(type) {
@@ -85,6 +86,12 @@ export default class SignupForm extends React.Component {
         })
     }
 
+    goBack() {
+        this.setState({
+            page1: true
+        })
+    }
+
     getSignUpPage2() {
         return (
             <form>
@@ -115,6 +122,7 @@ export default class SignupForm extends React.Component {
                     value="Signup"
                     onClick={this.handleSignup} />
                 <button onClick={this.handleSignup}>Skip for now</button>
+                <button onClick={this.goBack}>Go back</button>
             </form>
         )
     }
@@ -123,6 +131,21 @@ export default class SignupForm extends React.Component {
         e.preventDefault();
         //Sign up the user
         this.props.signup(this.state);
+
+        // Reset the state
+        this.setState({
+            email: "",
+            password: "",
+            password2: "",
+            fname: "",
+            lname: "",
+            age: "",
+            pronouns: "",
+            jobTitle: "",
+            education: "",
+            interests: "",
+            page1: true
+        })
 
         //Close the modal
         this.toggleModal();
