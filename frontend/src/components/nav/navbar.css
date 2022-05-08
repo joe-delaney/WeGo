@@ -5,7 +5,29 @@
     flex-wrap: wrap;
     padding: 0 1rem;
     align-items: center;
-    box-shadow: 0 0 5px rgb(207, 207, 207);
+    /* box-shadow: 0 0 5px rgb(207, 207, 207) */
+}
+
+.nav_left{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.nav__logo{
+    border-bottom: 2px solid rgb(207, 207, 207);;
+}
+
+/* .message__icon{
+    font-size: 1.5rem;
+    color: var(--color-primary);
+} */
+
+.nav__slogan{
+    text-align: right;
+    margin-top: 3px;
+    font-size: 1rem;
+    color: var(--color-headings);
 }
 
 .nav__right{
@@ -36,7 +58,7 @@ color: var(--color-body);
 }
 
 
-.header__info--user{
+.nav__user{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,17 +66,23 @@ color: var(--color-body);
     padding: 5px 10px;
     background-color: #f1f2f5;
     border-radius: 50px;
+    
 }
 
-.header__info--userimg{
-    margin-right: 10px;
+.nav__user--img{
+    /* margin-right: 10px; */
+    font-size: 1rem;
+    color: gray;
 }
 
-.header__info--username{
-    font-size: medium;
+.nav__user--username{
+    font-size: 1.2rem;
     font-weight: 600;
     color: black;
+
 }
+
+
 
 @media screen and (min-width: 768px) {
     .nav__toggler {
