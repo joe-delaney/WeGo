@@ -15,8 +15,10 @@ class NavBar extends React.Component {
           </div>
         ) : (
           <div>
-            <Link to={'/signup'} >Signup</Link>
-            <Link to={'/login'}>Login</Link>
+            <button onClick={() => this.props.openModal("signup")}>Signup</button>
+            <button onClick={() => this.props.openModal("login")}>Login</button>
+            {/* <Link to={'/signup'} >Signup</Link>
+            <Link to={'/login'}>Login</Link> */}
           </div>
         )
 
