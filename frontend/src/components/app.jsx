@@ -1,11 +1,11 @@
 import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Switch } from 'react-router-dom';
-import { TestComponent } from './test';
+import FeedIndex from "./feed/feed_index"
 
 const App = () => (
     <Switch>
-        <AuthRoute exact path="/" component={TestComponent} />
+        <AuthRoute exact path="/" component={FeedIndex} />
     </Switch>
 );
 
