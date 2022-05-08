@@ -25,6 +25,7 @@ export default class SignupForm extends React.Component {
         this.handleSignup = this.handleSignup.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.goBack = this.goBack.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);
     }
 
     handleInput(type) {
@@ -37,7 +38,7 @@ export default class SignupForm extends React.Component {
 
     getSignUpPage1() {
         return (
-            <form>
+            <div>
                 <h1>Sign up for a new account</h1>
                 <h2>Start with the Basics</h2>
                 <input
@@ -72,11 +73,9 @@ export default class SignupForm extends React.Component {
                     onChange={this.handleInput("age")}
                     min="18"
                     max="110" />
-                <input
-                    type="submit"
-                    value="Next"
-                    onClick={this.nextPage} />
-            </form>
+                <button onClick={this.nextPage}>Next</button>
+                {this.renderErrors()}
+            </div>
         )
     }
 
@@ -94,36 +93,38 @@ export default class SignupForm extends React.Component {
 
     getSignUpPage2() {
         return (
-            <form>
-                <h1>Sign up for a new account</h1>
-                <h2>Let's get personal</h2>
-                <input
-                    type="text"
-                    placeholder="pronouns"
-                    value={this.state.pronouns}
-                    onChange={this.handleInput("pronouns")} />
-                <input
-                    type="text"
-                    placeholder="jobTitle"
-                    value={this.state.jobTitle}
-                    onChange={this.handleInput("jobTitle")} />
-                <input
-                    type="text"
-                    placeholder="education"
-                    value={this.state.education}
-                    onChange={this.handleInput("education")} />
-                <input
-                    type="text"
-                    placeholder="interests"
-                    value={this.state.interests}
-                    onChange={this.handleInput("interests")} />
-                <input
-                    type="submit"
-                    value="Signup"
-                    onClick={this.handleSignup} />
+            <div>
+                <form>
+                    <h1>Sign up for a new account</h1>
+                    <h2>Let's get personal</h2>
+                    <input
+                        type="text"
+                        placeholder="pronouns"
+                        value={this.state.pronouns}
+                        onChange={this.handleInput("pronouns")} />
+                    <input
+                        type="text"
+                        placeholder="jobTitle"
+                        value={this.state.jobTitle}
+                        onChange={this.handleInput("jobTitle")} />
+                    <input
+                        type="text"
+                        placeholder="education"
+                        value={this.state.education}
+                        onChange={this.handleInput("education")} />
+                    <input
+                        type="text"
+                        placeholder="interests"
+                        value={this.state.interests}
+                        onChange={this.handleInput("interests")} />
+                    <input
+                        type="submit"
+                        value="Signup"
+                        onClick={this.handleSignup} />
+                </form>
                 <button onClick={this.handleSignup}>Skip for now</button>
                 <button onClick={this.goBack}>Go back</button>
-            </form>
+            </div>
         )
     }
 
@@ -153,6 +154,19 @@ export default class SignupForm extends React.Component {
 
     toggleModal() {
         //This will be used to close the modal
+    }
+
+    // Render the session errors if there are any
+    renderErrors() {
+        return (
+            <ul>
+                {Object.keys(this.props.errors).map((error, i) => (
+                    <li key={`error-${i}`}>
+                        {this.props.errors[error]}
+                    </li>
+                ))}
+            </ul>
+        );
     }
 
     render() {
