@@ -73,7 +73,7 @@ export default class SignupForm extends React.Component {
                     max="110" />
                 <input
                     type="submit"
-                    value="Login"
+                    value="Next"
                     onClick={this.nextPage} />
             </form>
         )
@@ -112,14 +112,15 @@ export default class SignupForm extends React.Component {
                     onChange={this.handleInput("interests")} />
                 <input
                     type="submit"
-                    value="Login"
+                    value="Signup"
                     onClick={this.handleSignup} />
                 <button onClick={this.handleSignup}>Skip for now</button>
             </form>
         )
     }
 
-    handleSignup() {
+    handleSignup(e) {
+        e.preventDefault();
         //Sign up the user
         this.props.signup(this.state);
 

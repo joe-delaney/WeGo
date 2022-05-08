@@ -9,6 +9,17 @@ class NavBar extends React.Component {
     }
 
     render() {
+        let navbarLinks = this.props.loggedIn ? (
+          <div>
+            <button onClick={this.props.logout}>Logout</button>
+          </div>
+        ) : (
+          <div>
+            <Link to={'/signup'} >Signup</Link>
+            <Link to={'/login'}>Login</Link>
+          </div>
+        )
+
         return (
           <div className='NavBar'>
               <div>
@@ -25,11 +36,7 @@ class NavBar extends React.Component {
                      o  
                   </span>
               </div>
-              <div>
-                <Link to={'/signup'} >Signup</Link>
-                <Link to={'/login'}>Login</Link>
-              </div>
-                
+              {navbarLinks}
           </div>
         )
     }

@@ -22,7 +22,8 @@ export default class LoginForm extends React.Component {
         }
     }
 
-    handleLogin(type) {
+    handleLogin(e) {
+        e.preventDefault();
         //Login the user
         this.props.login(this.state);
 
