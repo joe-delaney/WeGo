@@ -7,7 +7,7 @@ export default class SignupForm extends React.Component {
         this.state = {
             email: "",
             password: "",
-            confirmPassword: "",
+            password2: "",
             fname: "",
             lname: "",
             age: "",
@@ -52,8 +52,8 @@ export default class SignupForm extends React.Component {
                 <input
                     type="password"
                     placeholder="Confirm password"
-                    value={this.state.confirmPassword}
-                    onChange={this.handleInput("confirmPassword")} />
+                    value={this.state.password2}
+                    onChange={this.handleInput("password2")} />
                 <input
                     type="text"
                     placeholder="First name"
