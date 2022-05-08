@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import './navbar.css'
 
+import Avatar from '@mui/material/Avatar';
+
 class NavBar extends React.Component {
     constructor(props) {
       super(props);
@@ -25,7 +27,20 @@ class NavBar extends React.Component {
                      o  
                   </span>
               </div>
-              <div className='nav__right'>
+             
+          
+               <div className='nav__right'>
+
+                 
+               <div className="header__info--user"> 
+
+<div className="header__info--userimg">
+     <Avatar  /> 
+</div>
+
+<div className="header__info--username">Demo User</div>                                
+</div>
+
                 <ul class="list nav__list">
                   <li class="nav__item"><Link to={'/signup'} >Signup</Link></li>
                   <li class="nav__item"><Link to={'/login'}>Login</Link></li>
