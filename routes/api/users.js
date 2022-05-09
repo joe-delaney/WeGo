@@ -7,6 +7,7 @@ const keys = require('../../config/keys');
 const passport = require('passport');
 const validateSignupInput = require('../../validation/signup');
 const validateLoginInput = require('../../validation/login');
+const userShow = require('../../jbuilder/users');
 
 //User sign up backend route
 router.post('/signup', (req, res) => {
@@ -47,7 +48,8 @@ router.post('/signup', (req, res) => {
                                 jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
                                     res.json({
                                         success: true,
-                                        token: "Bearer " + token
+                                        token: "Bearer " + token,
+                                        user: JSON.parse(userShow(newUser))
                                     });
                                 });
                             })
@@ -83,7 +85,8 @@ router.post('/login', (req, res) => {
                         jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
                             res.json({
                                 success: true,
-                                token: "Bearer " + token
+                                token: "Bearer " + token,
+                                user: JSON.parse(userShow(user))
                             });
                         });
                     } else {
