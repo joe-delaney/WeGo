@@ -1,12 +1,12 @@
 import React from "react";
 import NavBarContainer from "../nav/navbar_container";
-import Modal from "../modal/modal";
+import ModalContainer from "../modal/modal_container";
 
 const FeedIndex = () => {
     return (
-        <div>
+        <>
+            <ModalContainer />
             <NavBarContainer />
-            <Modal />
         </div>
     )
 }

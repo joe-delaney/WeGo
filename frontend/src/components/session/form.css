@@ -1,0 +1,62 @@
+.form__box {
+ 
+     border: 1.5px solid white;
+     background-color: white;
+     box-shadow: 0 0 7px rgb(207, 207, 207), 0 0 10px rgb(238, 238, 238);
+   
+     width: 500px;
+     border-radius: 10px;
+     padding: 2px;
+     top: 15px;
+          
+}
+
+
+.form__header {
+
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 20px;
+}
+
+
+.form__header > h1{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.form__header > h2{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.form__header > p{
+    margin: 5px;
+    font-size: medium;
+    text-align: left;
+}
+
+.form__avatar{
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.form__avatar > p{
+    margin-left: 3px;
+    font-size: medium;
+    font-weight: 600;
+}
+
+.form__submit{
+    display: flex;
+    justify-content: center;
+}
+
+.form__options{
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}

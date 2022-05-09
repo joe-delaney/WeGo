@@ -1,4 +1,5 @@
 import React from "react";
+import './form.css'
 
 export default class SignupForm extends React.Component {
     constructor(props) {
@@ -38,43 +39,79 @@ export default class SignupForm extends React.Component {
 
     getSignUpPage1() {
         return (
-            <div>
-                <h1>Sign up for a new account</h1>
-                <h2>Start with the Basics</h2>
-                <input
-                    type="text"
-                    placeholder="email"
-                    value={this.state.email}
-                    onChange={this.handleInput("email")} />
-                <input
-                    type="password"
-                    placeholder="password"
-                    value={this.state.password}
-                    onChange={this.handleInput("password")} />
-                <input
-                    type="password"
-                    placeholder="Confirm password"
-                    value={this.state.password2}
-                    onChange={this.handleInput("password2")} />
-                <input
-                    type="text"
-                    placeholder="First name"
-                    value={this.state.fname}
-                    onChange={this.handleInput("fname")} />
-                <input
-                    type="text"
-                    placeholder="Last name"
-                    value={this.state.lname}
-                    onChange={this.handleInput("lname")} />
-                <input
-                    type="Number"
-                    placeholder="Age"
-                    value={this.state.age}
-                    onChange={this.handleInput("age")}
-                    min="18"
-                    max="110" />
-                <button onClick={this.nextPage}>Next</button>
-                {this.renderErrors()}
+       
+            <form className="form__box">
+                <div onClick={this.props.closeModal} className="close-x">X</div> 
+                <div className="form__header">
+                    <h1>Sign up for a new account</h1>
+                    <h2>Start with the Basics</h2>
+                </div>
+                <div className="input-group">
+                    <input
+                        className="input"
+                        type="text"
+                        placeholder="email"
+                        value={this.state.email}
+                        onChange={this.handleInput("email")} />
+
+                </div>
+                <div className="input-group">
+
+                    <input
+                        className="input"
+                        type="password"
+                        placeholder="password"
+                        value={this.state.password}
+                        onChange={this.handleInput("password")} />
+                </div>
+                <div className="input-group">
+                    <input
+                        className="input"
+                        type="password"
+                        placeholder="Confirm password"
+                        value={this.state.confirmPassword}
+                        onChange={this.handleInput("confirmPassword")} />
+
+                </div>
+                <div className="input-group">
+                    <input
+                        className="input"
+                        type="text"
+                        placeholder="First name"
+                        value={this.state.fname}
+                        onChange={this.handleInput("fname")} />
+
+                </div>
+                <div className="input-group">
+                    <input
+                        className="input"
+                        type="text"
+                        placeholder="Last name"
+                        value={this.state.lname}
+                        onChange={this.handleInput("lname")} />
+
+                </div>
+                <div className="input-group">
+                    <input
+                        className="input"
+                        type="Number"
+                        placeholder="Age"
+                        value={this.state.age}
+                        onChange={this.handleInput("age")}
+                        min="18"
+                        max="110" />
+
+                </div>
+                <div className="form__submit">
+                    <input
+                        className="btn btn--secondary"
+                        type="submit"
+                        value="Next"
+                        onClick={this.nextPage} />
+
+                </div>
+            </form>
+            {this.renderErrors()}
             </div>
         )
     }
@@ -93,38 +130,62 @@ export default class SignupForm extends React.Component {
 
     getSignUpPage2() {
         return (
-            <div>
-                <form>
+            <form className="form__box">
+                <div onClick={this.props.closeModal} className="close-x">X</div> 
+                <div className="form__header">
                     <h1>Sign up for a new account</h1>
                     <h2>Let's get personal</h2>
+                </div>
+                <div className="input-group">
                     <input
+                        className="input"
                         type="text"
                         placeholder="pronouns"
                         value={this.state.pronouns}
                         onChange={this.handleInput("pronouns")} />
+                    </div>
+
+                <div className="input-group">
                     <input
-                        type="text"
-                        placeholder="jobTitle"
-                        value={this.state.jobTitle}
-                        onChange={this.handleInput("jobTitle")} />
+                         className="input"
+                         type="text"
+                         placeholder="jobTitle"
+                         value={this.state.jobTitle}
+                         onChange={this.handleInput("jobTitle")} /> 
+                </div>
+                <div className="input-group">
                     <input
-                        type="text"
-                        placeholder="education"
-                        value={this.state.education}
-                        onChange={this.handleInput("education")} />
+                         className="input"
+                         type="text"
+                         placeholder="education"
+                         value={this.state.education}
+                         onChange={this.handleInput("education")} />
+                </div>
+                <div className="input-group">
                     <input
-                        type="text"
-                        placeholder="interests"
-                        value={this.state.interests}
-                        onChange={this.handleInput("interests")} />
+                         className="input"
+                         type="text"
+                         placeholder="interests"
+                         value={this.state.interests}
+                         onChange={this.handleInput("interests")} />        
+                </div>
+                <div className="form__submit">
                     <input
+                        className="btn btn--primary"
                         type="submit"
-                        value="Signup"
+                        value="SinUp"
                         onClick={this.handleSignup} />
-                </form>
-                <button onClick={this.handleSignup}>Skip for now</button>
-                <button onClick={this.goBack}>Go back</button>
-            </div>
+                    
+                </div>
+                <div className="form__options">
+                    <p onClick={this.goBack}>
+                        GoBack
+                    </p>
+                    <p onClick={this.handleSignup}>
+                        Skip for now
+                    </p>
+                </div>
+            </form>
         )
     }
 
