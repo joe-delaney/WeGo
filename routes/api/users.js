@@ -122,11 +122,7 @@ router.get("/:id", (req, res) => {
         );
 });
 
-// update a user profile
-// Does this need to be authenticated? 
-// Test out the basic version in postman before attempting that
-// req.params.id, not req.users.id right?
-// Patch by email?
+// Update a user profile
 router.post("/:id", (req, res) => {
     User.findById(req.params.id)
         .then(user => {
