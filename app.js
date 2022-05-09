@@ -4,6 +4,8 @@ const users = require("./routes/api/users");
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
+const app = express();
+
 const path = require('path');
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/build'));
@@ -12,7 +14,6 @@ if (process.env.NODE_ENV === 'production') {
     })
 }
 
-const app = express();
 
 // MongoDB
 const db = require('./config/keys').mongoURI;
