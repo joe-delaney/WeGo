@@ -24,11 +24,8 @@ class ProfileNavBar extends React.Component {
                         className="profile__useravatar"/>
                     </div>
                     <div className='profile__userinfo--heading'>
-                        <div>
                             <h1>Demo User</h1>
                             <p>Attended 0 Events </p>
-
-                        </div>
                         {/* <div>
                              <button className='btn btn--grey btn--small'>Edit profile</button>
                         </div>  */}

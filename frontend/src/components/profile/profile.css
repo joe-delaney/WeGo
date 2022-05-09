@@ -49,9 +49,9 @@
 }
 
 .profile__userinfo--heading > h1{
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
-    text-align: ce;
+    text-align: center;
 }
 
 .profile__userinfo--heading > p{
@@ -105,22 +105,15 @@
         margin-top: 0;
     }
 
-    .profile__userinfo--heading{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
 
- 
 
-    .profile__userinfo--heading > div > h1{
+    .profile__userinfo--header > h1{
         font-size: 1.8em;
      
     }
 
     
-    .profile__userinfo--heading > div >  p{
+    .profile__userinfo--header > h1{
         font-size: 1.3rem;
         
     }
