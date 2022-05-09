@@ -94,7 +94,8 @@ export default class LoginForm extends React.Component {
                             placeholder="email" 
                             value={this.state.email} 
                             onChange={this.handleInput("email")}
-                            className="input"/>
+                            className="input"
+                            />
                     </div>
                     
                     <div className="input-group">
@@ -103,7 +104,8 @@ export default class LoginForm extends React.Component {
                             placeholder="password" 
                             value={this.state.password} 
                             onChange={this.handleInput("password")}
-                            className="input"/>
+                            className="input"
+                            />
                     </div>
                     <div className="form__submit">
                         <input 
