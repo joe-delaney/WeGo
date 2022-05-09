@@ -7,7 +7,7 @@ const receiveUser = (user) => ({
     user
 });
 
-export const fetchUser = user => dispatch => APIUtil.fetchUser(user)
+export const fetchUser = userId => dispatch => APIUtil.fetchUser(userId)
     .then(user => dispatch(receiveUser(user)));
 
 export const updateUser = user => dispatch => APIUtil.updateUser(user)
