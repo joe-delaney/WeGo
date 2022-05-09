@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import './profile.css'
-
 
 class ProfileNavBar extends React.Component {
     constructor(props) {

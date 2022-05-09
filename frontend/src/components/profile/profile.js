@@ -4,7 +4,9 @@ import './profile.css'
 import ModalContainer from "../modal/modal_container";
 import NavBarContainer from "../nav/navbar_container";
 import ProfileNavBar from "./profile_navbar"
+import ProfileFeed from "./profile_feed"
 
+import './profile.css'
 
 class Profile extends React.Component {
     constructor(props) {
@@ -18,6 +20,7 @@ class Profile extends React.Component {
                 <ModalContainer />
                 <NavBarContainer />
                 <ProfileNavBar />
+                <ProfileFeed />
             </>
         )
     }
