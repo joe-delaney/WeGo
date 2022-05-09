@@ -1,6 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const dateToAge = (birthdate) => {
+
+    birthdate = new Date(birthdate)
+
+    let current = new Date(Date.now());
+    
+    let age = current.getYear() - birthdate.getYear();
+    if (birthdate.getMonth() < current.getMonth()) {age -= 1;}
+    if (birthdate.getMonth() === current.getMonth() && birthdate.getDate() < current.getDate()) {age -= 1;}
+
+    return age;
+}
+
 const UserSchema = new Schema({
     email: {
         type: String,
@@ -70,6 +83,7 @@ const UserSchema = new Schema({
     timestamps: true
 });
 
+module.exports = User = mongoose.model('User', UserSchema);
 // const dateToAge = (birthdate) => {
 //     const current = Date.now();
 //     let age = birthdate.getFullYear() - current.getFullYear();
@@ -78,4 +92,3 @@ const UserSchema = new Schema({
 //     return age;
 // }
 
-module.exports = User = mongoose.model('User', UserSchema);
