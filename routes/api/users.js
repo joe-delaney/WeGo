@@ -116,7 +116,7 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 // Retrieve a specific user by id
 router.get("/:id", (req, res) => {
     User.findById(req.params.id)
-        .then(user => res.json(user))
+        .then(user => res.json(JSON.parse(userShow(user))))
         .catch(err => 
             res.status(404).json({ nouserfound: "No user found with that ID" })
         );
@@ -133,17 +133,13 @@ router.post("/:id", (req, res) => {
             if (!user) {
                 return res.status(404).json({ nouserfound: "No user found with that ID" })
             } else {
-                user.email = req.body.email,
-                user.password = req.body.password,
-                user.fname = req.body.fname,
-                user.lname = req.body.lname,
-                user.age = req.body.age,
-                user.pronouns = req.body.pronouns,
-                user.jobTitle = req.body.jobTitle,
-                user.education = req.body.education,
-                user.interests = req.body.interests
-
-                user.save().then(user => res.json(user));
+                if(req.body.fname) user.fname = req.body.fname;
+                if(req.body.lname) user.lname = req.body.lname
+                if(req.body.pronouns) user.pronouns = req.body.pronouns
+                if(req.body.jobTitle) user.jobTitle = req.body.jobTitle
+                if(req.body.education) user.education = req.body.education
+                if(req.body.interests) user.interests = req.body.interests
+                user.save().then(user => res.json(JSON.parse(userShow(user))));
             }
         })
 })
