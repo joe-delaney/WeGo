@@ -11,9 +11,10 @@ export const logoutUser = () => ({
 });
 
 // We'll dispatch this when our user signs in or signs up
-export const receiveCurrentUser = currentUser => ({
+export const receiveCurrentUser = data => ({
     type: RECEIVE_CURRENT_USER,
-    currentUser
+    currentUser: data.currentUser,
+    user: data.user
 });
 
 // We dispatch this one to show authentication errors on the frontend
@@ -34,13 +35,14 @@ export const logout = () => dispatch => {
 
 // Upon signup, set the session token and dispatch the current user. Dispatch errors on failure.
 export const signup = user => dispatch => {
-    console.log(user);
     return APIUtil.signup(user).then(res => {
         const { token } = res.data;
         localStorage.setItem('jwtToken', token);
         APIUtil.setAuthToken(token);
         const decoded = jwt_decode(token);
-        dispatch(receiveCurrentUser(decoded))
+        dispatch(receiveCurrentUser({
+            currentUser: decoded,
+            user: res.data.user}))
     }).catch(err => {
         dispatch(receiveErrors(err.response.data));
 })};
@@ -52,7 +54,10 @@ export const login = user => dispatch => (
         localStorage.setItem('jwtToken', token);
         APIUtil.setAuthToken(token);
         const decoded = jwt_decode(token);
-        dispatch(receiveCurrentUser(decoded))
+        dispatch(receiveCurrentUser({
+            currentUser: decoded,
+            user: res.data.user
+        }))
     }).catch(err => {
         dispatch(receiveErrors(err.response.data));
 }));

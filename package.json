@@ -18,6 +18,7 @@
     "body-parser": "^1.20.0",
     "concurrently": "^7.1.0",
     "express": "^4.18.1",
+    "jbuilder": "^0.0.5",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.2",
     "passport": "^0.5.2",

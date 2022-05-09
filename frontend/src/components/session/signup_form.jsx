@@ -40,7 +40,7 @@ export default class SignupForm extends React.Component {
     getSignUpPage1() {
         return (
             <div>
-            <form className="form__box">
+            <div className="form__box">
                 <div onClick={this.props.closeModal} className="close-x">X</div> 
                 <div className="form__header">
                     <h1>Sign up for a new account</h1>
@@ -69,8 +69,8 @@ export default class SignupForm extends React.Component {
                         className="input"
                         type="password"
                         placeholder="Confirm password"
-                        value={this.state.confirmPassword}
-                        onChange={this.handleInput("confirmPassword")} />
+                        value={this.state.password2}
+                        onChange={this.handleInput("password2")} />
 
                 </div>
                 <div className="input-group">
@@ -103,14 +103,12 @@ export default class SignupForm extends React.Component {
 
                 </div>
                 <div className="form__submit">
-                    <input
+                    <button
                         className="btn btn--secondary"
-                        type="submit"
-                        value="Next"
-                        onClick={this.nextPage} />
+                        onClick={this.nextPage}>Next</button>
 
                 </div>
-            </form>
+            </div>
             {this.renderErrors()}
             </div>
         )
@@ -173,13 +171,13 @@ export default class SignupForm extends React.Component {
                     <input
                         className="btn btn--primary"
                         type="submit"
-                        value="SinUp"
+                        value="Sign Up"
                         onClick={this.handleSignup} />
                     
                 </div>
                 <div className="form__options">
                     <p onClick={this.goBack}>
-                        GoBack
+                        Go back
                     </p>
                     <p onClick={this.handleSignup}>
                         Skip for now
@@ -215,6 +213,7 @@ export default class SignupForm extends React.Component {
 
     toggleModal() {
         //This will be used to close the modal
+        this.props.closeModal();
     }
 
     // Render the session errors if there are any

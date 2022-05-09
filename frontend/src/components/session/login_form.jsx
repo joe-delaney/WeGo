@@ -29,9 +29,7 @@ export default class LoginForm extends React.Component {
         e.preventDefault();
         //Login the user
         this.props.login(this.state)
-            .then(
-                this.props.closeModal()
-            )
+            .then(this.props.closeModal())
 
 
         //Reset the state
@@ -39,9 +37,6 @@ export default class LoginForm extends React.Component {
             email: "",
             password: ""
         })
-
-        //Close the login modal
-        // this.toggleModal();
     }
 
     toggleModal() {
