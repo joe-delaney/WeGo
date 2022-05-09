@@ -15,7 +15,7 @@ class NavBar extends React.Component {
         let navbarLinks = this.props.loggedIn ? (
           <div>
             <ul className="list nav__list">
-              <li className="nav__item" onClick={()=>this.props.logOut()}>Log Out</li>
+              <li className="nav__item" onClick={()=>this.props.logout()}>Log Out</li>
             </ul>
           </div>
         ) : (

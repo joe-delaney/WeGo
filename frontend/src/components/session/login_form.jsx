@@ -30,7 +30,7 @@ export default class LoginForm extends React.Component {
         //Login the user
         this.props.login(this.state)
             .then(
-                ()=>this.closeModal()
+                this.props.closeModal()
             )
 
 
@@ -90,7 +90,6 @@ export default class LoginForm extends React.Component {
                     <div className="form__header">
                         <h1>Log in to your account!</h1>
                     </div>
-                    <h1>Log in to your account!</h1>
                     
                 <div className="input-group">
                     <input 
