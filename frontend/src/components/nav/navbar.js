@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import './navbar.css'
 
-import Avatar from '@mui/material/Avatar';
-import SendRoundedIcon from '@mui/icons-material/SendRounded';
+// import Avatar from '@mui/material/Avatar';
+// import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -14,15 +14,15 @@ class NavBar extends React.Component {
     render() {
         let navbarLinks = this.props.loggedIn ? (
           <div>
-            <ul class="list nav__list">
-              <li class="nav__item" onClick={()=>this.props.logOut()}>Log Out</li>
+            <ul className="list nav__list">
+              <li className="nav__item" onClick={()=>this.props.logOut()}>Log Out</li>
             </ul>
           </div>
         ) : (
           <div>
-             <ul class="list nav__list">
-              <li class="nav__item" onClick={()=>this.props.openModal('signup')}>Signup</li>
-              <li class="nav__item"  onClick={()=>this.props.openModal('login')}>Login</li>
+             <ul className="list nav__list">
+              <li className="nav__item" onClick={()=>this.props.openModal('signup')}>Signup</li>
+              <li className="nav__item"  onClick={()=>this.props.openModal('login')}>Login</li>
             </ul>
           </div>
         )
@@ -44,7 +44,7 @@ class NavBar extends React.Component {
                       o  
                     </span>
                     <span>
-                      <SendRoundedIcon />
+                      {/* <SendRoundedIcon /> */}
                     </span>
 
                   </div>
@@ -59,7 +59,7 @@ class NavBar extends React.Component {
                <div className="nav__user"> 
 
                 <div >
-                    <Avatar  className="nav__user--img"/> 
+                    {/* <Avatar  className="nav__user--img"/>  */}
                 </div>
 
                 <div className="nav__user--username"> </div>                                

@@ -39,7 +39,7 @@ export default class SignupForm extends React.Component {
 
     getSignUpPage1() {
         return (
-       
+            <div>
             <form className="form__box">
                 <div onClick={this.props.closeModal} className="close-x">X</div> 
                 <div className="form__header">
