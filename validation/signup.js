@@ -1,4 +1,5 @@
 const Validator = require('validator');
+const { dateToAge } = require('../models/User');
 const validText = require('./valid-text');
 
 module.exports = function validateRegisterInput(data) {
@@ -9,7 +10,6 @@ module.exports = function validateRegisterInput(data) {
     data.password2 = validText(data.password2) ? data.password2 : '';
     data.fname = validText(data.fname) ? data.fname : '';
     data.lname = validText(data.lname) ? data.lname : '';
-    data.age = validText(data.age) ? data.age : '';
 
     if (!Validator.isLength(data.fname, { min: 2, max: 30 })) {
         errors.fname = 'First name must be between 2 and 30 characters';
@@ -19,11 +19,7 @@ module.exports = function validateRegisterInput(data) {
         errors.age = "Age field is required";
     }
 
-    if(isNaN(data.age)) {
-        errors.age = "Age must be a number"
-    }
-
-    if(!isNaN(data.age) && parseInt(data.age) < 18) {
+    if(dateToAge(data.age) < 18) {
         errors.age = "You must be at least 18 years old to use WeGo"
     }
 

@@ -70,7 +70,7 @@ const UserSchema = new Schema({
     timestamps: true
 });
 
-const dateToAge = (birthdate) => {
+export const dateToAge = (birthdate) => {
     const current = Date.now();
     let age = birthdate.getFullYear() - current.getFullYear();
     if (birthdate.getMonth() < current.getMonth()) {age -= 1;}
