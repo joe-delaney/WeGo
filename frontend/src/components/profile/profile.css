@@ -121,29 +121,47 @@
 }
 
 .profile__about{
-    margin-top: 30px;
+    /* margin-top: 30px; */
     /* background: linear-gradient(#f1f2f5 , #e3e3e6 80%); */
-    width: 100%;
-    min-height: 205px; 
+    max-width: 750px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
-.profile__about--img{
-    width: 350px;
-    height: 400px;
-    background-color: #e3e3e6;
-    margin-right: 20px;
+.profile__about--slogan {
+    margin-top: 30px;
+    font-size: 3rem;
+    /* font-weight: 700; */
+    color: black;
+    text-align: center;
+    line-height: 0;
 }
-.profile__about--intro{
-    flex: 0.6;
-    height: 400px;
-    background-color: #e3e3e6;
-    
+
+.profile__about--slogan-blod{
+    font-weight: 900;
+}
+
+.profile__about--intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* max-width: 350px; */
+    font-size: 1.5rem;
+    color: var(--color-body-darker);
+
+}
+
+.profile__about--edit{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .profile__events{
-    margin-top: 30px;
+  
     /* background: linear-gradient(#f1f2f5 , #e3e3e6 80%); */
     width: 100%;
     min-height: 205px; 
@@ -180,15 +198,51 @@
         
     }
 
-
-
     .profile__navbar{
         display: flex;
         justify-content: center;
         align-items: center;           
         margin-top: 10px;
     }
-    
+
+    .profile__about{
+        margin-top: 5px;
+        /* background: linear-gradient(#f1f2f5 , #e3e3e6 80%); */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    ..profile__about--slogan {
+        margin-top: 30px;
+        font-size: 6rem;
+        /* font-weight: 700; */
+        color: black;
+        text-align: center;
+        line-height: 0;
+    }
+
+    .profile__about--slogan {
+        font-size: 4rem;
+    }
+
+    .profile__about--intro{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        
+    }
+
+    .profile__about--left{
+        margin-right: 50px;
+        flex: 0.33;
+    }
+
+    .profile__about--right{
+       flex: 1;
+       min-height: 200px;
+    }
 }
 
 
