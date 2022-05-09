@@ -113,5 +113,40 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     });
 })
 
+// Retrieve a specific user by id
+router.get("/:id", (req, res) => {
+    User.findById(req.params.id)
+        .then(user => res.json(user))
+        .catch(err => 
+            res.status(404).json({ nouserfound: "No user found with that ID" })
+        );
+});
+
+// update a user profile
+// Does this need to be authenticated? 
+// Test out the basic version in postman before attempting that
+// req.params.id, not req.users.id right?
+// Patch by email?
+router.post("/:id", (req, res) => {
+    User.findById(req.params.id)
+        .then(user => {
+            if (!user) {
+                return res.status(404).json({ nouserfound: "No user found with that ID" })
+            } else {
+                user.email = req.body.email,
+                user.password = req.body.password,
+                user.fname = req.body.fname,
+                user.lname = req.body.lname,
+                user.age = req.body.age,
+                user.pronouns = req.body.pronouns,
+                user.jobTitle = req.body.jobTitle,
+                user.education = req.body.education,
+                user.interests = req.body.interests
+
+                user.save().then(user => res.json(user));
+            }
+        })
+})
+
 
 module.exports = router;
