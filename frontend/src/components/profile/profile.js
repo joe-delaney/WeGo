@@ -14,13 +14,17 @@ class Profile extends React.Component {
 
     }
 
+    componentDidMount() {
+        this.props.fetchUser(this.props.match.params.userId)
+    }
+
     render() {
         return(
             <>
                 <ModalContainer />
                 <NavBarContainer />
-                <ProfileNavBar />
-                <ProfileFeed />
+                <ProfileNavBar user={this.props.user}/>
+                <ProfileFeed user={this.props.user}/>
             </>
         )
     }

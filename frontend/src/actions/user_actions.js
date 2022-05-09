@@ -8,7 +8,7 @@ const receiveUser = (user) => ({
 });
 
 export const fetchUser = userId => dispatch => APIUtil.fetchUser(userId)
-    .then(user => dispatch(receiveUser(user)));
+    .then(user => dispatch(receiveUser(user.data)));
 
 export const updateUser = user => dispatch => APIUtil.updateUser(user)
     .then(user => dispatch(receiveUser(user)));
