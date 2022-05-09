@@ -5,7 +5,8 @@ import {closeModal} from '../../actions/modal_actions';
 
 const mapStateToProps = state => {
     return {
-        errors: state.errors.session
+        errors: state.errors.session,
+        isAuthenticated: state.session.isAuthenticated
     };
 };
 

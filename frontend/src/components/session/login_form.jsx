@@ -13,8 +13,8 @@ export default class LoginForm extends React.Component {
 
         this.handleInput = this.handleInput.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
-        this.toggleModal = this.toggleModal.bind(this);
-        this.renderErrors = this.renderErrors.bind(this);
+        // this.toggleModal = this.toggleModal.bind(this);
+        // this.renderErrors = this.renderErrors.bind(this);
     }
 
     handleInput(type) {
@@ -29,8 +29,10 @@ export default class LoginForm extends React.Component {
         e.preventDefault();
         //Login the user
         this.props.login(this.state)
-            .then(this.props.closeModal())
 
+        if(this.props.isAuthenticated){
+            console.log(this.props.isAuthenticated);
+        }
 
         //Reset the state
         this.setState({
@@ -39,22 +41,22 @@ export default class LoginForm extends React.Component {
         })
     }
 
-    toggleModal() {
-        //This will be used to close the modal once implemented
-    }
+    // toggleModal() {
+    //     //This will be used to close the modal once implemented
+    // }
 
-    // Render the session errors if there are any
-    renderErrors() {
-        return (
-            <ul>
-                {Object.keys(this.props.errors).map((error, i) => (
-                    <li key={`error-${i}`}>
-                        {this.props.errors[error]}
-                    </li>
-                ))}
-            </ul>
-        );
-    }
+    // // Render the session errors if there are any
+    // renderErrors() {
+    //     return (
+    //         <ul>
+    //             {Object.keys(this.props.errors).map((error, i) => (
+    //                 <li key={`error-${i}`}>
+    //                     {this.props.errors[error]}
+    //                 </li>
+    //             ))}
+    //         </ul>
+    //     );
+    // }
 
     render() {
         return (
@@ -113,7 +115,7 @@ export default class LoginForm extends React.Component {
                     </div>
 
                 </form>
-                {this.renderErrors()}
+                {/* {this.renderErrors()} */}
             </div>
         )
     }

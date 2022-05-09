@@ -24,9 +24,9 @@ export default class SignupForm extends React.Component {
         this.getSignUpPage2 = this.getSignUpPage2.bind(this);
         this.nextPage = this.nextPage.bind(this);
         this.handleSignup = this.handleSignup.bind(this);
-        this.toggleModal = this.toggleModal.bind(this);
+        // this.toggleModal = this.toggleModal.bind(this);
         this.goBack = this.goBack.bind(this);
-        this.renderErrors = this.renderErrors.bind(this);
+        // this.renderErrors = this.renderErrors.bind(this);
     }
 
     handleInput(type) {
@@ -39,12 +39,33 @@ export default class SignupForm extends React.Component {
 
     getSignUpPage1() {
         return (
-            <div>
+            // <div>
             <div className="form__box">
                 <div onClick={this.props.closeModal} className="close-x">X</div> 
                 <div className="form__header">
                     <h1>Sign up for a new account</h1>
                     <h2>Start with the Basics</h2>
+                </div>
+
+                <div className="form__group">
+                    <div className="input-group">
+                        <input
+                            className="input form__input"
+                            type="text"
+                            placeholder="First name"
+                            value={this.state.fname}
+                            onChange={this.handleInput("fname")} />
+
+                    </div>
+                    <div className="input-group">
+                        <input
+                            className="input"
+                            type="text"
+                            placeholder="Last name"
+                            value={this.state.lname}
+                            onChange={this.handleInput("lname")} />
+
+                    </div>
                 </div>
                 <div className="input-group">
                     <input
@@ -73,44 +94,26 @@ export default class SignupForm extends React.Component {
                         onChange={this.handleInput("password2")} />
 
                 </div>
+               
                 <div className="input-group">
                     <input
                         className="input"
-                        type="text"
-                        placeholder="First name"
-                        value={this.state.fname}
-                        onChange={this.handleInput("fname")} />
-
-                </div>
-                <div className="input-group">
-                    <input
-                        className="input"
-                        type="text"
-                        placeholder="Last name"
-                        value={this.state.lname}
-                        onChange={this.handleInput("lname")} />
-
-                </div>
-                <div className="input-group">
-                    <input
-                        className="input"
-                        type="Number"
+                        type="date"
                         placeholder="Age"
                         value={this.state.age}
                         onChange={this.handleInput("age")}
-                        min="18"
-                        max="110" />
+                        />
 
                 </div>
                 <div className="form__submit">
                     <button
                         className="btn btn--secondary"
-                        onClick={this.nextPage}>Next</button>
+                        onClick={this.handleSignup}>Sing Up!!</button>
 
                 </div>
             </div>
-            {this.renderErrors()}
-            </div>
+            // {this.renderErrors()}
+            // </div>
         )
     }
 
@@ -207,32 +210,33 @@ export default class SignupForm extends React.Component {
         })
 
         //Close the modal
-        this.toggleModal();
+        // this.toggleModal();
     }
 
-    toggleModal() {
-        //This will be used to close the modal
-        this.props.closeModal();
-    }
+    // toggleModal() {
+    //     //This will be used to close the modal
+    //     this.props.closeModal();
+    // }
 
-    // Render the session errors if there are any
-    renderErrors() {
-        return (
-            <ul>
-                {Object.keys(this.props.errors).map((error, i) => (
-                    <li key={`error-${i}`}>
-                        {this.props.errors[error]}
-                    </li>
-                ))}
-            </ul>
-        );
-    }
+    // // Render the session errors if there are any
+    // renderErrors() {
+    //     return (
+    //         <ul>
+    //             {Object.keys(this.props.errors).map((error, i) => (
+    //                 <li key={`error-${i}`}>
+    //                     {this.props.errors[error]}
+    //                 </li>
+    //             ))}
+    //         </ul>
+    //     );
+    // }
 
     render() {
-        if(this.state.page1) {
-            return this.getSignUpPage1();
-        } else {
-            return this.getSignUpPage2();
-        }
+        // if(this.state.page1) {
+        //     return this.getSignUpPage1();
+        // } else {
+        //     return this.getSignUpPage2();
+        // }
+        return this.getSignUpPage1();
     }
 }
