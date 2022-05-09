@@ -1,10 +1,8 @@
 :root {
     --color-backgroud: #243b52;
-
     --color-primary: #2584ff;
     --color-secondary: #00d9ff;
     --color-accent: #ff3400;
-
     --color-headings: #1b0760;
     --color-body: #918ca4;
     --color-body-darker: #5c5577;
@@ -33,7 +31,7 @@
     font-size: 2rem;
     line-height: 1.5;
     color: var(--color-body);
-    
+     
   }
   
   
@@ -173,6 +171,17 @@
   background: #05cdf0;
 }
 
+
+.btn--grey {
+  background: var(--color-border);
+  color: #fff;
+}
+
+
+.btn--grey:hover {
+  background: #cdcbd7;
+}
+
 .btn--accent {
   background: var(--color-accent);
   color: #fff;
@@ -180,6 +189,13 @@
 
 .btn--accent:hover {
   background: #ec3000;
+}
+
+.btn--small{
+  padding: 10px 10px;
+  font-size: 1rem;
+  font-weight: 700;
+
 }
 
   

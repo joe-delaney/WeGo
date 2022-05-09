@@ -7,6 +7,7 @@ const keys = require('../../config/keys');
 const passport = require('passport');
 const validateSignupInput = require('../../validation/signup');
 const validateLoginInput = require('../../validation/login');
+const userShow = require('../../jbuilder/users');
 
 //User sign up backend route
 router.post('/signup', (req, res) => {
@@ -47,7 +48,8 @@ router.post('/signup', (req, res) => {
                                 jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
                                     res.json({
                                         success: true,
-                                        token: "Bearer " + token
+                                        token: "Bearer " + token,
+                                        user: JSON.parse(userShow(newUser))
                                     });
                                 });
                             })
@@ -83,7 +85,8 @@ router.post('/login', (req, res) => {
                         jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
                             res.json({
                                 success: true,
-                                token: "Bearer " + token
+                                token: "Bearer " + token,
+                                user: JSON.parse(userShow(user))
                             });
                         });
                     } else {
@@ -108,6 +111,37 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
         education: req.user.education,
         interests: req.user.interests
     });
+})
+
+// Retrieve a specific user by id
+router.get("/:id", (req, res) => {
+    User.findById(req.params.id)
+        .then(user => res.json(JSON.parse(userShow(user))))
+        .catch(err => 
+            res.status(404).json({ nouserfound: "No user found with that ID" })
+        );
+});
+
+// update a user profile
+// Does this need to be authenticated? 
+// Test out the basic version in postman before attempting that
+// req.params.id, not req.users.id right?
+// Patch by email?
+router.post("/:id", (req, res) => {
+    User.findById(req.params.id)
+        .then(user => {
+            if (!user) {
+                return res.status(404).json({ nouserfound: "No user found with that ID" })
+            } else {
+                if(req.body.fname) user.fname = req.body.fname;
+                if(req.body.lname) user.lname = req.body.lname
+                if(req.body.pronouns) user.pronouns = req.body.pronouns
+                if(req.body.jobTitle) user.jobTitle = req.body.jobTitle
+                if(req.body.education) user.education = req.body.education
+                if(req.body.interests) user.interests = req.body.interests
+                user.save().then(user => res.json(JSON.parse(userShow(user))));
+            }
+        })
 })
 
 
