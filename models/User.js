@@ -62,8 +62,8 @@ const UserSchema = new Schema({
         default: true,
         set: function() {
             if (this.thumbsUp + this.thumbsDown < 10) return true;
-            if (this.thumbUp > (3 * this.thumbsDown)) return true;
-            return false;
+            if (this.thumbUp < (3 * this.thumbsDown)) return false;
+            return true;
          }
     }
 }, {
