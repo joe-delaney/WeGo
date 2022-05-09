@@ -23,6 +23,8 @@ class ProfileNavBar extends React.Component {
         }
     }
 
+   
+
     render() {
         let feedstatus= '';
         
