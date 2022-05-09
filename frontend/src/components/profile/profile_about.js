@@ -11,7 +11,14 @@ class ProfileAbout extends React.Component {
 
     render() {
         return(
-            <div className='profile__about'>About Info</div>
+            <div className='profile__about'>
+                <div  className='profile__about--img'>
+
+                </div>
+                <div  className='profile__about--intro'>
+                    
+                </div>
+            </div>
         )
     }
 
