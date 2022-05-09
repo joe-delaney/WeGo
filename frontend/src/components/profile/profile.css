@@ -113,10 +113,29 @@
 .profile__feedbar--option:hover{
     background-color: #e3e3e6;
     border-radius: 10px;
+    border: 0px;
 }
 
 .active{
     border-bottom: 3px solid var(--color-primary);
+}
+
+.profile__about{
+    margin-top: 30px;
+    /* background: linear-gradient(#f1f2f5 , #e3e3e6 80%); */
+    width: 100%;
+    min-height: 205px; 
+    display: flex;
+    justify-content: center;
+}
+
+.profile__events{
+    margin-top: 30px;
+    /* background: linear-gradient(#f1f2f5 , #e3e3e6 80%); */
+    width: 100%;
+    min-height: 205px; 
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (min-width: 768px) {
