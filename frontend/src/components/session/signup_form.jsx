@@ -172,8 +172,7 @@ export default class SignupForm extends React.Component {
                         className="btn btn--primary"
                         type="submit"
                         value="Sign Up"
-                        onClick={this.handleSignup} />
-                    
+                        onClick={this.handleSignup} />  
                 </div>
                 <div className="form__options">
                     <p onClick={this.goBack}>
