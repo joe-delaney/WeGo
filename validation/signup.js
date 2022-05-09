@@ -1,8 +1,8 @@
 const Validator = require('validator');
-const { dateToAge } = require('../models/User');
+// const { dateToAge } = require('../models/User');
 const validText = require('./valid-text');
 
-module.exports = function validateRegisterInput(data) {
+module.exports = function validateSignupInput(data) {
     let errors = {};
 
     data.email = validText(data.email) ? data.email : '';
@@ -19,9 +19,9 @@ module.exports = function validateRegisterInput(data) {
         errors.age = "Age field is required";
     }
 
-    if(dateToAge(data.age) < 18) {
-        errors.age = "You must be at least 18 years old to use WeGo"
-    }
+    // if(dateToAge(data.age) < 18) {
+    //     errors.age = "You must be at least 18 years old to use WeGo"
+    // }
 
     if (Validator.isEmpty(data.fname)) {
         errors.fname = 'First name field is required';
@@ -58,7 +58,7 @@ module.exports = function validateRegisterInput(data) {
     if (!Validator.equals(data.password, data.password2)) {
         errors.password2 = 'Passwords must match';
     }
-
+    console.log(Object.keys(errors));
     return {
         errors,
         isValid: Object.keys(errors).length === 0
