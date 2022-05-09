@@ -12,6 +12,19 @@ class NavBar extends React.Component {
     }
 
     render() {
+        let loginStatus = ''
+        if(this.props.isAuthenticated){
+          loginStatus = <ul class="list nav__list">
+            <li class="nav__item" onClick={()=>this.props.logOut()}>Log Out</li>
+          </ul>
+
+        }else{
+          loginStatus = <ul class="list nav__list">
+            <li class="nav__item" onClick={()=>this.props.openModal('singup')}>Signup</li>
+            <li class="nav__item"  onClick={()=>this.props.openModal('login')}>Login</li>
+          </ul>
+        }
+
         return (
           <div className='nav'>
               <div className='nav_left'>
@@ -47,13 +60,10 @@ class NavBar extends React.Component {
                     <Avatar  className="nav__user--img"/> 
                 </div>
 
-                <div className="nav__user--username">Demo User</div>                                
+                <div className="nav__user--username"> </div>                                
                 </div>
 
-                <ul class="list nav__list">
-                  <li class="nav__item"><Link to={'/signup'} >Signup</Link></li>
-                  <li class="nav__item"><Link to={'/login'}>Login</Link></li>
-                </ul>
+                  {loginStatus}
                 
               </div>
                 

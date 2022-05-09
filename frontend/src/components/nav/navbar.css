@@ -38,23 +38,24 @@
 }
 
 .nav__list {
-display: none;
+    display: none;
     width: 100%;
     margin: 0;
 }
   
 .nav__item {
-padding: 0.5rem 2rem;
-border-bottom: 1px solid #222;
+    padding: 0.5rem 2rem;
+    border-bottom: 1px solid #222;
+    cursor: pointer;
 }
   
 .nav__item > a {
-color: var(--color-body-darker);
-transition: color 0.3s;
+    color: var(--color-body-darker);
+    transition: color 0.3s;
 }
   
 .nav__item > a:hover {
-color: var(--color-body);
+    color: var(--color-body);
 }
 
 
