@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     email: {
         type: String,
-        required: true
+        required: true,
+        index: true
     },
     password: {
         type: String,
@@ -19,8 +20,13 @@ const UserSchema = new Schema({
         required: true
     },
     age: {
-        type: Number,
-        required: true
+        type: Date,
+        required: true,
+        get: date => dateToAge(date),
+    },
+    aboutMe: {
+        type: String,
+        required: false,
     },
     pronouns: {
         type: String,
@@ -34,12 +40,42 @@ const UserSchema = new Schema({
         type: String,
         required: false
     },
-    interests: {
-        type: String,
-        required: false
+    interestTags: {
+        type: [String],
+        default: []
+    },
+    thumbsUp: {
+        type: Number,
+        default: 0
+    },
+    thumbsDown: {
+        type: Number,
+        default: 0
+    },
+    approved: {
+        type: Boolean,
+        default: false,
+        set: function() { return this.aboutMe.length > 30 && this.interestTags.length > 3; }
+    },
+    rating: {
+        type: Boolean,
+        default: true,
+        set: function() {
+            if (this.thumbsUp + this.thumbsDown < 10) return true;
+            if (this.thumbUp > (3 * this.thumbsDown)) return true;
+            return false;
+         }
     }
 }, {
     timestamps: true
-})
+});
+
+const dateToAge = (birthdate) => {
+    const current = Date.now();
+    let age = birthdate.getFullYear() - current.getFullYear();
+    if (birthdate.getMonth() < current.getMonth()) {age -= 1;}
+    if (birthdate.getMonth() === current.getMonth() && birthdate.getDate() < current.getDate()) {age -= 1;}
+    return age;
+}
 
 module.exports = User = mongoose.model('User', UserSchema);
