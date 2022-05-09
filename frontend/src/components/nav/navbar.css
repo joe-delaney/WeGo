@@ -38,15 +38,17 @@
 }
 
 .nav__list {
-    display: none;
+    display: flex;
+    /* display: none; */
     width: 100%;
     margin: 0;
 }
   
 .nav__item {
-    padding: 0.5rem 2rem;
-    border-bottom: 1px solid #222;
+    padding: 0.5rem 0.5rem;
+    /* border-bottom: 1px solid #222; */
     cursor: pointer;
+    font-size: 1rem;
 }
   
 .nav__item > a {
@@ -86,13 +88,10 @@
 
 
 @media screen and (min-width: 768px) {
-    .nav__toggler {
-      display: none;
-    }
   
     .nav__list {
       width: auto;
-      display: flex;
+
       font-size: 1.6rem;
       max-height: 100%;
       opacity: 1;

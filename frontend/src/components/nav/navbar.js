@@ -57,17 +57,16 @@ class NavBar extends React.Component {
                <div className='nav__right'>
                  
                <div className="nav__user"> 
-
-                <div >
-                    {/* <Avatar  className="nav__user--img"/>  */}
+            
+                <div className="nav__user--username"> 
+                    {/* <i class="fa-solid fa-user"></i> */}
+                    {/* Demo User */}
+                </div>                                
                 </div>
-
-                <div className="nav__user--username"> </div>                                
-                </div>
-                
+                {navbarLinks}
               </div>
                 
-              {navbarLinks}
+              
           </div>
         )
     }

@@ -173,6 +173,17 @@
   background: #05cdf0;
 }
 
+
+.btn--grey {
+  background: var(--color-border);
+  color: #fff;
+}
+
+
+.btn--grey:hover {
+  background: #cdcbd7;
+}
+
 .btn--accent {
   background: var(--color-accent);
   color: #fff;
@@ -180,6 +191,13 @@
 
 .btn--accent:hover {
   background: #ec3000;
+}
+
+.btn--small{
+  padding: 10px 10px;
+  font-size: 1rem;
+  font-weight: 700;
+
 }
 
   
