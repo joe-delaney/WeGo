@@ -8,7 +8,7 @@
     --color-body-darker: #5c5577;
 
     --color-border: #ccc;
-    --border-radius: 30px;
+    --border-radius: 20px;
   }
   
   *,
@@ -107,7 +107,7 @@
   border-radius: var(--border-radius);
   border: 1px solid var(--color-border);
   color: var(--color-headings);
-  font-size: 2rem;
+  font-size: 1.5rem;
   outline: 0;
   padding: 1.5rem 3.5rem;
  

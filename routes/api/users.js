@@ -33,7 +33,7 @@ router.post('/signup', (req, res) => {
                     pronouns: req.body.pronouns,
                     jobTitle: req.body.jobTitle,
                     education: req.body.education,
-                    interests: req.body.interests
+                    aboutMe: req.body.aboutMe
                 })
 
                 bcrypt.genSalt(10, (err, salt) => {
@@ -109,7 +109,7 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
         pronouns: req.user.pronouns,
         jobTitle: req.user.jobTitle,
         education: req.user.education,
-        interests: req.user.interests
+        aboutMe: req.user.aboutMe
     });
 })
 
@@ -134,7 +134,7 @@ router.post("/:id", (req, res) => {
                 if(req.body.pronouns) user.pronouns = req.body.pronouns
                 if(req.body.jobTitle) user.jobTitle = req.body.jobTitle
                 if(req.body.education) user.education = req.body.education
-                if(req.body.interests) user.interests = req.body.interests
+                if(req.body.aboutMe) user.aboutMe = req.body.aboutMe
                 user.save().then(user => res.json(JSON.parse(userShow(user))));
             }
         })

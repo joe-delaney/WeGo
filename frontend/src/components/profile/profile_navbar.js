@@ -8,6 +8,10 @@ class ProfileNavBar extends React.Component {
     }
 
     render() {
+        let fullName = this.props.user ? `${this.props.user.fname} ${this.props.user.lname}` : "";
+        let pronouns = (this.props.user && this.props.user.pronouns) ? `(${this.props.user.pronouns})` : "";
+        let age = this.props.user ? `${this.props.user.age} years old` : "";
+
         return(
          <>
             <div className='profile__top'> 
@@ -22,8 +26,9 @@ class ProfileNavBar extends React.Component {
                         className="profile__useravatar"/>
                     </div>
                     <div className='profile__userinfo--heading'>
-                            <h1>Demo User</h1>
-                            <p>Attended 0 Events </p>
+                            <h1>{fullName} {pronouns}</h1>
+                            <p>{age}</p>
+                            {/* <p>Attended 0 Events </p> */}
                         {/* <div>
                              <button className='btn btn--grey btn--small'>Edit profile</button>
                         </div>  */}

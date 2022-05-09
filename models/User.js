@@ -33,13 +33,13 @@ const UserSchema = new Schema({
         required: true
     },
     age: {
-        type: Date,
+        type: String,
         required: true,
-        get: date => dateToAge(date),
+        // get: date => dateToAge(date),
     },
     aboutMe: {
         type: String,
-        required: false,
+        default: "Tell everyone about yourself!",
     },
     pronouns: {
         type: String,
@@ -84,3 +84,11 @@ const UserSchema = new Schema({
 });
 
 module.exports = User = mongoose.model('User', UserSchema);
+// const dateToAge = (birthdate) => {
+//     const current = Date.now();
+//     let age = birthdate.getFullYear() - current.getFullYear();
+//     if (birthdate.getMonth() < current.getMonth()) {age -= 1;}
+//     if (birthdate.getMonth() === current.getMonth() && birthdate.getDate() < current.getDate()) {age -= 1;}
+//     return age;
+// }
+

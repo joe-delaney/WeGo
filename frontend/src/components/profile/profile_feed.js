@@ -44,7 +44,7 @@ class ProfileNavBar extends React.Component {
                         </div>
                         
                     </div> 
-                    <ProfileAbout />
+                    <ProfileAbout user={this.props.user}/>
                 </> 
         }else{
             feedstatus= 
