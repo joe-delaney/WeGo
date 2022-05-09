@@ -1,6 +1,18 @@
 const Validator = require('validator');
-const { dateToAge } = require('../models/User');
 const validText = require('./valid-text');
+
+const dateToAge = (birthdate) => {
+
+    birthdate = new Date(birthdate)
+
+    let current = new Date(Date.now());
+    
+    let age = current.getYear() - birthdate.getYear();
+    if (birthdate.getMonth() < current.getMonth()) {age -= 1;}
+    if (birthdate.getMonth() === current.getMonth() && birthdate.getDate() < current.getDate()) {age -= 1;}
+
+    return age;
+}
 
 module.exports = function validateRegisterInput(data) {
     let errors = {};
