@@ -1,20 +1,19 @@
 import React from "react";
-import SignupContainer from "../session/signup_form_container";
-import LoginContainer from "../session/login_form_container";
 import './modal.css'
+import SignupFormContainer from "../../components/session/signup_form_container";
+import LoginFormContainer from "../../components/session/login_form_container";
 
 const Modal = ({modal, closeModal}) => {
-    // debugger
     if (!modal) {
         return null;
     }
     let component;
     switch (modal) {
-        case "singup":
-            component = <SignupContainer />
+        case "signup":
+            component = <SignupFormContainer />
             break;
         case "login":
-            component = <LoginContainer />
+            component = <LoginFormContainer />
             break;
         default:
             return null;

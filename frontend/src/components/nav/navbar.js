@@ -12,18 +12,20 @@ class NavBar extends React.Component {
     }
 
     render() {
-        let loginStatus = ''
-        if(this.props.isAuthenticated){
-          loginStatus = <ul class="list nav__list">
-            <li class="nav__item" onClick={()=>this.props.logOut()}>Log Out</li>
-          </ul>
-
-        }else{
-          loginStatus = <ul class="list nav__list">
-            <li class="nav__item" onClick={()=>this.props.openModal('singup')}>Signup</li>
-            <li class="nav__item"  onClick={()=>this.props.openModal('login')}>Login</li>
-          </ul>
-        }
+        let navbarLinks = this.props.loggedIn ? (
+          <div>
+            <ul class="list nav__list">
+              <li class="nav__item" onClick={()=>this.props.logOut()}>Log Out</li>
+            </ul>
+          </div>
+        ) : (
+          <div>
+             <ul class="list nav__list">
+              <li class="nav__item" onClick={()=>this.props.openModal('signup')}>Signup</li>
+              <li class="nav__item"  onClick={()=>this.props.openModal('login')}>Login</li>
+            </ul>
+          </div>
+        )
 
         return (
           <div className='nav'>
@@ -62,11 +64,10 @@ class NavBar extends React.Component {
 
                 <div className="nav__user--username"> </div>                                
                 </div>
-
-                  {loginStatus}
                 
               </div>
                 
+              {navbarLinks}
           </div>
         )
     }

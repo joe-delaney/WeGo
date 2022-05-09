@@ -14,6 +14,7 @@ export default class LoginForm extends React.Component {
         this.handleInput = this.handleInput.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);
     }
 
     handleInput(type) {
@@ -24,7 +25,8 @@ export default class LoginForm extends React.Component {
         }
     }
 
-    handleLogin(type) {
+    handleLogin(e) {
+        e.preventDefault();
         //Login the user
         this.props.login(this.state)
             .then(
@@ -32,12 +34,31 @@ export default class LoginForm extends React.Component {
             )
 
 
+        //Reset the state
+        this.setState({
+            email: "",
+            password: ""
+        })
+
         //Close the login modal
         // this.toggleModal();
     }
 
     toggleModal() {
         //This will be used to close the modal once implemented
+    }
+
+    // Render the session errors if there are any
+    renderErrors() {
+        return (
+            <ul>
+                {Object.keys(this.props.errors).map((error, i) => (
+                    <li key={`error-${i}`}>
+                        {this.props.errors[error]}
+                    </li>
+                ))}
+            </ul>
+        );
     }
 
     render() {
@@ -71,21 +92,27 @@ export default class LoginForm extends React.Component {
                 <div className="input-group">
                     <input 
                         className="input"
+            <div>
+                <form>
+                    <h1>Log in to your account!</h1>
+                
+               <div className="input-group">
+                  <input 
                         type="text" 
                         placeholder="email" 
                         value={this.state.email} 
-                        onChange={this.handleInput("email")}/>
-
+                        onChange={this.handleInput("email")}
+                        className="input"/>
                 </div>
+                
                 <div className="input-group">
-                    <input 
-                        className="input"
+                  <input 
                         type="password" 
                         placeholder="password" 
                         value={this.state.password} 
-                        onChange={this.handleInput("password")}/>
-
-                </div>
+                        onChange={this.handleInput("password")}
+                        className="input"/>
+                  </div>
                 <div className="form__submit">
                     <input 
                         className="btn btn--primary"
@@ -96,6 +123,8 @@ export default class LoginForm extends React.Component {
                 </div>
 
             </form>
+             {this.renderErrors()}
+            </div>
         )
     }
 }

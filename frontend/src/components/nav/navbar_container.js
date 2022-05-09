@@ -1,21 +1,17 @@
-import React from "react";
 import { connect } from 'react-redux';
-import {openModal} from '../../actions/modal_actions';
-import {logout} from '../../actions/session_actions'
-
-
-
+import { logout } from '../../actions/session_actions';
+import {openModal} from "../../actions/modal_actions"
 import NavBar from './navbar';
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.session.isAuthenticated
-  });
-
-const mapDispatchToProps = dispatch => ({
-  openModal: (modal)=>dispatch(openModal(modal)),
-  logout: ()=>dispatch(logout())
-    
+    loggedIn: state.session.isAuthenticated
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+const mapDispatchToProps = dispatch => ({
+    logout: () => dispatch(logout()),
+    openModal: (modal) => dispatch(openModal(modal))
+});
+
+const NavBarContainer = connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default NavBarContainer;
   

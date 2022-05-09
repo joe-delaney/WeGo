@@ -8,7 +8,7 @@ export default class SignupForm extends React.Component {
         this.state = {
             email: "",
             password: "",
-            confirmPassword: "",
+            password2: "",
             fname: "",
             lname: "",
             age: "",
@@ -25,6 +25,8 @@ export default class SignupForm extends React.Component {
         this.nextPage = this.nextPage.bind(this);
         this.handleSignup = this.handleSignup.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
+        this.goBack = this.goBack.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);
     }
 
     handleInput(type) {
@@ -109,12 +111,20 @@ export default class SignupForm extends React.Component {
 
                 </div>
             </form>
+            {this.renderErrors()}
+            </div>
         )
     }
 
     nextPage() {
         this.setState({
             page1: false
+        })
+    }
+
+    goBack() {
+        this.setState({
+            page1: true
         })
     }
 
@@ -133,35 +143,31 @@ export default class SignupForm extends React.Component {
                         placeholder="pronouns"
                         value={this.state.pronouns}
                         onChange={this.handleInput("pronouns")} />
+                    </div>
 
-                </div>
-
                 <div className="input-group">
                     <input
                          className="input"
-                        type="text"
-                        placeholder="jobTitle"
-                        value={this.state.jobTitle}
-                        onChange={this.handleInput("jobTitle")} />
-                    
+                         type="text"
+                         placeholder="jobTitle"
+                         value={this.state.jobTitle}
+                         onChange={this.handleInput("jobTitle")} /> 
                 </div>
                 <div className="input-group">
                     <input
                          className="input"
-                        type="text"
-                        placeholder="education"
-                        value={this.state.education}
-                        onChange={this.handleInput("education")} />
-                    
+                         type="text"
+                         placeholder="education"
+                         value={this.state.education}
+                         onChange={this.handleInput("education")} />
                 </div>
                 <div className="input-group">
                     <input
                          className="input"
-                        type="text"
-                        placeholder="interests"
-                        value={this.state.interests}
-                        onChange={this.handleInput("interests")} />
-                    
+                         type="text"
+                         placeholder="interests"
+                         value={this.state.interests}
+                         onChange={this.handleInput("interests")} />        
                 </div>
                 <div className="form__submit">
                     <input
@@ -172,22 +178,36 @@ export default class SignupForm extends React.Component {
                     
                 </div>
                 <div className="form__options">
-                    <p onClick={this.history}>
+                    <p onClick={this.goBack}>
                         GoBack
                     </p>
                     <p onClick={this.handleSignup}>
                         Skip for now
                     </p>
-               
-
                 </div>
             </form>
         )
     }
 
-    handleSignup() {
+    handleSignup(e) {
+        e.preventDefault();
         //Sign up the user
         this.props.signup(this.state);
+
+        // Reset the state
+        this.setState({
+            email: "",
+            password: "",
+            password2: "",
+            fname: "",
+            lname: "",
+            age: "",
+            pronouns: "",
+            jobTitle: "",
+            education: "",
+            interests: "",
+            page1: true
+        })
 
         //Close the modal
         this.toggleModal();
@@ -195,6 +215,19 @@ export default class SignupForm extends React.Component {
 
     toggleModal() {
         //This will be used to close the modal
+    }
+
+    // Render the session errors if there are any
+    renderErrors() {
+        return (
+            <ul>
+                {Object.keys(this.props.errors).map((error, i) => (
+                    <li key={`error-${i}`}>
+                        {this.props.errors[error]}
+                    </li>
+                ))}
+            </ul>
+        );
     }
 
     render() {

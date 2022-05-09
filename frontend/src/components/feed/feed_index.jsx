@@ -7,7 +7,7 @@ const FeedIndex = () => {
         <>
             <ModalContainer />
             <NavBarContainer />
-        </>
+        </div>
     )
 }
 
