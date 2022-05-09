@@ -1,12 +1,3 @@
-.profile{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    width: 100%;
-}
-
 
 .profile__top{
     display: flex;
@@ -15,21 +6,9 @@
     justify-content: center;
     background-color: white;
     width: 100%;
-    margin: 0 auto;
+    margin: 10px auto;
    
 }
-
-.profile__coverpotp{
-    margin-top: 10px;
-    position: relative;
-    background: linear-gradient(#f1f2f5 , #e3e3e6 80%);
-    width: 100%;
-    min-height: 205px;  
-    /* border-bottom-left-radius: 30px 20px; 
-    border-bottom-right-radius: 30px 20px;  */
-}
-
-
 
 .profile__header{
     display: flex;
@@ -41,17 +20,10 @@
     margin: 15px auto;
 }
 
-.profile__userinfo--heading{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 .profile__userinfo--heading > h1{
     font-size: 1.8rem;
     font-weight: 700;
-    text-align: ce;
 }
 
 .profile__userinfo--heading > p{
@@ -62,10 +34,9 @@
 .profile__useravatar{
     border: 0;
     border-radius: 50%;
-    width: 228px;
-    height: 228px;
-    margin-right: 10px;
-    border: 6px solid white;
+    width: 168px;
+    height: 168px;
+    /* border: 6px solid rgb(223, 222, 222); */
   
 }
 
@@ -78,19 +49,19 @@
     padding: 15px 15px;
 }
 
-.profile__img{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    top: 78px;
-    justify-content: center;
-    align-items: center;  
-}
-
 
 
 @media screen and (min-width: 768px) {
 
+    .profile{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 80%;
+        border: 2px solid orange;
+    }
     
     .profile__header{
         display: flex;
@@ -102,30 +73,25 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        margin-top: 0;
     }
 
     .profile__userinfo--heading{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        margin-right: 250px;
     }
 
- 
-
-    .profile__userinfo--heading > div > h1{
+    .profile__userinfo--heading > h1{
         font-size: 1.8em;
-     
     }
 
     
-    .profile__userinfo--heading > div >  p{
+    .profile__userinfo--heading > p{
         font-size: 1.3rem;
         
     }
 
-
+    .profile__img{
+        margin-right: 10px;
+    }
 
     .profile__navbar{
         display: flex;
@@ -135,7 +101,5 @@
     }
     
 }
-
-
 
 

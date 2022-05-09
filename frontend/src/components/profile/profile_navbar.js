@@ -12,30 +12,35 @@ class ProfileNavBar extends React.Component {
     render() {
         return(
          <>
-            {/* <div className='profile__top'> 
+            <div className='profile__top'> 
                 <div className="profile__coverpotp" >
                     <div className="profile__coverbar" >
                     </div>
                 </div>
-            </div> */}
-
-            <div className='profile__header'>
                 <div className='profile__img'>
-                     <img src="https://play-lh.googleusercontent.com/A0-PfglKcDNywPiJMlbqSUMkZWKBQPAeklY6ObjnOFTNrcGX-4Re6FhIcrdmo7NkruFd"
-                    className="profile__useravatar"/>
-                </div>
-                <div className='profile__userinfo'>
-                        <div className='profile__userinfo--heading'>
+                    <div>
+
+                        <img src="https://www.juststartcodingnow.com/wp-content/uploads/2019/03/JustStartCoding_logo_01.png"
+                        className="profile__useravatar"/>
+                    </div>
+                    <div className='profile__userinfo--heading'>
+                        <div>
                             <h1>Demo User</h1>
                             <p>Attended 0 Events </p>
-                        </div>  
-                        <div>
-                            <button className='btn btn--accent btn--small'>Edit profile</button>
-                        </div>                  
-                    
-               </div>
-           
+
+                        </div>
+                        {/* <div>
+                             <button className='btn btn--grey btn--small'>Edit profile</button>
+                        </div>  */}
+                    </div>  
+                   
+                </div>
             </div>
+
+ 
+            {/* <div className='profile__navbar'>                    
+                <div className="profile__option"> About </div>                       
+            </div>  */}
          </>
 
             

@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import './navbar.css'
 
-// import Avatar from '@mui/material/Avatar';
-// import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import Avatar from '@mui/material/Avatar';
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -30,28 +30,38 @@ class NavBar extends React.Component {
         return (
           <div className='nav'>
               <div className='nav_left'>
+                <div>
                   <div className='nav__logo'>
-                    <span style={{ color: "#0071bc", fontSize: 'x-large', fontWeight: '700'}}>
-                      W   
-                    </span>
-                    <span style={{ color: "#42b2fc"}}>
-                      e  
-                    </span>
-                    <span style={{ color: "#3f89bb", fontSize: 'x-large', fontWeight: '700'}}>
-                      G 
-                    </span>
-                    <span style={{ color: "#08c3fc"}}>
-                      o  
-                    </span>
-                    <span>
-                      {/* <SendRoundedIcon /> */}
-                    </span>
+                      <span style={{ color: "#0071bc", fontSize: 'x-large', fontWeight: '700'}}>
+                        W   
+                      </span>
+                      <span style={{ color: "#42b2fc", fontSize: 'large', fontWeight: '600'}}>
+                        e  
+                      </span>
+                      <span style={{ color: "#3f89bb", fontSize: 'x-large', fontWeight: '700'}}>
+                        G 
+                      </span>
+                      <span style={{ color: "#08c3fc", fontSize: 'x-large',fontWeight: '600'}}>
+                        o  
+                      </span>
+                      <span>
+                        {/* <SendRoundedIcon /> */}
+                      </span>
 
                   </div>
-                  <div className='nav__slogan'>
+                  {/* <div className='nav__slogan'>
                     Who's In?
-                  </div>
+                  </div> */}
+                </div>
+                {/* <div className='nav__search'>
+                  <input 
+                  className='input nav__search--input'
+                  type="text" placeholder='Search Activity...' disabled/>
+              </div> */}
+
               </div>
+
+              
              
           
                <div className='nav__right'>
@@ -59,8 +69,7 @@ class NavBar extends React.Component {
                <div className="nav__user"> 
             
                 <div className="nav__user--username"> 
-                    {/* <i class="fa-solid fa-user"></i> */}
-                    {/* Demo User */}
+                    {/* <Avatar /> */}
                 </div>                                
                 </div>
                 {navbarLinks}
