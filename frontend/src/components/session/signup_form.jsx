@@ -66,6 +66,7 @@ export default class SignupForm extends React.Component {
         formData.append('image', this.state.files)
         
         this.props.signup(formData);
+        this.props.closeModal();
         // Reset the state
         // this.setState({
         //     files: [],
@@ -88,7 +89,6 @@ export default class SignupForm extends React.Component {
 
     getSignUpPage1() {
         return (
-            // <div>
             <div className="form__box">
                 <div onClick={this.props.closeModal} className="close-x">X</div> 
                 <div className="form__header">
