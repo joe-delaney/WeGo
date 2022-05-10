@@ -55,10 +55,7 @@ class ProfileAbout extends React.Component {
                         <div className='profile__about--right'>
                             {aboutMe}
                         </div>
-                    
-                    
                 </div>
-                
             </div>
         )
     }
