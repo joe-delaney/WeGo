@@ -1,5 +1,5 @@
 .nav {
-    /* background: #000; */
+    background: #fff;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -7,8 +7,10 @@
    
     align-items: flex-end;
     box-shadow: 0 0 5px rgb(207, 207, 207);
-
-    
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    top:0
 }
 
 .nav_left{
