@@ -42,6 +42,10 @@ class ProfileAbout extends React.Component {
 
         return(
             <div className='profile__about'>
+                   
+                    <div className='profile__about--edit'>
+                        <button className='btn btn--accent btn--small'>Edit Profile</button>
+                    </div>
                     {editButton}
                     <div className='profile__about--intro'>
                         <div className='profile__about--left'>

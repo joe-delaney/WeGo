@@ -58,13 +58,14 @@
 }
 
 .profile__useravatar{
-    border: 0;
+    /* margin: 2px 2px; */
     border-radius: 50%;
     width: 228px;
     height: 228px;
     margin-right: 10px;
     border: 6px solid white;
-  
+    object-fit: cover;
+      
 }
 
 
@@ -136,7 +137,7 @@
 
 .profile__about--slogan {
     margin-top: 30px;
-    font-size: 3rem;
+    font-size: 1.5rem;
     /* font-weight: 700; */
     color: black;
     text-align: center;
@@ -144,7 +145,7 @@
 }
 
 .profile__about--slogan-blod{
-    font-weight: 900;
+    font-weight: 800;
 }
 
 .profile__about--intro {
@@ -220,7 +221,7 @@
     }
     .profile__about--slogan {
         margin-top: 30px;
-        font-size: 6rem;
+        /* font-size: 2.5rem; */
         /* font-weight: 700; */
         color: black;
         text-align: center;
@@ -228,7 +229,7 @@
     }
 
     .profile__about--slogan {
-        font-size: 4rem;
+        font-size: 2.5rem;
     }
 
     .profile__about--intro{
