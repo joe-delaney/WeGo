@@ -7,7 +7,6 @@ const dateToAge = (birthdate) => {
     let age = current.getYear() - birthdate.getYear();
     if (birthdate.getMonth() > current.getMonth()) {age -= 1;}
     if (birthdate.getMonth() === current.getMonth() && birthdate.getDate() < current.getDate()) {age -= 1;}
-
     return age;
 }
 
@@ -66,14 +65,19 @@ const UserSchema = new Schema({
         type: Number,
         default: 0
     },
-    imagePath: {
+    profilePhotoPath: {
         type: String,
-        required: false
+        required: false,
+        get: path => path ? path : "/api/images/41daf94ffdccb355db7a624258d02f60"
+    },
+    extraPhotoPaths: {
+        type: [String],
+        max: 5
     },
     approved: {
         type: Boolean,
         default: false,
-        set: function() { return this.aboutMe.length > 30 && this.interestTags.length > 3; }
+        set: function() { return this.aboutMe.length > 30 && this.interestTags.length > 3 && this.profilePhotoPath; }
     },
     rating: {
         type: Boolean,
@@ -89,4 +93,5 @@ const UserSchema = new Schema({
 });
 
 module.exports = User = mongoose.model('User', UserSchema);
+
 

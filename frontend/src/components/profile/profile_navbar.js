@@ -24,9 +24,7 @@ class ProfileFeed extends React.Component {
                 </div>
                 <div className='profile__img'>
                     <div>
-
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTypACuX8ygmzipbD197uPBv40pqsvU8Egh-_Oo_xqg2OQqZbL1Cm-5XRxVcF3QjaocHCg&usqp=CAU"
-                        className="profile__useravatar"/>
+                        { this.props.user ? <img src={this.props.user.profilePhotoPath} className='profile__useravatar' /> : null }
                     </div>
                     <div className='profile__userinfo--heading'>
                             <h1>{fullName} {pronouns}</h1>
@@ -42,7 +40,7 @@ class ProfileFeed extends React.Component {
 
  
             {/* <div className='profile__navbar'>                    
-                <div className="profile__option"> About </div>                       
+                <div className="profile__option"> About </div>
             </div>  */}
          </>
 
@@ -53,4 +51,3 @@ class ProfileFeed extends React.Component {
 }
 
 export default ProfileFeed;
-

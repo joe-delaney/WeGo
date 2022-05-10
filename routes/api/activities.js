@@ -21,7 +21,6 @@ router.get('/user/:userId/', (req, res) => {
 
 // create an activity
 router.post("/", (req, res) => {
-    console.log(req.body.approvedAttendees);
     const newActivity = new Activity({
         title: req.body.title, 
         time: req.body.time, 
