@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Social application for meeting new people and doing new things",
   "main": "app.js",
+  "proxy": "http://localhost:5000/",
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js --ignore client",

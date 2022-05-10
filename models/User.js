@@ -35,7 +35,7 @@ const UserSchema = new Schema({
     age: {
         type: String,
         required: true,
-        // get: date => dateToAge(date),
+        get: date => dateToAge(date),
     },
     aboutMe: {
         type: String,
@@ -65,6 +65,10 @@ const UserSchema = new Schema({
         type: Number,
         default: 0
     },
+    imagePath: {
+        type: String,
+        required: false
+    },
     approved: {
         type: Boolean,
         default: false,
@@ -84,11 +88,4 @@ const UserSchema = new Schema({
 });
 
 module.exports = User = mongoose.model('User', UserSchema);
-// const dateToAge = (birthdate) => {
-//     const current = Date.now();
-//     let age = birthdate.getFullYear() - current.getFullYear();
-//     if (birthdate.getMonth() < current.getMonth()) {age -= 1;}
-//     if (birthdate.getMonth() === current.getMonth() && birthdate.getDate() < current.getDate()) {age -= 1;}
-//     return age;
-// }
 
