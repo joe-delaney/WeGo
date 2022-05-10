@@ -23,10 +23,10 @@ export const fetchActivities = query => dispatch => APIUtil.fetchActivities(quer
     .then(activities => dispatch(receiveActivities(activities)));
 
 export const createActivity = activity => dispatch => APIUtil.createActivity(activity)
-    .then(activity => dispatch(receiveActivity(activity)));
+    .then(activity => dispatch(receiveActivity(activity.data)));
 
 export const updateActivity = activity => dispatch => APIUtil.updateActivity(activity)
-    .then(activity => dispatch(receiveActivity(activity)));
+    .then(activity => dispatch(receiveActivity(activity.data)));
 
 export const deleteActivity = activityId => dispatch => APIUtil.deleteActivity(activityId)
     .then(activityId => dispatch(removeActivity(activityId)));
