@@ -6,4 +6,11 @@ const activityShow = (activity) => {
     })
 }
 
+const activityIndex = (activities) => {
+    return jbuilder.encode(json => {
+        json.extract(activities, 'id', 'title', 'time', 'host', 'requestedAttendees', 'approvedAttendees', 'tag', 'location', 'description', 'price', 'duration', 'capacity', 'closed');
+    })
+}
+
 module.exports = activityShow;
+module.exports = activityIndex;

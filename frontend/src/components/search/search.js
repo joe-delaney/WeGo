@@ -21,7 +21,6 @@ class Search extends React.Component {
     handleScroll(event) {
       // do something like call `this.setState`
       // access window.scrollY etc
-      console.log('test');
     }
 
     render() {
