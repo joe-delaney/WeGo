@@ -50,6 +50,10 @@ const UserSchema = new Schema({
         type: String,
         required: false
     },
+    location: {
+        type: String,
+        required: false
+    },
     interestTags: {
         type: [String],
         default: []

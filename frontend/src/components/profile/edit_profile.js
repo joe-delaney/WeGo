@@ -11,6 +11,7 @@ export default class EditProfile extends React.Component {
         let aboutMe = "";
         let pronouns = "";
         let id = -1;
+        let location="";
 
         if(this.props.user) {
             fname = this.props.user.fname;
@@ -19,6 +20,7 @@ export default class EditProfile extends React.Component {
             education = this.props.user.education ? this.props.user.education : "";
             aboutMe = this.props.user.aboutMe ? this.props.user.aboutMe : "";
             pronouns = this.props.user.pronouns ? this.props.user.pronouns : "";
+            location = this.props.user.location ? this.props.user.location : "";
             id = this.props.user.id
         }
 
@@ -29,7 +31,8 @@ export default class EditProfile extends React.Component {
             jobTitle: jobTitle,
             education: education,
             aboutMe: aboutMe,
-            pronouns: pronouns
+            pronouns: pronouns,
+            location: location
         }
 
         this.handleInput = this.handleInput.bind(this);
@@ -101,6 +104,15 @@ export default class EditProfile extends React.Component {
                                 placeholder="Pronouns"
                                 value={this.state.pronouns}
                                 onChange={this.handleInput("pronouns")}
+                                className="input"
+                            />
+                        </div>
+                        <div className="input-group">
+                            <input
+                                type="text"
+                                placeholder="Location"
+                                value={this.state.location}
+                                onChange={this.handleInput("location")}
                                 className="input"
                             />
                         </div>

@@ -15,14 +15,21 @@ class ProfileAbout extends React.Component {
                 <strong>Job title: </strong>
                 <p>{this.props.user.jobTitle}</p>
             </li>
-        ) : <li></li>
+        ) : <div></div>
+
+        let location = this.props.user && this.props.user.location ? (
+            <li>
+                <strong>Based in: </strong>
+                <p>{this.props.user.location}</p>
+            </li>
+        ) : <div></div>
 
         let education = this.props.user && this.props.user.education ? (
             <li>
                 <strong>Education: </strong>
                 <p>{this.props.user.education}</p>
             </li>
-        ) : <li></li>
+        ) : <div></div>
 
         let aboutMe = this.props.user ? <p>{this.props.user.aboutMe}</p> : <p>Tell everyone more about you!</p>;
 
@@ -35,18 +42,13 @@ class ProfileAbout extends React.Component {
 
         return(
             <div className='profile__about'>
-                    <div  className='profile__about--slogan'>
-                        <p>Who's In? <span className='profile__about--slogan-blod'>WeGo</span></p>                              
-                    </div>
                     {editButton}
                     <div className='profile__about--intro'>
                         <div className='profile__about--left'>
                         <ul>
+                            {location}
                             {jobTitle}
                             {education}
-                            <li>
-                                <strong>Interests: </strong>
-                            </li>
                         </ul>
                         
                         </div>

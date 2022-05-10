@@ -29,8 +29,6 @@
 
 }
 
-
-
 .profile__header{
     display: flex;
     flex-direction: column;
@@ -84,7 +82,8 @@
     flex-direction: column;
     top: 38px;
     justify-content: center;
-    align-items: center;  
+    align-items: center; 
+    margin-top: 20px; 
 }
 
 
@@ -99,6 +98,7 @@
 .profile__feedbar{
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .profile__feedbar--option{

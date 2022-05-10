@@ -10,7 +10,7 @@ class ProfileEvents extends React.Component {
     render() {
         return(
             <div className='profile__events'>
-              MORE Evens......
+              No events attended yet.
             </div>
         )
     }

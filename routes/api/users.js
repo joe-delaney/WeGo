@@ -134,6 +134,7 @@ router.post("/:id", (req, res) => {
                 user.pronouns = req.body.pronouns
                 user.jobTitle = req.body.jobTitle
                 user.education = req.body.education
+                user.location = req.body.location
                 if(req.body.aboutMe) user.aboutMe = req.body.aboutMe
                 user.save().then(user => res.json(JSON.parse(userShow(user))));
             }
