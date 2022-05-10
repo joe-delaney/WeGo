@@ -10,7 +10,6 @@ class NavBar extends React.Component {
     }
 
     render() {
-      console.log(this.props.loggedIn);
         let navbarLinks = (this.props.loggedIn) ? (
           <div className='nav__right--avatar'>
             <ul className="list nav__list">
