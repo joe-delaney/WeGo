@@ -10,9 +10,9 @@ router.get('/', (req, res) => {
         .catch(err => res.status(404).json({ noactivitiesfound: 'No activities found' }));
 });
 
-// fetch all activities for a specific user
-router.get('/user/:user_id/', (req, res) => {
-    Activity.find({ user: req.params.user_id })
+// fetch all activities hosted by a specific user
+router.get('/user/:userId/', (req, res) => {
+    Activity.find({ host: req.params.userId })
         .then(activities => res.json(activities))
         .catch(err => res.status(404).json({ noactivitiesfound: 'No activities found' }));
 });
@@ -23,8 +23,8 @@ router.post("/", (req, res) => {
         title: req.body.title, 
         time: req.body.time, 
         host: req.body.host, 
-        requestedAttendees: req.body.requestedAttendees, 
-        approvedAttendees: req.body.approvedAttendees, 
+        requestedAttendees: req.body.requestedAttendees,
+        approvedAttendees: req.body.approvedAttendees,
         tags: req.body.tags, 
         location: req.body.location, 
         description: req.body.description, 
@@ -42,18 +42,18 @@ router.post("/:id", (req, res) => {
             if (!activity) {
                 return res.status(404).json({ noactivityfound: "No activity found with that ID" })
             } else {
-                if(req.body.title) title = req.body.title 
-                if(req.body.time) time = req.body.time 
-                if(req.body.host) host = req.body.host 
-                if(req.body.requestedAttendees) requestedAttendees = req.body.requestedAttendees 
-                if(req.body.approvedAttendees) approvedAttendees = req.body.approvedAttendees 
-                if(req.body.tags) tags = req.body.tags 
-                if(req.body.location) location = req.body.location 
-                if(req.body.description) description = req.body.description 
-                if(req.body.price) price = req.body.price 
-                if(req.body.duration) duration = req.body.duration 
-                if(req.body.capacity) capacity = req.body.capacity 
-                if(req.body.closed) closed = req.body.closed
+                if(req.body.title) activity.title = req.body.title 
+                if (req.body.time) activity.time = req.body.time 
+                if (req.body.host) activity.host = req.body.host 
+                if(req.body.requestedAttendees) activity.requestedAttendees = req.body.requestedAttendees 
+                if(req.body.approvedAttendees) activity.approvedAttendees = req.body.approvedAttendees 
+                if(req.body.tags) activity.tags = req.body.tags 
+                if(req.body.location) activity.location = req.body.location 
+                if(req.body.description) activity.description = req.body.description 
+                if (req.body.price) activity.price = req.body.price 
+                if(req.body.duration) activity.duration = req.body.duration 
+                if(req.body.capacity) activity.capacity = req.body.capacity 
+                if(req.body.closed) activity.closed = req.body.closed
                 activity.save().then(activity => res.json(activity));
             }
         })
@@ -61,8 +61,14 @@ router.post("/:id", (req, res) => {
 
 // delete an activity
 router.delete("/:id", (req, res) => {
-    Activity.findByIdAndDelete(id, err => {
-        if (err) return res.status(404).json({ noactivityfound: "No activity found with that ID" });
-        return res.status(200);
-    });
+    Activity.findById(req.params.id)
+        .then(activity => {
+            if (!activity) {
+                return res.status(404).json({ noactivityfound: "No activity found with that ID" })
+            } else {
+                activity.remove().then(activity => res.json(activity));
+            }
+        })
 })
+
+module.exports = router;
