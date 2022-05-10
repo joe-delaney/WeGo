@@ -7,7 +7,7 @@ export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 
 // When our user is logged out, we will dispatch this action to set isAuthenticated to false
 export const logoutUser = () => ({
-    type: RECEIVE_USER_LOGOUT
+    type: RECEIVE_USER_LOGOUT,
 });
 
 // We'll dispatch this when our user signs in or signs up
