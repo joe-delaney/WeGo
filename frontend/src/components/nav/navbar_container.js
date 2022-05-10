@@ -3,13 +3,7 @@ import { logout } from '../../actions/session_actions';
 import {openModal} from "../../actions/modal_actions"
 import NavBar from './navbar';
 
-// const mapStateToProps = state => ({
-//     loggedIn: state.session.isAuthenticated,
-//     CurrentUser: state.session.user.id
-// });
-
 const mapStateToProps = (state) => {
-    // debugger
     return {
         loggedIn: state.session.isAuthenticated
     };

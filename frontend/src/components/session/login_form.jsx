@@ -30,7 +30,6 @@ export default class LoginForm extends React.Component {
         this.props.login(this.state).then(
             ()=>{
                 if(this.props.isAuthenticated === true){
-                    console.log(this.props.isAuthenticated);
                     this.props.closeModal();
                 
                     this.setState({

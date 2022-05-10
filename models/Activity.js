@@ -27,7 +27,7 @@ const ActivitySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     }],
-    tags: {
+    tag: {
         type: String,
         require: false
     },

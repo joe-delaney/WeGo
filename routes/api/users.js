@@ -9,17 +9,23 @@ const validateSignupInput = require('../../validation/signup');
 const validateLoginInput = require('../../validation/login');
 const userShow = require('../../jbuilder/users');
 
+const multer  = require('multer');
+const { uploadFile } = require("../../s3");
+const upload = multer({ dest: 'images/' })
+const fs = require('fs')
+const util = require('util')
+const unlinkFile = util.promisify(fs.unlink)
+
 //User sign up backend route
-router.post('/signup', (req, res) => {
 
+router.post('/signup', upload.single('image'), async (req, res) => {
     const { errors, isValid } = validateSignupInput(req.body);
-
     if (!isValid) {
         return res.status(400).json(errors);
     }
     // Check to make sure nobody has already signed up with a duplicate email
     User.findOne({ email: req.body.email })
-        .then(user => {
+        .then( async (user) => {
             if (user) {
                 // Throw a 400 error if the email address already exists
                 return res.status(400).json({ email: "A user has already registered with this address" })
@@ -36,6 +42,25 @@ router.post('/signup', (req, res) => {
                     education: req.body.education,
                     aboutMe: req.body.aboutMe
                 })
+                // upload images to server
+                // const uploadPromises = []
+                // for (let i = 0; i < req.files.length; i++) {
+                //     uploadPromises.push(uploadFile(req.files[i]))
+                // }
+                // await Promise.all(uploadPromises)
+
+                // const unlinkPromises = []
+                // for (let i = 0; i < req.files.length; i++) {
+                //     unlinkPromises.push(unlinkFile(req.files[i].path))
+                // }
+                // await Promise.all(unlinkPromises)
+
+                if(req.file) {
+                    const result = await uploadFile(req.file)
+                    console.log(result)
+                    newUser.imagePath = `/api/images/${result.Key}`
+                    await unlinkFile(req.file.path)
+                } 
 
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {

@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const users = require("./routes/api/users");
+const images = require("./routes/api/images");
 const activities = require("./routes/api/activities")
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -30,6 +31,7 @@ require('./config/passport')(passport);
 
 // Routes
 app.use("/api/users", users);
+app.use("/api/images", images)
 app.use("/api/activities", activities);
 
 // Server
