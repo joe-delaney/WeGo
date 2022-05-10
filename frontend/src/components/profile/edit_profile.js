@@ -140,7 +140,7 @@ export default class EditProfile extends React.Component {
                                 placeholder="Tell everyone more about you"
                                 value={this.state.aboutMe}
                                 onChange={this.handleInput("aboutMe")}
-                                rows="5"
+                                rows="3"
                                 className="input"
                             />
                         </div>

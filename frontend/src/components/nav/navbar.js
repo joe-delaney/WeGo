@@ -6,12 +6,15 @@ import Avatar from '@mui/material/Avatar';
 class NavBar extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {loggedIn: this.props.loggedIn};
+      this.state = {
+        loggedIn: this.props.loggedIn,
+        scroll : ''
+      };
     }
     componentDidMount() {
       this.props.fetchUser(this.props.currentUser)
+
    }
-  
 
     render() {
       const username = (this.props.user) ? this.props.user.fname + ' ' + this.props.user.lname : '';
@@ -69,6 +72,8 @@ class NavBar extends React.Component {
                   </div>
                 </div>
               </div>
+     
+                 
                <div className='nav__right'>                       
                 {navbarLinks}
               </div>   
