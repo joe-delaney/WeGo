@@ -25,7 +25,6 @@ export default class SignupForm extends React.Component {
         this.getSignUpPage2 = this.getSignUpPage2.bind(this);
         this.nextPage = this.nextPage.bind(this);
         this.handleSignup = this.handleSignup.bind(this);
-        // this.toggleModal = this.toggleModal.bind(this);
         this.goBack = this.goBack.bind(this);
         // this.renderErrors = this.renderErrors.bind(this);
 
@@ -88,6 +87,8 @@ export default class SignupForm extends React.Component {
     }
 
     getSignUpPage1() {
+        const errors = Object.values(this.props.errors);
+        // console.log(errors);
         return (
             <div className="form__box">
                 <div onClick={this.props.closeModal} className="close-x">X</div> 
@@ -96,6 +97,7 @@ export default class SignupForm extends React.Component {
                     <h2>Start with the Basics</h2>
                 </div>
 
+                <div className="form__group singup__form">
                 <div className="file_input_for_testing">
                     <input type="file" name="image" onChange={this.handlefiles} accept="image/*"/>
                 </div>
@@ -108,8 +110,12 @@ export default class SignupForm extends React.Component {
                             placeholder="First name"
                             value={this.state.fname}
                             onChange={this.handleInput("fname")} />
+                      <p className="fnameError" style={errors.includes("First name field is required") ? ({ display: "" }) : ({ display: "none" })}>
+                         First name field is required
+                    </p>  
 
                     </div>
+                    
                     <div className="input-group">
                         <input
                             className="input"
@@ -117,19 +123,25 @@ export default class SignupForm extends React.Component {
                             placeholder="Last name"
                             value={this.state.lname}
                             onChange={this.handleInput("lname")} />
+                        <p className="lnameError" style={errors.includes("Last name field is required") ? ({ display: "" }) : ({ display: "none" })}>
+                        Last name field is required
+                      </p> 
 
                     </div>
                 </div>
-                <div className="input-group">
+                <div className="input-group singup__form ">
                     <input
                         className="input"
                         type="text"
                         placeholder="email"
                         value={this.state.email}
                         onChange={this.handleInput("email")} />
+                    <p className="emailError" style={errors.includes("Email is invalid") ? ({ display: "" }) : ({ display: "none" })}>
+                    Email is invalid
+                    </p> 
 
                 </div>
-                <div className="input-group">
+                <div className="input-group singup__form">
 
                     <input
                         className="input"
@@ -137,28 +149,37 @@ export default class SignupForm extends React.Component {
                         placeholder="password"
                         value={this.state.password}
                         onChange={this.handleInput("password")} />
+                     <p className="passwordError" style={errors.includes("Password must be at least 6 characters") ? ({ display: "" }) : ({ display: "none" })}>
+                     Password must be at least 6 characters
+                      </p> 
                 </div>
-                <div className="input-group">
+                <div className="input-group singup__form" >
                     <input
                         className="input"
                         type="password"
                         placeholder="Confirm password"
                         value={this.state.password2}
                         onChange={this.handleInput("password2")} />
+                     <p className="passwor2dError" style={errors.includes("Confirm Password field is required") ? ({ display: "" }) : ({ display: "none" })}>
+                     Confirm Password field is required
+                      </p>
 
                 </div>
                
-                <div className="input-group">
+                <div className="input-group singup__form">
                     <input
                         className="input"
                         type="date"
-                        placeholder="Age"
+                        placeholder="Birthday"
                         value={this.state.age}
                         onChange={this.handleInput("age")}
                         />
+                    <p className="ageError" style={errors.includes("Age field is required") ? ({ display: "" }) : ({ display: "none" })}>
+                         Age need > 18 yers old.
+                      </p>
 
                 </div>
-                <div className="form__submit">
+                <div className="form__submit singup__form">
                     <button
                         className="btn btn--secondary"
                         onClick={this.handleSignup}>Sign Up!!</button>
@@ -246,7 +267,6 @@ export default class SignupForm extends React.Component {
     //     e.preventDefault();
     //     //Sign up the user
     //     this.props.signup(this.state);
-
     //     // Reset the state
     //     this.setState({
     //         email: "",
@@ -260,8 +280,7 @@ export default class SignupForm extends React.Component {
     //         education: "",
     //         interests: "",
     //         page1: true
-    //     })
-
+    //     }
     //     //Close the modal
     //     // this.toggleModal();
     // }

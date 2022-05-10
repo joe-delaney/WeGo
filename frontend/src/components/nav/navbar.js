@@ -6,15 +6,12 @@ import Avatar from '@mui/material/Avatar';
 class NavBar extends React.Component {
     constructor(props) {
       super(props);
-      this.handleLogout = this.handleLogout.bind(this);
-    }
-
-    handleLogout() {
-      this.props.logout();
+      this.state = {loggedIn: this.props.loggedIn};
     }
 
     render() {
-        let navbarLinks = this.props.loggedIn ? (
+      console.log(this.props.loggedIn);
+        let navbarLinks = (this.props.loggedIn) ? (
           <div className='nav__right--avatar'>
             <ul className="list nav__list">
               <li className="nav__item" >
@@ -26,7 +23,7 @@ class NavBar extends React.Component {
                       <Link to={`/profile/${this.props.currentUser}`}>Profile </Link> 
                   </div>
                   <div>
-                      <p onClick={this.handleLogout}>Logout</p>
+                      <p onClick={this.props.logout}>Logout</p>
                   </div>
               </div>         
           </div>
@@ -38,7 +35,6 @@ class NavBar extends React.Component {
             </ul>
           </div>
         )
-
         return (
           <div className='nav'>
               <div className='nav_left'>

@@ -11,21 +11,21 @@ class ProfileAbout extends React.Component {
 
     render() {
         let jobTitle = this.props.user && this.props.user.jobTitle ? (
-            <li>
+            <li  className="nav__item">
                 <strong>Job title: </strong>
                 <p>{this.props.user.jobTitle}</p>
             </li>
         ) : <div></div>
 
         let location = this.props.user && this.props.user.location ? (
-            <li>
+            <li  className="nav__item">
                 <strong>Based in: </strong>
                 <p>{this.props.user.location}</p>
             </li>
         ) : <div></div>
 
         let education = this.props.user && this.props.user.education ? (
-            <li>
+            <li  className="nav__item">
                 <strong>Education: </strong>
                 <p>{this.props.user.education}</p>
             </li>
@@ -45,7 +45,7 @@ class ProfileAbout extends React.Component {
                     {editButton}
                     <div className='profile__about--intro'>
                         <div className='profile__about--left'>
-                        <ul>
+                        <ul className="list">
                             {location}
                             {jobTitle}
                             {education}

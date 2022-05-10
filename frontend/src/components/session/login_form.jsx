@@ -46,22 +46,18 @@ export default class LoginForm extends React.Component {
         
     }
 
-    // toggleModal() {
-    //     //This will be used to close the modal once implemented
-    // }
-
-    // // Render the session errors if there are any
-    // renderErrors() {
-    //     return (
-    //         <ul>
-    //             {Object.keys(this.props.errors).map((error, i) => (
-    //                 <li key={`error-${i}`}>
-    //                     {this.props.errors[error]}
-    //                 </li>
-    //             ))}
-    //         </ul>
-    //     );
-    // }
+    // Render the session errors if there are any
+    renderErrors() {
+        return (
+            <ul className="list longin__errors">
+                {Object.keys(this.props.errors).map((error, i) => (
+                    <li key={`error-${i}`} className="nav__item">
+                        {this.props.errors[error]}
+                    </li>
+                ))}
+            </ul>
+        );
+    }
 
     render() {
         return (
@@ -112,6 +108,9 @@ export default class LoginForm extends React.Component {
                             className="input"
                             />
                     </div>
+                    <div >
+                        {this.renderErrors()}
+                    </div>
                     <div className="form__submit">
                         <input 
                             className="btn btn--primary"
@@ -122,7 +121,7 @@ export default class LoginForm extends React.Component {
                     </div>
 
                 </form>
-                {/* {this.renderErrors()} */}
+               
             </div>
         )
     }
