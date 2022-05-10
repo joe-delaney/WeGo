@@ -40,7 +40,7 @@ class ProfileFeed extends React.Component {
 
  
             {/* <div className='profile__navbar'>                    
-                <div className="profile__option"> About </div>                       
+                <div className="profile__option"> About </div>
             </div>  */}
          </>
 
@@ -51,4 +51,3 @@ class ProfileFeed extends React.Component {
 }
 
 export default ProfileFeed;
-
