@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-class ProfileEvents extends React.Component {
+class ProfileActivities extends React.Component {
     constructor(props) {
       super(props);
     }
@@ -10,11 +10,11 @@ class ProfileEvents extends React.Component {
     render() {
         return(
             <div className='profile__events'>
-              No events attended yet.
+              No activities attended yet.
             </div>
         )
     }
 
 }
 
-export default ProfileEvents;
+export default ProfileActivities;

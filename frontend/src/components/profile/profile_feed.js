@@ -1,6 +1,6 @@
 import React from 'react';
 import ProfileAbout from "./profile_about";
-import ProfileEvents from "./profile_events";
+import ProfileActivities from "./profile_activities";
 import ProfilePhotos from "./profile_photos"
 
 
@@ -44,8 +44,8 @@ class ProfileNavBar extends React.Component {
                         </div>
                         <div 
                             className='profile__feedbar--option'
-                            onClick={this.handleInput('events')}>
-                                Events
+                            onClick={this.handleInput('activities')}>
+                                Activities
                         </div>
                     </div> 
                     <ProfileAbout 
@@ -54,7 +54,7 @@ class ProfileNavBar extends React.Component {
                         openModal={this.props.openModal}
                         />
                 </> 
-        } else if (this.state.feedstatus === "events") {
+        } else if (this.state.feedstatus === "activities") {
             feedstatus= 
             <>
             <div  className='profile__feedbar'> 
@@ -70,11 +70,11 @@ class ProfileNavBar extends React.Component {
                 </div>
                 <div 
                     className='profile__feedbar--option active'
-                    onClick={this.handleInput('events')}>
-                        Events
+                    onClick={this.handleInput('activities')}>
+                        Activities
                 </div> 
             </div> 
-            <ProfileEvents />
+            <ProfileActivities />
         </> 
         } else if (this.state.feedstatus === "photos") {
             feedstatus= 
@@ -92,8 +92,8 @@ class ProfileNavBar extends React.Component {
                 </div>
                 <div 
                     className='profile__feedbar--option'
-                    onClick={this.handleInput('events')}>
-                        Events
+                    onClick={this.handleInput('activities')}>
+                        Activities
                 </div> 
             </div> 
             <ProfilePhotos />
