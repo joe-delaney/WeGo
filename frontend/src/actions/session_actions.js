@@ -6,7 +6,7 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 
 // When our user is logged out, we will dispatch this action to set isAuthenticated to false
-export const logoutUser = () => ({
+const logoutUser = () => ({
     type: RECEIVE_USER_LOGOUT
 });
 
@@ -28,9 +28,9 @@ export const logout = () => dispatch => {
     // Remove the token from local storage
     localStorage.removeItem('jwtToken')
     // Remove the token from the common axios header
-    APIUtil.setAuthToken(false)
+    APIUtil.setAuthToken(false);
     // Dispatch a logout action
-    dispatch(logoutUser())
+    dispatch(logoutUser());
 };
 
 // Upon signup, set the session token and dispatch the current user. Dispatch errors on failure.

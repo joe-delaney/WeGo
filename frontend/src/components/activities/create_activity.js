@@ -96,12 +96,37 @@ export default class CreateActivity extends React.Component {
                         </div>
                         <div className="input-group">
                             <input
-                                type="text"
+                                type="number"
                                 placeholder="Capacity"
                                 value={this.state.capacity}
                                 onChange={this.handleInput("capacity")}
                                 className="input"
+                                min="1"
                             />
+                        </div>
+                        <div className="input-group">
+                            <select name="tags" id="tag-select" className="input">
+                                <option value="" disabled selected>--Choose a genre--</option>
+                                <option value="sports">Sports</option>
+                                <option value="education">Education</option>
+                                <option value="relax">Relaxing</option>
+                                <option value="music">Music</option>
+                                <option value="shopping">Shopping</option>
+                                <option value="late-night">Late night</option>
+                                <option value="travel">Travel</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="Food">Food</option>
+                                <option value="Casual">Casual</option>
+                            </select>
+                        </div>
+                        <div className="input-group">
+                            <select name="cost" id="activity-cost" className="input">
+                                <option value="" disabled selected>--Activity Cost--</option>
+                                <option value="1">$</option>
+                                <option value="2">$$</option>
+                                <option value="3">$$$</option>
+                                <option value="4">$$$$</option>
+                            </select>
                         </div>
                         <div className="form__submit">
                             <input
