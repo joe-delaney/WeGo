@@ -38,6 +38,8 @@ export default class SignupForm extends React.Component {
     }
 
     getSignUpPage1() {
+        const errors = Object.values(this.props.errors);
+        console.log(errors);
         return (
             // <div>
             <div className="form__box">
@@ -47,7 +49,7 @@ export default class SignupForm extends React.Component {
                     <h2>Start with the Basics</h2>
                 </div>
 
-                <div className="form__group">
+                <div className="form__group singup__form">
                     <div className="input-group">
                         <input
                             className="input form__input"
@@ -55,8 +57,12 @@ export default class SignupForm extends React.Component {
                             placeholder="First name"
                             value={this.state.fname}
                             onChange={this.handleInput("fname")} />
+                      <p className="fnameError" style={errors.includes("First name field is required") ? ({ display: "" }) : ({ display: "none" })}>
+                         First name field is required
+                    </p>  
 
                     </div>
+                    
                     <div className="input-group">
                         <input
                             className="input"
@@ -64,19 +70,25 @@ export default class SignupForm extends React.Component {
                             placeholder="Last name"
                             value={this.state.lname}
                             onChange={this.handleInput("lname")} />
+                        <p className="lnameError" style={errors.includes("Last name field is required") ? ({ display: "" }) : ({ display: "none" })}>
+                        Last name field is required
+                      </p> 
 
                     </div>
                 </div>
-                <div className="input-group">
+                <div className="input-group ">
                     <input
                         className="input"
                         type="text"
                         placeholder="email"
                         value={this.state.email}
                         onChange={this.handleInput("email")} />
+                    <p className="emailError" style={errors.includes("Email is invalid") ? ({ display: "" }) : ({ display: "none" })}>
+                    Email is invalid
+                      </p> 
 
                 </div>
-                <div className="input-group">
+                <div className="input-group singup__form">
 
                     <input
                         className="input"
@@ -84,28 +96,37 @@ export default class SignupForm extends React.Component {
                         placeholder="password"
                         value={this.state.password}
                         onChange={this.handleInput("password")} />
+                     <p className="passwordError" style={errors.includes("Password must be at least 6 characters") ? ({ display: "" }) : ({ display: "none" })}>
+                     Password must be at least 6 characters
+                      </p> 
                 </div>
-                <div className="input-group">
+                <div className="input-group singup__form" >
                     <input
                         className="input"
                         type="password"
                         placeholder="Confirm password"
                         value={this.state.password2}
                         onChange={this.handleInput("password2")} />
+                     <p className="passwor2dError" style={errors.includes("Confirm Password field is required") ? ({ display: "" }) : ({ display: "none" })}>
+                     Confirm Password field is required
+                      </p>
 
                 </div>
                
-                <div className="input-group">
+                <div className="input-group singup__form">
                     <input
                         className="input"
                         type="date"
-                        placeholder="Age"
+                        placeholder="Birthday"
                         value={this.state.age}
                         onChange={this.handleInput("age")}
                         />
+                    <p className="ageError" style={errors.includes("Age field is required") ? ({ display: "" }) : ({ display: "none" })}>
+                         Age need > 18 yers old.
+                      </p>
 
                 </div>
-                <div className="form__submit">
+                <div className="form__submit singup__form">
                     <button
                         className="btn btn--secondary"
                         onClick={this.handleSignup}>Sign Up!!</button>
@@ -192,8 +213,10 @@ export default class SignupForm extends React.Component {
     handleSignup(e) {
         e.preventDefault();
         //Sign up the user
-        debugger
-        this.props.signup(this.state);
+        // debugger
+        this.props.signup(this.state).then(
+            this.props.closeModal()
+        );
 
         // Reset the state
         this.setState({
