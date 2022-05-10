@@ -19,7 +19,7 @@ class NavBar extends React.Component {
             </ul>  
              <div className='nav__menu'>
                   <div>
-                      <Link to={`/profile/${this.props.currentUser}`}>Profile </Link> 
+                      <Link to={`/profile/${this.props.currentUser.id}`}>Profile </Link> 
                   </div>
                   <div>
                       <p onClick={this.props.logout}>Logout</p>
