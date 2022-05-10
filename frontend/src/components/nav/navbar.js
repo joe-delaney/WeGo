@@ -11,6 +11,7 @@ class NavBar extends React.Component {
 
     }
 
+
     render() {
         let navbarLinks = this.props.loggedIn ? (
           <div>
@@ -32,16 +33,16 @@ class NavBar extends React.Component {
               <div className='nav_left'>
                 <div>
                   <div className='nav__logo'>
-                      <span style={{ color: "#0071bc", fontSize: 'x-large', fontWeight: '700'}}>
+                      <span style={{ color: "#2596be", fontSize: 'xx-large', fontWeight: '800',  fontFamily: 'Cursive'}}>
                         W   
                       </span>
-                      <span style={{ color: "#42b2fc", fontSize: 'large', fontWeight: '600'}}>
+                      <span style={{ color: "#3596be", fontSize: 'x-large', fontWeight: '700',  fontFamily: 'Cursive'}}>
                         e  
                       </span>
-                      <span style={{ color: "#3f89bb", fontSize: 'x-large', fontWeight: '700'}}>
+                      <span style={{ color: "#1e81b0", fontSize: 'x-large', fontWeight: '900',  fontFamily: 'Cursive'}}>
                         G 
                       </span>
-                      <span style={{ color: "#08c3fc", fontSize: 'x-large',fontWeight: '600'}}>
+                      <span style={{ color: "#0e81b0", fontSize: 'x-large',fontWeight: '600',  fontFamily: 'Cursive'}}>
                         o  
                       </span>
                       <span>

@@ -1,14 +1,15 @@
 :root {
     --color-backgroud: #243b52;
+    --color-callout: #012f5e;
     --color-primary: #2584ff;
     --color-secondary: #00d9ff;
     --color-accent: #ff3400;
+    --color-blue-dark: #2596be;
     --color-headings: #1b0760;
     --color-body: #918ca4;
     --color-body-darker: #5c5577;
-
     --color-border: #ccc;
-    --border-radius: 20px;
+    --border-radius: 30px;
   }
   
   *,
@@ -127,7 +128,7 @@
 .input-group .input {
   border: 0;
   flex-grow: 1;
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.5rem;
 }
 
 
@@ -138,7 +139,7 @@
   cursor: pointer;
   font-size: 1.8rem;
   font-weight: 600;
-  margin: 1rem 0;
+  /* margin: 1rem 0; */
   outline: 0;
   padding: 2rem 3rem;
   text-align: center;
@@ -171,6 +172,14 @@
   background: #05cdf0;
 }
 
+.btn--blue-dark{
+  background-color: var(--color-blue-dark);
+  color: #fff;
+}
+
+.btn--blue-dark:hover {
+  background: #50bed9;
+}
 
 .btn--grey {
   background: var(--color-border);
@@ -198,4 +207,45 @@
 
 }
 
-  
+
+/* Blocks */
+.block {
+  --padding-vertical: 1rem;
+  padding: var(--padding-vertical) 2rem;
+}
+
+.block__header {
+  text-align: center;
+  padding-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.block__heading {
+  margin-top: 0;
+}
+
+.block--dark {
+  background: var(--color-backgroud);
+  color: #7b858b;
+}
+
+.block--dark h1,
+.block--dark h2,
+.block--dark h3 {
+  color: #fff;
+}
+
+.block--skewed-right {
+  padding-bottom: calc(var(--padding-vertical) + 4rem);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 95%);
+}
+
+.block--skewed-left {
+  padding-bottom: calc(var(--padding-vertical) + 4rem);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 0% 100%);
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}

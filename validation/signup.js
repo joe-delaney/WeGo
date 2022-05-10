@@ -8,7 +8,7 @@ const dateToAge = (birthdate) => {
     let current = new Date(Date.now());
     
     let age = current.getYear() - birthdate.getYear();
-    if (birthdate.getMonth() < current.getMonth()) {age -= 1;}
+    if (birthdate.getMonth() > current.getMonth()) {age -= 1;}
     if (birthdate.getMonth() === current.getMonth() && birthdate.getDate() < current.getDate()) {age -= 1;}
 
     return age;
@@ -32,9 +32,9 @@ module.exports = function validateSignupInput(data) {
         errors.age = "Age field is required";
     }
 
-    // if(dateToAge(data.age) < 18) {
-    //     errors.age = "You must be at least 18 years old to use WeGo"
-    // }
+    if(dateToAge(data.age) < 18) {
+        errors.age = "You must be at least 18 years old to use WeGo"
+    }
 
     if (Validator.isEmpty(data.fname)) {
         errors.fname = 'First name field is required';

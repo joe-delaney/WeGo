@@ -108,7 +108,7 @@ export default class SignupForm extends React.Component {
                 <div className="form__submit">
                     <button
                         className="btn btn--secondary"
-                        onClick={this.handleSignup}>Sing Up!!</button>
+                        onClick={this.handleSignup}>Sign Up!!</button>
 
                 </div>
             </div>

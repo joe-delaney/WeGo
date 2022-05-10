@@ -131,9 +131,10 @@ router.post("/:id", (req, res) => {
             } else {
                 if(req.body.fname) user.fname = req.body.fname;
                 if(req.body.lname) user.lname = req.body.lname
-                if(req.body.pronouns) user.pronouns = req.body.pronouns
-                if(req.body.jobTitle) user.jobTitle = req.body.jobTitle
-                if(req.body.education) user.education = req.body.education
+                user.pronouns = req.body.pronouns
+                user.jobTitle = req.body.jobTitle
+                user.education = req.body.education
+                user.location = req.body.location
                 if(req.body.aboutMe) user.aboutMe = req.body.aboutMe
                 user.save().then(user => res.json(JSON.parse(userShow(user))));
             }

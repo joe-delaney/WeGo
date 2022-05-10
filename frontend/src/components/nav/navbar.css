@@ -3,9 +3,14 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 0 1rem;
-    align-items: center;
-    /* box-shadow: 0 0 5px rgb(207, 207, 207); */
+    padding: 0.8rem 6rem;
+   
+    align-items: flex-end;
+    box-shadow: 0 0 5px rgb(207, 207, 207);
+
+ 
+
+    
 }
 
 .nav_left{

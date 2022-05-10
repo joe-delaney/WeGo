@@ -29,8 +29,6 @@
 
 }
 
-
-
 .profile__header{
     display: flex;
     flex-direction: column;
@@ -60,13 +58,14 @@
 }
 
 .profile__useravatar{
-    border: 0;
+    /* margin: 2px 2px; */
     border-radius: 50%;
     width: 228px;
     height: 228px;
     margin-right: 10px;
     border: 6px solid white;
-  
+    object-fit: cover;
+      
 }
 
 
@@ -84,7 +83,8 @@
     flex-direction: column;
     top: 38px;
     justify-content: center;
-    align-items: center;  
+    align-items: center; 
+    margin-top: 20px; 
 }
 
 
@@ -99,6 +99,7 @@
 .profile__feedbar{
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .profile__feedbar--option{
@@ -120,6 +121,10 @@
     border-bottom: 3px solid var(--color-primary);
 }
 
+.active:hover {
+    border-bottom: 3px solid transparent;
+}
+
 .profile__about{
     /* margin-top: 30px; */
     /* background: linear-gradient(#f1f2f5 , #e3e3e6 80%); */
@@ -132,7 +137,7 @@
 
 .profile__about--slogan {
     margin-top: 30px;
-    font-size: 3rem;
+    font-size: 1.5rem;
     /* font-weight: 700; */
     color: black;
     text-align: center;
@@ -140,7 +145,7 @@
 }
 
 .profile__about--slogan-blod{
-    font-weight: 900;
+    font-weight: 800;
 }
 
 .profile__about--intro {
@@ -216,7 +221,7 @@
     }
     .profile__about--slogan {
         margin-top: 30px;
-        font-size: 6rem;
+        /* font-size: 2.5rem; */
         /* font-weight: 700; */
         color: black;
         text-align: center;
@@ -224,7 +229,7 @@
     }
 
     .profile__about--slogan {
-        font-size: 4rem;
+        font-size: 2.5rem;
     }
 
     .profile__about--intro{

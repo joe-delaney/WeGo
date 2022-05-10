@@ -2,6 +2,7 @@ import React from "react";
 import './modal.css'
 import SignupFormContainer from "../../components/session/signup_form_container";
 import LoginFormContainer from "../../components/session/login_form_container";
+import EditProfileContainer from "../profile/edit_profile_container";
 
 const Modal = ({modal, closeModal}) => {
     if (!modal) {
@@ -14,6 +15,9 @@ const Modal = ({modal, closeModal}) => {
             break;
         case "login":
             component = <LoginFormContainer />
+            break;
+        case "editProfile":
+            component = <EditProfileContainer />
             break;
         default:
             return null;
