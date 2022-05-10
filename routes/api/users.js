@@ -11,15 +11,14 @@ const userShow = require('../../jbuilder/users');
 
 const multer  = require('multer');
 const { uploadFile } = require("../../s3");
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: 'images/' })
 const fs = require('fs')
 const util = require('util')
 const unlinkFile = util.promisify(fs.unlink)
 
 //User sign up backend route
-router.post('/signup', upload.array('images', 5), async (req, res) => {
+router.post('/signup', upload.single('image'), async (req, res) => {
     const { errors, isValid } = validateSignupInput(req.body);
-
     if (!isValid) {
         return res.status(400).json(errors);
     }
@@ -42,19 +41,21 @@ router.post('/signup', upload.array('images', 5), async (req, res) => {
                     education: req.body.education,
                     aboutMe: req.body.aboutMe
                 })
-
                 // upload images to server
-                const uploadPromises = []
-                for (let i = 0; i < req.files.length; i++) {
-                    uploadPromises.push(uploadFile(req.files[i]))
-                }
-                await Promise.all(uploadPromises)
+                // const uploadPromises = []
+                // for (let i = 0; i < req.files.length; i++) {
+                //     uploadPromises.push(uploadFile(req.files[i]))
+                // }
+                // await Promise.all(uploadPromises)
 
-                const unlinkPromises = []
-                for (let i = 0; i < req.files.length; i++) {
-                    unlinkPromises.push(unlinkFile(req.files[i].path))
-                }
-                await Promise.all(unlinkPromises)
+                // const unlinkPromises = []
+                // for (let i = 0; i < req.files.length; i++) {
+                //     unlinkPromises.push(unlinkFile(req.files[i].path))
+                // }
+                // await Promise.all(unlinkPromises)
+
+                const result = await uploadFile(req.file)
+                await unlinkFile(req.file.path)
 
 
                 bcrypt.genSalt(10, (err, salt) => {
