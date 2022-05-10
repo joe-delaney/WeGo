@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
         host: req.body.host, 
         requestedAttendees: req.body.requestedAttendees,
         approvedAttendees: req.body.approvedAttendees,
-        tags: req.body.tags, 
+        tag: req.body.tag, 
         location: req.body.location, 
         description: req.body.description, 
         price: req.body.price, 
@@ -48,7 +48,7 @@ router.post("/:id", (req, res) => {
                 if (req.body.host) activity.host = req.body.host 
                 if(req.body.requestedAttendees) activity.requestedAttendees = req.body.requestedAttendees 
                 if(req.body.approvedAttendees) activity.approvedAttendees = req.body.approvedAttendees 
-                if(req.body.tags) activity.tags = req.body.tags 
+                if(req.body.tag) activity.tag = req.body.tag 
                 if(req.body.location) activity.location = req.body.location 
                 if(req.body.description) activity.description = req.body.description 
                 if (req.body.price) activity.price = req.body.price 
