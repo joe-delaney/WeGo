@@ -29,8 +29,6 @@
 
 }
 
-
-
 .profile__header{
     display: flex;
     flex-direction: column;
@@ -85,7 +83,8 @@
     flex-direction: column;
     top: 38px;
     justify-content: center;
-    align-items: center;  
+    align-items: center; 
+    margin-top: 20px; 
 }
 
 
@@ -100,6 +99,7 @@
 .profile__feedbar{
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .profile__feedbar--option{
@@ -119,6 +119,10 @@
 
 .active{
     border-bottom: 3px solid var(--color-primary);
+}
+
+.active:hover {
+    border-bottom: 3px solid transparent;
 }
 
 .profile__about{

@@ -17,6 +17,9 @@ class ProfileNavBar extends React.Component {
             <div className='profile__top'> 
                 <div className="profile__coverpotp" >
                     <div className="profile__coverbar" >
+                        <div className='profile__about--slogan'>
+                            <p>Who's In? <span className='profile__about--slogan-blod'>WeGo</span></p>
+                        </div>
                     </div>
                 </div>
                 <div className='profile__img'>

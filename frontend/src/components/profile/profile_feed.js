@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ProfileAbout from "./profile_about";
-import ProfileEvents from "./profile_evens";
+import ProfileActivities from "./profile_activities";
+import ProfilePhotos from "./profile_photos"
 
 
 
@@ -37,16 +37,46 @@ class ProfileNavBar extends React.Component {
                             onClick={this.handleInput('about')}>
                                 About
                         </div>
+                        <div
+                            className='profile__feedbar--option '
+                            onClick={this.handleInput('photos')}>
+                            Photos
+                        </div>
                         <div 
                             className='profile__feedbar--option'
-                            onClick={this.handleInput('events')}>
-                                Events
+                            onClick={this.handleInput('activities')}>
+                                Activities
                         </div>
-                        
                     </div> 
-                    <ProfileAbout user={this.props.user}/>
+                    <ProfileAbout 
+                        user={this.props.user}
+                        currentUserId={this.props.currentUserId}
+                        openModal={this.props.openModal}
+                        />
                 </> 
-        }else{
+        } else if (this.state.feedstatus === "activities") {
+            feedstatus= 
+            <>
+            <div  className='profile__feedbar'> 
+                <div 
+                    className='profile__feedbar--option '
+                    onClick={this.handleInput('about')}>
+                        About
+                </div>
+                <div 
+                    className='profile__feedbar--option '
+                    onClick={this.handleInput('photos')}>
+                        Photos
+                </div>
+                <div 
+                    className='profile__feedbar--option active'
+                    onClick={this.handleInput('activities')}>
+                        Activities
+                </div> 
+            </div> 
+            <ProfileActivities />
+        </> 
+        } else if (this.state.feedstatus === "photos") {
             feedstatus= 
             <>
             <div  className='profile__feedbar'> 
@@ -57,18 +87,21 @@ class ProfileNavBar extends React.Component {
                 </div>
                 <div 
                     className='profile__feedbar--option active'
-                    onClick={this.handleInput('events')}>
-                        Events
+                    onClick={this.handleInput('photos')}>
+                        Photos
                 </div>
-                
+                <div 
+                    className='profile__feedbar--option'
+                    onClick={this.handleInput('activities')}>
+                        Activities
+                </div> 
             </div> 
-            <ProfileEvents />
+            <ProfilePhotos />
         </> 
         }
         return(
          <div className='profile__feed'>
-            {feedstatus}              
-                     
+            {feedstatus}                       
          </div>
         )
     }
