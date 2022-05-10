@@ -8,29 +8,39 @@ class NavBar extends React.Component {
       super(props);
       this.state = {loggedIn: this.props.loggedIn};
     }
+    componentDidMount() {
+      this.props.fetchUser(this.props.currentUser)
+   }
+  
 
     render() {
-      // debugger
+      const username = (this.props.user) ? this.props.user.fname + ' ' + this.props.user.lname : '';
         let navbarLinks = (this.props.loggedIn) ? (
           <div className='nav__right--avatar'>
-            <ul className="list nav__list">
-              <li className="nav__item" >
-              { this.props.user ? <img src={this.props.user.profilePhotoPath} className='nav__avatar' /> : null }
-              </li>
-            </ul>  
+            <div>
+              <ul className="list nav__list">
+                <li className="nav__item" >
+                { this.props.user ? <img src={this.props.user.profilePhotoPath} className='nav__avatar' /> : null }
+                </li>
+              </ul>    
+             
+            </div>
+            <div className='nav__userinfo'>
+               {username}
+            </div>
              <div className='nav__menu'>
                   <div>
-                      <Link to={`/profile/${this.props.currentUser}`}>Profile </Link> 
+                      <Link to={`/profile/${this.props.currentUser}`}> Profile </Link> 
                   </div>
                   <div>
-                      <Link to={'/'} onClick={this.props.logout}>Logout</Link>
+                      <Link to={'/'} onClick={this.props.logout}> Logout</Link>
                   </div>
               </div>         
           </div>
         ) : (
           <div>
              <ul className="list nav__list">
-              <li className="nav__item" onClick={()=>this.props.openModal('signup')}>Signup</li>
+              <li className="nav__item singup"  onClick={()=>this.props.openModal('signup')}>Signup</li>
               <li className="nav__item"  onClick={()=>this.props.openModal('login')}>Login</li>
             </ul>
           </div>

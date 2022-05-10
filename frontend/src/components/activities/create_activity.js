@@ -4,18 +4,16 @@ export default class CreateActivity extends React.Component {
     constructor(props) {
         super(props);
 
-        if(this.props.currentUser) {
-            this.state = {
-                title: "",
-                time: "",
-                host: this.props.currentUser.id,
-                location: "",
-                description: "",
-                tag: "",
-                price: 1,
-                duration: 1,
-                capacity: 1
-            }
+        this.state = {
+            title: "",
+            time: "",
+            host: this.props.currentUserId,
+            location: "",
+            description: "",
+            tag: "",
+            price: 1,
+            duration: 1,
+            capacity: 1
         }
 
         this.handleInput = this.handleInput.bind(this);
@@ -34,17 +32,6 @@ export default class CreateActivity extends React.Component {
         e.preventDefault();
         this.props.createActivity(this.state);
         this.props.closeModal();
-        this.setState({
-            title: "",
-            time: "",
-            host: this.props.currentUser.id,
-            location: "",
-            description: "",
-            tag: "",
-            price: 1,
-            duration: 1,
-            capacity: 1
-        });
     }
 
     render() {
@@ -120,11 +107,12 @@ export default class CreateActivity extends React.Component {
                         </div>
                         <div className="input-group">
                             <select 
+                                defaultValue="DEFAULT"
                                 name="tag" 
                                 id="tag-select" 
                                 className="input"
                                 onChange={this.handleInput("tag")}>
-                                <option value="" disabled>Choose a genre</option>
+                                <option value="DEFAULT" disabled>Choose a genre</option>
                                 <option value="sports">Sports</option>
                                 <option value="education">Education</option>
                                 <option value="relax">Relaxing</option>
@@ -139,11 +127,13 @@ export default class CreateActivity extends React.Component {
                         </div>
                         <div className="input-group">
                             <select 
+                                defaultValue="DEFAULT"
                                 name="cost" 
                                 id="activity-cost" 
                                 className="input"
                                 onChange={this.handleInput("cost")}>
-                                <option value="" disabled>Activity Cost</option>
+                                <option value="DEFAULT" disabled>Activity Cost</option>
+                                <option value="0">Free</option>
                                 <option value="1">$</option>
                                 <option value="2">$$</option>
                                 <option value="3">$$$</option>
@@ -152,11 +142,12 @@ export default class CreateActivity extends React.Component {
                         </div>
                         <div className="input-group">
                             <select 
+                                defaultValue="DEFAULT"
                                 name="duration" 
                                 id="activity-duration" 
                                 className="input"
                                 onChange={this.handleInput("duration")}>
-                                <option value="" disabled>Activity Duration</option>
+                                <option value="DEFAULT" disabled>Activity Duration</option>
                                 <option value="1">Less than an hour</option>
                                 <option value="2">1-2 hours</option>
                                 <option value="3">2-4 hours</option>

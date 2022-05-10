@@ -17,7 +17,7 @@
     width: 100%;  
     margin: 0 auto;  
     position: relative; 
-    height: 380px; 
+    height: 450px; 
 }
 
 .profile__coverpotp{
@@ -25,7 +25,7 @@
     position: absolute;
     background: linear-gradient(#f1f2f5 , #e3e3e6 80%);
     width: 100%;
-    min-height: 205px; 
+    min-height: 280px; 
 
 }
 
@@ -60,8 +60,8 @@
 .profile__useravatar{
     /* margin: 2px 2px; */
     border-radius: 50%;
-    width: 228px;
-    height: 228px;
+    width: 208px;
+    height: 208px;
     margin-right: 10px;
     border: 6px solid white;
     object-fit: cover;
@@ -81,7 +81,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    top: 38px;
+    top: 100px;
     justify-content: center;
     align-items: center; 
     margin-top: 20px; 

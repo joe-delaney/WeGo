@@ -6,7 +6,10 @@ const activitiesReducer = (state={}, action) => {
 
     switch(action.type) {
         case RECEIVE_ACTIVITIES:
-            return action.activities;
+            action.activities.forEach((activity) => {
+                nextState[activity.id] = activity;
+            })
+            return nextState;
         case RECEIVE_ACTIVITY:
             nextState[action.activity.id] = action.activity;
             return nextState;
