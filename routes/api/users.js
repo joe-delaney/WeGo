@@ -58,7 +58,7 @@ router.post('/signup', upload.single('image'), async (req, res) => {
                 if(req.file) {
                     const result = await uploadFile(req.file)
                     console.log(result)
-                    newUser.imagePath = `/api/images/${result.Key}`
+                    newUser.profilePhotoPath = `/api/images/${result.Key}`
                     await unlinkFile(req.file.path)
                 } 
 
@@ -135,7 +135,8 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
         pronouns: req.user.pronouns,
         jobTitle: req.user.jobTitle,
         education: req.user.education,
-        aboutMe: req.user.aboutMe
+        aboutMe: req.user.aboutMe,
+        profilePhotoPath: req.user.profilePhotoPath
     });
 })
 

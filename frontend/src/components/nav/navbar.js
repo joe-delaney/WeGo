@@ -20,9 +20,9 @@ class NavBar extends React.Component {
             <div>
               <ul className="list nav__list">
                 <li className="nav__item" >
-                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTypACuX8ygmzipbD197uPBv40pqsvU8Egh-_Oo_xqg2OQqZbL1Cm-5XRxVcF3QjaocHCg&usqp=CAU' className='nav__avatar' />  
+                { this.props.user ? <img src={this.props.user.profilePhotoPath} className='nav__avatar' /> : null }
                 </li>
-              </ul>  
+              </ul>    
              
             </div>
             <div className='nav__userinfo'>
