@@ -7,7 +7,7 @@ export default class CreateActivity extends React.Component {
         this.state = {
             title: "",
             time: "",
-            host: this.props.currentUser.id,
+            host: this.props.currentUserId,
             location: "",
             description: "",
             tag: "",
