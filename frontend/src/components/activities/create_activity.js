@@ -4,16 +4,22 @@ export default class CreateActivity extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            title: "",
-            time: "",
-            host: this.props.currentUser,
-            location: "",
-            description: "",
-            price: 1,
-            duration: 1,
-            capacity: 1
+        if(this.props.currentUser) {
+            this.state = {
+                title: "",
+                time: "",
+                host: this.props.currentUser.id,
+                location: "",
+                description: "",
+                tag: "",
+                price: 1,
+                duration: 1,
+                capacity: 1
+            }
         }
+
+        this.handleInput = this.handleInput.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleInput(type) {
@@ -28,6 +34,17 @@ export default class CreateActivity extends React.Component {
         e.preventDefault();
         this.props.createActivity(this.state);
         this.props.closeModal();
+        this.setState({
+            title: "",
+            time: "",
+            host: this.props.currentUser.id,
+            location: "",
+            description: "",
+            tag: "",
+            price: 1,
+            duration: 1,
+            capacity: 1
+        });
     }
 
     render() {
@@ -46,9 +63,6 @@ export default class CreateActivity extends React.Component {
                         </span>
                         <span style={{ color: "#08c3fc" }}>
                             o
-                        </span>
-                        <span>
-                            {/* <SendRoundedIcon /> */}
                         </span>
                         <div className='nav__slogan'>
                             Who's In?
@@ -105,8 +119,12 @@ export default class CreateActivity extends React.Component {
                             />
                         </div>
                         <div className="input-group">
-                            <select name="tags" id="tag-select" className="input">
-                                <option value="" disabled selected>--Choose a genre--</option>
+                            <select 
+                                name="tag" 
+                                id="tag-select" 
+                                className="input"
+                                onChange={this.handleInput("tag")}>
+                                <option value="" disabled>Choose a genre</option>
                                 <option value="sports">Sports</option>
                                 <option value="education">Education</option>
                                 <option value="relax">Relaxing</option>
@@ -120,12 +138,29 @@ export default class CreateActivity extends React.Component {
                             </select>
                         </div>
                         <div className="input-group">
-                            <select name="cost" id="activity-cost" className="input">
-                                <option value="" disabled selected>--Activity Cost--</option>
+                            <select 
+                                name="cost" 
+                                id="activity-cost" 
+                                className="input"
+                                onChange={this.handleInput("cost")}>
+                                <option value="" disabled>Activity Cost</option>
                                 <option value="1">$</option>
                                 <option value="2">$$</option>
                                 <option value="3">$$$</option>
                                 <option value="4">$$$$</option>
+                            </select>
+                        </div>
+                        <div className="input-group">
+                            <select 
+                                name="duration" 
+                                id="activity-duration" 
+                                className="input"
+                                onChange={this.handleInput("duration")}>
+                                <option value="" disabled>Activity Duration</option>
+                                <option value="1">Less than an hour</option>
+                                <option value="2">1-2 hours</option>
+                                <option value="3">2-4 hours</option>
+                                <option value="4">4+ hours</option>
                             </select>
                         </div>
                         <div className="form__submit">

@@ -3,10 +3,12 @@ import { logout } from '../../actions/session_actions';
 import {openModal} from "../../actions/modal_actions"
 import NavBar from './navbar';
 
-const mapStateToProps = state => ({
-    loggedIn: state.session.isAuthenticated,
-    currentUser: state.session.user.id
-});
+const mapStateToProps = (state) => {
+    return {
+        loggedIn: state.session.isAuthenticated,
+        currentUser: state.session.user.id
+    };
+};
 
 const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout()),
