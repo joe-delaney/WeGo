@@ -4,16 +4,18 @@ export default class CreateActivity extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            title: "",
-            time: "",
-            host: this.props.currentUser.id,
-            location: "",
-            description: "",
-            tag: "",
-            price: 1,
-            duration: 1,
-            capacity: 1
+        if(this.props.currentUser) {
+            this.state = {
+                title: "",
+                time: "",
+                host: this.props.currentUser.id,
+                location: "",
+                description: "",
+                tag: "",
+                price: 1,
+                duration: 1,
+                capacity: 1
+            }
         }
 
         this.handleInput = this.handleInput.bind(this);
@@ -32,6 +34,17 @@ export default class CreateActivity extends React.Component {
         e.preventDefault();
         this.props.createActivity(this.state);
         this.props.closeModal();
+        this.setState({
+            title: "",
+            time: "",
+            host: this.props.currentUser.id,
+            location: "",
+            description: "",
+            tag: "",
+            price: 1,
+            duration: 1,
+            capacity: 1
+        });
     }
 
     render() {
@@ -50,9 +63,6 @@ export default class CreateActivity extends React.Component {
                         </span>
                         <span style={{ color: "#08c3fc" }}>
                             o
-                        </span>
-                        <span>
-                            {/* <SendRoundedIcon /> */}
                         </span>
                         <div className='nav__slogan'>
                             Who's In?
