@@ -24,7 +24,11 @@ class Profile extends React.Component {
                 <ModalContainer />
                 <NavBarContainer />
                 <ProfileNavBar user={this.props.user}/>
-                <ProfileFeed user={this.props.user}/>
+                <ProfileFeed 
+                    user={this.props.user}
+                    currentUserId={this.props.currentUserId}
+                    openModal={this.props.openModal}
+                    />
             </>
         )
     }

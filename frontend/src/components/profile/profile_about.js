@@ -26,14 +26,19 @@ class ProfileAbout extends React.Component {
 
         let aboutMe = this.props.user ? <p>{this.props.user.aboutMe}</p> : <p>Tell everyone more about you!</p>;
 
+        let editButton = this.props.user && (this.props.user.id === this.props.currentUserId) ?
+            (
+                <div className='profile__about--edit'>
+                    <button onClick={() => this.props.openModal("editProfile")} className='btn btn--accent btn--small'>Edit Profile</button>
+                </div>
+            ) : <div></div>
+
         return(
             <div className='profile__about'>
                     <div  className='profile__about--slogan'>
                         <p>Who's In? <span className='profile__about--slogan-blod'>WeGo</span></p>                              
                     </div>
-                    <div className='profile__about--edit'>
-                        <button className='btn btn--accent btn--small'>Edit Profile</button>
-                    </div>
+                    {editButton}
                     <div className='profile__about--intro'>
                         <div className='profile__about--left'>
                         <ul>

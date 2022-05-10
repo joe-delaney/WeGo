@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-class ProfileEvens extends React.Component {
+class ProfileEvents extends React.Component {
     constructor(props) {
       super(props);
     }
@@ -17,4 +17,4 @@ class ProfileEvens extends React.Component {
 
 }
 
-export default ProfileEvens;
+export default ProfileEvents;

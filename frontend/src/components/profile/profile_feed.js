@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ProfileAbout from "./profile_about";
-import ProfileEvents from "./profile_evens";
+import ProfileEvents from "./profile_events";
 
 
 
@@ -44,7 +44,11 @@ class ProfileNavBar extends React.Component {
                         </div>
                         
                     </div> 
-                    <ProfileAbout user={this.props.user}/>
+                    <ProfileAbout 
+                        user={this.props.user}
+                        currentUserId={this.props.currentUserId}
+                        openModal={this.props.openModal}
+                        />
                 </> 
         }else{
             feedstatus= 
@@ -67,8 +71,7 @@ class ProfileNavBar extends React.Component {
         }
         return(
          <div className='profile__feed'>
-            {feedstatus}              
-                     
+            {feedstatus}                       
          </div>
         )
     }
