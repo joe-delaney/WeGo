@@ -17,12 +17,15 @@ class ProfileNavBar extends React.Component {
             <div className='profile__top'> 
                 <div className="profile__coverpotp" >
                     <div className="profile__coverbar" >
+                        <div className='profile__about--slogan'>
+                            <p>Who's In? <span className='profile__about--slogan-blod'>WeGo</span></p>
+                        </div>
                     </div>
                 </div>
                 <div className='profile__img'>
                     <div>
 
-                        <img src="https://www.juststartcodingnow.com/wp-content/uploads/2019/03/JustStartCoding_logo_01.png"
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTypACuX8ygmzipbD197uPBv40pqsvU8Egh-_Oo_xqg2OQqZbL1Cm-5XRxVcF3QjaocHCg&usqp=CAU"
                         className="profile__useravatar"/>
                     </div>
                     <div className='profile__userinfo--heading'>

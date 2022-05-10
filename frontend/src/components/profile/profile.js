@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import './profile.css'
 import ModalContainer from "../modal/modal_container";
 import NavBarContainer from "../nav/navbar_container";
@@ -24,7 +23,11 @@ class Profile extends React.Component {
                 <ModalContainer />
                 <NavBarContainer />
                 <ProfileNavBar user={this.props.user}/>
-                <ProfileFeed user={this.props.user}/>
+                <ProfileFeed 
+                    user={this.props.user}
+                    currentUserId={this.props.currentUserId}
+                    openModal={this.props.openModal}
+                    />
             </>
         )
     }

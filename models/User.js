@@ -2,13 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const dateToAge = (birthdate) => {
-
     birthdate = new Date(birthdate)
-
     let current = new Date(Date.now());
-    
     let age = current.getYear() - birthdate.getYear();
-    if (birthdate.getMonth() < current.getMonth()) {age -= 1;}
+    if (birthdate.getMonth() > current.getMonth()) {age -= 1;}
     if (birthdate.getMonth() === current.getMonth() && birthdate.getDate() < current.getDate()) {age -= 1;}
 
     return age;
@@ -50,6 +47,10 @@ const UserSchema = new Schema({
         required: false
     },
     education: {
+        type: String,
+        required: false
+    },
+    location: {
         type: String,
         required: false
     },
