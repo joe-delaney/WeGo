@@ -3,23 +3,22 @@ const router = express.Router();
 const Activity = require('../../models/Activity');
 
 // fetch all activites
-router.get('/activities', (req, res) => {
+router.get('/', (req, res) => {
     Activity.find()
         .sort({ date: -1 })
         .then(activities => res.json(activities))
         .catch(err => res.status(404).json({ noactivitiesfound: 'No activities found' }));
 });
 
-// fetch all activities for a specific user? 
-router.get('/:user_id/activities', (req, res) => {
+// fetch all activities for a specific user
+router.get('/user/:user_id/', (req, res) => {
     Activity.find({ user: req.params.user_id })
         .then(activities => res.json(activities))
         .catch(err => res.status(404).json({ noactivitiesfound: 'No activities found' }));
 });
 
 // create an activity
-router.post("/activites", (req, res) => {
-    // should I check for dupes?
+router.post("/", (req, res) => {
     const newActivity = new Activity({
         title: req.body.title, 
         time: req.body.time, 
@@ -31,15 +30,13 @@ router.post("/activites", (req, res) => {
         description: req.body.description, 
         price: req.body.price, 
         duration: req.body.duration, 
-        capacity: req.body.capacity, 
-        closed: req.body.closed
+        capacity: req.body.capacity
     });
-    // Should I be parsing this?
     newActivity.save().then(activity => res.json(activity));
 });
 
 // update an activity
-router.post("/:activities/:id", (req, res) => {
+router.post("/:id", (req, res) => {
     Activity.findById(req.params.id)
         .then(activity => {
             if (!activity) {
@@ -57,10 +54,15 @@ router.post("/:activities/:id", (req, res) => {
                 if(req.body.duration) duration = req.body.duration 
                 if(req.body.capacity) capacity = req.body.capacity 
                 if(req.body.closed) closed = req.body.closed
-                // should I be parsing this?
                 activity.save().then(activity => res.json(activity));
             }
         })
 })
 
 // delete an activity
+router.delete("/:id", (req, res) => {
+    Activity.findByIdAndDelete(id, err => {
+        if (err) return res.status(404).json({ noactivityfound: "No activity found with that ID" });
+        return res.status(200);
+    });
+})

@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-// Don't know why this is here or how it got here so I won't delete this yet
-const { arrayBuffer } = require('stream/consumers');
 const Schema = mongoose.Schema;
 
 
@@ -55,11 +53,11 @@ const ActivitySchema = new Schema({
     },
     closed: {
         type: Boolean,
-        required: true
+        default: false
     }
 }, {
     timestamps: true
 });
 
 
-module.exports = User = mongoose.model('Activity', ActivitySchema);
+module.exports = Activity = mongoose.model('Activity', ActivitySchema);
