@@ -102,6 +102,7 @@ export default class SignupForm extends React.Component {
                         <input type="file" name="image" onChange={this.handlefiles} accept="image/*"/>
                     </div>
                 </div>
+                </div>
 
                 <div className="form__group">
                     <div className="input-group">
@@ -176,7 +177,7 @@ export default class SignupForm extends React.Component {
                         onChange={this.handleInput("age")}
                         />
                     <p className="ageError" style={errors.includes("Age field is required") ? ({ display: "" }) : ({ display: "none" })}>
-                         Age need > 18 yers old.
+                         Must be at least 18 years old
                       </p>
 
                 </div>

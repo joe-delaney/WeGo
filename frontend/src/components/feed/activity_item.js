@@ -1,13 +1,12 @@
 
 import React from 'react'
 
-function Story({image, profileSrc, title}) {
+const ActivityItem = ({image, title}) => {
   return (
     <div style={{backgroundImage: `url(${image})` }} className="story">
-     
         <h4>{title}</h4>
     </div>
   )
 }
 
-export default Story
+export default ActivityItem
