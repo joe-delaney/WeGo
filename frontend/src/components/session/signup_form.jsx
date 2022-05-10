@@ -98,8 +98,9 @@ export default class SignupForm extends React.Component {
                 </div>
 
                 <div className="form__group singup__form">
-                <div className="file_input_for_testing">
-                    <input type="file" name="image" onChange={this.handlefiles} accept="image/*"/>
+                    <div className="file_input_for_testing">
+                        <input type="file" name="image" onChange={this.handlefiles} accept="image/*"/>
+                    </div>
                 </div>
 
                 <div className="form__group">

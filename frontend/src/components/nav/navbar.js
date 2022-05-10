@@ -8,28 +8,39 @@ class NavBar extends React.Component {
       super(props);
       this.state = {loggedIn: this.props.loggedIn};
     }
+    componentDidMount() {
+      this.props.fetchUser(this.props.currentUser)
+   }
+  
 
     render() {
+      const username = (this.props.user) ? this.props.user.fname + ' ' + this.props.user.lname : '';
         let navbarLinks = (this.props.loggedIn) ? (
           <div className='nav__right--avatar'>
-            <ul className="list nav__list">
-              <li className="nav__item" >
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTypACuX8ygmzipbD197uPBv40pqsvU8Egh-_Oo_xqg2OQqZbL1Cm-5XRxVcF3QjaocHCg&usqp=CAU' className='nav__avatar' />
-              </li>
-            </ul>  
+            <div>
+              <ul className="list nav__list">
+                <li className="nav__item" >
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTypACuX8ygmzipbD197uPBv40pqsvU8Egh-_Oo_xqg2OQqZbL1Cm-5XRxVcF3QjaocHCg&usqp=CAU' className='nav__avatar' />  
+                </li>
+              </ul>  
+             
+            </div>
+            <div className='nav__userinfo'>
+               {username}
+            </div>
              <div className='nav__menu'>
                   <div>
-                      <Link to={`/profile/${this.props.currentUser}`}>Profile </Link> 
+                      <Link to={`/profile/${this.props.currentUser}`}> Profile </Link> 
                   </div>
                   <div>
-                      <Link to={'/'} onClick={this.props.logout}>Logout</Link>
+                      <Link to={'/'} onClick={this.props.logout}> Logout</Link>
                   </div>
               </div>         
           </div>
         ) : (
           <div>
              <ul className="list nav__list">
-              <li className="nav__item" onClick={()=>this.props.openModal('signup')}>Signup</li>
+              <li className="nav__item singup"  onClick={()=>this.props.openModal('signup')}>Signup</li>
               <li className="nav__item"  onClick={()=>this.props.openModal('login')}>Login</li>
             </ul>
           </div>

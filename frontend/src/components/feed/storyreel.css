@@ -3,7 +3,7 @@
 .story{
     
     position: relative;
-    background-position: center center;
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     width: calc(80% - 20px);;
@@ -46,8 +46,10 @@
     display: flex;    
     width: 100%;
     flex-wrap: wrap;
-    justify-content: center;
-    padding: 15px 20px;
+    justify-content: flex-start;
+    padding-left: 180px;
+    align-items: center;
+    margin: 0 auto;
 }
 
 @media screen and (min-width: 768px) {

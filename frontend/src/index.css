@@ -130,6 +130,10 @@
   padding: 1rem 1.5rem;
 }
 
+.input-group .btn {
+  margin: 4px;
+}
+
 
 /* Buttons */
 .btn {
