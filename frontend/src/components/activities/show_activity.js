@@ -6,6 +6,6 @@ export default class ShowActivity extends React.Component {
     }
 
     render() {
-        return null;
+        return <h1>TEST</h1>
     }
 }
