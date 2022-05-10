@@ -66,6 +66,10 @@ const UserSchema = new Schema({
         type: Number,
         default: 0
     },
+    imagePath: {
+        type: String,
+        required: false
+    },
     approved: {
         type: Boolean,
         default: false,
