@@ -5,7 +5,7 @@ import ProfilePhotos from "./profile_photos"
 
 
 
-class ProfileNavBar extends React.Component {
+class ProfileFeed extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -107,4 +107,4 @@ class ProfileNavBar extends React.Component {
     }
 }
 
-export default ProfileNavBar;
+export default ProfileFeed;

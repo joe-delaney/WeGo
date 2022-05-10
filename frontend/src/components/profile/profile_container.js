@@ -6,7 +6,7 @@ import Profile from './profile';
 
 const mapStateToProps = (state, ownProps) => ({
     user: state.entities.users[ownProps.match.params.userId],
-    currentUserId: state.session.user.id
+    currentUserId: state.session.user ? state.session.user.id : null
 });
 
 const mapDispatchToProps = dispatch => ({
