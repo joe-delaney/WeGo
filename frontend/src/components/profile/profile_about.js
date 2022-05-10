@@ -28,9 +28,7 @@ class ProfileAbout extends React.Component {
 
         return(
             <div className='profile__about'>
-                    <div  className='profile__about--slogan'>
-                        <p>Who's In? <span className='profile__about--slogan-blod'>WeGo</span></p>                              
-                    </div>
+                   
                     <div className='profile__about--edit'>
                         <button className='btn btn--accent btn--small'>Edit Profile</button>
                     </div>

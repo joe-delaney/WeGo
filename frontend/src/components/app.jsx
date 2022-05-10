@@ -10,7 +10,7 @@ import { Route } from 'react-router-dom';
 const App = () => (
     <Switch>
         <Route exact path="/" component={FeedIndex} />
-        <Route exact path="/profile/:userId" component={ProfileContainer} />
+        <Route exact path="/profile/" component={ProfileContainer} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
     </Switch>
