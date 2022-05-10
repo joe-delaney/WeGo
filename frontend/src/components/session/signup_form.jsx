@@ -39,7 +39,7 @@ export default class SignupForm extends React.Component {
 
     getSignUpPage1() {
         const errors = Object.values(this.props.errors);
-        console.log(errors);
+        // console.log(errors);
         return (
             // <div>
             <div className="form__box">
@@ -76,7 +76,7 @@ export default class SignupForm extends React.Component {
 
                     </div>
                 </div>
-                <div className="input-group ">
+                <div className="input-group singup__form ">
                     <input
                         className="input"
                         type="text"
@@ -85,7 +85,7 @@ export default class SignupForm extends React.Component {
                         onChange={this.handleInput("email")} />
                     <p className="emailError" style={errors.includes("Email is invalid") ? ({ display: "" }) : ({ display: "none" })}>
                     Email is invalid
-                      </p> 
+                    </p> 
 
                 </div>
                 <div className="input-group singup__form">
@@ -215,23 +215,32 @@ export default class SignupForm extends React.Component {
         //Sign up the user
         // debugger
         this.props.signup(this.state).then(
-            this.props.closeModal()
-        );
+            ()=>{
+                
+                if(this.props.isAuthenticated === true){
+                    this.props.closeModal();
+                    // Reset the state
+                    this.setState({
+                        email: "",
+                        password: "",
+                        password2: "",
+                        fname: "",
+                        lname: "",
+                        age: "",
+                        pronouns: "",
+                        jobTitle: "",
+                        education: "",
+                        interests: "",
+                        page1: true
+                    })
+                }
 
-        // Reset the state
-        this.setState({
-            email: "",
-            password: "",
-            password2: "",
-            fname: "",
-            lname: "",
-            age: "",
-            pronouns: "",
-            jobTitle: "",
-            education: "",
-            interests: "",
-            page1: true
-        })
+            }
+
+        )
+
+
+      
 
         //Close the modal
         // this.toggleModal();
