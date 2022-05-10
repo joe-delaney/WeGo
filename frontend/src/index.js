@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 
 // We will create this component shortly
 import Root from './components/root';
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         store = configureStore({});
     }
     // Render our root component and pass in the store as a prop
-    const root = document.getElementById('root');
-
-    ReactDOM.render(<Root store={store} />, root);
+    const rootElement = document.getElementById('root');
+    const root = createRoot(rootElement)
+    root.render(<Root store={store} />);
 });
