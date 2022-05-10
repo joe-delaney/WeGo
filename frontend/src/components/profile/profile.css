@@ -120,6 +120,10 @@
     border-bottom: 3px solid var(--color-primary);
 }
 
+.active:hover {
+    border-bottom: 3px solid transparent;
+}
+
 .profile__about{
     /* margin-top: 30px; */
     /* background: linear-gradient(#f1f2f5 , #e3e3e6 80%); */
