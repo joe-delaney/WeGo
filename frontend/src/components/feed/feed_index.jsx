@@ -5,7 +5,7 @@ import StoryReel from '../feed/storyreel';
 import Search from '../search/search'
 import './feed.css';
 
-const FeedIndex = ({activities, fetchActivities}) => {
+const FeedIndex = ({activities, fetchActivities, openModal, loggedIn}) => {
     return (
         <>
             {/* <img src="/api/images/8aa0da454b44767e9237492bc0ba1c7f" alt="test"/> */}
@@ -15,7 +15,9 @@ const FeedIndex = ({activities, fetchActivities}) => {
                 <Search/>
                 <StoryReel 
                     fetchActivities={fetchActivities} 
-                    activities={activities}/> 
+                    activities={activities}
+                    openModal={openModal}
+                    loggedIn={loggedIn}/> 
             </div>
         </>
     )

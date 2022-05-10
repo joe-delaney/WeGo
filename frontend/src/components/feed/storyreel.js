@@ -14,37 +14,39 @@ export default class StoryReel extends React.Component {
 
     getActivities() {
         let activities = Array.isArray(this.props.activities) ? this.props.activities : [];
+        let createNewActivity = this.props.loggedIn ? (
+            <div onClick={() => this.props.openModal("createActivity")} className="story">
+                <h4> Host an Activity!</h4>
+            </div>
+        ) : null;
         return (
-            <div className='storyreel'>
-                <Story
-                    image="https://psychology-spot.com/wp-content/uploads/2019/10/new-music.jpg"
-                    profileSrc=""
-                    title="Music"
-                />
-                <Story
-                    image="https://chriskresser.com/wp-content/uploads/iStock-951861300-martin-dm.jpg"
-                    profileSrc=""
-                    title="Traveling"
-                />
-                <Story
-                    image="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
-                    profileSrc=""
-                    title="Shopping"
-                />
-                {activities.map((activity, idx) => (
+            <div>
+                <div className='storyreel'>
                     <Story
-                        key={idx}
+                        image="https://psychology-spot.com/wp-content/uploads/2019/10/new-music.jpg"
+                        profileSrc=""
+                        title="Music"
+                    />
+                    <Story
+                        image="https://chriskresser.com/wp-content/uploads/iStock-951861300-martin-dm.jpg"
+                        profileSrc=""
+                        title="Traveling"
+                    />
+                    <Story
                         image="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
                         profileSrc=""
-                        title={activity.title}
+                        title="Shopping"
                     />
-                ))}
-                <Story
-                    image="https://img.icons8.com/material/344/new--v1.png"
-                    profileSrc=""
-                    title="Create new activity"
-                    addNew={true}
-                />
+                    {activities.map((activity, idx) => (
+                        <Story
+                            key={idx}
+                            image="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
+                            profileSrc=""
+                            title={activity.title}
+                        />
+                    ))}
+                    {createNewActivity}
+                </div>
             </div>
         )
     }
@@ -52,18 +54,4 @@ export default class StoryReel extends React.Component {
     render() {
         return this.getActivities();
     }
-
-            //     <div className='storyreel'>
-        //         {/* <Story 
-        //     image=""
-        //     profileSrc="Add Story"
-        //     title="a/A Student"
-        // /> */}
-        //         {/* <Story 
-        //     image="https://smashgadget.com/wp-content/uploads/2021/07/laptop-for-movies.jpg"
-        //     profileSrc=""
-        //     title="Movie"
-        // /> */}
-        //     </div>
-
 }

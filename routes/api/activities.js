@@ -2,12 +2,13 @@ const express = require("express");
 const router = express.Router();
 const Activity = require('../../models/Activity');
 const activityShow = require('../../jbuilder/activities');
+const activityIndex = require('../../jbuilder/activities');
 
 // fetch all activites
 router.get('/', (req, res) => {
     Activity.find()
         .sort({ date: -1 })
-        .then(activities => res.json(activities))
+        .then(activities => res.json(JSON.parse(activityIndex(activities))))
         .catch(err => res.status(404).json({ noactivitiesfound: 'No activities found' }));
 });
 
