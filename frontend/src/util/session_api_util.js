@@ -8,8 +8,11 @@ export const setAuthToken = token => {
     }
 };
 
-export const signup = (userData) => {
-    return axios.post('/api/users/signup', userData);
+// export const signup = (userData) => {
+//     return axios.post('/api/users/signup', userData);
+// };
+export const signup = (userFormData) => {
+    return axios({method: 'POST', url: '/api/users/signup', data: userFormData, headers: { "Content-Type": "multipart/form-data" }});
 };
 
 export const login = (userData) => {

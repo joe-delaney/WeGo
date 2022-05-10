@@ -6,6 +6,7 @@ export default class SignupForm extends React.Component {
         super(props);
 
         this.state = {
+            files: {},
             email: "",
             password: "",
             password2: "",
@@ -27,9 +28,12 @@ export default class SignupForm extends React.Component {
         // this.toggleModal = this.toggleModal.bind(this);
         this.goBack = this.goBack.bind(this);
         // this.renderErrors = this.renderErrors.bind(this);
+
+        this.handlefiles = this.handlefiles.bind(this)
     }
 
     handleInput(type) {
+
         return e => {
             this.setState({
                 [type]: e.target.value
@@ -37,14 +41,63 @@ export default class SignupForm extends React.Component {
         }
     }
 
+    handlefiles(e){
+        e.preventDefault()
+        this.setState({files: e.currentTarget.files[0]})
+    }
+
+    handleSignup(e) {
+        e.preventDefault();
+        //Sign up the user
+        let formData = new FormData();
+        formData.append("email", this.state.email)
+        formData.append("password", this.state.password)
+        formData.append("password2", this.state.password2)
+        formData.append("fname", this.state.fname)
+        formData.append("lname", this.state.lname)
+        formData.append("age", this.state.age)
+        formData.append("pronouns", this.state.pronouns)
+        formData.append("jobTitle", this.state.jobTitle)
+        formData.append("education", this.state.education)
+        formData.append("interests", this.state.interests)
+        // for (let i = 0; i < this.state.files.length; i++) {
+        //     formData.append('uploads', this.state.files[i])
+        // }
+        formData.append('image', this.state.files)
+        
+        this.props.signup(formData);
+        this.props.closeModal();
+        // Reset the state
+        // this.setState({
+        //     files: [],
+        //     email: "",
+        //     password: "",
+        //     password2: "",
+        //     fname: "",
+        //     lname: "",
+        //     age: "",
+        //     pronouns: "",
+        //     jobTitle: "",
+        //     education: "",
+        //     interests: "",
+        //     page1: true
+        // })
+
+        //Close the modal
+        // this.toggleModal();
+    }
+
     getSignUpPage1() {
         return (
-            // <div>
             <div className="form__box">
                 <div onClick={this.props.closeModal} className="close-x">X</div> 
                 <div className="form__header">
                     <h1>Sign up for a new account</h1>
                     <h2>Start with the Basics</h2>
+                </div>
+
+                <div className="file_input_for_testing">
+                    <input type="file" name="image" onChange={this.handlefiles} accept="image/*"/>
                 </div>
 
                 <div className="form__group">
@@ -188,30 +241,30 @@ export default class SignupForm extends React.Component {
             </form>
         )
     }
+    
+    // handleSignup(e) {
+    //     e.preventDefault();
+    //     //Sign up the user
+    //     this.props.signup(this.state);
 
-    handleSignup(e) {
-        e.preventDefault();
-        //Sign up the user
-        this.props.signup(this.state);
+    //     // Reset the state
+    //     this.setState({
+    //         email: "",
+    //         password: "",
+    //         password2: "",
+    //         fname: "",
+    //         lname: "",
+    //         age: "",
+    //         pronouns: "",
+    //         jobTitle: "",
+    //         education: "",
+    //         interests: "",
+    //         page1: true
+    //     })
 
-        // Reset the state
-        this.setState({
-            email: "",
-            password: "",
-            password2: "",
-            fname: "",
-            lname: "",
-            age: "",
-            pronouns: "",
-            jobTitle: "",
-            education: "",
-            interests: "",
-            page1: true
-        })
-
-        //Close the modal
-        // this.toggleModal();
-    }
+    //     //Close the modal
+    //     // this.toggleModal();
+    // }
 
     // toggleModal() {
     //     //This will be used to close the modal

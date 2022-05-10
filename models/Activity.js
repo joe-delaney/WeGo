@@ -27,10 +27,10 @@ const ActivitySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     }],
-    tags: [{
+    tags: {
         type: String,
         require: false
-    }],
+    },
     location: {
         type: String,
         require: true

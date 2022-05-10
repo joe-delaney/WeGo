@@ -11,6 +11,7 @@ const FeedIndex = () => {
 
     return (
         <>
+            {/* <img src="/api/images/8aa0da454b44767e9237492bc0ba1c7f" alt="test"/> */}
             <ModalContainer />
             <NavBarContainer />
             <div className="feel__body">
@@ -28,3 +29,5 @@ const FeedIndex = () => {
 }
 
 export default FeedIndex;
+
+// 8aa0da454b44767e9237492bc0ba1c7f
