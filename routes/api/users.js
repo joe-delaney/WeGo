@@ -55,11 +55,12 @@ router.post('/signup', upload.single('image'), async (req, res) => {
                 // }
                 // await Promise.all(unlinkPromises)
 
-                const result = await uploadFile(req.file)
-                console.log(result)
-                newUser.imagePath = `/api/images/${result.Key}`
-                await unlinkFile(req.file.path)
-
+                if(req.file) {
+                    const result = await uploadFile(req.file)
+                    console.log(result)
+                    newUser.imagePath = `/api/images/${result.Key}`
+                    await unlinkFile(req.file.path)
+                } 
 
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
