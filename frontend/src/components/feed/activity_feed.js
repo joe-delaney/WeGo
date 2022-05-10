@@ -39,6 +39,7 @@ export default class ActivityFeed extends React.Component {
                     />
                     {activities.map((activity, idx) => (
                         <ActivityItem
+                            activity={activity}
                             key={idx}
                             image="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
                             title={activity.title}

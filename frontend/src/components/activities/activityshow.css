@@ -1,0 +1,21 @@
+.activity-show-container {
+    border: 1.5px solid white;
+    background-color: white;
+    box-shadow: 0 0 7px rgb(207, 207, 207),
+    0 0 10px rgb(238, 238, 238);
+    border-radius: 10px;
+    padding: 2px;
+    top: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 30px;
+}
+
+.activity-show-header {
+    min-width: 400px;
+    width: 100%;
+}
+
+.activity-show-title {
+    margin-top: 0 !important;
+}
