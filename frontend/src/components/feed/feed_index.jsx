@@ -1,7 +1,7 @@
 import React from "react";
 import NavBarContainer from "../nav/navbar_container";
 import ModalContainer from "../modal/modal_container";
-import StoryReel from '../feed/storyreel';
+import StoryReel from './activity_feed';
 import Search from '../search/search'
 import './feed.css';
 
