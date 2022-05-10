@@ -35,6 +35,7 @@ export const logout = () => dispatch => {
 
 // Upon signup, set the session token and dispatch the current user. Dispatch errors on failure.
 export const signup = user => dispatch => {
+ 
     return APIUtil.signup(user).then(res => {
         const { token } = res.data;
         localStorage.setItem('jwtToken', token);

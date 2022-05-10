@@ -192,6 +192,7 @@ export default class SignupForm extends React.Component {
     handleSignup(e) {
         e.preventDefault();
         //Sign up the user
+        debugger
         this.props.signup(this.state);
 
         // Reset the state

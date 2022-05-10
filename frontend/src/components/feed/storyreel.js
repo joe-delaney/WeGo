@@ -31,16 +31,6 @@ function StoryReel() {
             title="Shopping"
         />
 
-<Story 
-            image="https://chriskresser.com/wp-content/uploads/iStock-951861300-martin-dm.jpg"
-            profileSrc=""
-            title="Traveling"
-        />
-         <Story 
-            image="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
-            profileSrc=""
-            title="Shopping"
-        />
         
     </div>
   )
