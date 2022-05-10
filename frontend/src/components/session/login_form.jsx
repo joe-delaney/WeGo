@@ -1,6 +1,5 @@
 import React from "react";
 import './form.css'
-// import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 export default class LoginForm extends React.Component {
     constructor(props) {
@@ -28,17 +27,24 @@ export default class LoginForm extends React.Component {
     handleLogin(e) {
         e.preventDefault();
         //Login the user
-        this.props.login(this.state)
+        this.props.login(this.state).then(
+            ()=>{
+                if(this.props.isAuthenticated === true){
+                    console.log(this.props.isAuthenticated);
+                    this.props.closeModal();
+                
+                    this.setState({
+                        email: "",
+                        password: ""
+                    })
+                }
+            }
 
-        if(this.props.isAuthenticated){
-            console.log(this.props.isAuthenticated);
-        }
+        )
 
-        //Reset the state
-        this.setState({
-            email: "",
-            password: ""
-        })
+        
+
+        
     }
 
     // toggleModal() {
@@ -76,7 +82,7 @@ export default class LoginForm extends React.Component {
                             o  
                         </span>
                         <span>
-                            {/* <SendRoundedIcon /> */}
+                            
                         </span>
 
                     </div>

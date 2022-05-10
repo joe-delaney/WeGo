@@ -71,7 +71,7 @@ export default class EditProfile extends React.Component {
                             o
                         </span>
                         <span>
-                            {/* <SendRoundedIcon /> */}
+                           
                         </span>
                     <div className='nav__slogan'>
                         Who's In?

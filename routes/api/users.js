@@ -11,6 +11,7 @@ const userShow = require('../../jbuilder/users');
 
 //User sign up backend route
 router.post('/signup', (req, res) => {
+
     const { errors, isValid } = validateSignupInput(req.body);
 
     if (!isValid) {
