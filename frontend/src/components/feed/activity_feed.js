@@ -19,6 +19,7 @@ export default class ActivityFeed extends React.Component {
                 <h4> Host an Activity!</h4>
             </div>
         ) : null;
+        
         return (
             <div>
                 <div className='storyreel'>
