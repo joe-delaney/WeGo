@@ -4,6 +4,7 @@ import ModalContainer from "../modal/modal_container";
 import ActivityFeed from './activity_feed';
 import Search from '../search/search';
 import Feature from '../feature/feature';
+import Footer from '../footer/footer'
 import './feed.css';
 
 const FeedIndex = ({activities, fetchActivities, openModal, loggedIn}) => {
@@ -19,8 +20,13 @@ const FeedIndex = ({activities, fetchActivities, openModal, loggedIn}) => {
                     activities={activities}
                     openModal={openModal}
                     loggedIn={loggedIn}/> 
-                <Feature />
+                <Feature />              
+
             </div>
+            <div className="message">
+                <img src="https://icon-library.com/images/android-text-message-icon/android-text-message-icon-10.jpg" className="message_img" />
+            </div>
+            <Footer />
         </>
     )
 }

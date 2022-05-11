@@ -22,7 +22,7 @@ export default class ActivityFeed extends React.Component {
         return (
             <div className='acivity_feed'>
                 <div className='acivity_feed__heaher'>
-                    <h2>Upcoming Acivities</h2>
+                    <h2>Popular Acivities</h2>
                     <p>MORE Acivities</p>
                 </div>
                 

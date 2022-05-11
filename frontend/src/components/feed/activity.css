@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+ 
 }
 
 .acivity_feed__heaher{
@@ -37,8 +38,9 @@
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    width: calc(90% - 10px);;
+   
     height: 250px;
+    
     box-shadow: 0px 5px 17px -7px rgba(0, 0, 0, 0.75);
     border-radius: 10px;
     margin-right: 20px;
@@ -46,6 +48,8 @@
     transition: transform 100ms ease-in;
     cursor: pointer;
     margin-top: 30px;
+
+    width: calc(90% - 10px);;
 }
 
 .activity:hover{
@@ -64,6 +68,11 @@
 
 }
 
+.activity{
+    border: 1.5px solid white;
+    background-color: white;
+    box-shadow: 0 0 7px rgb(207, 207, 207), 0 0 10px rgb(238, 238, 238); 
+}
 
 .activity > h4{
     position: absolute;
@@ -86,11 +95,25 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   
 
+}
+
+
+@media screen and (max-width: 767px){
+    .activity__item{ 
+        width: calc(50%);
+    }
 }
 
 @media screen and (min-width: 768px) {
     .activity__item{ 
         width: calc(20.3% - 5px);
+    }
+
+    .activityreel{   
+     
+        width: 100%;
+   
     }
 }

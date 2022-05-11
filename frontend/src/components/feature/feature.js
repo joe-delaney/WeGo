@@ -40,7 +40,7 @@ export default class Feature extends React.Component {
                 </div>
                 <div className='feature__block feature'>
                     <div className="feature__content">
-                        <h3 className="feature__heading">Connect Over Tech</h3>
+                        <h3 className="feature__heading">Scocial Connect</h3>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
                             obcaecati vel ad unde est illo at. Labore excepturi officia dolores!
