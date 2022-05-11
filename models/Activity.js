@@ -17,19 +17,19 @@ const ActivitySchema = new Schema({
     },
     host: {
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: 'User'
     },
     requestedAttendees: [{
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: 'User'
     }],
     approvedAttendees: [{
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: 'User'
     }],
     deniedAttendees: [{
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: 'User'
     }],
     tag: {
         type: String,

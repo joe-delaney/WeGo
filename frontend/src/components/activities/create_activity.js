@@ -30,7 +30,7 @@ export default class CreateActivity extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.createActivity(this.state);
+        this.props.createActivity(this.state)
         this.props.closeModal();
     }
 

@@ -7,6 +7,10 @@ const activityIndex = require('../../jbuilder/activities');
 // fetch all activites
 router.get('/', (req, res) => {
     Activity.find()
+        .populate("approvedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
+        .populate("host", ["id", "fname", "lname", "profilePhotoPath"])
+        .populate("deniedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
+        .populate("requestedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
         .sort({ date: -1 })
         .then(activities => res.json(JSON.parse(activityIndex(activities))))
         .catch(err => res.status(404).json({ noactivitiesfound: 'No activities found' }));
@@ -26,7 +30,7 @@ router.post("/", (req, res) => {
         time: req.body.time, 
         host: req.body.host, 
         requestedAttendees: req.body.requestedAttendees,
-        approvedAttendees: req.body.approvedAttendees,
+        approvedAttendees: [req.body.host],
         tag: req.body.tag, 
         location: req.body.location, 
         description: req.body.description, 
@@ -34,7 +38,10 @@ router.post("/", (req, res) => {
         duration: req.body.duration, 
         capacity: req.body.capacity
     });
-    newActivity.save().then(activity => res.json(JSON.parse(activityShow(activity))));
+    newActivity.save().then(activity => Activity.findById(activity.id)
+        .populate("host", ["id", "fname", "lname", "profilePhotoPath"]) 
+        .populate("approvedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
+        .then(activity => res.json(JSON.parse(activityShow(activity)))));
 });
 
 // update an activity
@@ -63,7 +70,12 @@ router.post("/:id", (req, res) => {
                 if(req.body.duration) activity.duration = req.body.duration 
                 if(req.body.capacity) activity.capacity = req.body.capacity 
                 if(req.body.closed) activity.closed = req.body.closed
-                activity.save().then(activity => res.json(JSON.parse(activityShow(activity))));
+                activity.save().then(activity => Activity.findById(activity.id)
+                    .populate("approvedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
+                    .populate("host", ["id", "fname", "lname", "profilePhotoPath"])
+                    .populate("deniedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
+                    .populate("requestedAttendees", ["id", "fname", "lname", "profilePhotoPath"]) 
+                    .then(activity => res.json(JSON.parse(activityShow(activity)))));
             }
         })
 })

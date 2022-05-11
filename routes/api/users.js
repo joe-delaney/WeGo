@@ -165,6 +165,7 @@ router.post("/:id", upload.single('image'), (req, res) => {
                 user.location = req.body.location
                 if(req.body.aboutMe) user.aboutMe = req.body.aboutMe
 
+
                 if(req.file) {
                     const result = await uploadFile(req.file)
                     console.log(result)
@@ -172,7 +173,15 @@ router.post("/:id", upload.single('image'), (req, res) => {
                     await unlinkFile(req.file.path)
                 } 
 
-                
+               
+                if(req.body.atttendedActivity) {
+                    user.attendedActivities.push(req.body.atttendedActivity);
+                    user.allActivities.push(req.body.atttendedActivity);
+                }
+                if(req.body.hostedActivity) {
+                    user.hostedActivities.push(req.body.hostedActivity);
+                    user.allActivities.push(req.body.hostedActivity);
+                }
                 user.save().then(user => res.json(JSON.parse(userShow(user))));
             }
         })
