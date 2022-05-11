@@ -12,6 +12,7 @@ export default class ShowActivity extends React.Component {
         this.requestToJoin = this.requestToJoin.bind(this);
         this.approveUser = this.approveUser.bind(this);
         this.denyUser = this.denyUser.bind(this);
+        this.getPrice = this.getPrice.bind(this);
     }
 
     componentDidMount() {
@@ -23,6 +24,38 @@ export default class ShowActivity extends React.Component {
             this.props.approvedAttendees.forEach((userId) => {
                 this.props.fetchUser(userId);
             })
+        }
+    }
+
+    getPrice(cost) {
+        switch(cost) {
+            case 0: 
+                return <span>Free</span>
+            case 1: 
+                return <span>$</span>
+            case 2: 
+                return <span>$$</span>
+            case 3: 
+                return <span>$$$</span>
+            case 4: 
+                return <span>$$$$</span>
+            default:
+                return null;
+        }
+    }
+
+    getDuration(duration) {
+        switch (duration) {
+            case 1:
+                return <span>Less than one hour</span>
+            case 2:
+                return <span>1-2 hours</span>
+            case 3:
+                return <span>2-4 hours</span>
+            case 4:
+                return <span>4+ hours</span>
+            default:
+                return null;
         }
     }
 
@@ -62,6 +95,8 @@ export default class ShowActivity extends React.Component {
         let hostId = activityHost ? activityHost.id : "";
         let activityDescription = (this.props.activity && 
             this.props.activity.description) ? this.props.activity.description : "";
+        let activityCost = this.props.activity ? this.getPrice(this.props.activity.price) : null;
+        let activityDuration = this.props.activity ? this.getDuration(this.props.activity.duration) : null;
 
         let pendingRequests = (hostId === this.props.currentUserId &&
             this.props.requestedAttendees.length) ? (
@@ -81,7 +116,8 @@ export default class ShowActivity extends React.Component {
         ) : null;
         
         let requestToJoin = null;
-        if(this.props.approvedAttendees.length+1 >= activityCapacity) {
+        if (hostId !== this.props.currentUserId && 
+            this.props.approvedAttendees.length+1 >= activityCapacity) {
             requestToJoin =
             <div>
                 <span className="pending-message">This activity has reached its max capacity</span>
@@ -149,6 +185,14 @@ export default class ShowActivity extends React.Component {
                 <div>
                     <strong>Who: </strong>
                     {approvedUsers}
+                </div>
+                <div>
+                    <strong>Price: </strong>
+                    {activityCost}
+                </div>
+                <div>
+                    <strong>Duration: </strong>
+                    {activityDuration}
                 </div>
                 {pendingRequests}
                 {requestToJoin}
