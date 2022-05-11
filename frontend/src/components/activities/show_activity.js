@@ -1,5 +1,6 @@
 import React from "react";
 import "./activityshow.css";
+import * as DateUtil from "../../util/date_util"
 
 export default class ShowActivity extends React.Component {
     constructor(props) {
@@ -9,6 +10,8 @@ export default class ShowActivity extends React.Component {
     render() {
         let activityTitle = this.props.activity ? this.props.activity.title : "";
         let activityTime = this.props.activity ? this.props.activity.time : "";
+        let activityDate = activityTime ? DateUtil.convertToDate(activityTime) : "";
+        let activityTimeLabel = activityTime ? DateUtil.convertToTime(activityTime) : "";
         let activityLocation = this.props.activity ? this.props.activity.location : "";
         let activityHost = this.props.activity ? this.props.activity.host : "";
         let activityDescription = (this.props.activity && 
@@ -23,7 +26,7 @@ export default class ShowActivity extends React.Component {
                 <span>{`Hosted by ${activityHost}`}</span>
                 <div>
                     <strong>When: </strong>
-                    <span>{activityTime}</span>
+                    <span>{`${activityDate} at ${activityTimeLabel}`}</span>
                 </div>
                 <div>
                     <strong>Where: </strong>
@@ -37,7 +40,6 @@ export default class ShowActivity extends React.Component {
                     <strong>Who: </strong>
                 </div>
             </div>
-
         )
     }
 }
