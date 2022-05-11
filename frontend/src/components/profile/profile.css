@@ -47,13 +47,18 @@
 }
 
 .profile__userinfo--heading > h1{
-    font-size: 2rem;
+    font-size: 1.8 rem;
     font-weight: 700;
     text-align: center;
 }
 
+.profile__userinfo--heading > h2{
+    font-size: 1.5rem;
+    text-align: center;
+}
+
 .profile__userinfo--heading > p{
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     
 }
 
@@ -128,7 +133,7 @@
 .profile__about{
     /* margin-top: 30px; */
     /* background: linear-gradient(#f1f2f5 , #e3e3e6 80%); */
-    max-width: 800px;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -148,6 +153,7 @@
     font-weight: 800;
 }
 
+
 .profile__about--intro {
     display: flex;
     flex-direction: column;
@@ -159,10 +165,30 @@
 
 }
 
-.profile__about--edit{
-    width: 100%;
+.profile__about--left{
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 10px 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 7px rgb(207, 207, 207), 0 0 10px rgb(238, 238, 238);
+     
+}
+
+.profile__about--right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+     
+}
+
+.profile__about--edit{
+    /* width: 100%; */
+    display: flex;
+    justify-content: flex-start;
 }
 
 .profile__events{
@@ -211,14 +237,34 @@
     }
 
     .profile__about{
-        margin-top: 5px;
+        margin-top: 50px;
         /* background: linear-gradient(#f1f2f5 , #e3e3e6 80%); */
-        width: 100%;
+        /* width: 75%; */
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .profile__about--left{
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         justify-content: center;
-        align-items: center;
+        width: 300px;
+        margin-right: 50px;       
     }
+    
+    .profile__about--right{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 650px;
+        flex: 1;
+    }
+
+
     .profile__about--slogan {
         margin-top: 30px;
         /* font-size: 2.5rem; */
@@ -241,15 +287,7 @@
         
     }
 
-    .profile__about--left{
-        margin-right: 50px;
-        flex: 1;
-    }
 
-    .profile__about--right{
-       flex: 1;
-       min-height: 200px;
-    }
 }
 
 
