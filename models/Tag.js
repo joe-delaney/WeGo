@@ -2,18 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const TagSchema = new Schema({
-    name: {
+    title: {
         type: String,
-        required: true,
+        required: true
     },
-    interestedUsers: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'User'
-    },
-    taggedActivities: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'Activity'
+    img: {
+        type: String,
+        required: true
     }
-})
+});
 
 module.exports = Tag = mongoose.model('Tag', TagSchema);

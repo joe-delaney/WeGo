@@ -98,6 +98,7 @@ router.post('/login', (req, res) => {
     const password = req.body.password;
 
     User.findOne({ email })
+        .populate("allActivities")
         .then(user => {
             if (!user) {
                 return res.status(404).json({ email: 'This user does not exist' });
@@ -143,6 +144,7 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 // Retrieve a specific user by id
 router.get("/:id", (req, res) => {
     User.findById(req.params.id)
+        .populate("allActivities")
         .then(user => res.json(JSON.parse(userShow(user))))
         .catch(err => 
             res.status(404).json({ nouserfound: "No user found with that ID" })
@@ -153,7 +155,6 @@ router.get("/:id", (req, res) => {
 router.post("/:id", upload.single('image'), (req, res) => {
     User.findById(req.params.id)
         .then(async (user) => {
-       
             if (!user) {
                 return res.status(404).json({ nouserfound: "No user found with that ID" })
             } else {
@@ -173,16 +174,19 @@ router.post("/:id", upload.single('image'), (req, res) => {
                     await unlinkFile(req.file.path)
                 } 
 
-               
-                if(req.body.atttendedActivity) {
-                    user.attendedActivities.push(req.body.atttendedActivity);
-                    user.allActivities.push(req.body.atttendedActivity);
+                if(req.body.attendedActivity) {
+                    user.attendedActivities.push(req.body.attendedActivity);
+                    user.allActivities.push(req.body.attendedActivity);
                 }
                 if(req.body.hostedActivity) {
                     user.hostedActivities.push(req.body.hostedActivity);
                     user.allActivities.push(req.body.hostedActivity);
                 }
-                user.save().then(user => res.json(JSON.parse(userShow(user))));
+                user.save().then(user => {
+                    User.findById(user.id)
+                        .populate("allActivities")
+                        .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));
+                })
             }
         })
 })

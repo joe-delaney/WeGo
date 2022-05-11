@@ -6,11 +6,11 @@ export const fetchUser = (userId) => {
 };
 
 //Update a specific user
-// export const updateUser = (user) => {
-//     return axios.post(`/api/users/${user.id}`, user);
-// };
+export const updateUser = (user) => {
+    return axios.post(`/api/users/${user.id}`, user);
+};
 
 
-export const updateUser = (userFormData) => {
+export const updateUserWithForm = (userFormData) => {
     return axios({method: 'post', url: `/api/users/${userFormData.get('id')}`, data: userFormData, headers: { "Content-Type": "multipart/form-data" }});
 };

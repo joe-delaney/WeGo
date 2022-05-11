@@ -26,7 +26,7 @@ class ProfileFeed extends React.Component {
                 
                 <div className='profile__img'>
                     <div>
-                        { this.props.user.profilePhotoPath ? 
+                        { this.props.user && this.props.user.profilePhotoPath ? 
                             <img src={this.props.user.profilePhotoPath} className='profile__useravatar' /> : 
                             <img src="/api/images/41daf94ffdccb355db7a624258d02f60" className="profile__useravatar"/> }
                         
