@@ -12,10 +12,11 @@ export default class Feature extends React.Component {
             <>
                 <div className='feature__block feature'>
                     <div className="feature__content">
-                        <h3 className="feature__heading">Make a friend</h3>
+                        <h3 className="feature__heading">Make new friends.</h3>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                            obcaecati vel ad unde est illo at. Labore excepturi officia dolores!
+                            WeGo gives you the opportunity to meet new people and connect 
+                            with them in an easy and simple way. Find other users, explore their profile and 
+                            interests, and message them to better understand one another.
                         </p>
 
                     </div>
@@ -26,10 +27,10 @@ export default class Feature extends React.Component {
                 </div>
                 <div className='feature__block feature'>
                     <div className="feature__content">
-                        <h3 className="feature__heading">Explore Outdoor</h3>
+                        <h3 className="feature__heading">Try new things.</h3>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                            obcaecati vel ad unde est illo at. Labore excepturi officia dolores!
+                            Host activities that you are interested in and find people
+                            who want to join you.
                         </p>
 
                     </div>
@@ -40,7 +41,7 @@ export default class Feature extends React.Component {
                 </div>
                 <div className='feature__block feature'>
                     <div className="feature__content">
-                        <h3 className="feature__heading">Scocial Connect</h3>
+                        <h3 className="feature__heading">Personalized Search</h3>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
                             obcaecati vel ad unde est illo at. Labore excepturi officia dolores!
