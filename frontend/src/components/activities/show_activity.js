@@ -1,6 +1,7 @@
 import React from "react";
 import "./activityshow.css";
 import * as DateUtil from "../../util/date_util"
+import {Link} from "react-router-dom"
 
 export default class ShowActivity extends React.Component {
     constructor(props) {
@@ -23,7 +24,12 @@ export default class ShowActivity extends React.Component {
                     <img src="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"></img>
                 </div>
                 <h2 className="activity-show-title">{activityTitle}</h2>
-                <span>{`Hosted by ${activityHost}`}</span>
+                <div>
+                    <strong>Hosted by: </strong>
+                    <Link to={`/profile/${activityHost}`} onClick={this.props.closeModal}>
+                        <span className="activity-show-host">{`${activityHost}`}</span>
+                    </Link>
+                </div>
                 <div>
                     <strong>When: </strong>
                     <span>{`${activityDate} at ${activityTimeLabel}`}</span>

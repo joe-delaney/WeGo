@@ -19,3 +19,7 @@
 .activity-show-title {
     margin-top: 0 !important;
 }
+
+.activity-show-host:hover {
+    text-decoration: underline;
+}

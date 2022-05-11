@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { closeModal } from "../../actions/modal_actions";
 import ShowActivity from "./show_activity"
 
 const mapStateToProps = (state, ownProps) => ({
@@ -6,7 +7,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+    closeModal: () => dispatch(closeModal())
 });
 
 const ShowActivityContainer = connect(mapStateToProps, mapDispatchToProps)(ShowActivity);
