@@ -32,7 +32,11 @@ class ProfileAbout extends React.Component {
             </li>
         ) : <div></div>
 
-        let aboutMe = this.props.user ? <p>{this.props.user.aboutMe}</p> : <p>Tell everyone more about you!</p>;
+        let aboutMe = this.props.user ? (
+            <li className="nav__item">
+                <strong>Bio: </strong>
+                <p>{this.props.user.aboutMe}</p>
+            </li>) : <p>Tell everyone more about you!</p>;
 
         let editButton = this.props.user && (this.props.user.id === this.props.currentUserId) ?
             (
@@ -49,10 +53,8 @@ class ProfileAbout extends React.Component {
                         {location}
                         {jobTitle}
                         {education}
-                    </ul>
-                    {aboutMe}
-                                
-
+                        {aboutMe}
+                    </ul>  
                 </div>
 
                 <div className='profile__about--right'>
