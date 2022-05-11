@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require('mongoose');
+const User = require('./models/User');
+const Activity = require('./models/Activity');
 const users = require("./routes/api/users");
 const images = require("./routes/api/images");
 const activities = require("./routes/api/activities")

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const PendingRequestItem = ({user, closeModal, approveUser, denyUser}) => {
         let name = user ? `${user.fname} ${user.lname}` : "";
-        let userId = user ? user.id : 0;
+        let userId = user ? user._id : 0;
         let img = user ? (
             <img src={user.profilePhotoPath} className='nav__avatar' />
         ) : null;

@@ -88,7 +88,7 @@ export default class ActivityFeed extends React.Component {
                         />
                     ))}
                     
-                    {/* {createNewActivity} */}
+                    {createNewActivity}
                 </div>
                 {bottomButton}
             </div>
