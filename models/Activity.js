@@ -32,8 +32,8 @@ const ActivitySchema = new Schema({
         ref: 'User'
     }],
     tag: {
-        type: String,
-        require: false
+        type: Schema.Types.ObjectId,
+        ref: 'Tag'
     },
     location: {
         type: String,

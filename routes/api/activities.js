@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Activity = require('../../models/Activity');
+const Tag = require('../../models/Tag');
 const activityShow = require('../../jbuilder/activities');
 const activityIndex = require('../../jbuilder/activities');
 
@@ -11,6 +12,7 @@ router.get('/', (req, res) => {
         .populate("host", ["id", "fname", "lname", "profilePhotoPath"])
         .populate("deniedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
         .populate("requestedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
+        .populate("tag")
         .sort({ date: -1 })
         .then(activities => res.json(JSON.parse(activityIndex(activities))))
         .catch(err => res.status(404).json({ noactivitiesfound: 'No activities found' }));
@@ -25,23 +27,27 @@ router.get('/user/:userId/', (req, res) => {
 
 // create an activity
 router.post("/", (req, res) => {
-    const newActivity = new Activity({
-        title: req.body.title, 
-        time: req.body.time, 
-        host: req.body.host, 
-        requestedAttendees: req.body.requestedAttendees,
-        approvedAttendees: [req.body.host],
-        tag: req.body.tag, 
-        location: req.body.location, 
-        description: req.body.description, 
-        price: req.body.price, 
-        duration: req.body.duration, 
-        capacity: req.body.capacity
-    });
-    newActivity.save().then(activity => Activity.findById(activity.id)
-        .populate("host", ["id", "fname", "lname", "profilePhotoPath"]) 
-        .populate("approvedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
-        .then(activity => res.json(JSON.parse(activityShow(activity)))));
+    Tag.findOne({ title: req.body.tag }).then(tag => {
+        const newActivity = new Activity({
+            title: req.body.title,
+            time: req.body.time,
+            host: req.body.host,
+            requestedAttendees: req.body.requestedAttendees,
+            approvedAttendees: [req.body.host],
+            tag: tag._id,
+            location: req.body.location,
+            description: req.body.description,
+            price: req.body.price,
+            duration: req.body.duration,
+            capacity: req.body.capacity
+        });
+        newActivity.save().then(activity => Activity.findById(activity.id)
+            .populate("host", ["id", "fname", "lname", "profilePhotoPath"])
+            .populate("tag")
+            .populate("approvedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
+            .then(activity => res.json(JSON.parse(activityShow(activity)))));
+    })
+
 });
 
 // update an activity
@@ -75,6 +81,7 @@ router.post("/:id", (req, res) => {
                     .populate("host", ["id", "fname", "lname", "profilePhotoPath"])
                     .populate("deniedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
                     .populate("requestedAttendees", ["id", "fname", "lname", "profilePhotoPath"]) 
+                    .populate("tag")
                     .then(activity => res.json(JSON.parse(activityShow(activity)))));
             }
         })
