@@ -25,18 +25,18 @@ class ProfileFeed extends React.Component {
                 </div>
                 
                 <div className='profile__img'>
-                    <div>
+                    <div className='profile__img--avatar'>
                         { this.props.user.profilePhotoPath ? 
                             <img src={this.props.user.profilePhotoPath} className='profile__useravatar' /> : 
                             <img src="/api/images/41daf94ffdccb355db7a624258d02f60" className="profile__useravatar"/> }
-                        
+                        <div className='profile__img--edit' onClick={() => this.props.openModal("editProfileAvatar")}><AddAPhotoIcon sx={{fontSize: 30 }}/></div>
                     </div>
                    
                     <div className='profile__userinfo--heading'>
                             <h1>{fullName}</h1>
                             <h2>{pronouns}</h2>
                             <p>{age}</p>
-                            <div className='profile__img--edit' onClick={() => this.props.openModal("editProfileAvatar")}><AddAPhotoIcon sx={{fontSize: 30 }}/></div>
+                            
                     </div>  
                    
                 </div>

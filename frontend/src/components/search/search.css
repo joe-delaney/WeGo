@@ -6,10 +6,10 @@
 .feed__search{
   width: 80%;
   margin: 150px auto;
-  min-width: 450px;
+  min-width: 400px;
   padding-top: 3px;
   padding-bottom: 3px;
-  padding-left: 20px;
+  /* padding-left: 20px; */
 
   border: 1px solid var(--color-border);
   border-radius: 100px;
@@ -19,6 +19,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .search__input{
@@ -27,8 +28,8 @@ border: 1px solid var(--color-border);
 color: var(--color-headings);
 font-size: 1.5rem;
 outline: 0;
-flex: 0.33;
-padding: 2rem 2.5rem;
+/* flex: 0.33; */
+padding: 2rem 2rem;
 border: 0;
 border-right: 1px solid var(--color-border);
 cursor: pointer;
@@ -41,6 +42,7 @@ border: 0;
 }
 
 .search-btn {
+  position: absolute;
 border-radius: 40px;
 border: 0;
 cursor: pointer;
@@ -48,10 +50,11 @@ font-size: 1.8rem;
 font-weight: 600;
 /* margin: 1rem 0; */
 outline: 0;
-padding: 1rem 1.5rem;
+padding: 1.5rem 2rem;
 text-align: center;
 text-transform: uppercase;
 white-space: nowrap;
+right: 0px;
 }
 
 
