@@ -48,3 +48,15 @@
 .approved-user-item:hover > .approved-user-label {
     display: block;
 }
+
+.pending-request-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.pending-request-item-left {
+    display: flex;
+    align-items: center;
+}

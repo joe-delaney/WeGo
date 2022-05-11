@@ -62,7 +62,8 @@ export default class ShowActivity extends React.Component {
         let activityDescription = (this.props.activity && 
             this.props.activity.description) ? this.props.activity.description : "";
 
-        let pendingRequests = hostId === this.props.currentUserId ? (
+        let pendingRequests = (hostId === this.props.currentUserId &&
+            this.props.requestedAttendees.length) ? (
             <div>
                 <strong>Pending requests</strong>
                 {this.props.requestedAttendees.map((id, idx) => (
