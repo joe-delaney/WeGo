@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './search.css'
+import SearchIcon from '@mui/icons-material/Search';
 
 
 
@@ -37,21 +38,21 @@ class Search extends React.Component {
     render() {
         return(
           <>
-            <div className=" container ">
-                    <header className="">                     
-                        
-                    </header>
-                    <div className="input-group feed__search" id="feed__search">
-                        <input type="text" className="input" placeholder="Search Actvities here..." />
-                        <button className="btn btn--blue-dark">Search</button>
+          
+            <div className="container ">
+                    {/* <div className="search__header"> 
+                          <h2>Who's In? <span className=''>WeGo</span></h2>
+                    </div> */}
+                   
+                    <div className="feed__search" id="feed__search">
+                        <input type="text" className="search__input" placeholder="Activity Name" />
+                        <input type="text" className="search__input" placeholder="Location" />
+                        <input type="text" className="search__input search--end" placeholder="Date" />
+                        <button className="search-btn btn--blue-dark "><SearchIcon sx={{fontSize: 30 }}/></button>
                     </div>                         
                    
-            </div>
+            </div>            
             
-            {/* <div className="input-group feed__search_sticky" id="feed__search_sticky" style={{display: "none"}}>
-                  <input type="text" className="input" placeholder="Enter name here..." />
-                  <button className="btn btn--blue-dark">Search</button>
-            </div> */}
           </>
 
         )
