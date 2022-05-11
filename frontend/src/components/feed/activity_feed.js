@@ -1,6 +1,6 @@
 import React from 'react'
 import ActivityItem from './activity_item'
-import './storyreel.css'
+import './activity.css'
 
 export default class ActivityFeed extends React.Component {
     constructor(props) {
@@ -20,8 +20,9 @@ export default class ActivityFeed extends React.Component {
             </div>
         ) : null;
         return (
-            <div>
-                <div className='storyreel'>
+            <div className='acivity_feed'>
+                <h2>Upcoming events</h2>
+                <div className='activityreel'>
                     <ActivityItem
                         image="https://psychology-spot.com/wp-content/uploads/2019/10/new-music.jpg"
                         title="Music"
@@ -34,14 +35,20 @@ export default class ActivityFeed extends React.Component {
                         image="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
                         title="Shopping"
                     />
-                    {activities.map((activity, idx) => (
+
+                    <ActivityItem
+                        image="https://previews.123rf.com/images/nd3000/nd30001707/nd3000170700616/82432507-group-of-happy-friends-hang-out-together.jpg"
+                        title="hangout"
+                    />
+                    {/* {activities.map((activity, idx) => (
                         <ActivityItem
                             key={idx}
                             image="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
                             title={activity.title}
                         />
-                    ))}
-                    {createNewActivity}
+                    ))} */}
+                    
+                    {/* {createNewActivity} */}
                 </div>
             </div>
         )

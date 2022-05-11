@@ -1,23 +1,25 @@
 import React from "react";
 import NavBarContainer from "../nav/navbar_container";
 import ModalContainer from "../modal/modal_container";
-import StoryReel from './activity_feed';
-import Search from '../search/search'
+import ActivityFeed from './activity_feed';
+import Search from '../search/search';
+import Feature from '../feature/feature';
 import './feed.css';
 
 const FeedIndex = ({activities, fetchActivities, openModal, loggedIn}) => {
     return (
         <>
-            {/* <img src="/api/images/8aa0da454b44767e9237492bc0ba1c7f" alt="test"/> */}
+                       
             <ModalContainer />
             <NavBarContainer />
             <div className="feel__body">
                 <Search/>
-                <StoryReel 
+                <ActivityFeed 
                     fetchActivities={fetchActivities} 
                     activities={activities}
                     openModal={openModal}
                     loggedIn={loggedIn}/> 
+                <Feature />
             </div>
         </>
     )

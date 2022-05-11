@@ -3,8 +3,13 @@ import React from 'react'
 
 const ActivityItem = ({image, title}) => {
   return (
-    <div style={{backgroundImage: `url(${image})` }} className="story">
-        <h4>{title}</h4>
+    <div className='activity__item'>
+      <div style={{backgroundImage: `url(${image})` }} className="activity">
+          
+      </div>
+      <div>
+          <h4>{title}</h4>
+      </div>
     </div>
   )
 }
