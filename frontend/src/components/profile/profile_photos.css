@@ -1,0 +1,20 @@
+.profile__photo{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 30px 10px; 
+    width: 70%;
+     background-color: white;
+    border-radius: 15px;
+}
+
+.profile__photo--img{
+    width: calc(20% - 10px);
+    height: 165px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 20px 20px;
+
+}

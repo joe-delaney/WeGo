@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './navbar.css'
-import Avatar from '@mui/material/Avatar';
+// import Avatar from '@mui/material/Avatar';
+import AddIcon from '@mui/icons-material/Add';
+import ChatRoundedIcon from '@mui/icons-material/ChatRounded';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -18,27 +21,27 @@ class NavBar extends React.Component {
     render() {
       const username = (this.props.user) ? this.props.user.fname + ' ' + this.props.user.lname : '';
         let navbarLinks = (this.props.loggedIn) ? (
-          <div className='nav__right--avatar'>
-            <div>
-              <ul className="list nav__list">
-                <li className="nav__item" >
-                { this.props.user ? <img src={this.props.user.profilePhotoPath} className='nav__avatar' /> : null }
-                </li>
-              </ul>    
-             
+          <div className='nav__right'>            
+            <div className="nav__right--option">
+              <AddIcon sx={{fontSize: 30 }}/>
             </div>
-            <div className='nav__userinfo'>
-               {username}
+            <div  className="nav__right--option">
+              <ChatRoundedIcon sx={{fontSize: 25 }}/>
             </div>
-             <div className='nav__menu'>
+            <div  className="nav__right--option nav__menu--more">
+              <ArrowDropDownRoundedIcon sx={{fontSize: 40 }}/>
+              <div className='nav__menu'>
                   <div>
                       <Link to={`/profile/${this.props.currentUser}`}> Profile </Link> 
                   </div>
                   <div>
                       <Link to={'/'} onClick={this.props.logout}> Logout</Link>
                   </div>
-              </div>         
+              </div>
+            </div>
+                      
           </div>
+          
         ) : (
           <div>
              <ul className="list nav__list">

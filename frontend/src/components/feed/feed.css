@@ -1,7 +1,19 @@
-
-
 .feel__body{
     margin-top: 100px;
-   
+    width: 90%;
+    margin: 0 auto;  
+
 }
-  
+
+.message{
+    position: fixed;
+    bottom: 15px;
+    right: 30px;
+    cursor: pointer;
+}
+
+.message_img{
+    border-radius: 30px;
+    width: 70px;
+    height: 70px;
+}

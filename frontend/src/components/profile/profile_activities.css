@@ -1,0 +1,32 @@
+.profile__activties{
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+
+}
+.profile__activtiy{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 15px; 
+    width: calc(50% - 30px);
+    height: 170px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 7px rgb(207, 207, 207), 0 0 10px rgb(238, 238, 238);
+}
+
+.profile__activtiy--info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.profile__activtiy--img{
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    margin: 10px 20px;
+    object-fit: cover;
+}

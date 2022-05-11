@@ -1,6 +1,6 @@
 import React from 'react'
 import ActivityItem from './activity_item'
-import './storyreel.css'
+import './activity.css'
 
 export default class ActivityFeed extends React.Component {
     constructor(props) {
@@ -20,8 +20,13 @@ export default class ActivityFeed extends React.Component {
             </div>
         ) : null;
         return (
-            <div>
-                <div className='storyreel'>
+            <div className='acivity_feed'>
+                <div className='acivity_feed__heaher'>
+                    <h2>Popular Acivities</h2>
+                    <p>MORE Acivities</p>
+                </div>
+                
+                <div className='activityreel'>
                     <ActivityItem
                         image="https://psychology-spot.com/wp-content/uploads/2019/10/new-music.jpg"
                         title="Music"
@@ -37,7 +42,12 @@ export default class ActivityFeed extends React.Component {
                         title="Shopping"
                         openModal={this.props.openModal}
                     />
-                    {activities.map((activity, idx) => (
+
+                    <ActivityItem
+                        image="https://previews.123rf.com/images/nd3000/nd30001707/nd3000170700616/82432507-group-of-happy-friends-hang-out-together.jpg"
+                        title="hangout"
+                    />
+                    {/* {activities.map((activity, idx) => (
                         <ActivityItem
                             activity={activity}
                             key={idx}
@@ -45,8 +55,9 @@ export default class ActivityFeed extends React.Component {
                             title={activity.title}
                             openModal={this.props.openModal}
                         />
-                    ))}
-                    {createNewActivity}
+                    ))} */}
+                    
+                    {/* {createNewActivity} */}
                 </div>
             </div>
         )

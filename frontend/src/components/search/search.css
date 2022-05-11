@@ -5,11 +5,11 @@
   
 .feed__search{
     width: 65%;
-    margin: 80px auto;
+    margin: 150px auto;
     min-width: 450px;
 }
 
-.feed__search_sticky{
+/* .feed__search_sticky{
   display: none;
   position: sticky;
   top: 5px;
@@ -17,5 +17,5 @@
   margin: 80px auto;
   z-index: 999999999999;
 
-}
+} */
 
