@@ -10,10 +10,12 @@ export class ProfilePhotos extends React.Component {
 
   render(){ 
     let photoPaths = this.props.user ? this.props.user.extraPhotoPaths : [];
+    let noPhotos = (!photoPaths.length && this.props.user && (this.props.user.id !== this.props.currentUserId)) ? <span>No photos uploaded yet.</span> : null;
     return (      
       <div className='profile__photo'>
         {(this.props.user && (this.props.user.id === this.props.currentUserId)) ? <UploadPhotoFormContainer /> : null }
         {photoPaths.map( (photo, idx) => <PhotoContainer key={idx} user={this.props.user} photo={photo} /> )}
+        {noPhotos}
       </div>
     )
   }
