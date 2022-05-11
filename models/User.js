@@ -57,9 +57,17 @@ const UserSchema = new Schema({
         type: [String],
         default: []
     },
-    activities: [{
+    hostedActivities: [{
         type: Schema.Types.ObjectId,
-        ref: 'activities'
+        ref: 'Activity'
+    }],
+    attendedActivities: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Activity'
+    }],
+    allActivities: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Activity'
     }],
     thumbsUp: {
         type: Number,
@@ -72,7 +80,8 @@ const UserSchema = new Schema({
     profilePhotoPath: {
         type: String,
         required: false,
-        get: path => path ? path : "/api/images/41daf94ffdccb355db7a624258d02f60"
+        get: path => path ? path : "/api/images/41daf94ffdccb355db7a624258d02f60",
+        default: "/api/images/41daf94ffdccb355db7a624258d02f60"
     },
     extraPhotoPaths: {
         type: [String],

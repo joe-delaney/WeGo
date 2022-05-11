@@ -4,6 +4,7 @@ import * as DateUtil from "../../util/date_util"
 import {Link} from "react-router-dom"
 import PendingRequestItem from "./pending_request_item";
 import ApprovedUserItem from "./approved_user_item";
+import './show_activity.css'
 
 export default class ShowActivity extends React.Component {
     constructor(props) {
@@ -16,15 +17,15 @@ export default class ShowActivity extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.activity) {
-            this.props.fetchUser(this.props.activity.host);
-            this.props.requestedAttendees.forEach((userId) => {
-                this.props.fetchUser(userId);
-            })
-            this.props.approvedAttendees.forEach((userId) => {
-                this.props.fetchUser(userId);
-            })
-        }
+        // if(this.props.activity) {
+        //     this.props.fetchUser(this.props.activity.host);
+        //     this.props.requestedAttendees.forEach((userId) => {
+        //         this.props.fetchUser(userId);
+        //     })
+        //     this.props.approvedAttendees.forEach((userId) => {
+        //         this.props.fetchUser(userId);
+        //     })
+        // }
     }
 
     getPrice(cost) {
@@ -72,7 +73,13 @@ export default class ShowActivity extends React.Component {
             id: this.props.activity.id,
             approvedAttendee: userId
         }
+
+        let user  =  {
+            id: userId,
+            attendedActivity: this.props.activity.id
+        }
         this.props.updateActivity(activity);
+        this.props.updateUser(user);
     }
 
     denyUser(userId) {
@@ -92,20 +99,21 @@ export default class ShowActivity extends React.Component {
         let activityHost = this.props.host ? this.props.host : undefined
         let activityCapacity = this.props.activity ? this.props.activity.capacity : "";
         let hostName = activityHost ? (`${activityHost.fname} ${activityHost.lname}`) : "";
-        let hostId = activityHost ? activityHost.id : "";
+        let hostId = activityHost ? activityHost._id : "";
         let activityDescription = (this.props.activity && 
             this.props.activity.description) ? this.props.activity.description : "";
         let activityCost = this.props.activity ? this.getPrice(this.props.activity.price) : null;
         let activityDuration = this.props.activity ? this.getDuration(this.props.activity.duration) : null;
+        let activityImage = this.props.activity ? this.props.activity.tag.img : "";
 
         let pendingRequests = (hostId === this.props.currentUserId &&
             this.props.requestedAttendees.length) ? (
             <div>
                 <strong>Pending requests</strong>
-                {this.props.requestedAttendees.map((id, idx) => (
+                {this.props.requestedAttendees.map((user, idx) => (
                     <PendingRequestItem 
                         key={idx}
-                        user={this.props.user(id)}
+                        user={user}
                         closeModal={this.props.closeModal}
                         approveUser={this.approveUser}
                         denyUser={this.denyUser}
@@ -117,25 +125,25 @@ export default class ShowActivity extends React.Component {
         
         let requestToJoin = null;
         if (hostId !== this.props.currentUserId && 
-            this.props.approvedAttendees.length+1 >= activityCapacity) {
+            this.props.approvedAttendees.length >= activityCapacity) {
             requestToJoin =
             <div>
                 <span className="pending-message">This activity has reached its max capacity</span>
             </div>
         } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
-            this.props.requestedAttendees.includes(this.props.currentUserId)) {
+            this.props.requestedAttendees.map(user => user._id).includes(this.props.currentUserId)) {
             requestToJoin =
                 <div>
                     <span className="pending-message">Awaiting response from host</span>
                 </div>
         } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
-            this.props.deniedAttendees.includes(this.props.currentUserId)) {
+            this.props.deniedAttendees.map(user => user._id).includes(this.props.currentUserId)) {
             requestToJoin =
                 <div>
                     <span className="pending-message">Sorry, this host doesn't think you're a good match</span>
                 </div>
         } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
-            !this.props.approvedAttendees.includes(this.props.currentUserId)) {
+            !this.props.approvedAttendees.map(user => user._id).includes(this.props.currentUserId)) {
             requestToJoin =
                 <div>
                     <button className="btn btn--blue-dark btn--request" onClick={this.requestToJoin}>Request to join!</button>
@@ -144,14 +152,10 @@ export default class ShowActivity extends React.Component {
 
         let approvedUsers = (
             <ul className="approved-users-list">
-                <ApprovedUserItem
-                    user={this.props.user(hostId)}
-                    closeModal={this.props.closeModal}
-                />
-                {this.props.approvedAttendees.map((id, idx) => (
+                {this.props.approvedAttendees.map((user, idx) => (
                     <ApprovedUserItem
                         key={idx}
-                        user={this.props.user(id)}
+                        user={user}
                         closeModal={this.props.closeModal}
                     />
                 ))}
@@ -160,39 +164,47 @@ export default class ShowActivity extends React.Component {
 
         return (
             <div className="activity-show-container">
-                <div className="activity-show-header">
-                    <img src="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"></img>
-                </div>
+                <div onClick={this.props.closeModal} className="close-x">X</div>
                 <h2 className="activity-show-title">{activityTitle}</h2>
-                <div>
-                    <strong>Hosted by: </strong>
-                    <Link to={`/profile/${hostId}`} onClick={this.props.closeModal}>
+                <div className="activity-show-header">
+                    <img src={activityImage} className="activity__img"></img>
+                </div>
+                
+                <div className="show__activity--option">
+                    <div className="option--left">
+                        <strong>Hosted by: </strong>
+                    </div>                
+                    <div className="option-right">   
+                        <Link to={`/profile/${hostId}`} onClick={this.props.closeModal}>
                         <span className="activity-show-host">{`${hostName}`}</span>
-                    </Link>
+                        </Link>
+                    </div>
                 </div>
-                <div>
-                    <strong>When: </strong>
-                    <span>{`${activityDate} at ${activityTimeLabel}`}</span>
+                <div className="show__activity--option">
+                    <div className="option--left"><strong>When: </strong></div>                
+                    <div className="option-right">{`${activityDate} at ${activityTimeLabel}`}</div>
                 </div>
-                <div>
-                    <strong>Where: </strong>
-                    <span>{activityLocation}</span>
+                <div className="show__activity--option">
+                    <div className="option--left">  <strong>Where: </strong></div>                
+                    <div className="option-right"><span>{activityLocation}</span></div>
                 </div>
-                <div>
-                    <strong>What: </strong>
-                    <span>{activityDescription}</span>
+                <div className="show__activity--option">
+                    <div className="option--left"> <strong>What: </strong></div>                
+                    <div className="option-right"><span>{activityDescription}</span></div>
                 </div>
-                <div>
-                    <strong>Who: </strong>
-                    {approvedUsers}
+
+                <div className="show__activity--option">
+                    <div className="option--left">  <strong>Who: </strong></div>                
+                    <div className="option-right">{approvedUsers}</div>
                 </div>
-                <div>
-                    <strong>Price: </strong>
-                    {activityCost}
+
+                <div className="show__activity--option">
+                    <div className="option--left">  <strong>Price: </strong></div>                
+                    <div className="option-right"> {activityCost}</div>
                 </div>
-                <div>
-                    <strong>Duration: </strong>
-                    {activityDuration}
+                <div className="show__activity--option">
+                    <div className="option--left"> <strong>Duration: </strong></div>                
+                    <div className="option-right">  {activityDuration}</div>
                 </div>
                 {pendingRequests}
                 {requestToJoin}

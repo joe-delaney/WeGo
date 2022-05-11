@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './navbar.css'
-// import Avatar from '@mui/material/Avatar';
+import Avatar from '@mui/material/Avatar';
 import AddIcon from '@mui/icons-material/Add';
 import ChatRoundedIcon from '@mui/icons-material/ChatRounded';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -19,23 +20,31 @@ class NavBar extends React.Component {
    }
 
     render() {
+      let addIcon = this.props.loggedIn ? (
+        <div className="nav__right--option" onClick={() => this.props.openModal("createActivity")}>
+          <AddIcon sx={{ fontSize: 30 }} />
+        </div>
+      ) : null;
+
+
       const username = (this.props.user) ? this.props.user.fname + ' ' + this.props.user.lname : '';
         let navbarLinks = (this.props.loggedIn) ? (
-          <div className='nav__right'>            
-            <div className="nav__right--option">
-              <AddIcon sx={{fontSize: 30 }}/>
-            </div>
+          <div className='nav__right'>   
+            {addIcon}         
             <div  className="nav__right--option">
               <ChatRoundedIcon sx={{fontSize: 25 }}/>
             </div>
             <div  className="nav__right--option nav__menu--more">
               <ArrowDropDownRoundedIcon sx={{fontSize: 40 }}/>
               <div className='nav__menu'>
-                  <div>
-                      <Link to={`/profile/${this.props.currentUser}`}> Profile </Link> 
+                  <div className='nav__menu--option'>
+                        
+                        <img src={(this.props.user) ? this.props.user.profilePhotoPath : ""}  className="menu__avatar" />
+                        <Link to={`/profile/${this.props.currentUser}`}> Profile </Link> 
                   </div>
-                  <div>
-                      <Link to={'/'} onClick={this.props.logout}> Logout</Link>
+                  <div className='nav__menu--option'>
+                      <LogoutIcon  sx={{fontSize: 30 }}/>
+                      <Link to={'/'} onClick={this.props.logout}>   Logout</Link>
                   </div>
               </div>
             </div>

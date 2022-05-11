@@ -13,6 +13,9 @@ class Profile extends React.Component {
 
     componentDidMount() {
         this.props.fetchUser(this.props.match.params.userId)
+        if(!this.props.activitiesFetched) {
+            this.props.fetchActivities();
+        }
     }
 
     render() {
@@ -20,7 +23,11 @@ class Profile extends React.Component {
             <>
                 <ModalContainer />
                 <NavBarContainer />
-                <ProfileNavBar user={this.props.user}/>
+                <ProfileNavBar 
+                    user={this.props.user}
+                    currentUserId={this.props.currentUserId}
+                    openModal={this.props.openModal}
+                    />
                 <ProfileFeed 
                     user={this.props.user}
                     currentUserId={this.props.currentUserId}

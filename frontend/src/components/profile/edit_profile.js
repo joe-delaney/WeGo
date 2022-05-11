@@ -49,7 +49,16 @@ export default class EditProfile extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.updateProfile(this.state);
+        let formData = new FormData();
+        formData.append('id', this.state.id)    
+        formData.append("fname", this.state.fname)
+        formData.append("lname", this.state.lname)
+        formData.append("jobTitle", this.state.jobTitle)
+        formData.append("education", this.state.education)
+        formData.append("aboutMe", this.state.aboutMe)
+        formData.append("pronouns", this.state.pronouns)
+        formData.append("location", this.state.location)
+        this.props.updateProfile(formData);
         this.props.closeModal();
     }
 

@@ -1,12 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const Activity = require('../../models/Activity');
+const Tag = require('../../models/Tag');
 const activityShow = require('../../jbuilder/activities');
 const activityIndex = require('../../jbuilder/activities');
 
 // fetch all activites
 router.get('/', (req, res) => {
     Activity.find()
+        .populate("approvedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
+        .populate("host", ["id", "fname", "lname", "profilePhotoPath"])
+        .populate("deniedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
+        .populate("requestedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
+        .populate("tag")
         .sort({ date: -1 })
         .then(activities => res.json(JSON.parse(activityIndex(activities))))
         .catch(err => res.status(404).json({ noactivitiesfound: 'No activities found' }));
@@ -21,20 +27,27 @@ router.get('/user/:userId/', (req, res) => {
 
 // create an activity
 router.post("/", (req, res) => {
-    const newActivity = new Activity({
-        title: req.body.title, 
-        time: req.body.time, 
-        host: req.body.host, 
-        requestedAttendees: req.body.requestedAttendees,
-        approvedAttendees: req.body.approvedAttendees,
-        tag: req.body.tag, 
-        location: req.body.location, 
-        description: req.body.description, 
-        price: req.body.price, 
-        duration: req.body.duration, 
-        capacity: req.body.capacity
-    });
-    newActivity.save().then(activity => res.json(JSON.parse(activityShow(activity))));
+    Tag.findOne({ title: req.body.tag }).then(tag => {
+        const newActivity = new Activity({
+            title: req.body.title,
+            time: req.body.time,
+            host: req.body.host,
+            requestedAttendees: req.body.requestedAttendees,
+            approvedAttendees: [req.body.host],
+            tag: tag._id,
+            location: req.body.location,
+            description: req.body.description,
+            price: req.body.price,
+            duration: req.body.duration,
+            capacity: req.body.capacity
+        });
+        newActivity.save().then(activity => Activity.findById(activity.id)
+            .populate("host", ["id", "fname", "lname", "profilePhotoPath"])
+            .populate("tag")
+            .populate("approvedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
+            .then(activity => res.json(JSON.parse(activityShow(activity)))));
+    })
+
 });
 
 // update an activity
@@ -63,7 +76,13 @@ router.post("/:id", (req, res) => {
                 if(req.body.duration) activity.duration = req.body.duration 
                 if(req.body.capacity) activity.capacity = req.body.capacity 
                 if(req.body.closed) activity.closed = req.body.closed
-                activity.save().then(activity => res.json(JSON.parse(activityShow(activity))));
+                activity.save().then(activity => Activity.findById(activity.id)
+                    .populate("approvedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
+                    .populate("host", ["id", "fname", "lname", "profilePhotoPath"])
+                    .populate("deniedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
+                    .populate("requestedAttendees", ["id", "fname", "lname", "profilePhotoPath"]) 
+                    .populate("tag")
+                    .then(activity => res.json(JSON.parse(activityShow(activity)))));
             }
         })
 })
@@ -79,5 +98,33 @@ router.delete("/:id", (req, res) => {
             }
         })
 })
+
+router.get('/search', (req, res) => {
+    console.log(req.body);
+    const searchObj = {};
+    // figure out search by key word.
+    // split the search terms into multiple things.
+    // if(req.body.title) searchObj.title = req.body.title;
+    // // if(req.body.time) searchObj.time = req.body.time;
+    // if(req.body.host) searchObj.host = req.body.host;
+    // // if(req.body.approvedAttendees) searchObj.approvedAttendees = req.body.approvedAttendees;
+    if (req.body.tag) searchObj.tag = req.body.tag;
+    // if(req.body.description) searchObj.description = req.body.description;
+    // take care of price. Strictly less than relation.
+    // if(req.body.price) searchObj.price = req.body.price;
+    // // needs to be a range of some kind. Strictly less than relation
+    // if(req.body.duration) searchObj.duration = req.body.duration;
+    // // if(req.body.capacity) searchObj.capacity = req.body.capacity;
+    if (req.body.location) searchObj.location = req.body.location;
+    // searchObj.closed = false;
+
+    // title, location, date
+    console.log(searchObj);
+    Activity.find(searchObj)
+        // .populate("tag")
+        .sort({ date: -1 })
+        .then(activities => res.json(activities))
+        .catch(err => res.status(404).json({ noactivitiesfound: 'No activities found' }));
+});
 
 module.exports = router;

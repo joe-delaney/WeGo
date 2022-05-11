@@ -7,7 +7,7 @@ export const fetchUser = (userId) => {
 
 //Update a specific user
 export const updateUser = (user) => {
-    return axios.patch(`/api/users/${user.id}`, user);
+    return axios.post(`/api/users/${user.id}`, user);
 };
 
 export const uploadPhoto = user => {
@@ -15,6 +15,9 @@ export const uploadPhoto = user => {
 };
 
 export const deletePhoto = user => {
-    debugger
     return axios.patch(`/api/users/${user.id}/delete`, user);
+};
+
+export const updateUserWithForm = (userFormData) => {
+    return axios({method: 'post', url: `/api/users/${userFormData.get('id')}`, data: userFormData, headers: { "Content-Type": "multipart/form-data" }});
 };

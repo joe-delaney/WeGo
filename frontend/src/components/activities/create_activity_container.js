@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     createActivity: (activity) => dispatch(createActivity(activity)),
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    updateUser: (user) => dispatch(updateUser(user))
 })
 
 const CreateActivityContainer = connect(mapStateToProps, mapDispatchToProps)(CreateActivity);

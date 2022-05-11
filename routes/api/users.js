@@ -98,6 +98,12 @@ router.post('/login', (req, res) => {
     const password = req.body.password;
 
     User.findOne({ email })
+        .populate({
+            path: "allActivities",
+            populate: {
+                path: "tag"
+            }
+        })
         .then(user => {
             if (!user) {
                 return res.status(404).json({ email: 'This user does not exist' });
@@ -144,6 +150,12 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 // Retrieve a specific user by id
 router.get("/:id", (req, res) => {
     User.findById(req.params.id)
+        .populate({
+            path: "allActivities",
+            populate: {
+                path: "tag"
+            }
+        })
         .then(user => res.json(JSON.parse(userShow(user))))
         .catch(err => 
             res.status(404).json({ nouserfound: "No user found with that ID" })
@@ -151,9 +163,9 @@ router.get("/:id", (req, res) => {
 });
 
 // Update a user profile
-router.patch("/:id", (req, res) => {
+router.post("/:id", upload.single('image'), (req, res) => {
     User.findById(req.params.id)
-        .then(user => {
+        .then(async (user) => {
             if (!user) {
                 return res.status(404).json({ nouserfound: "No user found with that ID" })
             } else {
@@ -164,7 +176,33 @@ router.patch("/:id", (req, res) => {
                 user.education = req.body.education
                 user.location = req.body.location
                 if(req.body.aboutMe) user.aboutMe = req.body.aboutMe
-                user.save().then(user => res.json(JSON.parse(userShow(user))));
+
+
+                if(req.file) {
+                    const result = await uploadFile(req.file)
+                    console.log(result)
+                    user.profilePhotoPath = `/api/images/${result.Key}`
+                    await unlinkFile(req.file.path)
+                } 
+
+                if(req.body.attendedActivity) {
+                    user.attendedActivities.push(req.body.attendedActivity);
+                    user.allActivities.push(req.body.attendedActivity);
+                }
+                if(req.body.hostedActivity) {
+                    user.hostedActivities.push(req.body.hostedActivity);
+                    user.allActivities.push(req.body.hostedActivity);
+                }
+                user.save().then(user => {
+                    User.findById(user.id)
+                        .populate({
+                            path: "allActivities",
+                            populate: {
+                                path:"tag"
+                            }
+                        })
+                        .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));
+                })
             }
         })
 })

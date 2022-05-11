@@ -17,7 +17,7 @@
     width: 100%;  
     margin: 0 auto;  
     position: relative; 
-    height: 450px; 
+    height: 475px; 
 }
 
 .profile__coverpotp{
@@ -86,12 +86,28 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    top: 100px;
+    top: 110px;
     justify-content: center;
     align-items: center; 
     margin-top: 20px; 
 }
 
+.profile__img--avatar{
+    position: relative;
+}
+
+.profile__img--edit{
+    position: absolute;
+    display: flex;
+    top: 140px;
+    right: 0px;
+    z-index: 99;
+    cursor: pointer;
+}
+
+.profile__img--edie:hover{
+    background: #e3e3e6;
+}
 
 .profile__feed{
     display: flex;
@@ -141,7 +157,7 @@
 }
 
 .profile__about--slogan {
-    margin-top: 30px;
+    padding-top: 40px;
     font-size: 1.5rem;
     /* font-weight: 700; */
     color: black;
@@ -199,6 +215,8 @@
     display: flex;
     justify-content: center;
 }
+
+
 
 @media screen and (min-width: 768px) {
 

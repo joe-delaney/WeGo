@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './profile_photos.css';
-import IndexItemctivity from '../activities/index_item_activity'
+import IndexItemActivity from '../activities/index_item_activity'
 
 
 class ProfileAbout extends React.Component {
@@ -32,7 +32,11 @@ class ProfileAbout extends React.Component {
             </li>
         ) : <div></div>
 
-        let aboutMe = this.props.user ? <p>{this.props.user.aboutMe}</p> : <p>Tell everyone more about you!</p>;
+        let aboutMe = this.props.user ? (
+            <li className="nav__item">
+                <strong>Bio: </strong>
+                <p>{this.props.user.aboutMe}</p>
+            </li>) : <p>Tell everyone more about you!</p>;
 
         let editButton = this.props.user && (this.props.user.id === this.props.currentUserId) ?
             (
@@ -40,56 +44,32 @@ class ProfileAbout extends React.Component {
                     <button onClick={() => this.props.openModal("editProfile")} className='btn btn--accent btn--small'>Edit Profile</button>
                 </div>
             ) : <div></div>
+        
+        let allActivities = this.props.user ? this.props.user.allActivities.sort((a, b) => a.time > b.time ? 1 : -1) : [];
 
         return(
-            <div className='profile__about'>
+            // <div className='profile__about'>
                 <div className='profile__about--left'>
                     {editButton} 
                     <ul className="list">
                         {location}
                         {jobTitle}
                         {education}
-                    </ul>
-                    {aboutMe}
-                                
-
+                        {aboutMe}
+                    </ul>  
                 </div>
 
-                <div className='profile__about--right'>
-                  
-                    <IndexItemctivity 
-                        image="https://psychology-spot.com/wp-content/uploads/2019/10/new-music.jpg"
-                        titile ="Shopping"
-                        date = "05/20/202"
-                        Location =" NYC"  
-                        renderClass="profile__activtiy--col"                
-                    />
-                    <IndexItemctivity 
-                        image="https://chriskresser.com/wp-content/uploads/iStock-951861300-martin-dm.jpg"
-                        titile ="Shopping"
-                        date = "05/20/202"
-                        Location =" NYC"
-                        renderClass="profile__activtiy--col"  
-                    />
-                    <IndexItemctivity 
-                        image="https://d3hne3c382ip58.cloudfront.net/files/uploads/bookmundi/resized/cmsfeatured/trekking-in-japan-1560935848-785X440.jpg"
-                        titile ="Shopping"
-                        date = "05/20/202"
-                        Location =" NYC"
-                        renderClass="profile__activtiy--col"  
-                    />
-
-                    <IndexItemctivity 
-                        image="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
-                        titile ="Shopping"
-                        date = "05/20/202"
-                        Location =" NYC"
-                        renderClass="profile__activtiy--col"  
-                    />
-            
-
-                </div>
-            </div>
+                // <div className='profile__about--right'>
+                //     {allActivities.map((activity, idx) => (
+                //         <IndexItemActivity
+                //             key={idx}
+                //             activity={activity}
+                //             renderClass="profile__activtiy--col"
+                //             openModal={this.props.openModal}
+                //         />
+                //     ))}
+                // </div>
+            // </div>
         )
     }
 

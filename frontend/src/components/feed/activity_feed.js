@@ -35,27 +35,29 @@ export default class ActivityFeed extends React.Component {
     getActivities() {
         let activities = Array.isArray(this.props.activities) ? this.props.activities : [];
         if(!this.state.seeMore) activities = activities.slice(0, 4);
-        let createNewActivity = this.props.loggedIn ? (
-            <div style={{ backgroundImage: `url(https://img.icons8.com/android/344/plus.png)`}} onClick={() => this.props.openModal("createActivity")} className="story">
-                <h4> Host an Activity!</h4>
+
+        let bottomButton = null;
+        if(activities.length > 0) {
+            bottomButton = this.state.seeMore ? (
+                <div className='activity-feed-bottom'>
+                    <button onClick={this.seeLess} className='btn'>See less</button>
+                </div >
+            ) : (
+                <div className = 'activity-feed-bottom'>
+                    <button onClick={this.seeMore} className = 'btn'>See more</button>
+                </div >
+            );
+        }
+
+        let activityFeedHeader = activities.length ? (
+            <div className='acivity_feed__heaher'>
+                <h2>Top Matches</h2>
             </div>
         ) : null;
 
-        let bottomButton = this.state.seeMore ? (
-            <div className='activity-feed-bottom'>
-                <button onClick={this.seeLess} className='btn'>See less</button>
-            </div >
-        ) : (
-            <div className = 'activity-feed-bottom'>
-                <button onClick={this.seeMore} className = 'btn'>See more</button>
-            </div >
-        );
-
         return (
             <div className='acivity_feed'>
-                <div className='acivity_feed__heaher'>
-                    <h2>Top Matches</h2>
-                </div>
+                {activityFeedHeader}
                 
                 <div className='activityreel'>
                     {/* <ActivityItem
@@ -87,8 +89,6 @@ export default class ActivityFeed extends React.Component {
                             openModal={this.props.openModal}
                         />
                     ))}
-                    
-                    {/* {createNewActivity} */}
                 </div>
                 {bottomButton}
             </div>
