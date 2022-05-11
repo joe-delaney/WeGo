@@ -7,6 +7,12 @@
  
 }
 
+.activity-feed-bottom {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 .acivity_feed__heaher{
     display: flex;
     flex-direction: row;
