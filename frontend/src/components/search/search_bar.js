@@ -40,7 +40,8 @@ class Search extends React.Component {
           <>
           
             <div className="container ">
-                    <div className="feed__search" id="feed__search">
+                                
+                    <div className={`feed__search ${this.props.search}`} id="feed__search">
                         <input type="text" className="search__input" placeholder="Start to Search..." />
                         <button className="search-btn btn--blue-dark "><SearchIcon sx={{fontSize: 30 }}/></button>
                     </div>                         
