@@ -13,12 +13,12 @@ const PendingRequestItem = ({user, closeModal, approveUser, denyUser}) => {
                 <div className="pending-request-item-left">
                     {img}
                     <Link to={`/profile/${userId}`} onClick={() => closeModal()}>
-                        <span>{name}</span>
+                        <span className="pending-request-name">{name}</span>
                     </Link>
                 </div>
                 <div>
-                    <button onClick={() => approveUser(userId)}>Approve</button>
-                    <button onClick={() => denyUser(userId)}>Deny</button>
+                    <button className="btn btn--blue-dark btn--medium btn--pending" onClick={() => approveUser(userId)}>Approve</button>
+                    <button className="btn btn--accent btn--medium btn--pending" onClick={() => denyUser(userId)}>Deny</button>
                 </div>
             </li>
         )

@@ -60,3 +60,11 @@
     display: flex;
     align-items: center;
 }
+
+.btn--pending {
+    margin-left: 10px;
+}
+
+.pending-request-name {
+    font-size: 18px;
+}
