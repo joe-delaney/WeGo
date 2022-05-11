@@ -11,13 +11,12 @@ class ProfileActivities extends React.Component {
       let allActivities = this.props.user ? this.props.user.allActivities.sort((a,b) => a.time > b.time ? 1 : -1) : [];
         return(
           <>
-            <div className='profile__activties'>
               {allActivities.map((activity, idx) => (
                 <IndexItemActivity
                   image="https://psychology-spot.com/wp-content/uploads/2019/10/new-music.jpg"
                   key={idx}
                   activity={activity}
-                  renderClass="profile__activtiy"
+                  renderClass="profile__activtiy--col"
                   openModal={this.props.openModal}
                 />
               ))}
@@ -50,7 +49,6 @@ class ProfileActivities extends React.Component {
                   Location =" NYC"
                   renderClass="profile__activtiy"  
                 /> */}
-            </div>
           
         </>
                      

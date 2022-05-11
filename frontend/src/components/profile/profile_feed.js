@@ -9,7 +9,7 @@ class ProfileFeed extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        feedstatus: "about"
+        feedstatus: "photos"
       }
       this.handleInput = this.handleInput.bind(this);
 
@@ -26,66 +26,39 @@ class ProfileFeed extends React.Component {
     render() {
         let feedstatus= '';
         
-        if(this.state.feedstatus === "about"){
-            feedstatus= 
+        if (this.state.feedstatus === "activities") {
+            feedstatus =
                 <>
-                    <div  className='profile__feedbar'> 
-                        <div 
-                            className='profile__feedbar--option active'
-                            onClick={this.handleInput('about')}>
-                                About
-                        </div>
+                    <div className='profile__feedbar'>
                         <div
                             className='profile__feedbar--option '
                             onClick={this.handleInput('photos')}>
                             Photos
                         </div>
-                        <div 
-                            className='profile__feedbar--option'
+                        <div
+                            className='profile__feedbar--option active'
                             onClick={this.handleInput('activities')}>
-                                Activities
+                            Activities
                         </div>
-                    </div> 
-                    <ProfileAbout 
-                        user={this.props.user}
-                        currentUserId={this.props.currentUserId}
-                        openModal={this.props.openModal}
+                    </div>
+                    <div className='profile__about'>
+                        <ProfileAbout
+                            user={this.props.user}
+                            currentUserId={this.props.currentUserId}
+                            openModal={this.props.openModal}
                         />
+                        <div className='profile__about--right'>
+                            <ProfileActivities
+                                user={this.props.user}
+                                openModal={this.props.openModal}
+                            />
+                        </div>
+                    </div>
                 </> 
-        } else if (this.state.feedstatus === "activities") {
-            feedstatus= 
-            <>
-            <div  className='profile__feedbar'> 
-                <div 
-                    className='profile__feedbar--option '
-                    onClick={this.handleInput('about')}>
-                        About
-                </div>
-                <div 
-                    className='profile__feedbar--option '
-                    onClick={this.handleInput('photos')}>
-                        Photos
-                </div>
-                <div 
-                    className='profile__feedbar--option active'
-                    onClick={this.handleInput('activities')}>
-                        Activities
-                </div> 
-            </div> 
-            <ProfileActivities 
-                user = {this.props.user}
-                openModal={this.props.openModal}
-            />
-        </> 
         } else if (this.state.feedstatus === "photos") {
             feedstatus= 
             <>
             <div  className='profile__feedbar'> 
-                <div 
-                    className='profile__feedbar--option '
-                    onClick={this.handleInput('about')}>
-                        About
-                </div>
                 <div 
                     className='profile__feedbar--option active'
                     onClick={this.handleInput('photos')}>
@@ -97,7 +70,16 @@ class ProfileFeed extends React.Component {
                         Activities
                 </div> 
             </div> 
-            <ProfilePhotos />
+                <div className='profile__about'>
+                    <ProfileAbout
+                        user={this.props.user}
+                        currentUserId={this.props.currentUserId}
+                        openModal={this.props.openModal}
+                    />
+                    <div className='profile__about--right'>
+                        <ProfilePhotos />
+                    </div>
+                </div>
         </> 
         }
         return(
