@@ -163,6 +163,14 @@ router.post("/:id", (req, res) => {
                 user.education = req.body.education
                 user.location = req.body.location
                 if(req.body.aboutMe) user.aboutMe = req.body.aboutMe
+                if(req.body.atttendedActivity) {
+                    user.attendedActivities.push(req.body.atttendedActivity);
+                    user.allActivities.push(req.body.atttendedActivity);
+                }
+                if(req.body.hostedActivity) {
+                    user.hostedActivities.push(req.body.hostedActivity);
+                    user.allActivities.push(req.body.hostedActivity);
+                }
                 user.save().then(user => res.json(JSON.parse(userShow(user))));
             }
         })

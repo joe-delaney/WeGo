@@ -16,15 +16,15 @@ export default class ShowActivity extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.activity) {
-            this.props.fetchUser(this.props.activity.host);
-            this.props.requestedAttendees.forEach((userId) => {
-                this.props.fetchUser(userId);
-            })
-            this.props.approvedAttendees.forEach((userId) => {
-                this.props.fetchUser(userId);
-            })
-        }
+        // if(this.props.activity) {
+        //     this.props.fetchUser(this.props.activity.host);
+        //     this.props.requestedAttendees.forEach((userId) => {
+        //         this.props.fetchUser(userId);
+        //     })
+        //     this.props.approvedAttendees.forEach((userId) => {
+        //         this.props.fetchUser(userId);
+        //     })
+        // }
     }
 
     getPrice(cost) {
@@ -72,7 +72,13 @@ export default class ShowActivity extends React.Component {
             id: this.props.activity.id,
             approvedAttendee: userId
         }
+
+        let user  =  {
+            id: userId,
+            attendedActivity: this.props.activity.id
+        }
         this.props.updateActivity(activity);
+        this.props.updateUser(user);
     }
 
     denyUser(userId) {
@@ -92,7 +98,7 @@ export default class ShowActivity extends React.Component {
         let activityHost = this.props.host ? this.props.host : undefined
         let activityCapacity = this.props.activity ? this.props.activity.capacity : "";
         let hostName = activityHost ? (`${activityHost.fname} ${activityHost.lname}`) : "";
-        let hostId = activityHost ? activityHost.id : "";
+        let hostId = activityHost ? activityHost._id : "";
         let activityDescription = (this.props.activity && 
             this.props.activity.description) ? this.props.activity.description : "";
         let activityCost = this.props.activity ? this.getPrice(this.props.activity.price) : null;
@@ -102,10 +108,10 @@ export default class ShowActivity extends React.Component {
             this.props.requestedAttendees.length) ? (
             <div>
                 <strong>Pending requests</strong>
-                {this.props.requestedAttendees.map((id, idx) => (
+                {this.props.requestedAttendees.map((user, idx) => (
                     <PendingRequestItem 
                         key={idx}
-                        user={this.props.user(id)}
+                        user={user}
                         closeModal={this.props.closeModal}
                         approveUser={this.approveUser}
                         denyUser={this.denyUser}
@@ -117,25 +123,25 @@ export default class ShowActivity extends React.Component {
         
         let requestToJoin = null;
         if (hostId !== this.props.currentUserId && 
-            this.props.approvedAttendees.length+1 >= activityCapacity) {
+            this.props.approvedAttendees.length >= activityCapacity) {
             requestToJoin =
             <div>
                 <span className="pending-message">This activity has reached its max capacity</span>
             </div>
         } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
-            this.props.requestedAttendees.includes(this.props.currentUserId)) {
+            this.props.requestedAttendees.map(user => user._id).includes(this.props.currentUserId)) {
             requestToJoin =
                 <div>
                     <span className="pending-message">Awaiting response from host</span>
                 </div>
         } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
-            this.props.deniedAttendees.includes(this.props.currentUserId)) {
+            this.props.deniedAttendees.map(user => user._id).includes(this.props.currentUserId)) {
             requestToJoin =
                 <div>
                     <span className="pending-message">Sorry, this host doesn't think you're a good match</span>
                 </div>
         } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
-            !this.props.approvedAttendees.includes(this.props.currentUserId)) {
+            !this.props.approvedAttendees.map(user => user._id).includes(this.props.currentUserId)) {
             requestToJoin =
                 <div>
                     <button className="btn btn--blue-dark btn--request" onClick={this.requestToJoin}>Request to join!</button>
@@ -144,14 +150,10 @@ export default class ShowActivity extends React.Component {
 
         let approvedUsers = (
             <ul className="approved-users-list">
-                <ApprovedUserItem
-                    user={this.props.user(hostId)}
-                    closeModal={this.props.closeModal}
-                />
-                {this.props.approvedAttendees.map((id, idx) => (
+                {this.props.approvedAttendees.map((user, idx) => (
                     <ApprovedUserItem
                         key={idx}
-                        user={this.props.user(id)}
+                        user={user}
                         closeModal={this.props.closeModal}
                     />
                 ))}
