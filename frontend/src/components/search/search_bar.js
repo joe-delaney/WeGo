@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 
 
-class SearchBar extends React.Component {
+class Search extends React.Component {
     constructor(props) {
       super(props);
 
@@ -40,14 +40,8 @@ class SearchBar extends React.Component {
           <>
           
             <div className="container ">
-                    {/* <div className="search__header"> 
-                          <h2>Who's In? <span className=''>WeGo</span></h2>
-                    </div> */}
-                   
                     <div className="feed__search" id="feed__search">
-                        <input type="text" className="search__input" placeholder="Activity Name" />
-                        <input type="text" className="search__input" placeholder="Location" />
-                        <input type="text" className="search__input search--end" placeholder="Date" />
+                        <input type="text" className="search__input" placeholder="Start to Search..." />
                         <button className="search-btn btn--blue-dark "><SearchIcon sx={{fontSize: 30 }}/></button>
                     </div>                         
                    
@@ -59,4 +53,4 @@ class SearchBar extends React.Component {
     }
 }
 
-export default SearchBar
+export default Search
