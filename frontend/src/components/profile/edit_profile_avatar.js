@@ -1,4 +1,5 @@
 import React from "react";
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 export default class EditProfileAvatar extends React.Component {
     constructor(props) {
@@ -65,16 +66,18 @@ export default class EditProfileAvatar extends React.Component {
                         <input type="file" 
                         className="custom-file-input" 
                         onChange={this.handlefiles}/> 
+                        <AddAPhotoIcon sx={{fontSize: 30 }} className="edit__avatar"/>
                         {preview}
-                    </div>
-
-                    <div className="form__submit singup__form">
+                        
+                    </div> 
+                    <div className="form__submit avatar__edit">
                         <button
                             className="btn btn--secondary "
                             onClick={this.handleSubmit}>Update</button>
 
-                    </div>   
+                </div>                      
                 </form>
+             
             </div>
         )
     }

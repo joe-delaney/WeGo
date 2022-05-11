@@ -1,4 +1,5 @@
 import React from "react";
+import './create_activity.css'
 
 export default class CreateActivity extends React.Component {
     constructor(props) {
@@ -38,78 +39,75 @@ export default class CreateActivity extends React.Component {
         return (
             <div>
                 <form className="form__box">
-                    <div className='nav__logo'>
-                        <span style={{ color: "#0071bc", fontSize: 'x-large', fontWeight: '700' }}>
-                            W
-                        </span>
-                        <span style={{ color: "#42b2fc" }}>
-                            e
-                        </span>
-                        <span style={{ color: "#3f89bb", fontSize: 'x-large', fontWeight: '700' }}>
-                            G
-                        </span>
-                        <span style={{ color: "#08c3fc" }}>
-                            o
-                        </span>
-                        <div className='nav__slogan'>
-                            Who's In?
-                        </div>
-                        <div onClick={this.props.closeModal} className="close-x">X</div>
-                        <div className="form__header">
+                    <div onClick={this.props.closeModal} className="close-x">X</div>
+                    <div className="form__header">
                             <h1>Create a new Activity!</h1>
+                    </div>
+                    <label className="input-label">What</label> 
+                    <div className="input-group">
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            value={this.state.title}
+                            onChange={this.handleInput("title")}
+                            className="input"
+                        />
+                    </div>
+                    <div className="create-activity">
+                        <div>
+                            <label className="input-label">When</label>   
+                            <div className="input-group">
+                                <input
+                                    type="datetime-local"
+                                    placeholder="time"
+                                    value={this.state.time}
+                                    onChange={this.handleInput("time")}
+                                    className="input"
+                                    />
+                            </div>
+
+
                         </div>
-                        <label className="input-label">What</label> 
-                        <div className="input-group">
-                            <input
-                                type="text"
-                                placeholder="Title"
-                                value={this.state.title}
-                                onChange={this.handleInput("title")}
-                                className="input"
-                            />
-                        </div>
-                        <label className="input-label">When</label>   
-                        <div className="input-group">
-                            <input
-                                type="datetime-local"
-                                placeholder="time"
-                                value={this.state.time}
-                                onChange={this.handleInput("time")}
-                                className="input"
+                        <div>
+                            
+                            <label className="input-label">Where</label> 
+                            <div className="input-group">
+                                <input
+                                    type="text"
+                                    placeholder="Location"
+                                    value={this.state.location}
+                                    onChange={this.handleInput("location")}
+                                    className="input"
                                 />
+                            </div> 
+
+
                         </div>
-                        <label className="input-label">Where</label> 
-                        <div className="input-group">
-                            <input
-                                type="text"
-                                placeholder="Location"
-                                value={this.state.location}
-                                onChange={this.handleInput("location")}
-                                className="input"
-                            />
-                        </div>
-                        <label className="input-label">Tell everyone a little more (optional)</label>
+                    </div>
+                    <label className="input-label">Tell everyone a little more (optional)</label>
                         <div className="input-group">
                             <textarea
                                 type="text"
                                 placeholder="Activity description"
                                 value={this.state.description}
                                 onChange={this.handleInput("description")}
-                                rows="5"
+                                rows="3"
                                 className="input"
                             />
                         </div>
-                        <label className="input-label">Maximum number of participants</label>
-                        <div className="input-group">
-                            <input
-                                type="number"
-                                placeholder="Capacity"
-                                value={this.state.capacity}
-                                onChange={this.handleInput("capacity")}
-                                className="input"
-                                min="2"
-                            />
-                        </div>
+                    
+                    <label className="input-label">Maximum number of participants</label>
+                    <div className="input-group">
+                        <input
+                            type="number"
+                            placeholder="Capacity"
+                            value={this.state.capacity}
+                            onChange={this.handleInput("capacity")}
+                            className="input"
+                            min="2"
+                        />
+                    </div>
+                    <div className="form__group">
                         <div className="input-group">
                             <select 
                                 defaultValue="DEFAULT"
@@ -159,14 +157,16 @@ export default class CreateActivity extends React.Component {
                                 <option value="4">4+ hours</option>
                             </select>
                         </div>
-                        <div className="form__submit">
-                            <input
-                                className="btn btn--primary"
-                                type="submit"
-                                value="Create Activity"
-                                onClick={this.handleSubmit} />
-                        </div>
                     </div>
+            
+                    <div className="form__submit">
+                        <input
+                            className="btn btn--primary"
+                            type="submit"
+                            value="Create Activity"
+                            onClick={this.handleSubmit} />
+                    </div>
+                
                 </form>
             </div>
         )

@@ -1,5 +1,6 @@
 import React from "react";
 import './form.css'
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 export default class SignupForm extends React.Component {
     constructor(props) {
@@ -99,9 +100,9 @@ export default class SignupForm extends React.Component {
                     <input type="file" name="image" onChange={this.handlefiles} accept="image/*"/>
                 </div> */}
 
-                <div>
+                {/* <div>
                     Update profile picture
-                </div>
+                </div> */}
                 <div className="profile__file">
                     <div className="profile__file--edit">
                         <input type="file" 
@@ -112,6 +113,7 @@ export default class SignupForm extends React.Component {
                     <input type="file" 
                     className="custom-file-input" 
                     onChange={this.handlefiles}/> 
+                    <AddAPhotoIcon sx={{fontSize: 30 }} className="singup__avatar"/>
                     {preview}
                                     
                 </div>

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './navbar.css'
-// import Avatar from '@mui/material/Avatar';
+import Avatar from '@mui/material/Avatar';
 import AddIcon from '@mui/icons-material/Add';
 import ChatRoundedIcon from '@mui/icons-material/ChatRounded';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -31,11 +32,14 @@ class NavBar extends React.Component {
             <div  className="nav__right--option nav__menu--more">
               <ArrowDropDownRoundedIcon sx={{fontSize: 40 }}/>
               <div className='nav__menu'>
-                  <div>
-                      <Link to={`/profile/${this.props.currentUser}`}> Profile </Link> 
+                  <div className='nav__menu--option'>
+                        
+                        <img src={(this.props.user) ? this.props.user.profilePhotoPath : ""}  className="menu__avatar" />
+                        <Link to={`/profile/${this.props.currentUser}`}> Profile </Link> 
                   </div>
-                  <div>
-                      <Link to={'/'} onClick={this.props.logout}> Logout</Link>
+                  <div className='nav__menu--option'>
+                      <LogoutIcon  sx={{fontSize: 30 }}/>
+                      <Link to={'/'} onClick={this.props.logout}>   Logout</Link>
                   </div>
               </div>
             </div>

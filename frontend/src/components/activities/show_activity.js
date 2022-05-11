@@ -4,6 +4,7 @@ import * as DateUtil from "../../util/date_util"
 import {Link} from "react-router-dom"
 import PendingRequestItem from "./pending_request_item";
 import ApprovedUserItem from "./approved_user_item";
+import './show_activity.css'
 
 export default class ShowActivity extends React.Component {
     constructor(props) {
@@ -162,39 +163,47 @@ export default class ShowActivity extends React.Component {
 
         return (
             <div className="activity-show-container">
-                <div className="activity-show-header">
-                    <img src="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"></img>
-                </div>
+                <div onClick={this.props.closeModal} className="close-x">X</div>
                 <h2 className="activity-show-title">{activityTitle}</h2>
-                <div>
-                    <strong>Hosted by: </strong>
-                    <Link to={`/profile/${hostId}`} onClick={this.props.closeModal}>
+                <div className="activity-show-header">
+                    <img src="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg" className="activity__img"></img>
+                </div>
+                
+                <div className="show__activity--option">
+                    <div className="option--left">
+                        <strong>Hosted by: </strong>
+                    </div>                
+                    <div className="option-right">   
+                        <Link to={`/profile/${hostId}`} onClick={this.props.closeModal}>
                         <span className="activity-show-host">{`${hostName}`}</span>
-                    </Link>
+                        </Link>
+                    </div>
                 </div>
-                <div>
-                    <strong>When: </strong>
-                    <span>{`${activityDate} at ${activityTimeLabel}`}</span>
+                <div className="show__activity--option">
+                    <div className="option--left"><strong>When: </strong></div>                
+                    <div className="option-right">{`${activityDate} at ${activityTimeLabel}`}</div>
                 </div>
-                <div>
-                    <strong>Where: </strong>
-                    <span>{activityLocation}</span>
+                <div className="show__activity--option">
+                    <div className="option--left">  <strong>Where: </strong></div>                
+                    <div className="option-right"><span>{activityLocation}</span></div>
                 </div>
-                <div>
-                    <strong>What: </strong>
-                    <span>{activityDescription}</span>
+                <div className="show__activity--option">
+                    <div className="option--left"> <strong>What: </strong></div>                
+                    <div className="option-right"><span>{activityDescription}</span></div>
                 </div>
-                <div>
-                    <strong>Who: </strong>
-                    {approvedUsers}
+
+                <div className="show__activity--option">
+                    <div className="option--left">  <strong>Who: </strong></div>                
+                    <div className="option-right">{approvedUsers}</div>
                 </div>
-                <div>
-                    <strong>Price: </strong>
-                    {activityCost}
+
+                <div className="show__activity--option">
+                    <div className="option--left">  <strong>Price: </strong></div>                
+                    <div className="option-right"> {activityCost}</div>
                 </div>
-                <div>
-                    <strong>Duration: </strong>
-                    {activityDuration}
+                <div className="show__activity--option">
+                    <div className="option--left"> <strong>Duration: </strong></div>                
+                    <div className="option-right">  {activityDuration}</div>
                 </div>
                 {pendingRequests}
                 {requestToJoin}
