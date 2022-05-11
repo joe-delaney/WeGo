@@ -28,7 +28,7 @@
   }
   
   body {
-    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 2rem;
     line-height: 1.5;
     color: var(--color-body);
