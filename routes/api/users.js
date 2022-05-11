@@ -173,10 +173,9 @@ router.post("/:id", upload.single('image'), (req, res) => {
                     await unlinkFile(req.file.path)
                 } 
 
-               
-                if(req.body.atttendedActivity) {
-                    user.attendedActivities.push(req.body.atttendedActivity);
-                    user.allActivities.push(req.body.atttendedActivity);
+                if(req.body.attendedActivity) {
+                    user.attendedActivities.push(req.body.attendedActivity);
+                    user.allActivities.push(req.body.attendedActivity);
                 }
                 if(req.body.hostedActivity) {
                     user.hostedActivities.push(req.body.hostedActivity);

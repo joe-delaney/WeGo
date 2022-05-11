@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import EditProfileAvatar from "./edit_profile_avatar";
 import { withRouter } from "react-router-dom";
 import { closeModal } from "../../actions/modal_actions";
-import { updateUser } from "../../actions/user_actions";
+import { updateUserWithForm } from "../../actions/user_actions";
 
 const mapStateToProps = (state, ownProps) => {
     let pathnameComponents = ownProps.location.pathname.split("/");
@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     closeModal: () => dispatch(closeModal()),
-    updateProfile: (formData) => dispatch(updateUser(formData))
+    updateProfile: (formData) => dispatch(updateUserWithForm(formData))
 })  
 
 const EditProfileAvatarContainer = connect(mapStateToProps, mapDispatchToProps)(EditProfileAvatar);
