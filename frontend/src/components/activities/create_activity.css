@@ -1,4 +1,7 @@
-.create-activity  > .input-group{
-    margin: 1px 1px;
+.create-activity{
+    display: flex;
+    flex-direction: row;
+
+
 }
 
