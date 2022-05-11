@@ -206,6 +206,7 @@
     height: 25px;
     object-fit: cover;
     margin-right: 10px;
+    border-radius: 30px;
 }
 
 @media screen and (min-width: 768px) {
