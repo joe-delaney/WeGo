@@ -23,8 +23,6 @@ class ProfileFeed extends React.Component {
         }
     }
 
-   
-
     render() {
         let feedstatus= '';
         
@@ -74,7 +72,10 @@ class ProfileFeed extends React.Component {
                         Activities
                 </div> 
             </div> 
-            <ProfileActivities />
+            <ProfileActivities 
+                user = {this.props.user}
+                openModal={this.props.openModal}
+            />
         </> 
         } else if (this.state.feedstatus === "photos") {
             feedstatus= 

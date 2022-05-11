@@ -59,15 +59,15 @@ const UserSchema = new Schema({
     },
     hostedActivities: [{
         type: Schema.Types.ObjectId,
-        ref: 'activities'
+        ref: 'Activity'
     }],
     attendedActivities: [{
         type: Schema.Types.ObjectId,
-        ref: 'activities'
+        ref: 'Activity'
     }],
     allActivities: [{
         type: Schema.Types.ObjectId,
-        ref: 'activities'
+        ref: 'Activity'
     }],
     thumbsUp: {
         type: Number,

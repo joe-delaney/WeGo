@@ -26,7 +26,8 @@ class ProfileFeed extends React.Component {
                 
                 <div className='profile__img'>
                     <div className='profile__img--avatar'>
-                        { this.props.user.profilePhotoPath ? 
+                    { this.props.user && this.props.user.profilePhotoPath ? 
+                    <div>
                             <img src={this.props.user.profilePhotoPath} className='profile__useravatar' /> : 
                             <img src="/api/images/41daf94ffdccb355db7a624258d02f60" className="profile__useravatar"/> }
                         <div className='profile__img--edit' onClick={() => this.props.openModal("editProfileAvatar")}><AddAPhotoIcon sx={{fontSize: 30 }}/></div>
