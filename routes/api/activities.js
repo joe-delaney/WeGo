@@ -47,8 +47,15 @@ router.post("/:id", (req, res) => {
                 if(req.body.title) activity.title = req.body.title 
                 if (req.body.time) activity.time = req.body.time 
                 if (req.body.host) activity.host = req.body.host 
-                if(req.body.requestedAttendees) activity.requestedAttendees = req.body.requestedAttendees 
-                if(req.body.approvedAttendees) activity.approvedAttendees = req.body.approvedAttendees 
+                if (req.body.requestedAttendee) activity.requestedAttendees.push(req.body.requestedAttendee) 
+                if(req.body.approvedAttendee) {
+                    activity.approvedAttendees.push(req.body.approvedAttendee);
+                    activity.requestedAttendees.remove(req.body.approvedAttendee);
+                }
+                if(req.body.deniedAttendee) {
+                    activity.deniedAttendees.push(req.body.deniedAttendee);
+                    activity.requestedAttendees.remove(req.body.deniedAttendee);
+                }
                 if(req.body.tag) activity.tag = req.body.tag 
                 if(req.body.location) activity.location = req.body.location 
                 if(req.body.description) activity.description = req.body.description 

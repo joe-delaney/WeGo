@@ -30,14 +30,17 @@ export default class ActivityFeed extends React.Component {
                     <ActivityItem
                         image="https://psychology-spot.com/wp-content/uploads/2019/10/new-music.jpg"
                         title="Music"
+                        openModal={this.props.openModal}
                     />
                     <ActivityItem
                         image="https://chriskresser.com/wp-content/uploads/iStock-951861300-martin-dm.jpg"
                         title="Traveling"
+                        openModal={this.props.openModal}
                     />
                     <ActivityItem
                         image="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
                         title="Shopping"
+                        openModal={this.props.openModal}
                     />
 
                     <ActivityItem
@@ -46,9 +49,11 @@ export default class ActivityFeed extends React.Component {
                     />
                     {/* {activities.map((activity, idx) => (
                         <ActivityItem
+                            activity={activity}
                             key={idx}
                             image="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
                             title={activity.title}
+                            openModal={this.props.openModal}
                         />
                     ))} */}
                     

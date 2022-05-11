@@ -7,13 +7,13 @@ export default class CreateActivity extends React.Component {
         this.state = {
             title: "",
             time: "",
-            host: this.props.currentUserId,
+            host: this.props.currentUser.id,
             location: "",
             description: "",
             tag: "",
             price: 1,
             duration: 1,
-            capacity: 1
+            capacity: 2
         }
 
         this.handleInput = this.handleInput.bind(this);
@@ -58,15 +58,17 @@ export default class CreateActivity extends React.Component {
                         <div className="form__header">
                             <h1>Create a new Activity!</h1>
                         </div>
+                        <label className="input-label">What</label> 
                         <div className="input-group">
                             <input
                                 type="text"
-                                placeholder="title"
+                                placeholder="Title"
                                 value={this.state.title}
                                 onChange={this.handleInput("title")}
                                 className="input"
                             />
                         </div>
+                        <label className="input-label">When</label>   
                         <div className="input-group">
                             <input
                                 type="datetime-local"
@@ -74,8 +76,9 @@ export default class CreateActivity extends React.Component {
                                 value={this.state.time}
                                 onChange={this.handleInput("time")}
                                 className="input"
-                            />
+                                />
                         </div>
+                        <label className="input-label">Where</label> 
                         <div className="input-group">
                             <input
                                 type="text"
@@ -85,6 +88,7 @@ export default class CreateActivity extends React.Component {
                                 className="input"
                             />
                         </div>
+                        <label className="input-label">Tell everyone a little more (optional)</label>
                         <div className="input-group">
                             <textarea
                                 type="text"
@@ -95,6 +99,7 @@ export default class CreateActivity extends React.Component {
                                 className="input"
                             />
                         </div>
+                        <label className="input-label">Maximum number of participants</label>
                         <div className="input-group">
                             <input
                                 type="number"
@@ -102,7 +107,7 @@ export default class CreateActivity extends React.Component {
                                 value={this.state.capacity}
                                 onChange={this.handleInput("capacity")}
                                 className="input"
-                                min="1"
+                                min="2"
                             />
                         </div>
                         <div className="input-group">

@@ -136,6 +136,7 @@
 }
 
 /* .nav__right{
+.nav__right{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;

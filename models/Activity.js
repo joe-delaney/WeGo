@@ -27,6 +27,10 @@ const ActivitySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     }],
+    deniedAttendees: [{
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    }],
     tag: {
         type: String,
         require: false

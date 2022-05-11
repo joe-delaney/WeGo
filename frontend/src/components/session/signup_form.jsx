@@ -26,8 +26,6 @@ export default class SignupForm extends React.Component {
         this.nextPage = this.nextPage.bind(this);
         this.handleSignup = this.handleSignup.bind(this);
         this.goBack = this.goBack.bind(this);
-        // this.renderErrors = this.renderErrors.bind(this);
-
         this.handlefiles = this.handlefiles.bind(this)
     }
 
@@ -47,6 +45,7 @@ export default class SignupForm extends React.Component {
 
     handleSignup(e) {
         e.preventDefault();
+        
         //Sign up the user
         let formData = new FormData();
         formData.append("email", this.state.email)
@@ -59,36 +58,14 @@ export default class SignupForm extends React.Component {
         formData.append("jobTitle", this.state.jobTitle)
         formData.append("education", this.state.education)
         formData.append("interests", this.state.interests)
-        // for (let i = 0; i < this.state.files.length; i++) {
-        //     formData.append('uploads', this.state.files[i])
-        // }
         formData.append('image', this.state.files)
         
         this.props.signup(formData);
         this.props.closeModal();
-        // Reset the state
-        // this.setState({
-        //     files: [],
-        //     email: "",
-        //     password: "",
-        //     password2: "",
-        //     fname: "",
-        //     lname: "",
-        //     age: "",
-        //     pronouns: "",
-        //     jobTitle: "",
-        //     education: "",
-        //     interests: "",
-        //     page1: true
-        // })
-
-        //Close the modal
-        // this.toggleModal();
     }
 
     getSignUpPage1() {
         const errors = Object.values(this.props.errors);
-        // console.log(errors);
         return (
             <div className="form__box">
                 <div onClick={this.props.closeModal} className="close-x">X</div> 
@@ -185,8 +162,6 @@ export default class SignupForm extends React.Component {
 
                 </div>
             </div>
-            // {this.renderErrors()}
-            // </div>
         )
     }
 
@@ -261,53 +236,8 @@ export default class SignupForm extends React.Component {
             </form>
         )
     }
-    
-    // handleSignup(e) {
-    //     e.preventDefault();
-    //     //Sign up the user
-    //     this.props.signup(this.state);
-    //     // Reset the state
-    //     this.setState({
-    //         email: "",
-    //         password: "",
-    //         password2: "",
-    //         fname: "",
-    //         lname: "",
-    //         age: "",
-    //         pronouns: "",
-    //         jobTitle: "",
-    //         education: "",
-    //         interests: "",
-    //         page1: true
-    //     }
-    //     //Close the modal
-    //     // this.toggleModal();
-    // }
-
-    // toggleModal() {
-    //     //This will be used to close the modal
-    //     this.props.closeModal();
-    // }
-
-    // // Render the session errors if there are any
-    // renderErrors() {
-    //     return (
-    //         <ul>
-    //             {Object.keys(this.props.errors).map((error, i) => (
-    //                 <li key={`error-${i}`}>
-    //                     {this.props.errors[error]}
-    //                 </li>
-    //             ))}
-    //         </ul>
-    //     );
-    // }
 
     render() {
-        // if(this.state.page1) {
-        //     return this.getSignUpPage1();
-        // } else {
-        //     return this.getSignUpPage2();
-        // }
         return this.getSignUpPage1();
     }
 }
