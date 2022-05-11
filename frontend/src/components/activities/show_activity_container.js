@@ -13,6 +13,8 @@ const mapStateToProps = (state) => {
         host: host,
         currentUserId: state.session.user ? state.session.user.id : undefined,
         requestedAttendees: activity ? activity.requestedAttendees : [],
+        deniedAttendees: activity ? activity.deniedAttendees : [],
+        approvedAttendees: activity ? activity.approvedAttendees : [],
         user: (userId) => state.entities.users[userId]
     }
 };

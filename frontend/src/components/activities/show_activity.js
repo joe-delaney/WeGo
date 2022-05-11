@@ -3,18 +3,24 @@ import "./activityshow.css";
 import * as DateUtil from "../../util/date_util"
 import {Link} from "react-router-dom"
 import PendingRequestItem from "./pending_request_item";
+import ApprovedUserItem from "./approved_user_item";
 
 export default class ShowActivity extends React.Component {
     constructor(props) {
         super(props);
 
         this.requestToJoin = this.requestToJoin.bind(this);
+        this.approveUser = this.approveUser.bind(this);
+        this.denyUser = this.denyUser.bind(this);
     }
 
     componentDidMount() {
         if(this.props.activity) {
             this.props.fetchUser(this.props.activity.host);
             this.props.requestedAttendees.forEach((userId) => {
+                this.props.fetchUser(userId);
+            })
+            this.props.approvedAttendees.forEach((userId) => {
                 this.props.fetchUser(userId);
             })
         }
@@ -24,6 +30,22 @@ export default class ShowActivity extends React.Component {
         let activity = {
             id: this.props.activity.id,
             requestedAttendee: this.props.currentUserId
+        }
+        this.props.updateActivity(activity);
+    }
+
+    approveUser(userId) {
+        let activity = {
+            id: this.props.activity.id,
+            approvedAttendee: userId
+        }
+        this.props.updateActivity(activity);
+    }
+
+    denyUser(userId) {
+        let activity = {
+            id: this.props.activity.id,
+            deniedAttendee: userId
         }
         this.props.updateActivity(activity);
     }
@@ -48,6 +70,8 @@ export default class ShowActivity extends React.Component {
                         key={idx}
                         user={this.props.user(id)}
                         closeModal={this.props.closeModal}
+                        approveUser={this.approveUser}
+                        denyUser={this.denyUser}
                     />
                 ))}
                 
@@ -61,12 +85,31 @@ export default class ShowActivity extends React.Component {
                 <div>
                     <span>Awaiting response from host</span>
                 </div>
-        } else if (hostId !== this.props.currentUserId && this.props.currentUserId) {
+        } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
+            this.props.deniedAttendees.includes(this.props.currentUserId)) {
+            requestToJoin =
+                <div>
+                    <span>Sorry, this host doesn't think you're a good match</span>
+                </div>
+        } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
+            !this.props.approvedAttendees.includes(this.props.currentUserId)) {
             requestToJoin =
                 <div>
                     <button onClick={this.requestToJoin}>Request to join!</button>
                 </div>
         }
+
+        let approvedUsers = (
+            <ul>
+                {this.props.approvedAttendees.map((id, idx) => (
+                    <ApprovedUserItem
+                        key={idx}
+                        user={this.props.user(id)}
+                        closeModal={this.props.closeModal}
+                    />
+                ))}
+            </ul>
+        )
 
         return (
             <div className="activity-show-container">
@@ -94,6 +137,7 @@ export default class ShowActivity extends React.Component {
                 </div>
                 <div>
                     <strong>Who: </strong>
+                    {approvedUsers}
                 </div>
                 {pendingRequests}
                 {requestToJoin}
