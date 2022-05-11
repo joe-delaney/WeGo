@@ -100,7 +100,11 @@ export default class ShowActivity extends React.Component {
         }
 
         let approvedUsers = (
-            <ul>
+            <ul className="approved-users-list">
+                <ApprovedUserItem
+                    user={this.props.user(hostId)}
+                    closeModal={this.props.closeModal}
+                />
                 {this.props.approvedAttendees.map((id, idx) => (
                     <ApprovedUserItem
                         key={idx}

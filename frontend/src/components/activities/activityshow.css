@@ -22,3 +22,29 @@
 .activity-show-host:hover {
     text-decoration: underline;
 }
+
+.approved-users-list {
+    padding: 0px;
+    margin-top: 5px;
+    display: flex;
+}
+
+.approved-user-label {
+    position: absolute;
+    font-size: 10px;
+    display: none;
+}
+
+.approved-user-item {
+    display: flex;
+    justify-content: center;
+    padding-right: 10px;
+}
+
+.approved-user-img {
+    margin-top: 10px;
+}
+
+.approved-user-item:hover > .approved-user-label {
+    display: block;
+}
