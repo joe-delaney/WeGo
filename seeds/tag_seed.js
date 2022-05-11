@@ -20,35 +20,35 @@ const tags = [
     {
         title: "relaxing",
         img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpt-rKMthwcIAUbiZikKFJhFFDCJdOTkop9g&usqp=CAU"
+    },
+    {
+        title: "music",
+        img: "https://psychology-spot.com/wp-content/uploads/2019/10/new-music.jpg"
+    },
+    {
+        title: "shopping",
+        img: "https://img.icons8.com/android/344/plus.png"
+    },
+    {
+        title: "late-night",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUCiITr7SCc6pPDdvuKmdKzeuu7vo3uZfj4w&usqp=CAU"
+    },
+    {
+        title: "travel",
+        img: "https://chriskresser.com/wp-content/uploads/iStock-951861300-martin-dm.jpg"
+    },
+    {
+        title: "entertainment",
+        img: ""
+    },
+    {
+        title: "food",
+        img: ""
+    },
+    {
+        title: "casual",
+        img: ""
     }
-    // {
-    //     title: "music",
-    //     img: ""
-    // },
-    // {
-    //     title: "shopping",
-    //     img: ""
-    // },
-    // {
-    //     title: "late-night",
-    //     img: ""
-    // },
-    // {
-    //     title: "travel",
-    //     img: ""
-    // },
-    // {
-    //     title: "entertainment",
-    //     img: ""
-    // },
-    // {
-    //     title: "food",
-    //     img: ""
-    // },
-    // {
-    //     title: "casual",
-    //     img: ""
-    // }
 ]
 
 const seedDB = async () => {
