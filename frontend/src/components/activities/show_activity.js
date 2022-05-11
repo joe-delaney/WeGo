@@ -104,6 +104,7 @@ export default class ShowActivity extends React.Component {
             this.props.activity.description) ? this.props.activity.description : "";
         let activityCost = this.props.activity ? this.getPrice(this.props.activity.price) : null;
         let activityDuration = this.props.activity ? this.getDuration(this.props.activity.duration) : null;
+        let activityImage = this.props.activity ? this.props.activity.tag.img : "";
 
         let pendingRequests = (hostId === this.props.currentUserId &&
             this.props.requestedAttendees.length) ? (
@@ -166,7 +167,7 @@ export default class ShowActivity extends React.Component {
                 <div onClick={this.props.closeModal} className="close-x">X</div>
                 <h2 className="activity-show-title">{activityTitle}</h2>
                 <div className="activity-show-header">
-                    <img src="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg" className="activity__img"></img>
+                    <img src={activityImage} className="activity__img"></img>
                 </div>
                 
                 <div className="show__activity--option">

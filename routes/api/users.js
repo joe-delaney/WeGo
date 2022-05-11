@@ -98,7 +98,12 @@ router.post('/login', (req, res) => {
     const password = req.body.password;
 
     User.findOne({ email })
-        .populate("allActivities")
+        .populate({
+            path: "allActivities",
+            populate: {
+                path: "tag"
+            }
+        })
         .then(user => {
             if (!user) {
                 return res.status(404).json({ email: 'This user does not exist' });
@@ -144,7 +149,12 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 // Retrieve a specific user by id
 router.get("/:id", (req, res) => {
     User.findById(req.params.id)
-        .populate("allActivities")
+        .populate({
+            path: "allActivities",
+            populate: {
+                path: "tag"
+            }
+        })
         .then(user => res.json(JSON.parse(userShow(user))))
         .catch(err => 
             res.status(404).json({ nouserfound: "No user found with that ID" })
@@ -184,7 +194,12 @@ router.post("/:id", upload.single('image'), (req, res) => {
                 }
                 user.save().then(user => {
                     User.findById(user.id)
-                        .populate("allActivities")
+                        .populate({
+                            path: "allActivities",
+                            populate: {
+                                path:"tag"
+                            }
+                        })
                         .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));
                 })
             }

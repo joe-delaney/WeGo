@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
     return {
         loggedIn: state.session.isAuthenticated,
         currentUser: state.session.user ? state.session.user.id : null,
-        user: state.session.user ? state.entities.users[state.session.user.id] : null,
+        user: state.session.user ? state.entities.users[state.session.user.id] : null
     };
 };
 
