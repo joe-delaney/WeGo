@@ -82,3 +82,8 @@
 .pending-message {
     color: var(--color-body-darker) !important;
 }
+
+.btn--request {
+    margin-top: 20px;
+    margin-left: 0px;
+}

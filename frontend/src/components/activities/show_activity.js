@@ -138,7 +138,7 @@ export default class ShowActivity extends React.Component {
             !this.props.approvedAttendees.includes(this.props.currentUserId)) {
             requestToJoin =
                 <div>
-                    <button onClick={this.requestToJoin}>Request to join!</button>
+                    <button className="btn btn--blue-dark btn--request" onClick={this.requestToJoin}>Request to join!</button>
                 </div>
         }
 
