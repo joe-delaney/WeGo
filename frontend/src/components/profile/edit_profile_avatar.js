@@ -6,11 +6,12 @@ export default class EditProfileAvatar extends React.Component {
         super(props);     
         this.state = {
             files: {}, 
-            photoUrl: this.props.user.profilePhotoPath
+            photoUrl: this.props.user.profilePhotoPath,
+            remove: false
         }
         this.handlefiles = this.handlefiles.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        
+        this.removePhoto = this.removePhoto.bind(this)
     }
 
     handlefiles(e) {
@@ -29,7 +30,6 @@ export default class EditProfileAvatar extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();   
-        // debugger
         console.log(this.props.user);
         
         if(this.state.files.name){
@@ -44,10 +44,13 @@ export default class EditProfileAvatar extends React.Component {
         this.props.closeModal();
     }
 
+    removePhoto(e){
+        e.preventDefault()
+        this.setState({photoUrl: "/api/images/41daf94ffdccb355db7a624258d02f60"})
+        this
+    }
+
     render(){
-        const preview = this.state.photoUrl ? 
-                <img src={this.state.photoUrl} className="profile__img--circle"/> : 
-                <img src="/api/images/41daf94ffdccb355db7a624258d02f60" className="profile__img--circle"/>;
         return(
             <div>
                 <form className="form__box">
@@ -67,15 +70,19 @@ export default class EditProfileAvatar extends React.Component {
                         className="custom-file-input" 
                         onChange={this.handlefiles}/> 
                         <AddAPhotoIcon sx={{fontSize: 30 }} className="edit__avatar"/>
-                        {preview}
+                        <img src={this.state.photoUrl} className="profile__img--circle"/>
                         
-                    </div> 
+                    </div>
+
+                    <div className="form__submit avatar__delete">
+                        <button className="btn btn--secondary" onClick={this.removePhoto}>X</button>
+                    </div>
+
                     <div className="form__submit avatar__edit">
                         <button
                             className="btn btn--secondary "
                             onClick={this.handleSubmit}>Update</button>
-
-                </div>                      
+                    </div>                      
                 </form>
              
             </div>

@@ -57,7 +57,6 @@ router.post('/signup', upload.single('image'), async (req, res) => {
 
                 if(req.file) {
                     const result = await uploadFile(req.file)
-                    console.log(result)
                     newUser.profilePhotoPath = `/api/images/${result.Key}`
                     await unlinkFile(req.file.path)
                 } 
@@ -180,7 +179,6 @@ router.post("/:id", upload.single('image'), (req, res) => {
 
                 if(req.file) {
                     const result = await uploadFile(req.file)
-                    console.log(result)
                     user.profilePhotoPath = `/api/images/${result.Key}`
                     await unlinkFile(req.file.path)
                 } 
