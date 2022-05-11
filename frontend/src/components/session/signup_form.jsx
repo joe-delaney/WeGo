@@ -17,7 +17,8 @@ export default class SignupForm extends React.Component {
             jobTitle: "",
             education: "",
             interests: "",
-            page1: true
+            page1: true,
+            photoUrl: ""
         }
 
         this.handleInput = this.handleInput.bind(this);
@@ -38,10 +39,24 @@ export default class SignupForm extends React.Component {
         }
     }
 
-    handlefiles(e){
-        e.preventDefault()
+    // handlefiles(e){
+    //     e.preventDefault()
+    //     this.setState({files: e.currentTarget.files[0]})
+    // }
+
+    handlefiles(e) {
+        const file = e.currentTarget.files[0];
         this.setState({files: e.currentTarget.files[0]})
-    }
+        const fileReader = new FileReader();
+    
+        fileReader.onloadend = () => {
+          this.setState({photoFile: file, photoUrl: fileReader.result});
+        };
+    
+        if (file) {
+          fileReader.readAsDataURL(file);
+        }
+      }
 
     handleSignup(e) {
         e.preventDefault();
@@ -66,6 +81,12 @@ export default class SignupForm extends React.Component {
 
     getSignUpPage1() {
         const errors = Object.values(this.props.errors);
+        
+        const preview = this.state.photoUrl ? 
+            <img src={this.state.photoUrl} className="profile__img--circle"/> : 
+            <img src="/api/images/41daf94ffdccb355db7a624258d02f60" className="profile__img--circle"/>;
+        // console.log(this.state.photoUrl);
+     
         return (
             <div className="form__box">
                 <div onClick={this.props.closeModal} className="close-x">X</div> 
@@ -74,8 +95,25 @@ export default class SignupForm extends React.Component {
                     <h2>Start with the Basics</h2>
                 </div>
 
-                <div className="file_input_for_testing">
+                {/* <div className="file_input_for_testing">
                     <input type="file" name="image" onChange={this.handlefiles} accept="image/*"/>
+                </div> */}
+
+                <div>
+                    Update profile picture
+                </div>
+                <div className="profile__file">
+                    <div className="profile__file--edit">
+                        <input type="file" 
+                        className="profile__file--edit custom-file-input" 
+                        onChange={this.handlefiles}/>
+                    
+                    </div>
+                    <input type="file" 
+                    className="custom-file-input" 
+                    onChange={this.handlefiles}/> 
+                    {preview}
+                                    
                 </div>
 
                 <div className="form__group">

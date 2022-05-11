@@ -155,3 +155,47 @@
     top: 410px;
     left:  50px;
 }
+
+/* Avatar */
+.profile__file{
+
+    display: flex;
+    position: relative;
+       
+    padding: 10px 0px;
+    margin: 10px 10px;
+    min-height: 120px;
+}
+
+.profile__file--edit{
+    position:absolute;
+    z-index: 999999;
+    height: 100px;
+    width: 100%;
+
+}
+
+.profile__img--circle{
+    position:absolute;
+    top: 5px;
+    left: 150px;
+    width: 120px;
+    height: 100%;
+    border-radius: 100px; 
+    border: 1px solid gray;
+    object-fit: cover;
+}
+
+.profile__avatar{
+    margin-bottom: 50px;
+} 
+
+.custom-file-input {
+    position: relative;
+    color: transparent;
+    cursor: pointer;
+}
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+   

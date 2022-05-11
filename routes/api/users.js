@@ -150,9 +150,10 @@ router.get("/:id", (req, res) => {
 });
 
 // Update a user profile
-router.post("/:id", (req, res) => {
+router.post("/:id", upload.single('image'), (req, res) => {
     User.findById(req.params.id)
-        .then(user => {
+        .then(async (user) => {
+       
             if (!user) {
                 return res.status(404).json({ nouserfound: "No user found with that ID" })
             } else {
@@ -163,6 +164,15 @@ router.post("/:id", (req, res) => {
                 user.education = req.body.education
                 user.location = req.body.location
                 if(req.body.aboutMe) user.aboutMe = req.body.aboutMe
+
+                if(req.file) {
+                    const result = await uploadFile(req.file)
+                    console.log(result)
+                    user.profilePhotoPath = `/api/images/${result.Key}`
+                    await unlinkFile(req.file.path)
+                } 
+
+                
                 user.save().then(user => res.json(JSON.parse(userShow(user))));
             }
         })
