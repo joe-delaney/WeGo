@@ -8,11 +8,12 @@ export class ProfilePhotos extends React.Component {
     super(props);
   }
 
-  render(){   
+  render(){ 
+    let photoPaths = this.props.user ? this.props.user.extraPhotoPaths : [];
     return (      
       <div className='profile__photo'>
-        {(this.props.user.id === this.props.currentUserId) ? <UploadPhotoFormContainer /> : null }
-        {this.props.user.extraPhotoPaths.map( photo => <PhotoContainer user={this.props.user} photo={photo} /> )}
+        {(this.props.user && (this.props.user.id === this.props.currentUserId)) ? <UploadPhotoFormContainer /> : null }
+        {photoPaths.map( (photo, idx) => <PhotoContainer key={idx} user={this.props.user} photo={photo} /> )}
       </div>
     )
   }
