@@ -15,6 +15,9 @@ class Profile extends React.Component {
 
     componentDidMount() {
         this.props.fetchUser(this.props.match.params.userId)
+        if(!this.props.activitiesFetched) {
+            this.props.fetchActivities();
+        }
     }
 
     render() {
