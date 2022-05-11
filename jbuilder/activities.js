@@ -1,6 +1,7 @@
 const jbuilder = require('jbuilder')
 const User = require('../models/User');
 
+
 const activityShow = (activity) => {
     return jbuilder.encode(json => {
         json.extract(activity, 'id', 'title', 'time', 'host', 'requestedAttendees', 'approvedAttendees', 'deniedAttendees','tag', 'location', 'description', 'price', 'duration', 'capacity', 'closed', 'tag');

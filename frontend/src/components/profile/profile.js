@@ -5,8 +5,6 @@ import NavBarContainer from "../nav/navbar_container";
 import ProfileNavBar from "./profile_navbar"
 import ProfileFeed from "./profile_feed"
 
-import './profile.css'
-
 class Profile extends React.Component {
     constructor(props) {
       super(props);
@@ -14,9 +12,19 @@ class Profile extends React.Component {
     }
 
     componentDidMount() {
+        console.log("mounted")
         this.props.fetchUser(this.props.match.params.userId)
         if(!this.props.activitiesFetched) {
             this.props.fetchActivities();
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log(prevProps);
+        console.log(this.props);
+        if(prevProps.match.params.userId !== this.props.match.params.userId &&
+            !this.props.user) {
+            this.props.fetchUser(this.props.match.params.userId)
         }
     }
 

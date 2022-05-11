@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './profile_photos.css';
-import IndexItemctivity from '../activities/index_item_activity'
+import IndexItemActivity from '../activities/index_item_activity'
 
 
 class ProfileAbout extends React.Component {
@@ -44,9 +44,11 @@ class ProfileAbout extends React.Component {
                     <button onClick={() => this.props.openModal("editProfile")} className='btn btn--accent btn--small'>Edit Profile</button>
                 </div>
             ) : <div></div>
+        
+        let allActivities = this.props.user ? this.props.user.allActivities.sort((a, b) => a.time > b.time ? 1 : -1) : [];
 
         return(
-            <div className='profile__about'>
+            // <div className='profile__about'>
                 <div className='profile__about--left'>
                     {editButton} 
                     <ul className="list">
@@ -56,21 +58,17 @@ class ProfileAbout extends React.Component {
                         {aboutMe}
                     </ul>  
                 </div>
-
-                <div className='profile__about--right'>
-                  
-                    <IndexItemctivity 
-                        image="https://psychology-spot.com/wp-content/uploads/2019/10/new-music.jpg"
-                        titile ="Shopping"
-                        date = "05/20/202"
-                        Location =" NYC"  
-                        renderClass="profile__activtiy--col"                
-                    />
-                   
-            
-
-                </div>
-            </div>
+                // <div className='profile__about--right'>
+                //     {allActivities.map((activity, idx) => (
+                //         <IndexItemActivity
+                //             key={idx}
+                //             activity={activity}
+                //             renderClass="profile__activtiy--col"
+                //             openModal={this.props.openModal}
+                //         />
+                //     ))}
+                // </div>
+            // </div>
         )
     }
 
