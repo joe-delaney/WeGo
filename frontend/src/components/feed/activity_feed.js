@@ -34,6 +34,7 @@ export default class ActivityFeed extends React.Component {
 
     getActivities() {
         let activities = Array.isArray(this.props.activities) ? this.props.activities : [];
+        if(!this.seeMore) activities = activities.slice(0, 4);
         let createNewActivity = this.props.loggedIn ? (
             <div style={{ backgroundImage: `url(https://img.icons8.com/android/344/plus.png)`}} onClick={() => this.props.openModal("createActivity")} className="story">
                 <h4> Host an Activity!</h4>
