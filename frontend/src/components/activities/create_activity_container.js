@@ -4,7 +4,7 @@ import {createActivity} from "../../actions/activity_actions";
 import {closeModal} from "../../actions/modal_actions";
 
 const mapStateToProps = state => ({
-    currentUserId: state.session.user.id
+    currentUser: state.entities.users[state.session.user.id]
 })
 
 const mapDispatchToProps = dispatch => ({

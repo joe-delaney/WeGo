@@ -2,10 +2,30 @@ import React from "react";
 import "./activityshow.css";
 import * as DateUtil from "../../util/date_util"
 import {Link} from "react-router-dom"
+import PendingRequestItem from "./pending_request_item";
 
 export default class ShowActivity extends React.Component {
     constructor(props) {
         super(props);
+
+        this.requestToJoin = this.requestToJoin.bind(this);
+    }
+
+    componentDidMount() {
+        if(this.props.activity) {
+            this.props.fetchUser(this.props.activity.host);
+            this.props.requestedAttendees.forEach((userId) => {
+                this.props.fetchUser(userId);
+            })
+        }
+    }
+
+    requestToJoin() {
+        let activity = {
+            id: this.props.activity.id,
+            requestedAttendee: this.props.currentUserId
+        }
+        this.props.updateActivity(activity);
     }
 
     render() {
@@ -14,9 +34,39 @@ export default class ShowActivity extends React.Component {
         let activityDate = activityTime ? DateUtil.convertToDate(activityTime) : "";
         let activityTimeLabel = activityTime ? DateUtil.convertToTime(activityTime) : "";
         let activityLocation = this.props.activity ? this.props.activity.location : "";
-        let activityHost = this.props.activity ? this.props.activity.host : "";
+        let activityHost = this.props.host ? this.props.host : undefined
+        let hostName = activityHost ? (`${activityHost.fname} ${activityHost.lname}`) : "";
+        let hostId = activityHost ? activityHost.id : "";
         let activityDescription = (this.props.activity && 
             this.props.activity.description) ? this.props.activity.description : "";
+
+        let pendingRequests = hostId === this.props.currentUserId ? (
+            <div>
+                <strong>Pending requests</strong>
+                {this.props.requestedAttendees.map((id, idx) => (
+                    <PendingRequestItem 
+                        key={idx}
+                        user={this.props.user(id)}
+                        closeModal={this.props.closeModal}
+                    />
+                ))}
+                
+            </div>
+        ) : null;
+        
+        let requestToJoin = null;
+        if (hostId !== this.props.currentUserId && this.props.currentUserId &&
+            this.props.requestedAttendees.includes(this.props.currentUserId)) {
+            requestToJoin =
+                <div>
+                    <span>Awaiting response from host</span>
+                </div>
+        } else if (hostId !== this.props.currentUserId && this.props.currentUserId) {
+            requestToJoin =
+                <div>
+                    <button onClick={this.requestToJoin}>Request to join!</button>
+                </div>
+        }
 
         return (
             <div className="activity-show-container">
@@ -26,8 +76,8 @@ export default class ShowActivity extends React.Component {
                 <h2 className="activity-show-title">{activityTitle}</h2>
                 <div>
                     <strong>Hosted by: </strong>
-                    <Link to={`/profile/${activityHost}`} onClick={this.props.closeModal}>
-                        <span className="activity-show-host">{`${activityHost}`}</span>
+                    <Link to={`/profile/${hostId}`} onClick={this.props.closeModal}>
+                        <span className="activity-show-host">{`${hostName}`}</span>
                     </Link>
                 </div>
                 <div>
@@ -45,6 +95,8 @@ export default class ShowActivity extends React.Component {
                 <div>
                     <strong>Who: </strong>
                 </div>
+                {pendingRequests}
+                {requestToJoin}
             </div>
         )
     }

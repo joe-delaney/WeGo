@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const User = require('./User').schema;
 
 
 // How much info above and beyond the id's will we need to embed?
@@ -24,6 +25,10 @@ const ActivitySchema = new Schema({
         ref: 'users'
     }],
     approvedAttendees: [{
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    }],
+    deniedAttendees: [{
         type: Schema.Types.ObjectId,
         ref: 'users'
     }],
