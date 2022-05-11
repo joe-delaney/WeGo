@@ -2,6 +2,7 @@
     height: 200px;
     width: 400px;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 .show__activity--option{
