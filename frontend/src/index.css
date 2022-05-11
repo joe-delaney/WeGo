@@ -84,6 +84,7 @@
   a {
     text-decoration: none;
     cursor: pointer;
+    color: var(--color-headings);
   }
   
   
@@ -130,6 +131,12 @@
   padding: 1rem 1.5rem;
 }
 
+.input-label {
+  color: var(--color-headings);
+  font-size: 15px;
+  margin-left: 10px;
+  font-weight: 700;
+}
 
 /* Buttons */
 .btn {
@@ -203,7 +210,12 @@
   padding: 10px 10px;
   font-size: 1rem;
   font-weight: 700;
+}
 
+.btn--medium {
+  padding: 10px 10px;
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 

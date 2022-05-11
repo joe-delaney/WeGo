@@ -57,6 +57,10 @@ const UserSchema = new Schema({
         type: [String],
         default: []
     },
+    activities: [{
+        type: Schema.Types.ObjectId,
+        ref: 'activities'
+    }],
     thumbsUp: {
         type: Number,
         default: 0

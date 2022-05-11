@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     fetchActivities: (query) => dispatch(fetchActivities(query)),
-    openModal: (modal) => dispatch(openModal(modal))
+    openModal: (modal, activityId) => dispatch(openModal(modal, activityId))
 })
 
 const FeedIndexContainer = connect(mapStateToProps, mapDispatchToProps)(FeedIndex);

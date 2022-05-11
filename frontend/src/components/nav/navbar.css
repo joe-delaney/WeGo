@@ -30,8 +30,7 @@
     width: 45px;
     height: 40px;
     border: 6px solid white;
-    object-fit: cover;
-    
+    object-fit: cover;  
 }
 
 
@@ -119,7 +118,7 @@
     font-size: 1rem;
     color: var(--color-headings);
 }
-F
+
 .nav__right{
     display: flex;
     flex-direction: row;
