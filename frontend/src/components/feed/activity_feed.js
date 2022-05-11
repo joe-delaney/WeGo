@@ -21,7 +21,11 @@ export default class ActivityFeed extends React.Component {
         ) : null;
         return (
             <div className='acivity_feed'>
-                <h2>Upcoming events</h2>
+                <div className='acivity_feed__heaher'>
+                    <h2>Upcoming Acivities</h2>
+                    <p>MORE Acivities</p>
+                </div>
+                
                 <div className='activityreel'>
                     <ActivityItem
                         image="https://psychology-spot.com/wp-content/uploads/2019/10/new-music.jpg"
