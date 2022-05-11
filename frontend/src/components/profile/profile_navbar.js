@@ -27,7 +27,8 @@ class ProfileFeed extends React.Component {
                         { this.props.user ? <img src={this.props.user.profilePhotoPath} className='profile__useravatar' /> : null }
                     </div>
                     <div className='profile__userinfo--heading'>
-                            <h1>{fullName} {pronouns}</h1>
+                            <h1>{fullName}</h1>
+                            <h2>{pronouns}</h2>
                             <p>{age}</p>
                             {/* <p>Attended 0 Events </p> */}
                         {/* <div>

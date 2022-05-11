@@ -9,7 +9,7 @@
     align-items: flex-end;
     box-shadow: 0 0 5px rgb(207, 207, 207);
     position: fixed;
-    z-index: 9999;
+    z-index: 99;
     width: 100%;
     top:0;
 }
