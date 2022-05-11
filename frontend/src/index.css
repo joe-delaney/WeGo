@@ -84,6 +84,7 @@
   a {
     text-decoration: none;
     cursor: pointer;
+    color: var(--color-headings);
   }
   
   

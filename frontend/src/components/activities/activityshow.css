@@ -9,10 +9,12 @@
     display: flex;
     flex-direction: column;
     padding: 10px 30px;
+    max-width: 500px;
 }
 
 .activity-show-header {
     width: 100%;
+    max-width: 500px;
 }
 
 .activity-show-title {
@@ -67,4 +69,16 @@
 
 .pending-request-name {
     font-size: 18px;
+}
+
+.activity-show-container > div > strong {
+    color: var(--color-headings)
+}
+
+.activity-show-container > div > span {
+    color: var(--color-headings);
+}
+
+.pending-message {
+    color: var(--color-body-darker) !important;
 }

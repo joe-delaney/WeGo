@@ -57,6 +57,7 @@ export default class ShowActivity extends React.Component {
         let activityTimeLabel = activityTime ? DateUtil.convertToTime(activityTime) : "";
         let activityLocation = this.props.activity ? this.props.activity.location : "";
         let activityHost = this.props.host ? this.props.host : undefined
+        let activityCapacity = this.props.activity ? this.props.activity.capacity : "";
         let hostName = activityHost ? (`${activityHost.fname} ${activityHost.lname}`) : "";
         let hostId = activityHost ? activityHost.id : "";
         let activityDescription = (this.props.activity && 
@@ -80,17 +81,22 @@ export default class ShowActivity extends React.Component {
         ) : null;
         
         let requestToJoin = null;
-        if (hostId !== this.props.currentUserId && this.props.currentUserId &&
+        if(this.props.approvedAttendees.length+1 >= activityCapacity) {
+            requestToJoin =
+            <div>
+                <span className="pending-message">This activity has reached its max capacity</span>
+            </div>
+        } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
             this.props.requestedAttendees.includes(this.props.currentUserId)) {
             requestToJoin =
                 <div>
-                    <span>Awaiting response from host</span>
+                    <span className="pending-message">Awaiting response from host</span>
                 </div>
         } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
             this.props.deniedAttendees.includes(this.props.currentUserId)) {
             requestToJoin =
                 <div>
-                    <span>Sorry, this host doesn't think you're a good match</span>
+                    <span className="pending-message">Sorry, this host doesn't think you're a good match</span>
                 </div>
         } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
             !this.props.approvedAttendees.includes(this.props.currentUserId)) {

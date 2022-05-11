@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const User = require('./User').schema;
 
 
 // How much info above and beyond the id's will we need to embed?
