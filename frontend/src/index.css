@@ -131,6 +131,12 @@
   padding: 1rem 1.5rem;
 }
 
+.input-label {
+  color: var(--color-headings);
+  font-size: 15px;
+  margin-left: 10px;
+  font-weight: 700;
+}
 
 /* Buttons */
 .btn {
