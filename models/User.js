@@ -76,7 +76,7 @@ const UserSchema = new Schema({
     },
     extraPhotoPaths: {
         type: [String],
-        max: 5
+        default: []
     },
     approved: {
         type: Boolean,

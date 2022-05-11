@@ -1,9 +1,7 @@
 import React from 'react';
 import ProfileAbout from "./profile_about";
 import ProfileActivities from "./profile_activities";
-import ProfilePhotos from "./profile_photos"
-
-
+import { ProfilePhotosContainer } from './profile_photos_container';
 
 class ProfileFeed extends React.Component {
     constructor(props) {
@@ -26,7 +24,7 @@ class ProfileFeed extends React.Component {
    
 
     render() {
-        let feedstatus= '';
+        let feedstatus;
         
         if(this.state.feedstatus === "about"){
             feedstatus= 
@@ -96,7 +94,7 @@ class ProfileFeed extends React.Component {
                         Activities
                 </div> 
             </div> 
-            <ProfilePhotos />
+            <ProfilePhotosContainer user={this.props.user} />
         </> 
         }
         return(

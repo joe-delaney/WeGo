@@ -7,5 +7,14 @@ export const fetchUser = (userId) => {
 
 //Update a specific user
 export const updateUser = (user) => {
-    return axios.post(`/api/users/${user.id}`, user);
+    return axios.patch(`/api/users/${user.id}`, user);
+};
+
+export const uploadPhoto = user => {
+    return axios.post(`/api/users/${user.get('id')}/upload`, user);
+};
+
+export const deletePhoto = user => {
+    debugger
+    return axios.patch(`/api/users/${user.id}/delete`, user);
 };

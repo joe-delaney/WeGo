@@ -12,3 +12,9 @@ export const fetchUser = userId => dispatch => APIUtil.fetchUser(userId)
 
 export const updateUser = user => dispatch => APIUtil.updateUser(user)
     .then(user => dispatch(receiveUser(user.data)));
+
+export const uploadPhoto = photo => dispatch => APIUtil.uploadPhoto(photo)
+    .then(photo => dispatch(receiveUser(photo.data)));
+
+export const deletePhoto = photo => dispatch => APIUtil.deletePhoto(photo)
+    .then(photo => dispatch(receiveUser(photo.data)));
