@@ -115,17 +115,17 @@ export default class CreateActivity extends React.Component {
                                 id="tag-select" 
                                 className="input"
                                 onChange={this.handleInput("tag")}>
-                                <option value="DEFAULT" disabled>Choose a genre</option>
+                                <option value="DEFAULT" disabled>Tag</option>
                                 <option value="sports">Sports</option>
                                 <option value="education">Education</option>
-                                <option value="relax">Relaxing</option>
+                                <option value="relaxing">Relaxing</option>
                                 <option value="music">Music</option>
                                 <option value="shopping">Shopping</option>
                                 <option value="late-night">Late night</option>
                                 <option value="travel">Travel</option>
                                 <option value="entertainment">Entertainment</option>
-                                <option value="Food">Food</option>
-                                <option value="Casual">Casual</option>
+                                <option value="food">Food</option>
+                                <option value="casual">Casual</option>
                             </select>
                         </div>
                         <div className="input-group">
@@ -135,7 +135,7 @@ export default class CreateActivity extends React.Component {
                                 id="activity-cost" 
                                 className="input"
                                 onChange={this.handleInput("cost")}>
-                                <option value="DEFAULT" disabled>Activity Cost</option>
+                                <option value="DEFAULT" disabled>Cost</option>
                                 <option value="0">Free</option>
                                 <option value="1">$</option>
                                 <option value="2">$$</option>
@@ -150,7 +150,7 @@ export default class CreateActivity extends React.Component {
                                 id="activity-duration" 
                                 className="input"
                                 onChange={this.handleInput("duration")}>
-                                <option value="DEFAULT" disabled>Activity Duration</option>
+                                <option value="DEFAULT" disabled>Duration</option>
                                 <option value="1">Less than an hour</option>
                                 <option value="2">1-2 hours</option>
                                 <option value="3">2-4 hours</option>

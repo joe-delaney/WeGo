@@ -39,15 +39,15 @@ const tags = [
     },
     {
         title: "entertainment",
-        img: ""
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdtcDt9X-HeMsuWpjjl-nK4Yo4stYF4_dijg&usqp=CAU"
     },
     {
         title: "food",
-        img: ""
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTmp-CfQ-albJX7ez9aZxkJ6Pbr-eZj3r5cA&usqp=CAU"
     },
     {
         title: "casual",
-        img: ""
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfHtTRfRmet4QKgJo5NyxuzlqxYdRJQEuOWQ&usqp=CAU"
     }
 ]
 
