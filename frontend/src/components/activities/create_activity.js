@@ -31,13 +31,6 @@ export default class CreateActivity extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.createActivity(this.state)
-        .then(activity => {
-            let user = {
-                id: this.props.currentUser.id,
-                hostedActivity: activity.id
-            }
-            this.props.updateUser(user);
-        });
         this.props.closeModal();
     }
 

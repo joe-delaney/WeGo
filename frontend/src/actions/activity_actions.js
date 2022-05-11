@@ -1,4 +1,5 @@
 import * as APIUtil from '../util/activities_api_util';
+import { updateUser } from './user_actions';
 
 export const RECEIVE_ACTIVITIES = "RECEIVE_ACTIVITIES";
 export const RECEIVE_ACTIVITY = "RECEIVE_ACTIVITY";
@@ -23,7 +24,14 @@ export const fetchActivities = query => dispatch => APIUtil.fetchActivities(quer
     .then(activities => dispatch(receiveActivities(activities.data)));
 
 export const createActivity = activity => dispatch => APIUtil.createActivity(activity)
-    .then(activity => dispatch(receiveActivity(activity.data)));
+    .then(activity => {
+        dispatch(receiveActivity(activity.data))
+        let user = {
+            id: activity.data.host._id,
+            hostedActivity: activity.data.id
+        };
+        dispatch(updateUser(user));
+    });
 
 export const updateActivity = activity => dispatch => APIUtil.updateActivity(activity)
     .then(activity => dispatch(receiveActivity(activity.data)));

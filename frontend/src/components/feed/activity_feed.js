@@ -41,21 +41,28 @@ export default class ActivityFeed extends React.Component {
             </div>
         ) : null;
 
-        let bottomButton = this.state.seeMore ? (
-            <div className='activity-feed-bottom'>
-                <button onClick={this.seeLess} className='btn'>See less</button>
-            </div >
-        ) : (
-            <div className = 'activity-feed-bottom'>
-                <button onClick={this.seeMore} className = 'btn'>See more</button>
-            </div >
-        );
+        let bottomButton = null;
+        if(activities.length > 0) {
+            bottomButton = this.state.seeMore ? (
+                <div className='activity-feed-bottom'>
+                    <button onClick={this.seeLess} className='btn'>See less</button>
+                </div >
+            ) : (
+                <div className = 'activity-feed-bottom'>
+                    <button onClick={this.seeMore} className = 'btn'>See more</button>
+                </div >
+            );
+        }
+
+        let activityFeedHeader = activities.length ? (
+            <div className='acivity_feed__heaher'>
+                <h2>Top Matches</h2>
+            </div>
+        ) : null;
 
         return (
             <div className='acivity_feed'>
-                <div className='acivity_feed__heaher'>
-                    <h2>Top Matches</h2>
-                </div>
+                {activityFeedHeader}
                 
                 <div className='activityreel'>
                     {/* <ActivityItem
