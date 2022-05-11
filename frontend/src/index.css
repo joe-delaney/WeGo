@@ -1,6 +1,6 @@
 :root {
     --color-backgroud: #243b52;
-    --color-callout: #012f5e;
+    --color-callout: #0d4175;
     --color-primary: #2584ff;
     --color-secondary: #00d9ff;
     --color-accent: #ff3400;
@@ -28,7 +28,7 @@
   }
   
   body {
-    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 2rem;
     line-height: 1.5;
     color: var(--color-body);
@@ -179,12 +179,12 @@
 }
 
 .btn--blue-dark{
-  background-color: var(--color-blue-dark);
+  background-color: var(--color-callout);
   color: #fff;
 }
 
 .btn--blue-dark:hover {
-  background: #50bed9;
+  background: #1767b6;
 }
 
 .btn--grey {

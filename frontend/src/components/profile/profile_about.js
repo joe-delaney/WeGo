@@ -58,7 +58,6 @@ class ProfileAbout extends React.Component {
                         {aboutMe}
                     </ul>  
                 </div>
-
                 // <div className='profile__about--right'>
                 //     {allActivities.map((activity, idx) => (
                 //         <IndexItemActivity

@@ -2,7 +2,7 @@ import React from "react";
 import NavBarContainer from "../nav/navbar_container";
 import ModalContainer from "../modal/modal_container";
 import ActivityFeed from './activity_feed';
-import Search from '../search/search';
+import SearchBar from '../search/search_bar';
 import Feature from '../feature/feature';
 import Footer from '../footer/footer'
 import './feed.css';
@@ -14,7 +14,7 @@ const FeedIndex = ({activities, fetchActivities, openModal, loggedIn}) => {
             <ModalContainer />
             <NavBarContainer />
             <div className="feel__body">
-                <Search/>
+                <SearchBar/>
                 <ActivityFeed 
                     fetchActivities={fetchActivities} 
                     activities={activities}
