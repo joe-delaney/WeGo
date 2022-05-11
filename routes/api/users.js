@@ -142,7 +142,8 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
         jobTitle: req.user.jobTitle,
         education: req.user.education,
         aboutMe: req.user.aboutMe,
-        profilePhotoPath: req.user.profilePhotoPath
+        profilePhotoPath: req.user.profilePhotoPath,
+        extraPhotoPaths: req.user.extraPhotoPaths
     });
 })
 
@@ -205,6 +206,36 @@ router.post("/:id", upload.single('image'), (req, res) => {
             }
         })
 })
+
+router.post('/:id/upload', upload.single('image'), async (req, res) => {
+    User.findById(req.params.id)
+        .then( async user => {
+            if (!user) {
+                return res.status(404).json({ nouserfound: "No user found with that ID" })
+            } else {
+                if(req.file) {
+                    const result = await uploadFile(req.file);
+                    await unlinkFile(req.file.path);
+                    user.extraPhotoPaths.push(`/api/images/${result.Key}`);
+                    user.save().then(user => res.json(JSON.parse(userShow(user))))
+                }
+            }
+        })
+});
+
+router.patch('/:id/delete', (req, res) => {
+    User.findById(req.params.id)
+        .then( user => {
+            if (!user) {
+                return res.status(404).json({ nouserfound: "No user found with that ID" })
+            } else {
+                user.extraPhotoPaths = user.extraPhotoPaths.filter(el => el !== req.body.photo)
+                user.save().then(user => res.json(JSON.parse(userShow(user))))
+            }
+        })
+});
+
+
 
 
 module.exports = router;
