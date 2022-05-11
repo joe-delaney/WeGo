@@ -1,0 +1,24 @@
+.activity__img{
+    height: 200px;
+    width: 400px;
+    object-fit: cover;
+}
+
+.show__activity--option{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 1.6rem;
+}
+
+.option--left{
+    flex: 0.4;
+}
+
+.option-right{
+    flex: 1;
+}
+
+.option-right > a{
+    text-decoration: none;
+}
