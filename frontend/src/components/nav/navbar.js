@@ -109,18 +109,19 @@ class NavBar extends React.Component {
                 <div>
                   <div className='nav__logo'>
                     <Link to="/">
-                        <span style={{ color: "#2596be", fontSize: 'xx-large', fontWeight: '800',  fontFamily: 'Cursive'}}>
-                          W   
+                        <span style={{ color: "#0071bc", fontSize: 'xx-large', fontWeight: '700'}}>
+                            W   
                         </span>
-                        <span style={{ color: "#3596be", fontSize: 'x-large', fontWeight: '700',  fontFamily: 'Cursive'}}>
-                          e  
+                        <span style={{ color: "#42b2fc", fontSize: 'x-large'}}>
+                            e  
                         </span>
-                        <span style={{ color: "#1e81b0", fontSize: 'x-large', fontWeight: '900',  fontFamily: 'Cursive'}}>
-                          G 
+                        <span style={{ color: "#3f89bb", fontSize: 'xx-large', fontWeight: '700'}}>
+                            G 
                         </span>
-                        <span style={{ color: "#0e81b0", fontSize: 'x-large',fontWeight: '600',  fontFamily: 'Cursive'}}>
-                          o  
+                        <span style={{ color: "#08c3fc", fontSize: 'x-large'}}>
+                            o  
                         </span>
+                      
                         
                     </Link>
                    
