@@ -7,12 +7,15 @@ export default class ActivityFeed extends React.Component {
         super(props);
 
         this.state = {
-            seeMore: false
+            upcomingPage: 1,
+            popularPage: 1
         }
 
         this.getActivities = this.getActivities.bind(this);
-        this.seeMore = this.seeMore.bind(this);
-        this.seeLess = this.seeLess.bind(this);
+        this.expandUpcomingLeft = this.expandUpcomingLeft.bind(this);
+        this.expandUpcomingRight = this.expandUpcomingRight.bind(this);
+        this.expandPopularRight = this.expandPopularRight.bind(this);
+        this.expandPopularLeft = this.expandPopularLeft.bind(this);
 
     }
 
@@ -20,77 +23,114 @@ export default class ActivityFeed extends React.Component {
         this.props.fetchActivities();
     }
 
-    seeMore() {
+    expandUpcomingRight() {
         this.setState({
-            seeMore: true
+            upcomingPage: this.state.upcomingPage+1
         })
     }
 
-    seeLess() {
+    expandUpcomingLeft() {
         this.setState({
-            seeMore: false
+            upcomingPage: this.state.upcomingPage - 1
+        })
+    }
+
+    expandPopularRight() {
+        this.setState({
+            popularPage: this.state.popularPage+1
+        })
+    }
+
+    expandPopularLeft() {
+        this.setState({
+            popularPage: this.state.popularPage - 1
         })
     }
 
     getActivities() {
-        let activities = Array.isArray(this.props.activities) ? this.props.activities : [];
-        if(!this.state.seeMore) activities = activities.slice(0, 4);
+        let upcomingActivities = Array.isArray(this.props.activities) ? this.props.activities.map(x => x).sort((a,b) => a.time > b.time ? 1 : -1) : [];
 
-        let bottomButton = null;
-        if(activities.length > 0) {
-            bottomButton = this.state.seeMore ? (
-                <div className='activity-feed-bottom'>
-                    <button onClick={this.seeLess} className='btn'>See less</button>
-                </div >
-            ) : (
-                <div className = 'activity-feed-bottom'>
-                    <button onClick={this.seeMore} className = 'btn'>See more</button>
-                </div >
-            );
+        switch(this.state.upcomingPage) {
+            case 1:
+                upcomingActivities = upcomingActivities.slice(0, 4);
+                break;
+            case 2:
+                upcomingActivities = upcomingActivities.slice(4, 8);
+                break;
+            case 3:
+                upcomingActivities = upcomingActivities.slice(8, 12);
+                break;
+        }
+        
+
+        let popularActivities = Array.isArray(this.props.activities) ? this.props.activities.map(x=>x).sort((a, b) => a.approvedAttendees.length <= b.approvedAttendees.length ? 1 : -1) : [];
+
+        switch (this.state.popularPage) {
+            case 1:
+                popularActivities = popularActivities.slice(0, 4);
+                break;
+            case 2:
+                popularActivities = popularActivities.slice(4, 8);
+                break;
+            case 3:
+                popularActivities = popularActivities.slice(8, 12);
+                break;
         }
 
-        let activityFeedHeader = activities.length ? (
+        let upcomingActivityFeedHeader = upcomingActivities.length ? (
             <div className='acivity_feed__heaher'>
-                <h2>Top Matches</h2>
+                <h2>Upcoming activities</h2>
+            </div>
+        ) : null;
+
+        let populaActivityFeedHeader = popularActivities.length ? (
+            <div className='acivity_feed__heaher'>
+                <h2>Popular activities</h2>
             </div>
         ) : null;
 
         return (
+            <div>
             <div className='acivity_feed'>
-                {activityFeedHeader}
+                    {upcomingActivityFeedHeader}
                 
                 <div className='activityreel'>
-                    {/* <ActivityItem
-                        image="https://psychology-spot.com/wp-content/uploads/2019/10/new-music.jpg"
-                        title="Music"
-                        openModal={this.props.openModal}
-                    />
-                    <ActivityItem
-                        image="https://chriskresser.com/wp-content/uploads/iStock-951861300-martin-dm.jpg"
-                        title="Traveling"
-                        openModal={this.props.openModal}
-                    />
-                    <ActivityItem
-                        image="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
-                        title="Shopping"
-                        openModal={this.props.openModal}
-                    />
-
-                    <ActivityItem
-                        image="https://previews.123rf.com/images/nd3000/nd30001707/nd3000170700616/82432507-group-of-happy-friends-hang-out-together.jpg"
-                        title="hangout"
-                    /> */}
-                    {activities.map((activity, idx) => (
+                    {upcomingActivities.map((activity, idx) => (
                         <ActivityItem
                             activity={activity}
                             key={idx}
                             image="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
                             title={activity.title}
                             openModal={this.props.openModal}
+                            lastItem={idx === upcomingActivities.length-1}
+                            firstItem={idx === 0}
+                            page={this.state.upcomingPage}
+                            expandRight={this.expandUpcomingRight}
+                            expandLeft={this.expandUpcomingLeft}
                         />
                     ))}
                 </div>
-                {bottomButton}
+            </div>
+                <div className='acivity_feed'>
+                    {populaActivityFeedHeader}
+
+                    <div className='activityreel'>
+                        {popularActivities.map((activity, idx) => (
+                            <ActivityItem
+                                activity={activity}
+                                key={idx}
+                                image="https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
+                                title={activity.title}
+                                openModal={this.props.openModal}
+                                lastItem={idx === popularActivities.length - 1}
+                                firstItem={idx === 0}
+                                page={this.state.popularPage}
+                                expandRight={this.expandPopularRight}
+                                expandLeft={this.expandPopularLeft}
+                            />
+                        ))}
+                    </div>
+                </div>
             </div>
         )
     }

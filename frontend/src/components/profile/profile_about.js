@@ -13,28 +13,28 @@ class ProfileAbout extends React.Component {
 
     render() {
         let jobTitle = this.props.user && this.props.user.jobTitle ? (
-            <li  className="nav__item">
+            <li  className="bio__item">
                 <strong>Job title: </strong>
                 <p>{this.props.user.jobTitle}</p>
             </li>
         ) : <div></div>
 
         let location = this.props.user && this.props.user.location ? (
-            <li  className="nav__item">
+            <li  className="bio__item">
                 <strong>Based in: </strong>
                 <p>{this.props.user.location}</p>
             </li>
         ) : <div></div>
 
         let education = this.props.user && this.props.user.education ? (
-            <li  className="nav__item">
+            <li  className="bio__item">
                 <strong>Education: </strong>
                 <p>{this.props.user.education}</p>
             </li>
         ) : <div></div>
 
         let aboutMe = this.props.user ? (
-            <li className="nav__item">
+            <li className="bio__item">
                 <strong>Bio: </strong>
                 <p>{this.props.user.aboutMe}</p>
             </li>) : <p>Tell everyone more about you!</p>;
@@ -45,10 +45,10 @@ class ProfileAbout extends React.Component {
                     <button onClick={() => this.props.openModal("editProfile")} className='btn btn--blue-dark btn--small'>Edit Profile</button>
                 </div>
             ) : <div></div>
+
         
         let allActivities = this.props.user ? this.props.user.allActivities.sort((a, b) => a.time > b.time ? 1 : -1) : [];
         let activity = allActivities[0];
-
         let activitytitle = activity ? activity.title : "";
         let activityTime = activity ? activity.time : "";
         let activityDate = activityTime ? DateUtil.convertToDate(activityTime) : "";
@@ -57,7 +57,6 @@ class ProfileAbout extends React.Component {
   
        
         return(
-            // <div className='profile__about'>
                 <div className='profile__about--left'>
                     <div className='profile__about--intro'>
                         <div className='profile__about--edit'>
@@ -82,17 +81,6 @@ class ProfileAbout extends React.Component {
 
                     </div>
                 </div>
-                // <div className='profile__about--right'>
-                //     {allActivities.map((activity, idx) => (
-                //         <IndexItemActivity
-                //             key={idx}
-                //             activity={activity}
-                //             renderClass="profile__activtiy--col"
-                //             openModal={this.props.openModal}
-                //         />
-                //     ))}
-                // </div>
-            // </div>
         )
     }
 

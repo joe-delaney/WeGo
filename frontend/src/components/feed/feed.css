@@ -17,3 +17,37 @@
     width: 70px;
     height: 70px;
 }
+
+.expand-arrow {
+    width:30px;
+    height: 30px;
+}
+
+.expand-arrow-container {
+    border-radius: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    box-shadow: 0 2px 8px 0 #2e3e481f,
+    0 2px 4px 0 #2e3e481f;
+    position:absolute;
+    cursor: pointer;
+}
+
+.expand-arrow-container:hover {
+    box-shadow: 0 2px 12px 5px #2e3e481f,
+    0 2px 4px 0 #2e3e481f;
+    width: 45px;
+    height: 45px;
+}
+
+.expand-arrow-right {
+    margin-left: calc(14%);
+}
+
+.expand-arrow-left {
+    margin-right: calc(14%);
+    transform: rotate(180deg);
+}
