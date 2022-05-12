@@ -11,8 +11,8 @@ export default class Feature extends React.Component {
         return(
             <footer className="footer">
                 <div className="footer__brand">
-                <p className="footer__copyright">©2022 WeGo. All rights
-            reserved.</p>
+                <div className="footer__copyright">©2022 WeGo. All rights
+            reserved.</div>
                 </div>        
             </footer>
 

@@ -1,5 +1,7 @@
 
 import React from 'react'
+import * as DateUtil from "../../util/date_util"
+import PersonIcon from '@mui/icons-material/Person';
 
 const ActivityItem = ({title, openModal, activity, lastItem, firstItem, page, expandRight, expandLeft}) => {
   let activityId = activity ? activity.id : -1
@@ -16,14 +18,26 @@ const ActivityItem = ({title, openModal, activity, lastItem, firstItem, page, ex
     </div>
   ) : null;
 
+  let activityTitle = activity ? activity.title : "";
+  let activityTime = activity ? activity.time : "";
+  let activityDate = activityTime ? DateUtil.convertToDate(activityTime) : "";
+  let activityTimeLabel = activityTime ? DateUtil.convertToTime(activityTime) : "";
+  let activityLocation = activity ? activity.location : "";
+
   return (
     <div className='activity__item'>
         <div style={{backgroundImage: `url(${activityImg})` }} 
           className="activity"
           onClick={() => openModal("showActivity", activityId)}>   
         </div>
-        <div>
-            <h4>{title}</h4>
+        <div className='activity_details'>
+            <div className='activity_details--title'>{activityTitle}</div>
+            <div className='activity_details--date'>{`${activityDate} at ${activityTimeLabel}`}</div>
+            <div className='activity_details--location'>Location: {activityLocation}</div>
+            <div className='activity_details--option'>
+              <div className='activity_details--people'><PersonIcon sx={{fontSize: 25, color: '#0d4175'}}/> 0</div>
+              <div className='activity_details--join'>JOIN</div>
+            </div>
         </div>
         {expandRightButton}
         {expandLeftButton}
