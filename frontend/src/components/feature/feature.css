@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     /* margin: 30px auto; */
-    width: 80%;
+    width: 70%;
     padding: 10px 0px;
     
 }
@@ -22,6 +22,7 @@
 
 .feature__content{
     padding: 0 20px;
+    flex: 1
 }
 
 .feature__heading {
@@ -33,9 +34,6 @@
 }
 
 @media screen and (min-width: 768px) {
-    .feature:nth-of-type(even) .feature__content {
-        order: 2;
-    }
 
     .feature__block{
         display: flex;
@@ -43,6 +41,7 @@
       
     }
     .feature__image{
+        width: 100%;
         flex: 1;
     }
    

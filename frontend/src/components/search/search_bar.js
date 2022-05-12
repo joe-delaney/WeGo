@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import './search.css'
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -9,43 +8,46 @@ class Search extends React.Component {
     constructor(props) {
       super(props);
 
+      this.state = {
+        query: ""
+      }
+
+      this.handleInput = this.handleInput.bind(this);
+      this.handleSearch = this.handleSearch.bind(this);
+      this.handleEnter = this.handleEnter.bind(this);
     }
-    componentDidMount() {
-      window.addEventListener('scroll', this.handleScroll, { passive: true })
-   }
 
-
-    componentWillUnmount() {
-      window.removeEventListener('scroll', this.handleScroll)
+    handleInput(type) {
+      return e => {
+        this.setState({
+          [type]: e.target. value
+        })
+      }
     }
 
-    handleScroll(event) {
-      // do something like call `this.setState`
-      // access window.scrollY etc
-      
-      // const feed__search = document.getElementById('feed__search');
-
-      // if (window.scrollY > 90){  
-      //   document.getElementById("feed__search").style.display = "none";   
-      //   document.getElementById("feed__search_sticky").style.display = "";
-      // }else{
-      //   document.getElementById("feed__search").style.display = "";     
-      //   document.getElementById("feed__search_sticky").style.display = "none";
-                
-      // }
+    handleSearch(e) {
+      this.props.history.push({
+        pathname: '/search',
+        state: {
+          query: this.state.query,
+        },
+      })
     }
+
+  handleEnter(e) {
+    if (e.charCode === 13) {
+      this.handleSearch();
+    }
+  }
 
     render() {
         return(
           <>
-          
-            <div className="container ">
-                                
+            <div className="container ">          
                     <div className={`feed__search ${this.props.search}`} id="feed__search">
-                        <input type="text" className="search__input" placeholder="Start to Search..." />
-                        <button className="search-btn btn--blue-dark "><SearchIcon sx={{fontSize: 30 }}/></button>
+                        <input onKeyPress={this.handleEnter} value={this.state.query} onChange={this.handleInput("query")} type="text" className="search__input" placeholder="Start to Search..." />
+                        <button onClick={this.handleSearch} className="search-btn btn--blue-dark "><SearchIcon sx={{fontSize: 30 }}/></button>
                     </div>                         
-                   
             </div>            
             
           </>

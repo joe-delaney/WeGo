@@ -7,19 +7,25 @@ import Feature from '../feature/feature';
 import Footer from '../footer/footer'
 import './feed.css';
 
-const FeedIndex = ({activities, fetchActivities, openModal, loggedIn}) => {
+const FeedIndex = ({activities, currentUser, currentUserId, updateActivity, createChatGroup, fetchActivities, openModal, loggedIn, history}) => {
     return (
-        <>
-                       
+        <>        
             <ModalContainer />
             <NavBarContainer />
             <div className="feel__body">
-                <SearchBar/>
+                <SearchBar
+                    history={history}
+                />
                 <ActivityFeed 
                     fetchActivities={fetchActivities} 
                     activities={activities}
                     openModal={openModal}
-                    loggedIn={loggedIn}/> 
+                    loggedIn={loggedIn}
+                    currentUserId={currentUserId}
+                    currentUser={currentUser} 
+                    updateActivity={updateActivity}
+                    createChatGroup={createChatGroup} />
+
                 <Feature />              
 
             </div>

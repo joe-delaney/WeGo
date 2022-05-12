@@ -13,8 +13,8 @@ const App = () => (
     <Switch>
         <Route exact path="/" component={FeedIndexContainer} />
         <Route exact path="/profile/:userId" component={ProfileContainer} />
-        <Route exact path="/find/" component={SearchIndexContainer} />
         <Route path="/"> { <Redirect to='/' /> } </Route>
+        <Route exact path="/search" component={SearchIndexContainer} />
     </Switch>
     <ProtectedRoute path ='/' component={MessagesContainer} />
     </>
