@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import NavBarContainer from "../nav/navbar_container";
 import ModalContainer from "../modal/modal_container";
-import SearchBar from './search_bar';
-import SearchFilter  from './search_filter';
-import SearchResult from './search_result';
+import SearchResults from './search_results';
+import SearchInputs from './search_inputs';
 import './search.css';
 
 class SearchIndex extends React.Component {
@@ -13,18 +11,27 @@ class SearchIndex extends React.Component {
 
     }
 
+    componentDidMount() {
+        if (!this.props.activitiesFetched) this.props.fetchActivities();
+    }
+        
+
     render(){
         return(
             <>
-                <ModalContainer />
-                              
+                <ModalContainer />         
                 <div className="search__top">
                     <NavBarContainer /> 
-                    <SearchBar search="search_filter"/>
-                    <SearchFilter />
+                    <SearchInputs 
+                        search={this.props.search}
+                        history={this.props.history}/>
                 </div>
                 <div className="search__body">
-                    <SearchResult />
+                    <SearchResults 
+                        activities={this.props.activities}
+                        searchResults={this.props.searchResults}
+                        openModal={this.props.openModal}
+                    />
                 </div>
                
             </>

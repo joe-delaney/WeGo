@@ -2,10 +2,12 @@ import { connect } from "react-redux";
 import { fetchActivities } from "../../actions/activity_actions";
 import { openModal } from "../../actions/modal_actions";
 import FeedIndex from "./feed_index";
+import {withRouter} from "react-router-dom";
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
     activities: Object.values(state.entities.activities),
-    loggedIn: state.session.isAuthenticated
+    loggedIn: state.session.isAuthenticated,
+    history: ownProps.history
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -14,4 +16,4 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const FeedIndexContainer = connect(mapStateToProps, mapDispatchToProps)(FeedIndex);
-export default FeedIndexContainer;
+export default withRouter(FeedIndexContainer);
