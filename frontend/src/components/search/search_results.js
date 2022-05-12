@@ -1,6 +1,7 @@
 import React from 'react';
 import './search.css';
 import SearchResult from './search_result';
+import {Link} from "react-router-dom";
 
 class SearchResults extends React.Component {
     constructor(props) {
@@ -22,7 +23,13 @@ class SearchResults extends React.Component {
                 ))}
             </ul>
         ) : (
-            <div>We couldn't find any activities matching your search criteria. Feel free to change your search or check out popular activities here</div>
+            <div className="no-results-found">
+                <img className="no-results-img" src="https://cdn-icons-png.flaticon.com/512/7409/7409412.png"></img>
+                <div className="no-results-text">
+                    <strong className='no-results-text-main'>We couldn't find any activities matching your search criteria.</strong>
+                    <Link to="/" className='link-to-home'>Check out popular activities here</Link>
+                </div>
+            </div>
         );
 
         return(
