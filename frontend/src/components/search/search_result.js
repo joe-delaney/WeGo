@@ -8,9 +8,17 @@ class SearchResult extends React.Component {
     }
 
     render(){
+        console.log("about to render");
+        console.log(this.props.activities);
         return(
-            <div className='SearchResult'>                
-                <h1>SearchResult</h1>
+            <div className='search-result'>                
+                <ul>
+                    {this.props.activities.map((activity, idx) => (
+                        <li key={idx}>
+                            <span>{activity.title}</span>
+                        </li>
+                    ))}
+                </ul>
             </div>
         )
     }

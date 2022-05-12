@@ -1,16 +1,20 @@
 import { connect } from 'react-redux';
-import { searchActivities } from '../../actions/activity_actions';
+import { fetchActivities, searchActivities } from '../../actions/activity_actions';
 import SearchIndex from './search_index';
+import { selectSearchResults } from '../../actions/search_selectors';
 
 const mapStateToProps = state => {
     return {
-       activities: state.entities.activities
+       activities: selectSearchResults(state.entities),
+       activitiesFetched: Object.values(state.entities.activities).length,
+       searchResults: state.entities.searchResults
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        search: (queryObj) => dispatch(searchActivities(queryObj))
+        search: (queryObj) => dispatch(searchActivities(queryObj)),
+        fetchActivities: () => dispatch(fetchActivities())
     }
 }
 

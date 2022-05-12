@@ -14,6 +14,11 @@ class SearchIndex extends React.Component {
 
     }
 
+    componentDidMount() {
+        if (!this.props.activitiesFetched) this.props.fetchActivities();
+    }
+        
+
     render(){
         return(
             <>
@@ -25,7 +30,10 @@ class SearchIndex extends React.Component {
                         search={this.props.search}/>
                 </div>
                 <div className="search__body">
-                    <SearchResult />
+                    <SearchResult 
+                        activities={this.props.activities}
+                        searchResults={this.props.searchResults}
+                    />
                 </div>
                
             </>

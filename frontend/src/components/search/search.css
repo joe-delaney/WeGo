@@ -69,11 +69,13 @@ right: 0px;
   border-right: 10px solid transparent !important;
 }
 
-.SearchResult{
+.search-result{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 1000px;
+  color: black;
 }
 
 

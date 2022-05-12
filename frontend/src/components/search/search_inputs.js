@@ -20,10 +20,13 @@ export default class SearchInputs extends React.Component {
     }
 
     handleInput(type) {
-        return e => {
-            this.setState({
+        return async (e) => {
+            await this.setState({
                 [type]: e.target.value
             })
+            let stateWithoutTitle = Object.assign({}, this.state);
+            delete stateWithoutTitle.title;
+            this.props.search(stateWithoutTitle);
         }
     }
 
@@ -89,6 +92,23 @@ export default class SearchInputs extends React.Component {
                            <option value="2">1-2 hours</option>
                            <option value="3">2-4 hours</option>
                            <option value="4">4+ hours</option>
+                       </select>
+                </div>
+                <div className=''>
+                       <select
+                           defaultValue="100"
+                           name="max-participants"
+                           id="activity-capacity"
+                           className="Search__filter--option"
+                           onChange={this.handleInput("capacity")}>
+                           <option value="100">Any participants</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                           <option value="5">5</option>
+                           <option value="6">6</option>
+                           <option value="7">7</option>
+                           <option value="100">8+</option>
                        </select>
                 </div>
             </div>

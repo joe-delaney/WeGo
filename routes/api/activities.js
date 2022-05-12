@@ -110,6 +110,7 @@ router.put('/search', async (req, res) => {
     if (tagId) searchObj.tag = tagId;
     if(req.body.price) searchObj.price = { $lte: parseInt(req.body.price)} ;
     if (req.body.duration) searchObj.duration = { $lte: parseInt(req.body.duration) };
+    if (req.body.capacity) searchObj.capacity = { $lte: parseInt(req.body.capacity) };
     const filters = { $or: [searchObj] }
 
     //Create searchBarObj for query passed in  
