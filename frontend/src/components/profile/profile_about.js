@@ -11,7 +11,6 @@ class ProfileAbout extends React.Component {
     }
 
     render() {
-        console.log(this.props.user);
         let jobTitle = this.props.user && this.props.user.jobTitle ? (
             <li  className="bio__item">
                 <strong>Job title: </strong>
