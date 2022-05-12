@@ -70,10 +70,8 @@
     height: 208px;
     margin-right: 10px;
     border: 6px solid white;
-    object-fit: cover;
-      
+    object-fit: cover;  
 }
-
 
 .profile__option{
     font-size: medium;
@@ -182,7 +180,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  
     background-color: white;
     border-radius: 15px;
     justify-content: flex-start;
@@ -190,6 +187,10 @@
     width: 100%;
     padding: 10px 10px;
     margin-bottom: 20px;
+}
+
+.profile__about--next {
+    cursor: pointer;
 }
 
 .profile__about--next > div{
@@ -208,9 +209,7 @@
     background-color: white;
     /* padding: 10px 10px; */
     border-radius: 15px;
-    
     margin-bottom: 25px;
-     
 }
 
 
@@ -220,7 +219,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-     
 }
 
 .profile__about--edit{
