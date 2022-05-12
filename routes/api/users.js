@@ -41,18 +41,6 @@ router.post('/signup', upload.single('image'), async (req, res) => {
                     education: req.body.education,
                     aboutMe: req.body.aboutMe
                 })
-                // upload images to server
-                // const uploadPromises = []
-                // for (let i = 0; i < req.files.length; i++) {
-                //     uploadPromises.push(uploadFile(req.files[i]))
-                // }
-                // await Promise.all(uploadPromises)
-
-                // const unlinkPromises = []
-                // for (let i = 0; i < req.files.length; i++) {
-                //     unlinkPromises.push(unlinkFile(req.files[i].path))
-                // }
-                // await Promise.all(unlinkPromises)
 
                 if(req.file) {
                     const result = await uploadFile(req.file)
@@ -174,6 +162,7 @@ router.get("/:id", (req, res) => {
 
 // Update a user profile
 router.post("/:id", upload.single('image'), (req, res) => {
+    console.log(req.body)
     User.findById(req.params.id)
         .then(async (user) => {
             if (!user) {
@@ -186,6 +175,7 @@ router.post("/:id", upload.single('image'), (req, res) => {
                 user.education = req.body.education
                 user.location = req.body.location
                 if(req.body.aboutMe) user.aboutMe = req.body.aboutMe
+                if (req.body.remove) user.profilePhotoPath = "/api/images/41daf94ffdccb355db7a624258d02f60"
 
 
                 if(req.file) {

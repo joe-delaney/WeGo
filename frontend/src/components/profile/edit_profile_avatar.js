@@ -5,7 +5,7 @@ export default class EditProfileAvatar extends React.Component {
     constructor(props) {
         super(props);     
         this.state = {
-            files: {}, 
+            files: null, 
             photoUrl: this.props.user.profilePhotoPath,
             remove: false
         }
@@ -20,7 +20,7 @@ export default class EditProfileAvatar extends React.Component {
         const fileReader = new FileReader();
     
         fileReader.onloadend = () => {
-          this.setState({photoFile: file, photoUrl: fileReader.result});
+          this.setState({photoFile: file, photoUrl: fileReader.result, remove: false});
         };
     
         if (file) {
@@ -30,23 +30,17 @@ export default class EditProfileAvatar extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();   
-
-        if(this.state.files.name){
-           
-            let formData = new FormData();
-            formData.append('id', this.props.user.id)             
-            formData.append('image', this.state.files)
-            
-            this.props.updateProfile(formData);
-        }
-
+        let dataForm = new FormData();
+        dataForm.append('id', this.props.user.id)   
+        dataForm.append('remove', this.state.remove)          
+        if (this.state.files) dataForm.append('image', this.state.files)
+        this.props.updateProfile(dataForm);
         this.props.closeModal();
     }
 
     removePhoto(e){
         e.preventDefault()
-        this.setState({photoUrl: "/api/images/41daf94ffdccb355db7a624258d02f60"})
-        this
+        this.setState({photoUrl: "/api/images/41daf94ffdccb355db7a624258d02f60", files: null, remove: true})
     }
 
     render(){
@@ -80,7 +74,7 @@ export default class EditProfileAvatar extends React.Component {
                     <div className="form__submit avatar__edit">
                         <button
                             className="btn btn--secondary "
-                            onClick={this.handleSubmit}>Update</button>
+                            onClick={this.handleSubmit}>Save changes</button>
                     </div>                      
                 </form>
              
