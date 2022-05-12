@@ -72,8 +72,9 @@ class ProfileAbout extends React.Component {
                         </ul>  
                     </div>
                     <div className='profile__about--next'>
-                        <h4>Next Activity</h4>
-                        <div >
+                        <h4 className='next-activity-header'>Next Activity</h4>
+                        {/* <div onClick={this.props.openModal("activityShow", activity.id)}> */}
+                        <div>
                             <p>{activitytitle}</p>
                             <p><AccessTimeIcon /> {activityDate}</p>
                             <p><LocationOnIcon /> {activitylocation}</p>
