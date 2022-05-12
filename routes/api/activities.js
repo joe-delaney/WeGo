@@ -100,7 +100,6 @@ router.delete("/:id", (req, res) => {
 })
 
 router.get('/search', (req, res) => {
-    console.log(req.body);
     const searchObj = {closed: false};
     // figure out search by key word.
     // split the search terms into multiple things.
@@ -117,7 +116,6 @@ router.get('/search', (req, res) => {
     // // if(req.body.capacity) searchObj.capacity = req.body.capacity;
     // if (req.body.location) searchObj.location = req.body.location;
     // searchObj.closed = false;
-
 
     if (req.body.tag) searchObj['tag.title'] = req.body.tag;
     if(req.body.price) searchObj.price = { $lte: req.body.price} ;
