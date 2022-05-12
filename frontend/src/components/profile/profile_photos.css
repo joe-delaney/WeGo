@@ -44,8 +44,12 @@
 }
 
 .addphoto{
+    display: none;
+}
+
+.upload-photo-icon {
     width: 45px;
-    height: 45px;  
+    height: 45px;
     cursor: pointer;
     padding: 5px 5px;
 }
