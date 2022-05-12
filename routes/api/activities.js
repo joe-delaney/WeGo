@@ -101,27 +101,49 @@ router.delete("/:id", (req, res) => {
 
 router.get('/search', (req, res) => {
     console.log(req.body);
+
     const searchObj = {};
     // figure out search by key word.
     // split the search terms into multiple things.
     // if(req.body.title) searchObj.title = req.body.title;
-    // // if(req.body.time) searchObj.time = req.body.time;
+    if(req.body.time) searchObj.time = req.body.time;
     // if(req.body.host) searchObj.host = req.body.host;
-    // // if(req.body.approvedAttendees) searchObj.approvedAttendees = req.body.approvedAttendees;
+    // if(req.body.approvedAttendees) searchObj.approvedAttendees = req.body.approvedAttendees;
     if (req.body.tag) searchObj.tag = req.body.tag;
     // if(req.body.description) searchObj.description = req.body.description;
     // take care of price. Strictly less than relation.
-    // if(req.body.price) searchObj.price = req.body.price;
-    // // needs to be a range of some kind. Strictly less than relation
-    // if(req.body.duration) searchObj.duration = req.body.duration;
-    // // if(req.body.capacity) searchObj.capacity = req.body.capacity;
+    // {$lt:25}}
+    if(req.body.price) searchObj.price = {$lt: parseInt(req.body.price) + 1};
+    // needs to be a range of some kind. Strictly less than relation
+    if(req.body.duration) searchObj.duration = {$lt: parseInt(req.body.duration) + 1};
+    // if(req.body.capacity) searchObj.capacity = req.body.capacity;
     if (req.body.location) searchObj.location = req.body.location;
-    // searchObj.closed = false;
+    searchObj.closed = false;
+
+
+
+// {
+//     $search: {
+//         "index": "<index-name>",
+//         "<operator-name>"|"<collector-name>": {
+//           <operator-specification>|<collector-specification>
+//         }
+//     }
+// }
+    searchObj =  { $search: { title: "Shopping" } }
+
+    // searchObj = { $search: {
+    //     "title"
+    // }}
+    // db.supplies.runCommand("text", {search:"printer ink"})
+    console.log(searchObj);
 
     // title, location, date
-    console.log(searchObj);
+    // Activity.find( {price: {$lt: 1}} )
+
+    // searchObj = { tag: '627c61cf8e02aa78f0992aac' }
     Activity.find(searchObj)
-        // .populate("tag")
+        .populate("tag")
         .sort({ date: -1 })
         .then(activities => res.json(activities))
         .catch(err => res.status(404).json({ noactivitiesfound: 'No activities found' }));

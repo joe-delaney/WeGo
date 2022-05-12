@@ -63,5 +63,6 @@ const ActivitySchema = new Schema({
     timestamps: true
 });
 
+ActivitySchema.createIndex( { title : "text" } );
 
 module.exports = Activity = mongoose.model('Activity', ActivitySchema);
