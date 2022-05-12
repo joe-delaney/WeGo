@@ -7,6 +7,8 @@ import ChatRoundedIcon from '@mui/icons-material/ChatRounded';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import HomeIcon from '@mui/icons-material/Home';
+import SearchIcon from '@mui/icons-material/Search';
+
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -22,6 +24,15 @@ class NavBar extends React.Component {
 
     render() {
 
+      const params = this.props.url.split("/");
+      const serachbar = (params[params.length -2] === 'profile') ? 
+                          <div className='navbar__search' >
+                              <input type="text" className="navbar__search__input" placeholder="" />
+                              <button className='navbar__search-btn'><SearchIcon sx={{fontSize: 28, color: 'white'}} /></button>
+                              
+                          </div>  
+                         :  ""
+
       let addIcon = this.props.loggedIn ? (
         <div className="nav__right--option" onClick={() => this.props.openModal("createActivity")}>
           <AddIcon sx={{ fontSize: 30 }} />
@@ -36,7 +47,7 @@ class NavBar extends React.Component {
               <Link to="/"> <HomeIcon sx={{fontSize: 30 }}/></Link>
             </div>         
         
-              {addIcon} 
+            {addIcon} 
          
             <div  className="nav__right--option">
               <ChatRoundedIcon sx={{fontSize: 25 }}/>
@@ -85,11 +96,13 @@ class NavBar extends React.Component {
                         <span style={{ color: "#0e81b0", fontSize: 'x-large',fontWeight: '600',  fontFamily: 'Cursive'}}>
                           o  
                         </span>
-                        <span>          
-                        </span>
+                        
                     </Link>
+                   
                   </div>
+                 
                 </div>
+                {serachbar}
               </div>
      
                  

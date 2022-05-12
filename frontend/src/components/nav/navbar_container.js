@@ -4,11 +4,12 @@ import {openModal} from "../../actions/modal_actions"
 import {fetchUser} from'../../actions/user_actions';
 import NavBar from './navbar';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
     return {
         loggedIn: state.session.isAuthenticated,
         currentUser: state.session.user ? state.session.user.id : null,
-        user: state.session.user ? state.entities.users[state.session.user.id] : null
+        user: state.session.user ? state.entities.users[state.session.user.id] : null,
+        url: window.location.href
     };
 };
 
