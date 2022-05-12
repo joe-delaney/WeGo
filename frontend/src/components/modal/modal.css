@@ -32,17 +32,19 @@
   
   .close-x {
     position: absolute;
-    background-color: #eff2f5;
+    /* background-color: #eff2f5; */
     cursor: pointer;
     top: 5px;
     right: 17px;
-    padding: 1px 6px;
+    /* width: 25px;
+    height: 25px; */
+    border-radius: 30px;
     font-size: 20px;
     font-weight: 900;
     border-radius: 999px;
   }
   
   .close-x:hover{
-    background-color: lightgray;
-    font-size: 22px;
+    /* background-color: lightgray; */
+    font-size: 25px;
   }

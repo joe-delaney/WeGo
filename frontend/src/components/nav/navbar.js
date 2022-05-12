@@ -5,7 +5,8 @@ import Avatar from '@mui/material/Avatar';
 import AddIcon from '@mui/icons-material/Add';
 import ChatRoundedIcon from '@mui/icons-material/ChatRounded';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import LogoutIcon from '@mui/icons-material/Logout';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import HomeIcon from '@mui/icons-material/Home';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -20,31 +21,38 @@ class NavBar extends React.Component {
    }
 
     render() {
+
       let addIcon = this.props.loggedIn ? (
         <div className="nav__right--option" onClick={() => this.props.openModal("createActivity")}>
           <AddIcon sx={{ fontSize: 30 }} />
         </div>
       ) : null;
 
-
       const username = (this.props.user) ? this.props.user.fname + ' ' + this.props.user.lname : '';
         let navbarLinks = (this.props.loggedIn) ? (
-          <div className='nav__right'>   
-            {addIcon}         
+          <div className='nav__right'> 
+             
+            <div className="nav__right--option">
+              <Link to="/"> <HomeIcon sx={{fontSize: 30 }}/></Link>
+            </div>         
+        
+              {addIcon} 
+         
             <div  className="nav__right--option">
               <ChatRoundedIcon sx={{fontSize: 25 }}/>
             </div>
             <div  className="nav__right--option nav__menu--more">
               <ArrowDropDownRoundedIcon sx={{fontSize: 40 }}/>
               <div className='nav__menu'>
-                  <div className='nav__menu--option'>
-                        
-                        <img src={(this.props.user) ? this.props.user.profilePhotoPath : ""}  className="menu__avatar" />
-                        <Link to={`/profile/${this.props.currentUser}`}> Profile </Link> 
+                  <div className='nav__menu--option'>                        
+              
+                        <Avatar scr={(this.props.user) ? this.props.user.profilePhotoPath : ""} 
+                                sx={{fontSize: 25 }} className='nav__menu-img'/>
+                        <Link to={`/profile/${this.props.currentUser}`}> See your profile </Link> 
                   </div>
                   <div className='nav__menu--option'>
-                      <LogoutIcon  sx={{fontSize: 30 }}/>
-                      <Link to={'/'} onClick={this.props.logout}>   Logout</Link>
+                      <ExitToAppIcon  sx={{fontSize: 35 }} className='nav__menu-img'/>
+                      <Link to={'/'} onClick={this.props.logout}>   Logout </Link>
                   </div>
               </div>
             </div>

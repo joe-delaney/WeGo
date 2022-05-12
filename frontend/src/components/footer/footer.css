@@ -1,6 +1,6 @@
 /* Footer */
 .footer {
-    background: var(--color-body);
+    background: var(--color-callout);
     padding-top: 5rem;
     width: 100%;
     /* position: absolute; */

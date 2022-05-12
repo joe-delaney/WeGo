@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './profile_photos.css';
+import * as DateUtil from "../../util/date_util"
 import IndexItemActivity from '../activities/index_item_activity'
 
 
@@ -41,19 +42,44 @@ class ProfileAbout extends React.Component {
         let editButton = this.props.user && (this.props.user.id === this.props.currentUserId) ?
             (
                 <div className='profile__about--edit'>
-                    <button onClick={() => this.props.openModal("editProfile")} className='btn btn--accent btn--small'>Edit Profile</button>
+                    <button onClick={() => this.props.openModal("editProfile")} className='btn btn--blue-dark btn--small'>Edit Profile</button>
                 </div>
             ) : <div></div>
 
+        
+        let allActivities = this.props.user ? this.props.user.allActivities.sort((a, b) => a.time > b.time ? 1 : -1) : [];
+        let activity = allActivities[0];
+        let activitytitle = activity ? activity.title : "";
+        let activityTime = activity ? activity.time : "";
+        let activityDate = activityTime ? DateUtil.convertToDate(activityTime) : "";
+        let activitylocation = activity ? activity.location : "";
+        let activityImg = activity && activity.tag ? activity.tag.img : "https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1356&h=668&fit=crop"
+  
+       
         return(
                 <div className='profile__about--left'>
-                    {editButton} 
-                    <ul className="list">
-                        {location}
-                        {jobTitle}
-                        {education}
-                        {aboutMe}
-                    </ul>  
+                    <div className='profile__about--intro'>
+                        <div className='profile__about--edit'>
+                            {editButton} 
+                        </div>
+                       
+                        <ul className="list">
+                            {location}
+                            {jobTitle}
+                            {education}
+                            {aboutMe}
+                        </ul>  
+                    </div>
+                    <div className='profile__about--next'>
+                        <h4>Next Activity</h4>
+                        <div >
+                            {/* <img src={activityImg} className='profile__activtiy--img ' /> */}
+                            <p>{activitytitle}</p>
+                            <p>{activityDate}</p>
+                            <p>{activitylocation}</p>
+                         </div> 
+
+                    </div>
                 </div>
         )
     }

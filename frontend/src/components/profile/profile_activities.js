@@ -8,7 +8,7 @@ class ProfileActivities extends React.Component {
     }
 
     render() {
-      let allActivities = this.props.user ? this.props.user.allActivities.sort((a,b) => a.time > b.time ? 1 : -1) : [];
+        let allActivities = this.props.user ? this.props.user.allActivities.sort((a,b) => a.time > b.time ? 1 : -1) : [];
         return(
           <>
               {allActivities.map((activity, idx) => (

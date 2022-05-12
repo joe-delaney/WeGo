@@ -7,7 +7,7 @@
 
 .message{
     position: fixed;
-    bottom: 15px;
+    bottom: 30px;
     right: 30px;
     cursor: pointer;
 }
