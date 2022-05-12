@@ -51,6 +51,18 @@ const port = process.env.PORT || 5000;
 
 io.on('connection', (socket) => {
   console.log('User connected');
+  socket.on('join', function(room) {
+    console.log(`User has joined room ${room}`)
+    socket.join(room)
+  });
+  socket.on('message', function(rooms) {
+    console.log(`User has sent a message to ${rooms}`)
+    io.to(rooms).emit('message')
+  })
+  socket.on('leave', function(room) {
+    console.log(`User has left room ${room}`)
+    socket.leave(room)
+  });
   socket.on('disconnect', () => {
     console.log('User disconnected');
   });
