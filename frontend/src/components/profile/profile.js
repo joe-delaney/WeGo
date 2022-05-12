@@ -8,7 +8,6 @@ import ProfileFeed from "./profile_feed"
 class Profile extends React.Component {
     constructor(props) {
       super(props);
-
     }
 
     componentDidMount() {
