@@ -11,6 +11,9 @@ export default class Feature extends React.Component {
         return(
             <>
                 <div className='feature__block feature'>
+                    <div>
+                        <img className="feature__image" src="https://media3.giphy.com/media/cdEj5Qt1g0VI0cZnu3/giphy.gif" alt="" />
+                    </div>
                     <div className="feature__content">
                         <h3 className="feature__heading">Make new friends.</h3>
                         <p>
@@ -18,9 +21,6 @@ export default class Feature extends React.Component {
                             with them in an easy and simple way. Find other users, explore their profile and
                             interests, and message them to better understand one another.
                         </p>
-                    </div>
-                    <div>
-                        <img id="gif1" className="feature__image" src="https://media3.giphy.com/media/cdEj5Qt1g0VI0cZnu3/giphy.gif" alt="" />
                     </div>
 
                 </div>
