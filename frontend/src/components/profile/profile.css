@@ -182,7 +182,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  
     background-color: white;
     border-radius: 15px;
     justify-content: flex-start;
@@ -190,6 +189,10 @@
     width: 100%;
     padding: 10px 10px;
     margin-bottom: 20px;
+}
+
+.profile__about--next {
+    cursor: pointer;
 }
 
 .profile__about--next > div{

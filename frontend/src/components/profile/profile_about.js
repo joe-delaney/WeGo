@@ -55,7 +55,6 @@ class ProfileAbout extends React.Component {
         let activityDate = activityTime ? DateUtil.convertToDate(activityTime) : "";
         let activitylocation = activity ? activity.location : "";
         let activityImg = activity && activity.tag ? activity.tag.img : "https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1356&h=668&fit=crop"
-  
        
         return(
                 <div className='profile__about--left'>
@@ -71,9 +70,8 @@ class ProfileAbout extends React.Component {
                             {aboutMe}
                         </ul>  
                     </div>
-                    <div className='profile__about--next'>
+                    <div onClick={() => this.props.openModal("showActivity", activity._id)} className='profile__about--next'>
                         <h4 className='next-activity-header'>Next Activity</h4>
-                        {/* <div onClick={this.props.openModal("activityShow", activity.id)}> */}
                         <div>
                             <p>{activitytitle}</p>
                             <p><AccessTimeIcon /> {activityDate}</p>
