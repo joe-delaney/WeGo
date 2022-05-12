@@ -267,7 +267,6 @@ router.patch('/:id/delete', (req, res) => {
                         })
                         .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));
                 })
-                // .then(user => res.json(JSON.parse(userShow(user))))
             }
         })
 });

@@ -19,7 +19,7 @@ export class Photo extends React.Component {
     ) : null
 
     return (      
-      <div className='photo_render'>
+      <div onClick={() => this.props.openModal("showPhoto", this.props.photo)} className='photo_render'>
         {/* {(this.props.user.id === this.props.currentUserId) ? <button className="btn btn--secondary" onClick={this.handleSubmit}>X</button> : null } */}
         {deleteImageButton}
         <img src={this.props.photo} className="profile__photo--img" />
