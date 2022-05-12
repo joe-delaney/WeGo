@@ -44,6 +44,10 @@
     color: whitesmoke;
 }
 
+.team-info-label {
+    margin-left: 10px;
+}
+
 @media screen and (min-width: 950px) {
     .footer{
         display: flex;

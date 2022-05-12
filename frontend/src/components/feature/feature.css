@@ -5,15 +5,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     width: 75%;
-    padding: 10px 50px;
+    padding-left: 12%;
+    padding-right: 17%;
     
 }
 
 .feature {
     gap: 4rem 2rem;
-    margin: 4rem 12rem;
+    margin: 8rem 12rem;
+    margin-left: 0px;
+    margin-bottom: 60px;
 }
 
 .feature:first-of-type {
@@ -22,11 +25,17 @@
 
 .feature__content{
     padding: 0 20px;
-    flex: 1
+    flex: 1;
+    margin-right: 4%;
+}
+
+.feature__content-2 {
+    margin-left: 4%;
 }
 
 .feature__heading {
     margin: 1rem 0;
+    font-size: 60px;
 }
 
 .feature__image{
@@ -43,10 +52,9 @@
     .feature__block{
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-      
-      
+        width: 100%;    
     }
     .feature__image{
         width: 100%;
