@@ -9,20 +9,24 @@ router.post("/", (req, res) => {
         subscribers: [],
         messages: []
     })
-    if (req.body.hostId) subscribers.push(req.body.hostId);
-    if (req.body.requesterId) subscribers.push(req.body.requesterId);
-
+    if (req.body.hostId) newChatGroup.subscribers.push(req.body.hostId);
+    if (req.body.requesterId) newChatGroup.subscribers.push(req.body.requesterId);
     newChatGroup.save().then(chatGroup => {
         let newMessage = new Message({
             text: `Hi my name is ${req.body.requesterName} and I want to ${req.body.activityName} with you!`,
             author: req.body.requesterId,
             chatGroup: chatGroup.id
         })
-        chatGroup.messages.push(newMessage);
-        ChatGroup.findById(chatGroup.id)
-        .populate("messages")
-        .populate("subscribers")
-        .then(populatedChatGroup => res.json(populatedChatGroup))
+        newMessage.save().then(message => {
+            chatGroup.messages.push(message.id);
+            chatGroup.save().then(chatGroup => {
+                ChatGroup.findById(chatGroup.id)
+                .populate("messages")
+                .populate("subscribers")
+                .then(populatedChatGroup => res.json(populatedChatGroup))})
+            
+        })
+        
     });
 })
 
@@ -43,3 +47,5 @@ router.post("/:id", (req, res) => {
             }
         })
 })
+
+module.exports = router;

@@ -4,7 +4,7 @@ import ShowActivity from "./show_activity";
 import {fetchUser} from "../../actions/user_actions";
 import { updateActivity } from "../../actions/activity_actions";
 import { updateUser } from "../../actions/user_actions";
-import { createChatGroup } from "../../util/chat_group_api_util";
+import { createChatGroup } from "../../actions/chat_group_actions";
 
 const mapStateToProps = (state) => {
     let activity = state.ui.modalInfo ? state.entities.activities[state.ui.modalInfo] : null;

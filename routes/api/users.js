@@ -204,6 +204,9 @@ router.post("/:id", upload.single('image'), (req, res) => {
                     user.hostedActivities.push(req.body.hostedActivity);
                     user.allActivities.push(req.body.hostedActivity);
                 }
+                if(req.body.chatGroupId) {
+                    user.chatGroups.push(req.body.chatGroupId);
+                }
                 user.save().then(user => {
                     User.findById(user.id)
                         .populate({

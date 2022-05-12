@@ -66,15 +66,15 @@ export default class ShowActivity extends React.Component {
             requestedAttendee: this.props.currentUserId
         }
 
-        // let chatGroupInfo = {
-        //     hostId: this.props.activit.host._id,
-        //     requesterId: this.props.currentUserId,
-        //     requesterName: this.props.currentUser.fname,
-        //     activityName: this.props.activity.title
-        // }
+        let chatGroupInfo = {
+            hostId: this.props.activity.host._id,
+            requesterId: this.props.currentUserId,
+            requesterName: this.props.currentUser.fname,
+            activityName: this.props.activity.title
+        }
 
         this.props.updateActivity(activity);
-        // this.props.createChatGroup(chatGroupInfo);
+        this.props.createChatGroup(chatGroupInfo);
     }
 
     approveUser(userId) {
