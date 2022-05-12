@@ -12,7 +12,6 @@ class Profile extends React.Component {
     }
 
     componentDidMount() {
-        console.log("mounted")
         this.props.fetchUser(this.props.match.params.userId)
         if(!this.props.activitiesFetched) {
             this.props.fetchActivities();
@@ -20,8 +19,6 @@ class Profile extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log(prevProps);
-        console.log(this.props);
         if(prevProps.match.params.userId !== this.props.match.params.userId &&
             !this.props.user) {
             this.props.fetchUser(this.props.match.params.userId)

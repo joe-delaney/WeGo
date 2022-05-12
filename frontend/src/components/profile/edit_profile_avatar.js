@@ -29,8 +29,6 @@ export default class EditProfileAvatar extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();   
-        // debugger
-        console.log(this.props.user);
         
         if(this.state.files.name){
            

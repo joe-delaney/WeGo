@@ -27,7 +27,7 @@ const tags = [
     },
     {
         title: "shopping",
-        img: "https://img.icons8.com/android/344/plus.png"
+        img: "https://a.cdn-hotels.com/gdcs/production88/d1000/f1fd2bd5-e90f-48fa-85d1-840e2c4ace3b.jpg"
     },
     {
         title: "late-night",

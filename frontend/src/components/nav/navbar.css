@@ -1,5 +1,5 @@
 .nav {
-    background: #fff;
+    background: #0d4175;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -7,7 +7,7 @@
     padding-left: 5rem;
     padding-right: 1rem;
     align-items: flex-end;
-    box-shadow: 0 0 5px rgb(207, 207, 207);
+    box-shadow: 0 0 5px #0d4175;
     position: fixed;
     z-index: 99;
     width: 100%;
@@ -164,6 +164,14 @@
     /* border-bottom: 1px solid #222; */
     cursor: pointer;
     font-size: 1rem;
+    /* color: var(--color-body-darker); */
+    color: white;
+}
+
+.bio__item {
+    padding: 0.5rem 0.5rem;
+    /* border-bottom: 1px solid #222; */
+    cursor: pointer;
     color: var(--color-body-darker);
 }
   
