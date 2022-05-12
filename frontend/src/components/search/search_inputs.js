@@ -110,7 +110,7 @@ export default class SearchInputs extends React.Component {
                            id="activity-capacity"
                            className="Search__filter--option"
                            onChange={this.handleInput("capacity")}>
-                           <option value="100">Any participants</option>
+                           <option value="100">No max participants</option>
                            <option value="2">2</option>
                            <option value="3">3</option>
                            <option value="4">4</option>
