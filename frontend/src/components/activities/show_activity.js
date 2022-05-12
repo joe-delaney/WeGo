@@ -4,6 +4,8 @@ import * as DateUtil from "../../util/date_util"
 import {Link} from "react-router-dom"
 import PendingRequestItem from "./pending_request_item";
 import ApprovedUserItem from "./approved_user_item";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import './show_activity.css'
 
 export default class ShowActivity extends React.Component {
@@ -117,7 +119,7 @@ export default class ShowActivity extends React.Component {
 
         let pendingRequests = (hostId === this.props.currentUserId &&
             this.props.requestedAttendees.length) ? (
-            <div>
+            <div >
                 <strong>Pending requests</strong>
                 {this.props.requestedAttendees.map((user, idx) => (
                     <PendingRequestItem 
@@ -136,26 +138,30 @@ export default class ShowActivity extends React.Component {
         if (hostId !== this.props.currentUserId && 
             this.props.approvedAttendees.length >= activityCapacity) {
             requestToJoin =
-            <div>
+            <div className="show__activity--option option--item">
                 <span className="pending-message">This activity has reached its max capacity</span>
             </div>
         } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
             this.props.requestedAttendees.map(user => user._id).includes(this.props.currentUserId)) {
             requestToJoin =
-                <div>
+                <div className="show__activity--option option--item">
                     <span className="pending-message">Awaiting response from host</span>
                 </div>
         } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
             this.props.deniedAttendees.map(user => user._id).includes(this.props.currentUserId)) {
             requestToJoin =
-                <div>
+                <div className="show__activity--option option--item">
                     <span className="pending-message">Sorry, this host doesn't think you're a good match</span>
                 </div>
         } else if (hostId !== this.props.currentUserId && this.props.currentUserId &&
             !this.props.approvedAttendees.map(user => user._id).includes(this.props.currentUserId)) {
             requestToJoin =
-                <div>
-                    <button className="btn btn--blue-dark btn--request" onClick={this.requestToJoin}>Request to join!</button>
+                <div className="show__activity--option option--item">
+                    {/* <button className="btn btn--blue-dark btn--request" onClick={this.requestToJoin}></button> */}
+                    <div className='request--join' onClick={this.requestToJoin}>
+                        Request to join!
+                    
+                    </div>
                 </div>
         }
 
@@ -175,14 +181,28 @@ export default class ShowActivity extends React.Component {
             <div className="activity-show-container">
                 <div onClick={this.props.closeModal} className="close-x">X</div>
                 <h2 className="activity-show-title">{activityTitle}</h2>
+
                 <div className="activity-show-header">
                     <img src={activityImage} className="activity__img"></img>
                 </div>
                 
+             
                 <div className="show__activity--option">
                     <div className="option--left">
-                        <strong>Hosted by: </strong>
+                        <AccessTimeIcon sx={{fontSize: 20, color: '#0d4175'}}/>
                     </div>                
+                    <div className="option-right">
+                        {`${activityDate} at ${activityTimeLabel}`}
+                    </div>
+                </div>
+                <div className="show__activity--option">
+                    <div className="option--left">  
+                        <LocationOnIcon sx={{fontSize: 20, color: '#0d4175'}}/>
+                    </div>                
+                    <div className="option-right"><span>{activityLocation}</span></div>
+                </div>
+                <div className="show__activity--option">
+                    <div className="option--left">  <strong>Hosted by </strong></div>                
                     <div className="option-right">   
                         <Link to={`/profile/${hostId}`} onClick={this.props.closeModal}>
                         <span className="activity-show-host">{`${hostName}`}</span>
@@ -190,31 +210,23 @@ export default class ShowActivity extends React.Component {
                     </div>
                 </div>
                 <div className="show__activity--option">
-                    <div className="option--left"><strong>When: </strong></div>                
-                    <div className="option-right">{`${activityDate} at ${activityTimeLabel}`}</div>
-                </div>
-                <div className="show__activity--option">
-                    <div className="option--left">  <strong>Where: </strong></div>                
-                    <div className="option-right"><span>{activityLocation}</span></div>
-                </div>
-                <div className="show__activity--option">
-                    <div className="option--left"> <strong>What: </strong></div>                
+                    <div className="option--left"> <strong>What </strong></div>                
                     <div className="option-right"><span>{activityDescription}</span></div>
                 </div>
 
                 <div className="show__activity--option">
-                    <div className="option--left">  <strong>Who: </strong></div>                
-                    <div className="option-right">{approvedUsers}</div>
-                </div>
-
-                <div className="show__activity--option">
-                    <div className="option--left">  <strong>Price: </strong></div>                
+                    <div className="option--left">  <strong>Price </strong></div>                
                     <div className="option-right"> {activityCost}</div>
                 </div>
                 <div className="show__activity--option">
-                    <div className="option--left"> <strong>Duration: </strong></div>                
+                    <div className="option--left"> <strong>Duration </strong></div>                
                     <div className="option-right">  {activityDuration}</div>
                 </div>
+                <div className="show__activity--option">
+                    <div className="option--left"> <strong>Attendees </strong></div>                
+                    <div className="option-right"> {approvedUsers}</div>
+                </div>
+        
                 {pendingRequests}
                 {requestToJoin}
             </div>

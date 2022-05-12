@@ -9,8 +9,7 @@ import './feed.css';
 
 const FeedIndex = ({activities, fetchActivities, openModal, loggedIn, history}) => {
     return (
-        <>
-                       
+        <>        
             <ModalContainer />
             <NavBarContainer />
             <div className="feel__body">

@@ -3,7 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './profile_photos.css';
 import * as DateUtil from "../../util/date_util"
-import IndexItemActivity from '../activities/index_item_activity'
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 
 class ProfileAbout extends React.Component {
@@ -73,10 +74,9 @@ class ProfileAbout extends React.Component {
                     <div className='profile__about--next'>
                         <h4>Next Activity</h4>
                         <div >
-                            {/* <img src={activityImg} className='profile__activtiy--img ' /> */}
                             <p>{activitytitle}</p>
-                            <p>{activityDate}</p>
-                            <p>{activitylocation}</p>
+                            <p><AccessTimeIcon /> {activityDate}</p>
+                            <p><LocationOnIcon /> {activitylocation}</p>
                          </div> 
 
                     </div>
