@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import './search.css'
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -13,7 +12,6 @@ class Search extends React.Component {
     componentDidMount() {
       window.addEventListener('scroll', this.handleScroll, { passive: true })
    }
-
 
     componentWillUnmount() {
       window.removeEventListener('scroll', this.handleScroll)

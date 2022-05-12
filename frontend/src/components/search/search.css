@@ -26,6 +26,7 @@
   padding: 2rem 2rem;
   border: 0;
   cursor: pointer;
+  width: 100%;
 }
 
 
@@ -60,15 +61,12 @@ right: 0px;
   border: 0;
   cursor: pointer;
   outline: 0;
-  padding: 2rem 3rem;
+  padding: 2rem 2.5rem;
   margin-right: 20px;
   font-size: 1.5rem;
   font-weight: 500;
-}
-
-.search_filter{
-  
-
+  background-color: #efefef;
+  border-right: 10px solid transparent !important;
 }
 
 .SearchResult{
