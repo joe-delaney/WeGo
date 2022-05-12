@@ -1,15 +1,13 @@
 import React from 'react';
 import './search.css';
 
-class SearchResult extends React.Component {
+class SearchResults extends React.Component {
     constructor(props) {
       super(props);
 
     }
 
     render(){
-        console.log("about to render");
-        console.log(this.props.activities);
         return(
             <div className='search-result'>                
                 <ul>
@@ -24,4 +22,4 @@ class SearchResult extends React.Component {
     }
 }
 
-export default SearchResult;
+export default SearchResults;

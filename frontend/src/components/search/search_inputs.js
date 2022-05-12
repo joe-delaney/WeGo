@@ -8,7 +8,7 @@ export default class SearchInputs extends React.Component {
         super(props)
 
         this.state = {
-            title: "",
+            title: this.props.history.location.state && this.props.history.location.state.query ? this.props.history.location.state.query : "",
             tag: "",
             price: "4",
             duration: "4",
@@ -17,6 +17,13 @@ export default class SearchInputs extends React.Component {
 
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleEnter = this.handleEnter.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.history.location.state && this.props.history.location.state.query) {
+            this.props.search(this.state);
+        }
     }
 
     handleInput(type) {
@@ -24,15 +31,18 @@ export default class SearchInputs extends React.Component {
             await this.setState({
                 [type]: e.target.value
             })
-            let stateWithoutTitle = Object.assign({}, this.state);
-            delete stateWithoutTitle.title;
-            this.props.search(stateWithoutTitle);
-        }
+            if(type !== "title") this.props.search(this.state);
+        } 
     }
 
     handleSubmit(e) {
-        e.preventDefault();
         this.props.search(this.state);
+    }
+
+    handleEnter(e) {
+        if(e.charCode === 13) {
+            this.handleSubmit();
+        }
     }
 
     render() {
@@ -40,7 +50,7 @@ export default class SearchInputs extends React.Component {
         <>
             <div className="container ">
                 <div className={`feed__search ${this.props.search}`} id="feed__search">
-                    <input value={this.state.title} type="text" className="search__input" placeholder="Find your next adventure..."  onChange={this.handleInput("title")}/>
+                    <input onKeyPress={this.handleEnter} value={this.state.title} type="text" className="search__input" placeholder="Find your next adventure..."  onChange={this.handleInput("title")}/>
                     <button onClick={this.handleSubmit} className="search-btn btn--blue-dark "><SearchIcon sx={{ fontSize: 30 }} /></button>
                 </div>
             </div>
