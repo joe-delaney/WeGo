@@ -161,6 +161,15 @@
     /* border: 0;  */
 }
 
+.pending {
+    cursor:default;
+}
+
+.pending:hover {
+    background: transparent;
+    color: #0d4175;
+}
+
 
 @media screen and (max-width: 767px){
     .activity__item{ 

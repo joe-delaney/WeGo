@@ -15,21 +15,46 @@ class NavBar extends React.Component {
       super(props);
       this.state = {
         loggedIn: this.props.loggedIn,
-        scroll : ''
+        query: ""
       };
+
+      this.handleSearch = this.handleSearch.bind(this);
+      this.handleInput = this.handleInput.bind(this);
+      this.handleEnter = this.handleEnter.bind(this);
     }
     componentDidMount() {
       if (this.props.currentUser) this.props.fetchUser(this.props.currentUser)
-   }
+    }
+
+    handleInput(type) {
+      return e => {
+        this.setState({
+          [type]: e.target.value
+        })
+      }
+    }
+
+    handleSearch(e) {
+      this.props.history.push({
+        pathname: '/search',
+        state: {
+          query: this.state.query,
+        },
+      })
+    }
+
+    handleEnter(e) {
+      if (e.charCode === 13) {
+        this.handleSearch();
+      }
+    }
 
     render() {
-
       const params = this.props.url.split("/");
-      const serachbar = (params[params.length -2] === 'profile') ? 
+      const searchbar = (params[params.length -2] === 'profile') ? 
                           <div className='navbar__search' >
-                              <input type="text" className="navbar__search__input" placeholder="" />
-                              <button className='navbar__search-btn'><SearchIcon sx={{fontSize: 28, color: 'white'}} /></button>
-                              
+                              <input onKeyPress={this.handleEnter} onChange={this.handleInput("query")} value={this.state.query} type="text" className="navbar__search__input" placeholder="" />
+                              <button onClick={this.handleSearch} className='navbar__search-btn'><SearchIcon sx={{fontSize: 28, color: 'white'}} /></button>
                           </div>  
                          :  ""
 
@@ -102,7 +127,7 @@ class NavBar extends React.Component {
                   </div>
                  
                 </div>
-                {serachbar}
+                {searchbar}
               </div>
      
                  

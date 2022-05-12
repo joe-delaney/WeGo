@@ -107,6 +107,10 @@ export default class ActivityFeed extends React.Component {
                             page={this.state.upcomingPage}
                             expandRight={this.expandUpcomingRight}
                             expandLeft={this.expandUpcomingLeft}
+                            currentUserId={this.props.currentUserId}
+                            currentUser={this.props.currentUser}
+                            updateActivity={this.props.updateActivity}
+                            createChatGroup={this.props.createChatGroup} 
                         />
                     ))}
                 </div>
@@ -127,6 +131,10 @@ export default class ActivityFeed extends React.Component {
                                 page={this.state.popularPage}
                                 expandRight={this.expandPopularRight}
                                 expandLeft={this.expandPopularLeft}
+                                currentUserId={this.props.currentUserId}
+                                currentUser={this.props.currentUser}
+                                updateActivity={this.props.updateActivity}
+                                createChatGroup={this.props.createChatGroup} 
                             />
                         ))}
                     </div>

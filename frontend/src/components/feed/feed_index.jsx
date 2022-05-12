@@ -7,7 +7,7 @@ import Feature from '../feature/feature';
 import Footer from '../footer/footer'
 import './feed.css';
 
-const FeedIndex = ({activities, fetchActivities, openModal, loggedIn, history}) => {
+const FeedIndex = ({activities, currentUser, currentUserId, updateActivity, createChatGroup, fetchActivities, openModal, loggedIn, history}) => {
     return (
         <>        
             <ModalContainer />
@@ -20,7 +20,12 @@ const FeedIndex = ({activities, fetchActivities, openModal, loggedIn, history}) 
                     fetchActivities={fetchActivities} 
                     activities={activities}
                     openModal={openModal}
-                    loggedIn={loggedIn}/> 
+                    loggedIn={loggedIn}
+                    currentUserId={currentUserId}
+                    currentUser={currentUser} 
+                    updateActivity={updateActivity}
+                    createChatGroup={createChatGroup} />
+
                 <Feature />              
 
             </div>
