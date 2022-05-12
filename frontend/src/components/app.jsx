@@ -5,7 +5,6 @@ import ProfileContainer from './profile/profile_container';
 import { Route } from 'react-router-dom';
 import FeedIndexContainer from './feed/feed_index_container';
 import SearchIndexContainer from './search/search_container';
-
 import {MessagesContainer} from './messages/messages_container'
 
 const App = () => (
@@ -13,10 +12,10 @@ const App = () => (
     <Switch>
         <Route exact path="/" component={FeedIndexContainer} />
         <Route exact path="/profile/:userId" component={ProfileContainer} />
-        <Route path="/"> { <Redirect to='/' /> } </Route>
         <Route exact path="/search" component={SearchIndexContainer} />
+        <Route path="/"> { <Redirect to='/' /> } </Route>
     </Switch>
-    <ProtectedRoute path ='/' component={MessagesContainer} />
+    {/* <ProtectedRoute path ='/' component={MessagesContainer} /> */}
     </>
     
 );
