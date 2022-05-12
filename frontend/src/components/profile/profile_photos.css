@@ -26,9 +26,10 @@
 
 .photo-modal {
     border-radius: 10px;
-    padding: 15rem;
     align-items: center;
     justify-content: center;
+    max-width: 70%;
+    margin-left: 16rem;
 }
 
 .photo_render{
