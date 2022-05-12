@@ -14,10 +14,14 @@ export class Photo extends React.Component {
 }
 
   render(){
+    let deleteImageButton = (this.props.user.id === this.props.currentUserId) ? (
+    <RemoveCircleRoundedIcon onClick={this.handleSubmit} sx={{ fontSize: 28, color: '#efeeee' }} className='delete__photo' />
+    ) : null
+
     return (      
       <div className='photo_render'>
         {/* {(this.props.user.id === this.props.currentUserId) ? <button className="btn btn--secondary" onClick={this.handleSubmit}>X</button> : null } */}
-        <RemoveCircleRoundedIcon  sx={{fontSize: 28, color: '#efeeee' }} className='delete__photo'/>
+        {deleteImageButton}
         <img src={this.props.photo} className="profile__photo--img" />
       </div>
     )
