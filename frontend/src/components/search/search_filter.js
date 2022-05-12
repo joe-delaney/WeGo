@@ -13,20 +13,16 @@ class SearchFilter extends React.Component {
             <>
                 <div className="Search__filter">
                     <div className=''>
-                        <button className="Search__filter--option">Any day <KeyboardArrowDownIcon /></button>
+                        <button className="Search__filter--option">Any tag <KeyboardArrowDownIcon /></button>
                     </div>
                     <div className=''>
-                        <button className="Search__filter--option">Any type <KeyboardArrowDownIcon /></button>
+                        <button className="Search__filter--option">Any cost <KeyboardArrowDownIcon /></button>
                     </div>
                     <div className=''>
-                        <button className="Search__filter--option">Any distance <KeyboardArrowDownIcon /></button>
+                        <button className="Search__filter--option">Any duration <KeyboardArrowDownIcon /></button>
                     </div>
                     <div className=''>
-                        <button className="Search__filter--option">Any category <KeyboardArrowDownIcon /></button>
-                    </div>
-
-                    <div className=''>
-                        <button className="Search__filter--option">Sort by:Relavtive <KeyboardArrowDownIcon /></button>
+                        <button className="Search__filter--option">Any capacity <KeyboardArrowDownIcon /></button>
                     </div>
                 </div>
             </>
