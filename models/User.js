@@ -69,6 +69,10 @@ const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Activity'
     }],
+    chatGroups: [{
+        type: Schema.Types.ObjectId,
+        ref: 'ChatGroup'
+    }],
     thumbsUp: {
         type: Number,
         default: 0
