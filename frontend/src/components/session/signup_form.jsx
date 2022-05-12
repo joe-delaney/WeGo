@@ -86,7 +86,6 @@ export default class SignupForm extends React.Component {
         const preview = this.state.photoUrl ? 
             <img src={this.state.photoUrl} className="profile__img--circle"/> : 
             <img src="/api/images/41daf94ffdccb355db7a624258d02f60" className="profile__img--circle"/>;
-        // console.log(this.state.photoUrl);
      
         return (
             <div className="form__box">

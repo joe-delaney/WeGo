@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const TagSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        index: true
     },
     img: {
         type: String,

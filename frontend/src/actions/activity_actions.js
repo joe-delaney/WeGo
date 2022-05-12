@@ -23,6 +23,9 @@ const removeActivity = (activityId) => ({
 export const fetchActivities = query => dispatch => APIUtil.fetchActivities(query)
     .then(activities => dispatch(receiveActivities(activities.data)));
 
+export const searchActivities = query => dispatch => APIUtil.searchActivities(query)
+    .then(activities => dispatch(receiveActivities(activities.data)));
+
 export const createActivity = activity => dispatch => APIUtil.createActivity(activity)
     .then(activity => {
         dispatch(receiveActivity(activity.data))
