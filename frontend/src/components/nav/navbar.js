@@ -21,16 +21,23 @@ class NavBar extends React.Component {
    }
 
     render() {
+
+      let addIcon = this.props.loggedIn ? (
+        <div className="nav__right--option" onClick={() => this.props.openModal("createActivity")}>
+          <AddIcon sx={{ fontSize: 30 }} />
+        </div>
+      ) : null;
+
       const username = (this.props.user) ? this.props.user.fname + ' ' + this.props.user.lname : '';
         let navbarLinks = (this.props.loggedIn) ? (
           <div className='nav__right'> 
              
             <div className="nav__right--option">
               <Link to="/"> <HomeIcon sx={{fontSize: 30 }}/></Link>
-            </div>          
-            <div className="nav__right--option">
-              <AddIcon sx={{fontSize: 30 }}/>
-            </div>
+            </div>         
+        
+              {addIcon} 
+         
             <div  className="nav__right--option">
               <ChatRoundedIcon sx={{fontSize: 25 }}/>
             </div>

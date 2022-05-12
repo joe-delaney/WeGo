@@ -7,7 +7,7 @@
     padding-left: 5rem;
     padding-right: 1rem;
     align-items: flex-end;
-    box-shadow: 0 0 5px rgb(207, 207, 207);
+    box-shadow: 0 0 300px rgb(207, 207, 207);
     position: fixed;
     z-index: 99;
     width: 100%;
