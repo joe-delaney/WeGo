@@ -46,7 +46,7 @@ class NavBar extends React.Component {
               <div className='nav__menu'>
                   <div className='nav__menu--option'>                        
               
-                        <Avatar scr={(this.props.user) ? this.props.user.profilePhotoPath : ""} 
+                        <Avatar src={(this.props.user) ? this.props.user.profilePhotoPath : ""} 
                                 sx={{fontSize: 25 }} className='nav__menu-img'/>
                         <Link to={`/profile/${this.props.currentUser}`}> See your profile </Link> 
                   </div>
