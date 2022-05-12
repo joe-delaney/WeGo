@@ -21,9 +21,8 @@ export default class SearchInputs extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.history.location.state && this.props.history.location.state.query) {
-            this.props.search(this.state);
-        }
+        //Initially get everything unless a query comes from another page
+        this.props.search(this.state);
     }
 
     handleInput(type) {
@@ -31,7 +30,7 @@ export default class SearchInputs extends React.Component {
             await this.setState({
                 [type]: e.target.value
             })
-            if(type !== "title") this.props.search(this.state);
+            if(type !== "title" || e.target.value === "") this.props.search(this.state);
         } 
     }
 

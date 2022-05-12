@@ -1,5 +1,6 @@
 import React from 'react';
 import './search.css';
+import SearchResult from './search_result';
 
 class SearchResults extends React.Component {
     constructor(props) {
@@ -8,13 +9,17 @@ class SearchResults extends React.Component {
     }
 
     render(){
+        let sorted = this.props.activities.map(x => x).sort((a,b) => a.time > b.time ? 1 : -1);
+
         return(
             <div className='search-result'>                
-                <ul>
-                    {this.props.activities.map((activity, idx) => (
-                        <li key={idx}>
-                            <span>{activity.title}</span>
-                        </li>
+                <ul className='search-results'>
+                    {sorted.map((activity, idx) => (
+                        <SearchResult
+                            activity={activity}
+                            key={idx}
+                            openModal={this.props.openModal}
+                        />
                     ))}
                 </ul>
             </div>

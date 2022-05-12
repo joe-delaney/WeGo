@@ -30,6 +30,7 @@ class SearchIndex extends React.Component {
                     <SearchResults 
                         activities={this.props.activities}
                         searchResults={this.props.searchResults}
+                        openModal={this.props.openModal}
                     />
                 </div>
                

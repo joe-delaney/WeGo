@@ -74,9 +74,8 @@ right: 0px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 1000px;
-  color: black;
-}
+  color: black; 
+ }
 
 
 .search__filter{
@@ -98,5 +97,71 @@ right: 0px;
   background-color: #e3e3e6;
   border-radius: 10px;
   border: 0px;
+}
+
+/* Search Results */
+.search-results {
+  height: 100%;
+  margin-top: 30px;
+  width: 60%;
+}
+
+
+.search-result-container {
+  display: flex;
+  justify-content: flex-start;
+  border-top: 1px solid #d9d9d9;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.search-result-contents {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  justify-content: space-between;
+}
+
+.search-result-contents-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-img {
+  border-radius: 10px;
+  width: 300px;
+  height: 175px;
+}
+
+.search-result-date {
+  color: var(--color-body);
+}
+
+.search-result-title {
+  color: var(--color-headings);
+  margin-top: 10px;
+  font-size: larger;
+}
+
+.search-result-location {
+  color: var(--color-body-darker);
+  margin-top: 5px;
+}
+
+.search-result-attendees {
+  color: var(--color-body-darker);
+}
+
+.search-result-contents-bottom {
+  margin-bottom: 10px;
+}
+
+.search-see-more-info {
+  color: var(--color-blue-dark);
+}
+
+.search-see-more-info:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 

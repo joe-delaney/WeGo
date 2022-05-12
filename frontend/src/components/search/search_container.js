@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { fetchActivities, searchActivities } from '../../actions/activity_actions';
 import SearchIndex from './search_index';
 import { selectSearchResults } from '../../actions/search_selectors';
+import { openModal } from '../../actions/modal_actions';
 
 const mapStateToProps = state => {
     return {
@@ -14,7 +15,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         search: (queryObj) => dispatch(searchActivities(queryObj)),
-        fetchActivities: () => dispatch(fetchActivities())
+        fetchActivities: () => dispatch(fetchActivities()),
+        openModal: (modal, data) => dispatch(openModal(modal, data))
     }
 }
 
