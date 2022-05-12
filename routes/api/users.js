@@ -8,7 +8,6 @@ const passport = require('passport');
 const validateSignupInput = require('../../validation/signup');
 const validateLoginInput = require('../../validation/login');
 const userShow = require('../../jbuilder/users');
-
 const multer  = require('multer');
 const { uploadFile } = require("../../s3");
 const upload = multer({ dest: 'images/' })
@@ -104,6 +103,12 @@ router.post('/login', (req, res) => {
                 path: "tag"
             }
         })
+        .populate({
+            path: "chatGroups",
+            populate: {
+                path: "messages"
+            }
+        })
         .then(user => {
             if (!user) {
                 return res.status(404).json({ email: 'This user does not exist' });
@@ -156,6 +161,12 @@ router.get("/:id", (req, res) => {
                 path: "tag"
             }
         })
+        .populate({
+            path: "chatGroups",
+            populate: {
+                path: "messages"
+            }
+        })
         .then(user => res.json(JSON.parse(userShow(user))))
         .catch(err => 
             res.status(404).json({ nouserfound: "No user found with that ID" })
@@ -199,6 +210,12 @@ router.post("/:id", upload.single('image'), (req, res) => {
                             path: "allActivities",
                             populate: {
                                 path:"tag"
+                            }
+                        })
+                        .populate({
+                            path: "chatGroups",
+                            populate: {
+                                path: "messages"
                             }
                         })
                         .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));

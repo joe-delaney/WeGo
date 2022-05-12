@@ -33,7 +33,7 @@ export default class ActivityFeed extends React.Component {
     }
 
     getActivities() {
-        let activities = Array.isArray(this.props.activities) ? this.props.activities : [];
+        let activities = Array.isArray(this.props.activities) ? this.props.activities.sort((a,b) => a.time > b.time ? 1 : -1) : [];
         if(!this.state.seeMore) activities = activities.slice(0, 4);
 
         let bottomButton = null;
@@ -51,7 +51,7 @@ export default class ActivityFeed extends React.Component {
 
         let activityFeedHeader = activities.length ? (
             <div className='acivity_feed__heaher'>
-                <h2>Top Matches</h2>
+                <h2>Upcoming activities</h2>
             </div>
         ) : null;
 
