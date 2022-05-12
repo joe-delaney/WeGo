@@ -8,6 +8,7 @@
     --color-headings: #1b0760;
     --color-body: #918ca4;
     --color-body-darker: #5c5577;
+    --color-sliver: #efeeee;
     --color-border: #ccc;
     --border-radius: 30px;
   }
@@ -61,8 +62,14 @@
   p {
     margin-top: 0;
   }
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--color-body-dark)
+  }
   
-  @media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) {
     body {
       font-size: 1.8rem;
     }
@@ -80,12 +87,7 @@
     }
   }
   
-  /* Links */
-  a {
-    text-decoration: none;
-    cursor: pointer;
-    color: var(--color-headings);
-  }
+
   
   
   @media screen and (min-width: 450px) {

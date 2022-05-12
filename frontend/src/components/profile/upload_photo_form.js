@@ -1,4 +1,5 @@
 import React from "react";
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 export default class UploadPhotoForm extends React.Component {
   constructor(props) {
@@ -27,9 +28,15 @@ export default class UploadPhotoForm extends React.Component {
 
   render() {
     return (
-      <div className="form__box">
+      <div className="upload__photo"> 
+        <div className="addphoto">
+          
+          <AddPhotoAlternateIcon sx={{fontSize: 35, color: '#1767b6' }} />   
+        </div>
+      </div>
+      // <div className="form__box">
 
-        <div className="form__header">
+        /* <div className="form__header">
           <h1>Upload a photo</h1>
         </div>
 
@@ -43,9 +50,9 @@ export default class UploadPhotoForm extends React.Component {
             <button className="btn btn--secondary" onClick={this.handleSubmit}>Submit</button>
           </div>
 
-        </div>
+        </div> */
 
-      </div>
+      // </div>
     )
   }
 }

@@ -1,3 +1,17 @@
+.photo__container{
+    box-shadow: 0 0 7px rgb(207, 207, 207), 0 0 10px rgb(238, 238, 238); 
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 15px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+
+
 .profile__photo{
     display: flex;
     flex-direction: row;
@@ -6,16 +20,46 @@
     align-items: flex-start;
     /* margin: 30px 10px;  */
     margin-top: 0px;
-    width: 100%;
-    background-color: white;
-    border-radius: 15px;
+    width: 100%;     
 }
 
-.profile__photo--img{
-    width: calc(30% - 10px);
+.photo_render{
+    position: relative;
+    width: calc(30% - 27px);   
+    margin: 20px 20px;
+ 
+}
+
+.profile__photo--img{ 
+    width: 165px;  
     height: 165px;
     object-fit: cover;
-    border-radius: 10px;
-    margin: 20px 20px;
-
+    border-radius: 10px;  
 }
+
+.upload__photo{
+    padding: 15px 15px;
+    display: flex;
+    align-self: flex-end;
+}
+
+.addphoto{
+    width: 45px;
+    height: 45px;  
+    cursor: pointer;
+    padding: 5px 5px;
+}
+
+.addphoto:hover{
+    background: var(--color-sliver);    
+    border-radius: 30px;
+}
+
+
+
+.delete__photo{
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+
