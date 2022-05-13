@@ -17,6 +17,10 @@
     background-color: white;
 }
 
+.conversations-container::-webkit-scrollbar {
+    display: none;
+}
+
 .conversations-container-collapsed {
     width: 350px;
     height: 70px;
@@ -71,6 +75,10 @@
     padding-right: 10px;
     overflow: auto;
     margin-top: 70px;
+}
+
+.conversations-list::-webkit-scrollbar {
+    display: none;
 }
 
 .chat-group-img {
