@@ -74,9 +74,9 @@ class NavBar extends React.Component {
         
             {addIcon} 
          
-            <div  className="nav__right--option">
+            {/* <div  className="nav__right--option">
               <ChatRoundedIcon sx={{fontSize: 25 }}/>
-            </div>
+            </div> */}
             <div  className="nav__right--option nav__menu--more">
               <ArrowDropDownRoundedIcon sx={{fontSize: 40 }}/>
               <div className='nav__menu'>

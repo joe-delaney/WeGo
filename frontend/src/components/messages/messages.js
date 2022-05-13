@@ -18,7 +18,7 @@ export class Messages extends React.Component {
     this.state = {
       conversationsCollapsed: true,
       chatShowing: false,
-      conversationModal: true
+      conversationModal: false
     }
   }
 
