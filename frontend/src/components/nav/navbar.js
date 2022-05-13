@@ -74,9 +74,9 @@ class NavBar extends React.Component {
         
             {addIcon} 
          
-            <div  className="nav__right--option">
+            {/* <div  className="nav__right--option">
               <ChatRoundedIcon sx={{fontSize: 25 }}/>
-            </div>
+            </div> */}
             <div  className="nav__right--option nav__menu--more">
               <ArrowDropDownRoundedIcon sx={{fontSize: 40 }}/>
               <div className='nav__menu'>
@@ -98,7 +98,7 @@ class NavBar extends React.Component {
         ) : (
           <div>
              <ul className="list nav__list">
-              <li className="nav__item singup"  onClick={()=>this.props.openModal('signup')}>Signup</li>
+              <li className="nav__item signup"  onClick={()=>this.props.openModal('signup')}>Signup</li>
               <li className="nav__item"  onClick={()=>this.props.openModal('login')}>Login</li>
             </ul>
           </div>
@@ -121,17 +121,11 @@ class NavBar extends React.Component {
                         <span style={{ color: "#08c3fc", fontSize: 'x-large'}}>
                             o  
                         </span>
-                      
-                        
                     </Link>
-                   
                   </div>
-                 
                 </div>
                 {searchbar}
               </div>
-     
-                 
                <div className='nav__right'>                       
                 {navbarLinks}
               </div>   

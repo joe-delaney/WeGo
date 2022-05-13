@@ -18,18 +18,6 @@ export default class ShowActivity extends React.Component {
         this.getPrice = this.getPrice.bind(this);
     }
 
-    componentDidMount() {
-        // if(this.props.activity) {
-        //     this.props.fetchUser(this.props.activity.host);
-        //     this.props.requestedAttendees.forEach((userId) => {
-        //         this.props.fetchUser(userId);
-        //     })
-        //     this.props.approvedAttendees.forEach((userId) => {
-        //         this.props.fetchUser(userId);
-        //     })
-        // }
-    }
-
     getPrice(cost) {
         switch(cost) {
             case 0: 

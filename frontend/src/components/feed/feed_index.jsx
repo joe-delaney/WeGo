@@ -29,9 +29,6 @@ const FeedIndex = ({activities, currentUser, currentUserId, updateActivity, crea
                 <Feature />              
 
             </div>
-            <div className="message">
-                <img src="https://icon-library.com/images/android-text-message-icon/android-text-message-icon-10.jpg" className="message_img" />
-            </div>
             <Footer />
         </>
     )

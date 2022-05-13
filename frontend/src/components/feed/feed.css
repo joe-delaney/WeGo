@@ -12,12 +12,6 @@
     cursor: pointer;
 }
 
-.message_img{
-    border-radius: 30px;
-    width: 70px;
-    height: 70px;
-}
-
 .expand-arrow {
     width:30px;
     height: 30px;

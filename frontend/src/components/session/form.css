@@ -71,6 +71,15 @@
     flex-direction: column;
 }
 
+.demo-button {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.demo-button:hover {
+    background-color: #dfdede;
+}
+
 
 
 @media screen and (min-width: 600px) {
@@ -111,7 +120,7 @@
     line-height: 0.5;
 }
 
-.singup__form{
+.signup__form{
     margin-bottom: 20px;
 }
 
@@ -119,7 +128,7 @@
     margin-bottom: 25px;
 }
 
-.singup__form p {
+.signup__form p {
     position: absolute;
     color: red;
     font-size: 1.5rem;
@@ -174,7 +183,7 @@
     min-height: 120px;
 }
 
-.singup__avatar{
+.signup__avatar{
     position: absolute;
     top: 140px;
     left: 230px;

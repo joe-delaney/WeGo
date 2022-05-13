@@ -23,11 +23,11 @@ export default class Footer extends React.Component {
                         </div>
                         <div className='team__info--detail'>
                             <GitHubIcon sx={{ fontSize: 24 }} />
-                            <span className='team-info-label'>GitHub</span>
+                            <a href="https://github.com/joe-delaney/WeGo" className='team-info-label'>GitHub</a>
                         </div>
                         <div className='team__info--detail'>
                             <LinkedInIcon sx={{ fontSize: 24 }} />
-                            <span className='team-info-label'>LinkedIn</span>
+                            <a href="https://www.linkedin.com/in/joseph-delaney-46985b76/" className='team-info-label'>LinkedIn</a>
                         </div>
                     </div>
                          
