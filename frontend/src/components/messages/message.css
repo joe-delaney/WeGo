@@ -213,3 +213,13 @@
     color: #00000099;
     font-size: 14px;
 }
+
+.hide-chat-group-button {
+    margin-left: 10px;
+}
+
+.hide-chat-group-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

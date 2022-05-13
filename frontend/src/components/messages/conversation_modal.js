@@ -27,7 +27,7 @@ export class ConversationModal extends React.Component {
     let chatName = "Joe Delaney"
 
     //populate this with the actual messages from the backend
-    let messages = [1,2,3,4,5]
+    let messages = [1,2,3,4,5,6,7,8]
 
     return (
       <div className='chat-container'>

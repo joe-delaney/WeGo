@@ -1,4 +1,5 @@
 import React from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 
 export class Chatgroup extends React.Component {
   constructor(props) {
@@ -22,12 +23,17 @@ export class Chatgroup extends React.Component {
     let lastMessage = "Looking forward to joining you for the activity!"
     lastMessage = lastMessage.length > 65 ? `${lastMessage.slice(0, 65)}...` : lastMessage;
 
+    //Use close icon button for hiding group chats
+
     return (
-      <li onClick={this.openModal} className="chat-group-list-item">
-        <img className="chat-group-img" src={chatGroupImg}></img>
-        <div className="chat-group-list-item-right">
+      <li className="chat-group-list-item">
+        <img onClick={this.openModal} className="chat-group-img" src={chatGroupImg}></img>
+        <div onClick={this.openModal} className="chat-group-list-item-right">
           <span className="chat-group-list-item-name">{chatGroupDisplayName}</span>
           <span className="chat-group-list-item-message">{`${lastSender}: ${lastMessage}`}</span>
+        </div>
+        <div className='hide-chat-group-button-container'>
+          <CloseIcon className="hide-chat-group-button"/>
         </div>
       </li>
     )
