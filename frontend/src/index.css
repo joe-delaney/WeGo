@@ -37,7 +37,7 @@
     font-size: 2rem;
     line-height: 1.3;
     color: var(--color-body-darker);
-    /* background-color: rgb(252, 252, 252); */
+    /* background-image: linear-gradient(to right top, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, white); */
   }
   
   
