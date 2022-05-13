@@ -12,7 +12,7 @@ export default class Message extends React.Component {
         let messageText = "These messages look pretty good!"
 
         return (
-            <li>
+            <li className="message-list-item">
                 <img className="message-img" src={messageImg}></img>
                 <div className="message-list-item-right">
                     <span className="message-list-item-name">{messageAuthor}</span>

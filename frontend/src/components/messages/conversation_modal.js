@@ -1,6 +1,7 @@
 import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
+import MessageItem from "./message";
 
 export class ConversationModal extends React.Component {
   constructor(props) {
@@ -25,6 +26,9 @@ export class ConversationModal extends React.Component {
     let chatImage = "/api/images/667fc4dc5c22753e3a5b1a6bdd888ee2"
     let chatName = "Joe Delaney"
 
+    //populate this with the actual messages from the backend
+    let messages = [1,2,3,4,5]
+
     return (
       <div className='chat-container'>
         <div className="chat-header">
@@ -37,7 +41,9 @@ export class ConversationModal extends React.Component {
           </div>
         </div>
         <div className='messages-container'>
-
+            {messages.map((message, idx) => {
+              return <MessageItem key={idx} message={message}/>
+            })}
         </div>
         <div className='message-composer'>
           <input className="message-input" placeholder='Write a message...'></input>
