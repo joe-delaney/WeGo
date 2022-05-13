@@ -1,15 +1,19 @@
 import React from 'react';
 import { ChatgroupContainer } from './chatgroup_container';
 import { ConversationModalContainer } from './conversation_modal_container';
+import { socket } from '../socket';
 import "./message.css";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export class Messages extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {chatShowing: false, conversationModal: null}
+    // conversationalModal is being set to true strictly for testing purposes
+    this.state = {chatShowing: false, conversationModal: true}
     this.conversationToggle = this.conversationToggle.bind(this)
-    this.openConversationModal = this.openOrCloseConversationModal.bind(this)
+    this.openOrCloseConversationModal = this.openOrCloseConversationModal.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.emitMessage = this.emitMessage.bind(this)
   }
 
   conversationToggle(e){
@@ -19,6 +23,23 @@ export class Messages extends React.Component {
 
   openOrCloseConversationModal(message){
     this.setState({conversationModal: message})
+  }
+
+  componentDidMount(){
+    socket.emit('join', this.props.currentUserId)
+    socket.on('message', () => {
+      console.log(`User has received a message`)
+      this.props.fetchUser(this.props.currentUserId)
+    })
+  }
+
+  componentWillUnmount(){
+    socket.emit('leave', this.props.currentUserId)
+  }
+
+  emitMessage(){
+    console.log(`User is sending a message`)
+    socket.emit('message', [this.props.currentUserId])
   }
 
   render() {
@@ -48,7 +69,10 @@ export class Messages extends React.Component {
           </div>
         </div>
 
-        {this.state.conversationModal ? <ConversationModalContainer closeModal={this.openOrCloseConversationModal} conversation={this.state.conversationModal}/> : null }
+        {/* <input type="text" />
+        <button onClick={this.sendMessage}>Submit</button> */}
+
+        {this.state.conversationModal ? <ConversationModalContainer emitMessage={this.emitMessage} closeModal={this.openOrCloseConversationModal} conversation={this.state.conversationModal}/> : null }
       </div>
     )
   }
