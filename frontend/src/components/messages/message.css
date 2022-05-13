@@ -1,5 +1,5 @@
 .messages-modal-container {
-    position: absolute;
+    position: fixed;
     right: 0;
     bottom:0;
 }
@@ -10,6 +10,10 @@
     box-shadow: 0px 0px 0px 1px #00000014,
     0px 4px 4px #0000004d;
     border-radius: 8px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
 }
 
 .conversations-container-img {
@@ -31,6 +35,9 @@
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     cursor: pointer;
+    position: fixed;
+    z-index: 1000;
+    background-color: white;
 }
 
 .conversations-container-nav-left {
@@ -48,8 +55,11 @@
 }
 
 .conversations-list {
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     border-bottom: 1px solid lightgrey;
+    overflow: auto;
+    margin-top: 60px;
 }
 
 .chat-group-img {

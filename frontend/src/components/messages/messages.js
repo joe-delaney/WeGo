@@ -65,7 +65,6 @@ export class Messages extends React.Component {
                   openModal={this.openOrCloseConversationModal} 
                   chatgroup={chatgroup}
                   key={`chatgroup${idx}`} />) : null}
-
           </div>
         </div>
 
