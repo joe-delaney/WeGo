@@ -45,7 +45,7 @@ class Search extends React.Component {
           <>
             <div className="container ">          
                     <div className={`feed__search ${this.props.search}`} id="feed__search">
-                        <input onKeyPress={this.handleEnter} value={this.state.query} onChange={this.handleInput("query")} type="text" className="search__input" placeholder="Start to Search..." />
+                        <input onKeyPress={this.handleEnter} value={this.state.query} onChange={this.handleInput("query")} type="text" className="search__input" placeholder="Find your next adventure..." />
                         <button onClick={this.handleSearch} className="search-btn btn--blue-dark "><SearchIcon sx={{fontSize: 30 }}/></button>
                     </div>                         
             </div>            
