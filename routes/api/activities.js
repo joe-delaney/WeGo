@@ -117,7 +117,7 @@ router.put('/search', async (req, res) => {
     let searchBarArr = []
     let searchBarObj = undefined;
     if (req.body.title) {
-        const words = req.body.title.trim().split(' ').filter( word => word.length > 2)
+        const words = req.body.title.trim().split(' ').filter( word => word.length > 3)
         searchBarArr = words.map( word => {     
             return {
                 'title': { $regex: new RegExp(word, 'i') }
@@ -126,7 +126,7 @@ router.put('/search', async (req, res) => {
             // {'tag.title': { $regex: `/${word}/`, $options: 'i'}}
             // ]
         })
-        searchBarObj = { $or: searchBarArr}
+        if (searchBarArr.length > 0) searchBarObj = { $or: searchBarArr}
     }
 
     //Combine filters and searchBarObj

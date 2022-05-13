@@ -5,6 +5,7 @@ import {fetchUser} from "../../actions/user_actions";
 import { updateActivity } from "../../actions/activity_actions";
 import { updateUser } from "../../actions/user_actions";
 import { createChatGroup } from "../../actions/chat_group_actions";
+import { createMessage } from '../../actions/message_actions'
 
 const mapStateToProps = (state) => {
     let activity = state.ui.modalInfo ? state.entities.activities[state.ui.modalInfo] : null;
@@ -25,7 +26,8 @@ const mapDispatchToProps = dispatch => ({
     fetchUser: (id) => dispatch(fetchUser(id)),
     updateActivity: (activity) => dispatch(updateActivity(activity)),
     updateUser: (user) => dispatch(updateUser(user)),
-    createChatGroup: (info) => dispatch(createChatGroup(info))
+    createChatGroup: (info) => dispatch(createChatGroup(info)),
+    createMessage: message => dispatch(createMessage(message))
 });
 
 const ShowActivityContainer = connect(mapStateToProps, mapDispatchToProps)(ShowActivity);

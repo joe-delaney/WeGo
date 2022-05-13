@@ -15,6 +15,8 @@ const fs = require('fs')
 const util = require('util')
 const unlinkFile = util.promisify(fs.unlink)
 
+var _ = require('lodash');
+
 //User sign up backend route
 
 router.post('/signup', upload.single('image'), async (req, res) => {
@@ -191,9 +193,26 @@ router.post("/:id", upload.single('image'), (req, res) => {
                     user.hostedActivities.push(req.body.hostedActivity);
                     user.allActivities.push(req.body.hostedActivity);
                 }
-                if(req.body.chatGroupId) {
-                    user.chatGroups.push(req.body.chatGroupId);
+                
+                if(req.body.fromRequesterGroupId) {
+                    if (_.includes(user.chatGroups, req.body.fromRequesterGroupId)) {
+                        user.chatSubscriptions = [{chat: req.body.fromRequesterGroupId, read: false}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.fromRequesterGroupId))
+                    ))} else {
+                        user.chatGroups.push(req.body.fromRequesterGroupId)
+                        user.chatSubscriptions.push({chat: req.body.fromRequesterGroupId, read: false})
+                    }
                 }
+
+                if(req.body.fromHostChatGroupId) {
+                    if (_.includes(user.chatGroups, req.body.fromHostChatGroupId)) {
+                        user.chatSubscriptions = [{chat: req.body.fromHostChatGroupId, read: true}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.fromHostChatGroupId))
+                    ))} else {
+                        user.chatGroups.push(req.body.fromHostChatGroupId)
+                        user.chatSubscriptions.push({chat: req.body.fromHostChatGroupId, read: true})
+                    }
+                }
+                
+                
                 user.save().then(user => {
                     User.findById(user.id)
                         .populate({
