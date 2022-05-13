@@ -175,6 +175,8 @@
 .profile__file{
 
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     position: relative;
        
     padding: 10px 0px;
@@ -193,9 +195,18 @@
 
 .edit__avatar{
     position: absolute;
-    top: 140px;
-    left: 230px;
+    top: -25px;
+    left: 360px;
     z-index: 99;
+    cursor: pointer;
+}
+
+.delete__avatar{
+    position: absolute;
+    top: -25px;
+    left: 400px;
+    z-index: 99;
+    cursor: pointer;
 }
 
 .profile__file--edit{
