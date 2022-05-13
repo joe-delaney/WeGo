@@ -9,7 +9,6 @@ export class Messages extends React.Component {
   constructor(props) {
     super(props);
     // conversationalModal is being set to true strictly for testing purposes
-    this.state = {chatShowing: false, conversationModal: true}
     this.conversationToggle = this.conversationToggle.bind(this)
     this.openOrCloseConversationModal = this.openOrCloseConversationModal.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
@@ -17,7 +16,9 @@ export class Messages extends React.Component {
     this.toggleConversationsShown = this.toggleConversationsShown.bind(this)
 
     this.state = {
-      conversationsCollapsed: true
+      conversationsCollapsed: true,
+      chatShowing: false,
+      conversationModal: true
     }
   }
 
