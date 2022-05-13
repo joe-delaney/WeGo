@@ -27,6 +27,9 @@ export default class ActivityItem extends React.Component {
   }
 
   render() {
+
+    // debugger;
+
     let activityId = this.props.activity ? this.props.activity.id : -1
     let activityImg = this.props.activity && this.props.activity.tag ? this.props.activity.tag.img : "https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1356&h=668&fit=crop"
     let expandRightButton = this.props.lastItem && this.props.page !== 3 ? (
@@ -47,6 +50,9 @@ export default class ActivityItem extends React.Component {
     let activityTimeLabel = activityTime ? DateUtil.convertToTime(activityTime) : "";
     let activityLocation = this.props.activity ? this.props.activity.location : "";
     let numAttendees = this.props.activity ? this.props.activity.approvedAttendees.length : 0;
+    // added this line
+    let activityCapacity = this.props.activity ? this.props.activity.capacity : 0;
+    
 
     let showButton = null;
     if(this.props.currentUser) {
@@ -75,7 +81,8 @@ export default class ActivityItem extends React.Component {
           <div className='activity_details--date'>{`${activityDate} at ${activityTimeLabel}`}</div>
           <div className='activity_details--location'>Location: {activityLocation}</div>
           <div className='activity_details--option'>
-          <div className='activity_details--people'><PersonIcon sx={{ fontSize: 25, color: '#0d4175' }} />{numAttendees}</div>
+            {/* Edited the line below */}
+          <div className='activity_details--people'><PersonIcon sx={{ fontSize: 25, color: '#0d4175' }} />{numAttendees}/{activityCapacity} </div>
           {showButton}
           </div>
         </div>
