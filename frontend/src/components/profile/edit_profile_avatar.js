@@ -1,5 +1,7 @@
 import React from "react";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+
 
 export default class EditProfileAvatar extends React.Component {
     constructor(props) {
@@ -33,8 +35,10 @@ export default class EditProfileAvatar extends React.Component {
         let dataForm = new FormData();
         dataForm.append('id', this.props.user.id)   
         dataForm.append('remove', this.state.remove)          
-        if (this.state.files) dataForm.append('image', this.state.files)
-        this.props.updateProfile(dataForm);
+        if (this.state.files) {
+            dataForm.append('image', this.state.files)
+            this.props.updateProfile(dataForm);
+        }
         this.props.closeModal();
     }
 
@@ -53,25 +57,24 @@ export default class EditProfileAvatar extends React.Component {
                     </div>
 
                     <div className="profile__file">
+                         
                      
                          <label htmlFor="file-input" className="upload-photo-icon">
-                            <AddPhotoAlternateIcon sx={{fontSize: 30 }} className="edit__avatar"/>
+                            <AddPhotoAlternateIcon sx={{fontSize: 35 }} className="edit__avatar"/>
                          </label>
+
                          <input id="file-input" type="file" onChange={this.handlefiles} className="addphoto" accept="image/*" />
+
+                         <DeleteForeverOutlinedIcon sx={{fontSize: 35 }} className="delete__avatar" onClick={this.removePhoto}/>
                     
                         <img src={this.state.photoUrl} className="profile__img--circle"/>
                         
                     </div>
 
-                    <div className="form__submit avatar__delete">
-                        <button className="btn btn--secondary" onClick={this.removePhoto}>X</button>
+                    <div className="form__submit avatar__edit">
+                        <div class="request--join"  onClick={this.handleSubmit}>Save Changes</div>
                     </div>
 
-                    <div className="form__submit avatar__edit">
-                        <button
-                            className="btn btn--secondary "
-                            onClick={this.handleSubmit}>Save changes</button>
-                    </div>                      
                 </form>
              
             </div>
