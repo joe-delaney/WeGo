@@ -14,6 +14,11 @@ export class Messages extends React.Component {
     this.openOrCloseConversationModal = this.openOrCloseConversationModal.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
     this.emitMessage = this.emitMessage.bind(this)
+    this.toggleConversationsShown = this.toggleConversationsShown.bind(this)
+
+    this.state = {
+      conversationsCollapsed: true
+    }
   }
 
   conversationToggle(e){
@@ -42,23 +47,33 @@ export class Messages extends React.Component {
     socket.emit('message', [this.props.currentUserId])
   }
 
+  toggleConversationsShown() {
+    this.setState({
+      conversationsCollapsed: !this.state.conversationsCollapsed
+    })
+  }
+
   render() {
+    let conversationsListShown = this.state.conversationsCollapsed ? "hidden" : "";
+    let conversationsContainerClass  = this.state.conversationsCollapsed ? 
+      "conversations-container-collapsed" : "conversations-container";
+
     return (
       (!this.props.user) ? null :
       <div className='messages-modal-container'>
-        <div className='conversations-container'>
-          <div className="conversations-container-nav">
+        <div className={`${conversationsContainerClass}`}>
+          <div onClick={this.toggleConversationsShown} className="conversations-container-nav">
               <div className='conversations-container-nav-left'>
                 <img src={this.props.user.profilePhotoPath} className='conversations-container-img'></img>
                 <strong className='conversations-container-nav-header'>Messages</strong>
                 <span className='new-message-icon'> New</span>
               </div>
-              <div className='conversations-container-nav-left'>
+              <div className='conversations-container-nav-right'>
                 <KeyboardArrowDownIcon sx={{ fontSize: 25, color: '#000'}}/>
               </div>
           </div>
           {/* <button onClick={this.conversationToggle} /> */}
-          <div className='conversations-list'>
+          <div className={`conversations-list ${conversationsListShown}`}>
             {this.props.user.chatGroups ? 
               this.props.user.chatGroups.map((chatgroup, idx) => 
                 <ChatgroupContainer 

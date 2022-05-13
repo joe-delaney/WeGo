@@ -1,12 +1,24 @@
 .messages-modal-container {
     position: fixed;
-    right: 0;
+    right: 10px;
     bottom:0;
 }
 
 .conversations-container {
     width: 350px;
     height: calc(100vh - 300px);
+    box-shadow: 0px 0px 0px 1px #00000014,
+    0px 4px 4px #0000004d;
+    border-radius: 8px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+}
+
+.conversations-container-collapsed {
+    width: 350px;
+    height: 70px;
     box-shadow: 0px 0px 0px 1px #00000014,
     0px 4px 4px #0000004d;
     border-radius: 8px;
@@ -36,7 +48,6 @@
     border-top-right-radius: 8px;
     cursor: pointer;
     position: fixed;
-    z-index: 1000;
     background-color: white;
 }
 
@@ -57,9 +68,8 @@
 .conversations-list {
     padding-left: 10px;
     padding-right: 10px;
-    border-bottom: 1px solid lightgrey;
     overflow: auto;
-    margin-top: 60px;
+    margin-top: 70px;
 }
 
 .chat-group-img {
@@ -71,7 +81,9 @@
 .chat-group-list-item {
     display: flex;
     align-items: center;
-    margin-top: 20px;
+    padding-top: 20px;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 10px;
 }
 
 .chat-group-list-item-right {
@@ -88,4 +100,8 @@
 .chat-group-list-item-message {
     color: #00000099;
     font-size: 14px;
+}
+
+.hidden {
+    display: none;
 }
