@@ -12,6 +12,7 @@ export default class LoginForm extends React.Component {
 
         this.handleInput = this.handleInput.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
+        this.handleDemo = this.handleDemo.bind(this);
         // this.toggleModal = this.toggleModal.bind(this);
         // this.renderErrors = this.renderErrors.bind(this);
     }
@@ -31,19 +32,32 @@ export default class LoginForm extends React.Component {
             ()=>{
                 if(this.props.isAuthenticated === true){
                     this.props.closeModal();
-                
                     this.setState({
                         email: "",
                         password: ""
                     })
                 }
             }
-
         )
+    }
 
-        
+    handleDemo() {
+        let demoUser = {
+            email: "joe@test.com",
+            password: "123456"
+        }
 
-        
+        this.props.login(demoUser).then(
+            () => {
+                if (this.props.isAuthenticated === true) {
+                    this.props.closeModal();
+                    this.setState({
+                        email: "",
+                        password: ""
+                    })
+                }
+            }
+        )
     }
 
     // Render the session errors if there are any
@@ -111,15 +125,15 @@ export default class LoginForm extends React.Component {
                     <div >
                         {this.renderErrors()}
                     </div>
+                    
                     <div className="form__submit">
                         <input 
                             className="btn btn--primary"
                             type="submit" 
                             value="Login" 
                             onClick={this.handleLogin}/>
-
+                        <button className="btn demo-button" onClick={this.handleDemo}>Try a demo</button>
                     </div>
-
                 </form>
                
             </div>

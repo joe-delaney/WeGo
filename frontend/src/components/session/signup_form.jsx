@@ -29,6 +29,7 @@ export default class SignupForm extends React.Component {
         this.handleSignup = this.handleSignup.bind(this);
         this.goBack = this.goBack.bind(this);
         this.handlefiles = this.handlefiles.bind(this)
+        this.handleDemo = this.handleDemo.bind(this)
     }
 
     handleInput(type) {
@@ -78,6 +79,25 @@ export default class SignupForm extends React.Component {
         
         this.props.signup(formData);
         this.props.closeModal();
+    }
+
+    handleDemo() {
+        let demoUser = {
+            email: "joe@test.com",
+            password: "123456"
+        }
+
+        this.props.login(demoUser).then(
+            () => {
+                if (this.props.isAuthenticated === true) {
+                    this.props.closeModal();
+                    this.setState({
+                        email: "",
+                        password: ""
+                    })
+                }
+            }
+        )
     }
 
     getSignUpPage1() {
@@ -196,9 +216,9 @@ export default class SignupForm extends React.Component {
                 </div>
                 <div className="form__submit signup__form">
                     <button
-                        className="btn btn--secondary"
-                        onClick={this.handleSignup}>Sign Up!!</button>
-
+                        className="btn btn--primary"
+                        onClick={this.handleSignup}>Sign Up</button>
+                    <button className="btn demo-button" onClick={this.handleDemo}>Try a demo</button>
                 </div>
             </div>
         )

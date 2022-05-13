@@ -71,6 +71,15 @@
     flex-direction: column;
 }
 
+.demo-button {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.demo-button:hover {
+    background-color: #dfdede;
+}
+
 
 
 @media screen and (min-width: 600px) {
