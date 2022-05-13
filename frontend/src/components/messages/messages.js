@@ -73,7 +73,6 @@ export class Messages extends React.Component {
                 <KeyboardArrowDownIcon sx={{ fontSize: 25, color: '#000'}}/>
               </div>
           </div>
-          {/* <button onClick={this.conversationToggle} /> */}
           <div className={`conversations-list ${conversationsListShown}`}>
             {this.props.user.chatGroups ? 
               this.props.user.chatGroups.map((chatgroup, idx) => 
@@ -83,9 +82,6 @@ export class Messages extends React.Component {
                   key={`chatgroup${idx}`} />) : null}
           </div>
         </div>
-
-        {/* <input type="text" />
-        <button onClick={this.sendMessage}>Submit</button> */}
 
         {this.state.conversationModal ? <ConversationModalContainer emitMessage={this.emitMessage} closeModal={this.openOrCloseConversationModal} conversation={this.state.conversationModal}/> : null }
       </div>

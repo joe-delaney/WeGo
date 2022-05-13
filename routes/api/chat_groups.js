@@ -7,7 +7,7 @@ var _ = require('lodash');
 
 //create a new chat group
 router.post("/", (req, res) => {
-    let chatGroup = ChatGroup.findOne({'subscribers._id': {$all: [req.body.hostId, req.body.requesterId]}})
+    let chatGroup = ChatGroup.find({'subscribers.id': {$all: [req.body.hostId, req.body.requesterId]}})[0]
     if (!chatGroup) {
         chatGroup = new ChatGroup({
             subscribers: [],
@@ -16,25 +16,24 @@ router.post("/", (req, res) => {
         if (req.body.hostId) chatGroup.subscribers.push(req.body.hostId);
         if (req.body.requesterId) chatGroup.subscribers.push(req.body.requesterId)
     }
-    chatGroup.save().then(chatGroup => {
-        let newMessage = new Message({
-            text: `Hi my name is ${req.body.requesterName} and I want to ${req.body.activityName} with you!`,
-            author: req.body.requesterId,
-            chatGroup: chatGroup.id
-        })
+
+    let newMessage = new Message({
+        text: `Hi my name is ${req.body.requesterName} and I want to ${req.body.activityName} with you!`,
+        author: req.body.requesterId,
+        chatGroup: chatGroup.id
+    })
         
-        newMessage.save().then(message => {
-            chatGroup.messages.push(message.id);
-            chatGroup.save().then(chatGroup => {
-                ChatGroup.findById(chatGroup.id)
-                .populate("messages")
-                .populate("subscribers")
-                .then(populatedChatGroup => res.json(populatedChatGroup))})
-            
-        })
+    newMessage.save().then(message => {
+        chatGroup.messages.push(message.id);
+        chatGroup.save().then(chatGroup => {
+            ChatGroup.findById(chatGroup.id)
+            .populate("messages")
+            .populate("subscribers")
+            .then(populatedChatGroup => res.json(populatedChatGroup))})
         
-    });
-})
+    })
+        
+});
 
 //update a chatGroup
 router.post("/:id", (req, res) => {

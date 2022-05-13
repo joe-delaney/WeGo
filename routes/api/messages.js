@@ -4,6 +4,8 @@ const Message = require('../../models/Message');
 const ChatGroup = require('../../models/ChatGroup');
 const validText = require("../../validation/valid-text");
 
+var _ = require('lodash');
+
 router.post("/", (req, res) => {
     let user = User.findById(req.body.userId)
     if (!user) {return res.status(404).json({ nouserfound: "No user found with that ID" })}
@@ -41,7 +43,7 @@ router.post("/", (req, res) => {
 
 // mark a message as read chatGroupId and userId
 router.post('/read', (req, res) => {
-    let user = User.findById(req.body.userId)
+    let user = User.find(req.body.userId)[0]
     if (!user) {return res.status(404).json({ nouserfound: "No user found with that ID" })}
     let chatGroup = ChatGroup.findById(req.body.chatGroupId).populate('subscribers')
     if (!chatGroup) {return res.status(404).json({ nochatfound: "No chat found with that ID" })}

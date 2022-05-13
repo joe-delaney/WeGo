@@ -1,4 +1,3 @@
-import ChatGroup from "../../../models/ChatGroup";
 import * as APIUtil from "../util/chat_group_api_util";
 import { updateUser } from "./user_actions";
 

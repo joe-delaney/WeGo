@@ -164,7 +164,6 @@ router.get("/:id", (req, res) => {
 
 // Update a user profile
 router.post("/:id", upload.single('image'), (req, res) => {
-    console.log(req.body)
     User.findById(req.params.id)
         .then(async (user) => {
             if (!user) {
@@ -196,19 +195,19 @@ router.post("/:id", upload.single('image'), (req, res) => {
                 
                 if(req.body.fromRequesterGroupId) {
                     if (_.includes(user.chatGroups, req.body.fromRequesterGroupId)) {
-                        user.chatSubscriptions = [{chat: req.body.fromRequesterGroupId, read: false}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.fromRequesterGroupId))
+                        user.chatSubscriptions = [{chat: req.body.fromRequesterGroupId, read: true}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.fromRequesterGroupId))
                     ))} else {
                         user.chatGroups.push(req.body.fromRequesterGroupId)
-                        user.chatSubscriptions.push({chat: req.body.fromRequesterGroupId, read: false})
+                        user.chatSubscriptions.push({chat: req.body.fromRequesterGroupId, read: true})
                     }
                 }
 
                 if(req.body.fromHostChatGroupId) {
                     if (_.includes(user.chatGroups, req.body.fromHostChatGroupId)) {
-                        user.chatSubscriptions = [{chat: req.body.fromHostChatGroupId, read: true}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.fromHostChatGroupId))
+                        user.chatSubscriptions = [{chat: req.body.fromHostChatGroupId, read: false}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.fromHostChatGroupId))
                     ))} else {
                         user.chatGroups.push(req.body.fromHostChatGroupId)
-                        user.chatSubscriptions.push({chat: req.body.fromHostChatGroupId, read: true})
+                        user.chatSubscriptions.push({chat: req.body.fromHostChatGroupId, read: false})
                     }
                 }
                 
