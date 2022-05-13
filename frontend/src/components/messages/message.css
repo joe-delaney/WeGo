@@ -14,6 +14,7 @@
     bottom: 0;
     right: 0;
     overflow: auto;
+    background-color: white;
 }
 
 .conversations-container-collapsed {
@@ -109,13 +110,20 @@
 
 .chat-container {
     position: fixed;
-    bottom: 0;
+    bottom: 90px;
     right: 390px;
-    height: 400px;
+    height: 310px;
     width: 360px;
     box-shadow: 0px 0px 0px 1px #00000014,
-    0px 4px 4px #0000004d;
-    border-radius: 8px;
+    0px 0px 4px #0000004d;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    overflow: auto;
+    background-color: white;
+}
+
+.chat-container::-webkit-scrollbar {
+    display: none;
 }
 
 .chat-header {
@@ -126,6 +134,9 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+    position: fixed;
+    background-color: white;
+    width: 360px;
 }
 
 .chat-header-left {
@@ -137,6 +148,11 @@
     cursor: pointer;
 }
 
+.messages-container {
+    overflow: auto;
+    margin-top: 50px;
+}
+
 .message-composer {
     position: fixed;
     bottom: 0;
@@ -146,6 +162,9 @@
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid lightgrey;
+    box-shadow: 0px 0px 0px 1px #00000014,
+    0px 4px 4px #0000004d;
+    background-color: white;
 }
 
 .message-input {
@@ -154,6 +173,7 @@
     padding-left: 10px;
     padding-right: 10px;
     border: none;
+    background: transparent;
 }
 
 .message-composer > input:focus-visible {
@@ -164,4 +184,45 @@
 .send-icon {
     margin-right: 15px;
     cursor: pointer;
+}
+
+.message-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+.message-list-item {
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.message-list-item-right {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.message-list-item-name {
+    color: black;
+    font-size: 18px;
+}
+
+.message-list-item-text {
+    color: #00000099;
+    font-size: 14px;
+}
+
+.hide-chat-group-button {
+    margin-left: 10px;
+}
+
+.hide-chat-group-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
