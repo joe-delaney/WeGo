@@ -99,45 +99,43 @@ router.delete("/:id", (req, res) => {
         })
 })
 
-router.get('/search', (req, res) => {
+router.put('/search', async (req, res) => {
+
+    //Find tag Id if a tag title was passed in
+    let tagId = undefined;
+    if(req.body.tag) await Tag.findOne({title: req.body.tag}).then(tag => tagId = tag._id);
+
+    //Create filters object based on passed in params
     const searchObj = {closed: false};
-    // figure out search by key word.
-    // split the search terms into multiple things.
-    // if(req.body.title) searchObj.title = req.body.title;
-    // // if(req.body.time) searchObj.time = req.body.time;
-    // if(req.body.host) searchObj.host = req.body.host;
-    // // if(req.body.approvedAttendees) searchObj.approvedAttendees = req.body.approvedAttendees;
-    // if (req.body.tag) searchObj.tag = req.body.tag;
-    // if(req.body.description) searchObj.description = req.body.description;
-    // take care of price. Strictly less than relation.
-    // if(req.body.price) searchObj.price = req.body.price;
-    // // needs to be a range of some kind. Strictly less than relation
-    // if(req.body.duration) searchObj.duration = req.body.duration;
-    // // if(req.body.capacity) searchObj.capacity = req.body.capacity;
-    // if (req.body.location) searchObj.location = req.body.location;
-    // searchObj.closed = false;
+    if (tagId) searchObj.tag = tagId;
+    if(req.body.price) searchObj.price = { $lte: parseInt(req.body.price)} ;
+    if (req.body.duration) searchObj.duration = { $lte: parseInt(req.body.duration) };
+    if (req.body.capacity) searchObj.capacity = { $lte: parseInt(req.body.capacity) };
+    const filters = { $or: [searchObj] }
 
-    if (req.body.tag) searchObj['tag.title'] = req.body.tag;
-    if(req.body.price) searchObj.price = { $lte: req.body.price} ;
-    if(req.body.duration) searchObj.duration = req.body.duration;
-
+    //Create searchBarObj for query passed in  
     let searchBarArr = []
-    if (req.body.search) {
-        const words = req.body.search.trim().split(' ').filter( word => word.length() > 2)
-        searchBarArr = words.map( word => { $or: [
-            {'title': { $regex: `/${word}/`, $options: 'i'}},
-            {'tag.title': { $regex: `/${word}/`, $options: 'i'}}
-        ]})
-        const searchBarObj = { $or: searchBarArr}
+    let searchBarObj = undefined;
+    if (req.body.title) {
+        const words = req.body.title.trim().split(' ').filter( word => word.length > 2)
+        searchBarArr = words.map( word => {     
+            return {
+                'title': { $regex: new RegExp(word, 'i') }
+            }   
+            //[
+            // {'tag.title': { $regex: `/${word}/`, $options: 'i'}}
+            // ]
+        })
+        searchBarObj = { $or: searchBarArr}
     }
 
-    let combinedSearchObj
-    (searchBarArr.length > 0) ? combinedSearchObj = { $and: [searchBarObj, searchObj] } : combinedSearchObj = searchObj
-    // title, location, date
-    console.log(combinedSearchObj);
-    Activity.find(searchObj).populate('tag')
+    //Combine filters and searchBarObj
+    let combinedSearchObj;
+    (searchBarObj) ? combinedSearchObj = { $and: [searchBarObj, filters] } : combinedSearchObj = filters
+
+    Activity.find(combinedSearchObj).populate('tag')
         .sort({ date: -1 })
-        .then(activities => res.json(activities))
+        .then(activities => res.json(activities.map(activity => activity._id)))
         .catch(err => res.status(404).json({ noactivitiesfound: 'No activities found' }));
 });
 

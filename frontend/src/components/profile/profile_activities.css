@@ -34,10 +34,10 @@
 .profile__activtiy--info{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    justify-content: space-between;
     align-self: flex-start;
     font-size: 1.5rem;
+    height: 95%;
 }
 
 .profile__activtiy--img{

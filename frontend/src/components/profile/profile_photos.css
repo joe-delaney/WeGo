@@ -20,7 +20,16 @@
     align-items: flex-start;
     /* margin: 30px 10px;  */
     margin-top: 0px;
-    width: 100%;     
+    width: 100%;
+    margin-top: 10px;     
+}
+
+.photo-modal {
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    max-width: 70%;
+    margin-left: 16rem;
 }
 
 .photo_render{
@@ -35,17 +44,22 @@
     height: 165px;
     object-fit: cover;
     border-radius: 10px;  
+    cursor: pointer;
 }
 
 .upload__photo{
-    padding: 15px 15px;
     display: flex;
     align-self: flex-end;
+    position: absolute;
 }
 
 .addphoto{
+    display: none;
+}
+
+.upload-photo-icon {
     width: 45px;
-    height: 45px;  
+    height: 45px;
     cursor: pointer;
     padding: 5px 5px;
 }
@@ -54,8 +68,6 @@
     background: var(--color-sliver);    
     border-radius: 30px;
 }
-
-
 
 .delete__photo{
     position: absolute;

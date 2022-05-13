@@ -1,0 +1,81 @@
+.messages-modal-container {
+    position: absolute;
+    right: 0;
+    bottom:0;
+}
+
+.conversations-container {
+    width: 350px;
+    height: calc(100vh - 300px);
+    box-shadow: 0px 0px 0px 1px #00000014,
+    0px 4px 4px #0000004d;
+    border-radius: 8px;
+}
+
+.conversations-container-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.conversations-container-nav {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    border-bottom: 1px solid lightgrey;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: pointer;
+}
+
+.conversations-container-nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.conversations-container-nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.conversations-container-nav-header {
+    margin-right: 10px;
+}
+
+.conversations-list {
+    padding: 10px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.chat-group-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+}
+
+.chat-group-list-item {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.chat-group-list-item-right {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.chat-group-list-item-name {
+    color: black;
+    font-size: 18px;
+}
+
+.chat-group-list-item-message {
+    color: #00000099;
+    font-size: 14px;
+}

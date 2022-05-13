@@ -3,7 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './profile_photos.css';
 import * as DateUtil from "../../util/date_util"
-import IndexItemActivity from '../activities/index_item_activity'
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 
 class ProfileAbout extends React.Component {
@@ -54,7 +55,6 @@ class ProfileAbout extends React.Component {
         let activityDate = activityTime ? DateUtil.convertToDate(activityTime) : "";
         let activitylocation = activity ? activity.location : "";
         let activityImg = activity && activity.tag ? activity.tag.img : "https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1356&h=668&fit=crop"
-  
        
         return(
                 <div className='profile__about--left'>
@@ -70,13 +70,12 @@ class ProfileAbout extends React.Component {
                             {aboutMe}
                         </ul>  
                     </div>
-                    <div className='profile__about--next'>
-                        <h4>Next Activity</h4>
-                        <div >
-                            {/* <img src={activityImg} className='profile__activtiy--img ' /> */}
+                    <div onClick={() => this.props.openModal("showActivity", activity._id)} className='profile__about--next'>
+                        <h4 className='next-activity-header'>Next Activity</h4>
+                        <div>
                             <p>{activitytitle}</p>
-                            <p>{activityDate}</p>
-                            <p>{activitylocation}</p>
+                            <p><AccessTimeIcon /> {activityDate}</p>
+                            <p><LocationOnIcon /> {activitylocation}</p>
                          </div> 
 
                     </div>

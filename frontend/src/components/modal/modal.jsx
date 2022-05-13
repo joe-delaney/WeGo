@@ -6,6 +6,7 @@ import EditProfileContainer from "../profile/edit_profile_container";
 import EditProfileAvatarContainer from "../profile/edit_profile_avatar_container"
 import CreateActivityContainer from "../activities/create_activity_container";
 import ShowActivityContainer from "../activities/show_activity_container";
+import ProfilePhotoModalContainer from "../profile/profile_photo_modal_container";
 
 const Modal = ({modal, closeModal}) => {
     if (!modal) {
@@ -30,6 +31,9 @@ const Modal = ({modal, closeModal}) => {
             break;
         case "showActivity":
             component = <ShowActivityContainer/>
+            break;
+        case "showPhoto":
+            component = <ProfilePhotoModalContainer/>
             break;
         default:
             return null;

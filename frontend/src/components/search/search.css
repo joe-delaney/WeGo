@@ -26,6 +26,7 @@
   padding: 2rem 2rem;
   border: 0;
   cursor: pointer;
+  width: 100%;
 }
 
 
@@ -60,23 +61,21 @@ right: 0px;
   border: 0;
   cursor: pointer;
   outline: 0;
-  padding: 2rem 3rem;
+  padding: 2rem 2.5rem;
   margin-right: 20px;
   font-size: 1.5rem;
   font-weight: 500;
+  background-color: #efefef;
+  border-right: 10px solid transparent !important;
 }
 
-.search_filter{
-  
-
-}
-
-.SearchResult{
+.search-result{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+  color: black; 
+ }
 
 
 .search__filter{
@@ -99,4 +98,103 @@ right: 0px;
   border-radius: 10px;
   border: 0px;
 }
+
+/* Search Results */
+.search-results {
+  height: 100%;
+  margin-top: 30px;
+  width: 60%;
+}
+
+
+.search-result-container {
+  display: flex;
+  justify-content: flex-start;
+  border-top: 1px solid #d9d9d9;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.search-result-contents {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  justify-content: space-between;
+}
+
+.search-result-contents-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-img {
+  border-radius: 10px;
+  width: 300px;
+  height: 175px;
+}
+
+.search-result-date {
+  color: var(--color-body);
+}
+
+.search-result-title {
+  color: var(--color-headings);
+  margin-top: 10px;
+  font-size: larger;
+}
+
+.search-result-location {
+  color: var(--color-body-darker);
+  margin-top: 5px;
+}
+
+.search-result-attendees {
+  color: var(--color-body-darker);
+}
+
+.search-result-contents-bottom {
+  margin-bottom: 10px;
+}
+
+.search-see-more-info {
+  color: var(--color-blue-dark);
+}
+
+.search-see-more-info:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.no-results-found {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.no-results-img {
+  height: 150px;
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+.no-results-text {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-results-text-main {
+  font-size: 30px;
+}
+
+.link-to-home {
+  margin-top: 10px;
+  text-decoration: underline;
+  color: #056c91;
+}
+
+
 

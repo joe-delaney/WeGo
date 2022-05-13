@@ -177,7 +177,6 @@ router.post("/:id", upload.single('image'), (req, res) => {
                 if(req.body.aboutMe) user.aboutMe = req.body.aboutMe
                 if (req.body.remove) user.profilePhotoPath = "/api/images/41daf94ffdccb355db7a624258d02f60"
 
-
                 if(req.file) {
                     const result = await uploadFile(req.file)
                     user.profilePhotoPath = `/api/images/${result.Key}`
@@ -225,7 +224,21 @@ router.post('/:id/upload', upload.single('image'), async (req, res) => {
                     const result = await uploadFile(req.file);
                     await unlinkFile(req.file.path);
                     user.extraPhotoPaths.push(`/api/images/${result.Key}`);
-                    user.save().then(user => res.json(JSON.parse(userShow(user))))
+                    await user.save()
+                    User.findById(user.id)
+                        .populate({
+                            path: "allActivities",
+                            populate: {
+                                path: "tag"
+                            }
+                        })
+                        .populate({
+                            path: "chatGroups",
+                            populate: {
+                                path: "messages"
+                            }
+                        })
+                        .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));
                 }
             }
         })
@@ -238,7 +251,22 @@ router.patch('/:id/delete', (req, res) => {
                 return res.status(404).json({ nouserfound: "No user found with that ID" })
             } else {
                 user.extraPhotoPaths = user.extraPhotoPaths.filter(el => el !== req.body.photo)
-                user.save().then(user => res.json(JSON.parse(userShow(user))))
+                user.save().then(user => {
+                    User.findById(user.id)
+                        .populate({
+                            path: "allActivities",
+                            populate: {
+                                path: "tag"
+                            }
+                        })
+                        .populate({
+                            path: "chatGroups",
+                            populate: {
+                                path: "messages"
+                            }
+                        })
+                        .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));
+                })
             }
         })
 });

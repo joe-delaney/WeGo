@@ -1,10 +1,11 @@
 :root {
-    --color-backgroud: #243b52;
+    --color-nav: #0d4175;    
     --color-callout: #0d4175;
     --color-primary: #2584ff;
     --color-secondary: #00d9ff;
     --color-accent: #ff3400;
     --color-blue-dark: #2596be;
+    --color-headings-bg: #243b52;
     --color-headings: #1b0760;
     --color-body: #918ca4;
     --color-body-darker: #5c5577;
@@ -19,6 +20,9 @@
     box-sizing: border-box;
   }
   
+  li {
+    list-style: none;
+  }
     
   html {
     font-size: 62.5%;
@@ -61,7 +65,7 @@
   
   p {
     margin-top: 0;
-    margin-bottom: 1px;
+    margin-bottom: 5px;
   }
 
   a {
