@@ -112,7 +112,7 @@ export default class SignupForm extends React.Component {
                     <input type="file" 
                     className="custom-file-input" 
                     onChange={this.handlefiles}/> 
-                    <AddAPhotoIcon sx={{fontSize: 30 }} className="singup__avatar"/>
+                    <AddAPhotoIcon sx={{fontSize: 30 }} className="signup__avatar"/>
                     {preview}
                                     
                 </div>
@@ -144,7 +144,7 @@ export default class SignupForm extends React.Component {
 
                     </div>
                 </div>
-                <div className="input-group singup__form ">
+                <div className="input-group signup__form ">
                     <input
                         className="input"
                         type="text"
@@ -156,7 +156,7 @@ export default class SignupForm extends React.Component {
                     </p> 
 
                 </div>
-                <div className="input-group singup__form">
+                <div className="input-group signup__form">
 
                     <input
                         className="input"
@@ -168,7 +168,7 @@ export default class SignupForm extends React.Component {
                      Password must be at least 6 characters
                       </p> 
                 </div>
-                <div className="input-group singup__form" >
+                <div className="input-group signup__form" >
                     <input
                         className="input"
                         type="password"
@@ -181,7 +181,7 @@ export default class SignupForm extends React.Component {
 
                 </div>
                
-                <div className="input-group singup__form">
+                <div className="input-group signup__form">
                     <input
                         className="input"
                         type="date"
@@ -194,7 +194,7 @@ export default class SignupForm extends React.Component {
                       </p>
 
                 </div>
-                <div className="form__submit singup__form">
+                <div className="form__submit signup__form">
                     <button
                         className="btn btn--secondary"
                         onClick={this.handleSignup}>Sign Up!!</button>

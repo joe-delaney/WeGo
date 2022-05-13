@@ -181,6 +181,8 @@
     font-size: 1rem;
     /* color: var(--color-body-darker); */
     color: white;
+    margin-right: 20px;
+    font-weight: 500;
 }
 
 .bio__item {

@@ -1,0 +1,47 @@
+# Query: singup
+# ContextLines: 1
+
+10 results - 3 files
+
+frontend/src/components/nav/navbar.js:
+  100               <ul className="list nav__list">
+  101:               <li className="nav__item signup"  onClick={()=>this.props.openModal('signup')}>Signup</li>
+  102                <li className="nav__item"  onClick={()=>this.props.openModal('login')}>Login</li>
+
+frontend/src/components/session/form.css:
+  113  
+  114: .signup__form{
+  115      margin-bottom: 20px;
+
+  121  
+  122: .signup__form p {
+  123      position: absolute;
+
+  176  
+  177: .signup__avatar{
+  178      position: absolute;
+
+frontend/src/components/session/signup_form.jsx:
+  114                      onChange={this.handlefiles}/> 
+  115:                     <AddAPhotoIcon sx={{fontSize: 30 }} className="signup__avatar"/>
+  116                      {preview}
+
+  146                  </div>
+  147:                 <div className="input-group signup__form ">
+  148                      <input
+
+  158                  </div>
+  159:                 <div className="input-group signup__form">
+  160  
+
+  170                  </div>
+  171:                 <div className="input-group signup__form" >
+  172                      <input
+
+  183                 
+  184:                 <div className="input-group signup__form">
+  185                      <input
+
+  196                  </div>
+  197:                 <div className="form__submit signup__form">
+  198                      <button
