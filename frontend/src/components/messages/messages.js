@@ -30,15 +30,21 @@ export class Messages extends React.Component {
               <div className='conversations-container-nav-left'>
                 <img src={this.props.user.profilePhotoPath} className='conversations-container-img'></img>
                 <strong className='conversations-container-nav-header'>Messages</strong>
+                <span className='new-message-icon'> New</span>
               </div>
               <div className='conversations-container-nav-left'>
-                <KeyboardArrowDownIcon sx={{ fontSize: 25, color: '#000' }}/>
+                <KeyboardArrowDownIcon sx={{ fontSize: 25, color: '#000'}}/>
               </div>
           </div>
-          <h1 className='messenger header'> Messages <span>Stand in for unread messages symbol</span> </h1>
-          <button onClick={this.conversationToggle} />
-          <div className='sub-conversation-container'>
-            {this.props.user.chatGroups ? this.props.user.chatGroups.map( chatgroup => <ChatgroupContainer openModal={this.openOrCloseConversationModal} chatgroup={chatgroup} />) : null}
+          {/* <button onClick={this.conversationToggle} /> */}
+          <div className='conversations-list'>
+            {this.props.user.chatGroups ? 
+              this.props.user.chatGroups.map((chatgroup, idx) => 
+                <ChatgroupContainer 
+                  openModal={this.openOrCloseConversationModal} 
+                  chatgroup={chatgroup}
+                  key={`chatgroup${idx}`} />) : null}
+
           </div>
         </div>
 

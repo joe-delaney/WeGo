@@ -30,6 +30,7 @@
     padding: 10px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    cursor: pointer;
 }
 
 .conversations-container-nav-left {
@@ -40,4 +41,41 @@
 .conversations-container-nav-right {
     display: flex;
     align-items: center;
+}
+
+.conversations-container-nav-header {
+    margin-right: 10px;
+}
+
+.conversations-list {
+    padding: 10px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.chat-group-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+}
+
+.chat-group-list-item {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.chat-group-list-item-right {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.chat-group-list-item-name {
+    color: black;
+    font-size: 18px;
+}
+
+.chat-group-list-item-message {
+    color: #00000099;
+    font-size: 14px;
 }
