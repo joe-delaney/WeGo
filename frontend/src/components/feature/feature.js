@@ -23,10 +23,9 @@ export default class Feature extends React.Component {
                     <div>
                         <img className="feature__image" src="https://media3.giphy.com/media/cdEj5Qt1g0VI0cZnu3/giphy.gif" alt="" />
                     </div>
-
                 </div>
                 <div className='feature__block feature'>
-                    <div className="feature__content">
+                    <div className="feature__content feature__content-2">
                         <h3 className="feature__heading">Try new things.</h3>
                         <p>
                             Host activities that you are interested in and find people

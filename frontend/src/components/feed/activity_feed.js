@@ -1,6 +1,7 @@
 import React from 'react'
 import ActivityItem from './activity_item'
 import './activity.css'
+import {Link} from "react-router-dom";
 
 export default class ActivityFeed extends React.Component {
     constructor(props) {
@@ -80,6 +81,7 @@ export default class ActivityFeed extends React.Component {
         let upcomingActivityFeedHeader = upcomingActivities.length ? (
             <div className='acivity_feed__heaher'>
                 <h2>Upcoming activities</h2>
+                <Link to="/search" className='link-to-search'>Find more activities</Link>
             </div>
         ) : null;
 

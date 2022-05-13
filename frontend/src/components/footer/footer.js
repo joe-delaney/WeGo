@@ -22,12 +22,12 @@ export default class Footer extends React.Component {
                             Joe Delaney    
                         </div>
                         <div className='team__info--detail'>
-                            <GitHubIcon sx={{ fontSize: 20 }}/> 
-                            GitHub
+                            <GitHubIcon sx={{ fontSize: 24 }} />
+                            <span className='team-info-label'>GitHub</span>
                         </div>
                         <div className='team__info--detail'>
-                            <LinkedInIcon sx={{ fontSize: 20 }}/>
-                            LinkIn     
+                            <LinkedInIcon sx={{ fontSize: 24 }} />
+                            <span className='team-info-label'>LinkedIn</span>
                         </div>
                     </div>
                          
@@ -42,12 +42,12 @@ export default class Footer extends React.Component {
                             Nicholas Angleton    
                         </div>
                         <div className='team__info--detail'>
-                            <GitHubIcon sx={{ fontSize: 20 }}/> 
-                            GitHub
+                            <GitHubIcon sx={{ fontSize: 24 }}/> 
+                            <span className='team-info-label'>GitHub</span>
                         </div>
                         <div className='team__info--detail'>
-                            <LinkedInIcon sx={{ fontSize: 20 }}/>
-                            LinkIn     
+                            <LinkedInIcon sx={{ fontSize: 24 }}/>
+                            <span className='team-info-label'>LinkedIn</span>    
                         </div>
                     </div>
                 </div>
@@ -61,12 +61,12 @@ export default class Footer extends React.Component {
                             Harry Israel   
                         </div>
                         <div className='team__info--detail'>
-                            <GitHubIcon sx={{ fontSize: 20 }}/> 
-                            GitHub
+                            <GitHubIcon sx={{ fontSize: 24 }} />
+                            <span className='team-info-label'>GitHub</span>
                         </div>
                         <div className='team__info--detail'>
-                            <LinkedInIcon sx={{ fontSize: 20 }}/>
-                            LinkIn     
+                            <LinkedInIcon sx={{ fontSize: 24 }} />
+                            <span className='team-info-label'>LinkedIn</span>
                         </div>
                     </div>
                 </div>
@@ -80,12 +80,12 @@ export default class Footer extends React.Component {
                             Janic Shih
                         </div>
                         <div className='team__info--detail'>
-                            <GitHubIcon sx={{ fontSize: 20 }}/> 
-                            GitHub
+                            <GitHubIcon sx={{ fontSize: 24 }} />
+                            <span className='team-info-label'>GitHub</span>
                         </div>
                         <div className='team__info--detail'>
-                            <LinkedInIcon sx={{ fontSize: 20 }}/>
-                            LinkIn     
+                            <LinkedInIcon sx={{ fontSize: 24 }} />
+                            <span className='team-info-label'>LinkedIn</span>
                         </div>
                     </div>
                 </div>

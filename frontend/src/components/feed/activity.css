@@ -170,6 +170,16 @@
     color: #0d4175;
 }
 
+.link-to-search {
+    padding-right: 11%;
+    color: var(--color-headings)
+}
+
+.link-to-search:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 
 @media screen and (max-width: 767px){
     .activity__item{ 

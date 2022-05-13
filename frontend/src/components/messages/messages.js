@@ -1,6 +1,8 @@
 import React from 'react';
 import { ChatgroupContainer } from './chatgroup_container';
 import { ConversationModalContainer } from './conversation_modal_container';
+import "./message.css";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export class Messages extends React.Component {
   constructor(props) {
@@ -22,13 +24,27 @@ export class Messages extends React.Component {
   render() {
     return (
       (!this.props.user) ? null :
-      <div className='outermost_messenger_container'>
-
+      <div className='messages-modal-container'>
         <div className='conversations-container'>
-          <h1 className='messenger header'> Messages <span>Stand in for unread messages symbol</span> </h1>
-          <button onClick={this.conversationToggle} />
-          <div className='sub-conversation-container'>
-            {this.props.user.chatGroups ? this.props.user.chatGroups.map( chatgroup => <ChatgroupContainer openModal={this.openOrCloseConversationModal} chatgroup={chatgroup} />) : null}
+          <div className="conversations-container-nav">
+              <div className='conversations-container-nav-left'>
+                <img src={this.props.user.profilePhotoPath} className='conversations-container-img'></img>
+                <strong className='conversations-container-nav-header'>Messages</strong>
+                <span className='new-message-icon'> New</span>
+              </div>
+              <div className='conversations-container-nav-left'>
+                <KeyboardArrowDownIcon sx={{ fontSize: 25, color: '#000'}}/>
+              </div>
+          </div>
+          {/* <button onClick={this.conversationToggle} /> */}
+          <div className='conversations-list'>
+            {this.props.user.chatGroups ? 
+              this.props.user.chatGroups.map((chatgroup, idx) => 
+                <ChatgroupContainer 
+                  openModal={this.openOrCloseConversationModal} 
+                  chatgroup={chatgroup}
+                  key={`chatgroup${idx}`} />) : null}
+
           </div>
         </div>
 

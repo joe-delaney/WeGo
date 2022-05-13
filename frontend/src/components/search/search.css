@@ -165,3 +165,36 @@ right: 0px;
   cursor: pointer;
 }
 
+.no-results-found {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.no-results-img {
+  height: 150px;
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+.no-results-text {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-results-text-main {
+  font-size: 30px;
+}
+
+.link-to-home {
+  margin-top: 10px;
+  text-decoration: underline;
+  color: #056c91;
+}
+
+
+
