@@ -165,3 +165,34 @@
     margin-right: 15px;
     cursor: pointer;
 }
+
+.message-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+}
+
+.message-list-item {
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.message-list-item-right {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.message-list-item-name {
+    color: black;
+    font-size: 18px;
+}
+
+.message-list-item-text {
+    color: #00000099;
+    font-size: 14px;
+}
