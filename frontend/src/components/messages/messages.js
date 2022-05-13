@@ -6,11 +6,12 @@ import { socket } from '../socket';
 export class Messages extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {chatShowing: false, conversationModal: null}
+    // conversationalModal is being set to true strictly for testing purposes
+    this.state = {chatShowing: false, conversationModal: true}
     this.conversationToggle = this.conversationToggle.bind(this)
-    this.openConversationModal = this.openOrCloseConversationModal.bind(this)
+    this.openOrCloseConversationModal = this.openOrCloseConversationModal.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
-    this.sendMessage = this.sendMessage.bind(this)
+    this.emitMessage = this.emitMessage.bind(this)
   }
 
   conversationToggle(e){
@@ -24,9 +25,9 @@ export class Messages extends React.Component {
 
   componentDidMount(){
     socket.emit('join', this.props.currentUserId)
-    socket.on('message', function(){
+    socket.on('message', () => {
       console.log(`User has received a message`)
-      // this.props.fetchUser(this.props.currentUserId)
+      this.props.fetchUser(this.props.currentUserId)
     })
   }
 
@@ -34,8 +35,8 @@ export class Messages extends React.Component {
     socket.emit('leave', this.props.currentUserId)
   }
 
-  sendMessage(e){
-    e.preventDefault()
+  emitMessage(){
+    console.log(`User is sending a message`)
     socket.emit('message', [this.props.currentUserId])
   }
 
@@ -47,15 +48,17 @@ export class Messages extends React.Component {
         <div className='conversations-container'>
           <h1 className='messenger header'> Messages <span>Stand in for unread messages symbol</span> </h1>
           <button onClick={this.conversationToggle} />
-          <div className='sub-conversation-container'>
-            {this.props.user.chatGroups ? this.props.user.chatGroups.map( chatgroup => <ChatgroupContainer openModal={this.openOrCloseConversationModal} chatgroup={chatgroup} />) : null}
-          </div>
+          {(this.state.chatShowing) ? 
+            <div className='sub-conversation-container'>
+              {this.props.user.chatGroups ? this.props.user.chatGroups.map( chatgroup => <ChatgroupContainer openModal={this.openOrCloseConversationModal} chatgroup={chatgroup} />) : null}
+            </div>
+          : null }
         </div>
 
-        <input type="text" />
-        <button onClick={this.sendMessage}>Submit</button>
+        {/* <input type="text" />
+        <button onClick={this.sendMessage}>Submit</button> */}
 
-        {this.state.conversationModal ? <ConversationModalContainer closeModal={this.openOrCloseConversationModal} conversation={this.state.conversationModal}/> : null }
+        {this.state.conversationModal ? <ConversationModalContainer emitMessage={this.emitMessage} closeModal={this.openOrCloseConversationModal} conversation={this.state.conversationModal}/> : null }
       </div>
     )
   }

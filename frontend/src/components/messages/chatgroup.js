@@ -4,6 +4,7 @@ export class Chatgroup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {chatShowing: false}
+    this.openModal = this.openModal.bind(this)
   }
 
   openModal(e){

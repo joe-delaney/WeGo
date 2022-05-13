@@ -4,6 +4,8 @@ export class ConversationModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {chatShowing: false}
+    this.closeModal = this.closeModal.bind(this)
+    this.emitMessage = this.emitMessage.bind(this)
   }
 
   closeModal(e){
@@ -11,9 +13,17 @@ export class ConversationModal extends React.Component {
     this.props.closeModal(null)
   }
 
+  emitMessage(e){
+    e.preventDefault()
+    this.props.emitMessage()
+  }
+
   render() {
     return (
-      <button onClick={this.closeModal}>X</button>
+      <div>
+        <button onClick={this.emitMessage}>Send Message</button>
+        <button onClick={this.closeModal}>X</button>
+      </div>
     )
   }
 }
