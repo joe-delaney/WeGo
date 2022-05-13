@@ -21,7 +21,7 @@ export class Chatgroup extends React.Component {
     //Replace with last message data from chat group
     let lastSender = "You"
     let lastMessage = "Looking forward to joining you for the activity!"
-    lastMessage = lastMessage.length > 65 ? `${lastMessage.slice(0, 65)}...` : lastMessage;
+    lastMessage = lastMessage.length > 60 ? `${lastMessage.slice(0, 60)}...` : lastMessage;
 
     //Use close icon button for hiding group chats
 

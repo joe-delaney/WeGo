@@ -14,6 +14,7 @@
     bottom: 0;
     right: 0;
     overflow: auto;
+    background-color: white;
 }
 
 .conversations-container-collapsed {
@@ -118,6 +119,7 @@
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     overflow: auto;
+    background-color: white;
 }
 
 .chat-container::-webkit-scrollbar {
@@ -162,6 +164,7 @@
     border-top: 1px solid lightgrey;
     box-shadow: 0px 0px 0px 1px #00000014,
     0px 4px 4px #0000004d;
+    background-color: white;
 }
 
 .message-input {
