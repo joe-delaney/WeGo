@@ -6,9 +6,10 @@ import MessageItem from "./message";
 export class ConversationModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {chatShowing: false}
+    this.state = { text: ""}
     this.closeModal = this.closeModal.bind(this)
     this.emitMessage = this.emitMessage.bind(this)
+    this.updateText = this.updateText.bind(this)
   }
 
   closeModal(e){
@@ -16,37 +17,62 @@ export class ConversationModal extends React.Component {
     this.props.closeModal(null)
   }
 
-  emitMessage(e){
+  componentDidMount(){
+    if (this.props.chatgroup.read === false) {this.props.readMessage({
+      userId: this.props.currentUserId,
+      chatGroupId: this.props.chatgroup.chat._id
+    })}
+  }
+
+  updateText(e){
     e.preventDefault()
-    this.props.emitMessage()
+    this.setState({text: e.target.value})
+  }
+
+  emitMessage(e){
+    let lastMessageObj = this.props.chatgroup.chat.messages[this.props.chatgroup.chat.messages.length - 1]
+    let chatgroup = lastMessageObj.chatGroup
+    let chatGroupObj = this.props.user.chatGroups.find( group => group._id === chatgroup)
+    let other = chatGroupObj.subscribers.find( subscriber => subscriber._id !== this.props.currentUserId)
+    e.preventDefault()
+    this.props.createMessage({
+      userId: this.props.currentUserId,
+      chatGroupId: this.props.chatgroup.chat._id,
+      text: this.state.text
+    })
+    this.props.emitMessage(other)
   }
 
   render() {
+    // debugger
+    let lastMessageObj = this.props.chatgroup.chat.messages[this.props.chatgroup.chat.messages.length - 1]
 
-    let chatImage = "/api/images/667fc4dc5c22753e3a5b1a6bdd888ee2"
-    let chatName = "Joe Delaney"
+    let chatgroup = lastMessageObj.chatGroup
+    let chatGroupObj = this.props.user.chatGroups.find( group => group._id === chatgroup)
 
-    //populate this with the actual messages from the backend
-    let messages = [1,2,3,4,5,6,7,8]
+    let other = chatGroupObj.subscribers.find( subscriber => subscriber._id !== this.props.currentUserId)
+
+    let chatGroupImg = other.profilePhotoPath
+    let chatGroupDisplayName = `${other.fname} ${other.lname}`
 
     return (
       <div className='chat-container'>
         <div className="chat-header">
           <div className='chat-header-left'>
-              <img src={chatImage} className='conversations-container-img'></img>
-              <strong className='conversations-container-nav-header'>Joe Delaney</strong>
+              <img src={chatGroupImg} className='conversations-container-img'></img>
+              <strong className='conversations-container-nav-header'>{chatGroupDisplayName}</strong>
           </div>
           <div className='chat-header-right'>
             <CloseIcon className="close-button" sx={{ fontSize: 25, color: '#000' }} onClick={this.closeModal}/>
           </div>
         </div>
         <div className='messages-container'>
-            {messages.map((message, idx) => {
+            {this.props.chatgroup.chat.messages.map((message, idx) => {
               return <MessageItem key={idx} message={message}/>
             })}
         </div>
         <div className='message-composer'>
-          <input className="message-input" placeholder='Write a message...'></input>
+          <input className="message-input" onChange={this.updateText} value={this.state.text} placeholder='Write a message...'></input>
           <SendIcon onClick={this.emitMessage} className="send-icon" sx={{ fontSize: 25, color: '#000' }}/>
         </div>  
       </div>

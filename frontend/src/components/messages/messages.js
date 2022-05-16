@@ -9,7 +9,6 @@ export class Messages extends React.Component {
   constructor(props) {
     super(props);
     // conversationalModal is being set to true strictly for testing purposes
-    this.conversationToggle = this.conversationToggle.bind(this)
     this.openOrCloseConversationModal = this.openOrCloseConversationModal.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
     this.emitMessage = this.emitMessage.bind(this)
@@ -17,7 +16,6 @@ export class Messages extends React.Component {
 
     this.state = {
       conversationsCollapsed: true,
-      chatShowing: false,
       conversationModal: false
     }
   }
@@ -43,9 +41,9 @@ export class Messages extends React.Component {
     socket.emit('leave', this.props.currentUserId)
   }
 
-  emitMessage(){
+  emitMessage(other){
     console.log(`User is sending a message`)
-    socket.emit('message', [this.props.currentUserId])
+    socket.emit('message', [other])
   }
 
   toggleConversationsShown() {
@@ -56,9 +54,12 @@ export class Messages extends React.Component {
 
   render() {
     let conversationsListShown = this.state.conversationsCollapsed ? "hidden" : "";
-    let conversationsContainerClass  = this.state.conversationsCollapsed ? 
-      "conversations-container-collapsed" : "conversations-container";
-
+    let conversationsContainerClass  = this.state.conversationsCollapsed ? "conversations-container-collapsed" : "conversations-container";
+    let numberOfConvsWithNewMessages
+    // debugger
+    if (this.props.user) {
+      (this.props.user.chatSubscriptions) ? numberOfConvsWithNewMessages = this.props.user.chatSubscriptions.filter( chatSubscription => chatSubscription.read === false ).length : numberOfConvsWithNewMessages = 0
+    }
     return (
       (!this.props.user) ? null :
       <div className='messages-modal-container'>
@@ -66,24 +67,21 @@ export class Messages extends React.Component {
           <div onClick={this.toggleConversationsShown} className="conversations-container-nav">
               <div className='conversations-container-nav-left'>
                 <img src={this.props.user.profilePhotoPath} className='conversations-container-img'></img>
-                <strong className='conversations-container-nav-header'>Messages</strong>
-                <span className='new-message-icon'> New</span>
+                <strong className='conversations-container-nav-header'>Messages </strong>
+                <span className='new-message-icon'>{`(${numberOfConvsWithNewMessages} )`}</span>
               </div>
               <div className='conversations-container-nav-right'>
                 <KeyboardArrowDownIcon sx={{ fontSize: 25, color: '#000'}}/>
               </div>
           </div>
           <div className={`conversations-list ${conversationsListShown}`}>
-            {this.props.user.chatGroups ? 
-              this.props.user.chatGroups.map((chatgroup, idx) => 
-                <ChatgroupContainer 
-                  openModal={this.openOrCloseConversationModal} 
-                  chatgroup={chatgroup}
-                  key={`chatgroup${idx}`} />) : null}
+            {this.props.user.chatSubscriptions ? 
+              this.props.user.chatSubscriptions.map((chatSubscription, idx) => 
+                <ChatgroupContainer openModal={this.openOrCloseConversationModal} chatgroup={chatSubscription} key={`chatgroup${idx}`} />) : null}
           </div>
         </div>
 
-        {this.state.conversationModal ? <ConversationModalContainer emitMessage={this.emitMessage} closeModal={this.openOrCloseConversationModal} conversation={this.state.conversationModal}/> : null }
+        {this.state.conversationModal ? <ConversationModalContainer emitMessage={this.emitMessage} closeModal={this.openOrCloseConversationModal} chatgroup={this.state.conversationModal}/> : null }
       </div>
     )
   }

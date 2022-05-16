@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const ChatGroup = require('../../models/ChatGroup');
 const Message = require('../../models/Message');
+const userShow = require("../../jbuilder/users");
+
 
 var _ = require('lodash');
 

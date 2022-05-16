@@ -16,6 +16,7 @@ const util = require('util')
 const unlinkFile = util.promisify(fs.unlink)
 
 var _ = require('lodash');
+const { populate } = require("../../models/User");
 
 //User sign up backend route
 
@@ -153,14 +154,29 @@ router.get("/:id", (req, res) => {
         .populate({
             path: "chatGroups",
             populate: {
-                path: "messages"
+                path: 'subscribers',
+                select: ['fname', 'lname', 'profilePhotoPath']
+            }
+        })
+        .populate({
+            path: 'chatSubscriptions',
+            populate: {
+                path: 'chat',
+                populate: {
+                    path: "messages",
+                    populate: {
+                        path: 'author',
+                        select: ['fname', 'lname', 'profilePhotoPath']
+                    }
+                }
             }
         })
         .then(user => res.json(JSON.parse(userShow(user))))
-        .catch(err => 
-            res.status(404).json({ nouserfound: "No user found with that ID" })
-        );
-});
+            .catch(err => 
+                res.status(404).json({ nouserfound: "No user found with that ID" })
+            );
+        })
+
 
 // Update a user profile
 router.post("/:id", upload.single('image'), (req, res) => {
