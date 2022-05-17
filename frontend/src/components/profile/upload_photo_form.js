@@ -28,6 +28,7 @@ export default class UploadPhotoForm extends React.Component {
   }
 
   async uploadPhoto(e) {
+    console.log("clicked");
     await this.handleFiles(e)
     this.handleSubmit()
   }
@@ -38,7 +39,6 @@ export default class UploadPhotoForm extends React.Component {
         <label htmlFor="file-input" className="upload-photo-icon">
           <AddPhotoAlternateIcon sx={{ fontSize: 35, color: '#1767b6' }} /> 
         </label>
-
         <input id="file-input" type="file" onChange={this.uploadPhoto} className="addphoto" accept="image/*" />
       </div>
     )
