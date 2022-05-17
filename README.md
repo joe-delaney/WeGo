@@ -19,3 +19,10 @@ Users will land on this page which shows upcoming activities sorted by date and 
 Initially, all activities will appear in a list on this page. Users will be able to search for activities by activity title as well as filter activities by tag, price, duration, and max capacity. Users will have the ability to access the activity show view directly from the search results list.
 
 ![search-page-demo](https://user-images.githubusercontent.com/65872033/168846050-e7ca10bb-6424-4f72-a4fc-96b161888b9d.gif)
+
+## User Profile
+
+User profile pages will be the main source of information for a user and where other users can visit to learn more about another user. This page includes an about section with general information for the user, a photos section where the user can add, display, and remove photos, and an activities section, which lists all activities the user has attended or is planning to attend (including those that this user is the host). The main profile page will also display the user's next upcoming activity.
+
+![profile-demo](https://user-images.githubusercontent.com/65872033/168846675-ab81988f-ce22-44b2-9c59-9bf3287045fc.gif)
+
