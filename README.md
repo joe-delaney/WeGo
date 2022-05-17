@@ -13,3 +13,9 @@ Users will land on this page which shows upcoming activities sorted by date and 
 ![splash-page-demo](https://user-images.githubusercontent.com/65872033/168845195-2c698c73-cb0c-4ef6-8bfe-9e576feb5c7c.gif)
 
 ![splash-page-activities](https://user-images.githubusercontent.com/65872033/168845222-f6544dc6-e3c8-45a8-9335-b8ef9adda9ed.gif)
+
+## Activity Search
+
+Initially, all activities will appear in a list on this page. Users will be able to search for activities by activity title as well as filter activities by tag, price, duration, and max capacity. Users will have the ability to access the activity show view directly from the search results list.
+
+![search-page-demo](https://user-images.githubusercontent.com/65872033/168846050-e7ca10bb-6424-4f72-a4fc-96b161888b9d.gif)
