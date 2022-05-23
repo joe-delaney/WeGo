@@ -15,7 +15,7 @@ const App = () => (
         <Route exact path="/search" component={SearchIndexContainer} />
         <Route path="/"> { <Redirect to='/' /> } </Route>
     </Switch>
-    <ProtectedRoute path='/' component={MessagesContainer} />
+    {/* <ProtectedRoute path='/' component={MessagesContainer} /> */}
     </>
     
 );
