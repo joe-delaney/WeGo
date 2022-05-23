@@ -4,7 +4,6 @@ import axios from "axios";
 export const fetchActivities = () => axios.get('/api/activities');
 
 export const searchActivities = (query) => {
-    console.log(query);
     return axios.put('/api/activities/search', query);
 }
 

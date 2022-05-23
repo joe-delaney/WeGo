@@ -20,7 +20,6 @@ export default class UploadPhotoForm extends React.Component {
   }
 
   handleSubmit() {
-    // e.preventDefault();
     let formData = new FormData();
     formData.append('id', this.props.currentUserId);
     formData.append('image', this.state.file);
@@ -28,7 +27,6 @@ export default class UploadPhotoForm extends React.Component {
   }
 
   async uploadPhoto(e) {
-    console.log("clicked");
     await this.handleFiles(e)
     this.handleSubmit()
   }
