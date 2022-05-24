@@ -14,8 +14,8 @@ export default class CreateActivity extends React.Component {
             location: "",
             description: "",
             tag: "",
-            price: 1,
-            duration: 1,
+            price: 0,
+            duration: 0,
             capacity: 2,
             address: '' 
         }
