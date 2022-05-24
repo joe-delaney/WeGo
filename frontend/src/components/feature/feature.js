@@ -26,7 +26,7 @@ export default class Feature extends React.Component {
                 </div>
                 <div className='feature__block feature'>
                     <div className="feature__content feature__content-2">
-                        <h3 className="feature__heading">Try new things.</h3>
+                        <h3 className="feature__heading">Try new activities.</h3>
                         <p>
                             WeGo provides the platform for you to host and find fun, new activities no matter how big or small. 
                             Whether you are looking for adventure, leisure, or something in between, WeGo has you covered. 

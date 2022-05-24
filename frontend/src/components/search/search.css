@@ -3,6 +3,12 @@
   margin: 50px auto;
 }
 
+.feed-header {
+  text-align: center;
+  margin-top: 90px;
+  font-size: 50px;
+}
+
 .feed__search{
   width: 60%;
   margin: 123px auto;
@@ -17,6 +23,7 @@
   justify-content: flex-start;
   align-items: center;
   position: relative;
+  margin-top: 60px;
 }
 
 .search__input{
