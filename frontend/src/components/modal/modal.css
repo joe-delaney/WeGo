@@ -48,3 +48,12 @@
     /* background-color: lightgray; */
     font-size: 25px;
   }
+
+
+
+.from__submit__delete{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 10px;
+}
+
