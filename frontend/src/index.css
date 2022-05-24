@@ -125,6 +125,12 @@
   color: #cdcbd7;
 }
 
+.autocomplete-dropdown-container{
+  position: absolute;
+  z-index: 999;
+}
+
+
 .input-group {
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
