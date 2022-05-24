@@ -75,7 +75,7 @@ export default class CreateActivity extends React.Component {
                             <PlacesAutocomplete
                             value={this.state.location}
                             onChange={this.handleChange}
-                        >
+                            >
                             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                             <div>
                                 <input
@@ -95,9 +95,8 @@ export default class CreateActivity extends React.Component {
                                     ? { backgroundColor: '#fafafa', cursor: 'pointer' }
                                     : { backgroundColor: '#ffffff', cursor: 'pointer' };
                                     return (
-                                    <div key={idx}
-                                        {...getSuggestionItemProps(suggestion, {   
-                                        className,                                     
+                                    <div key={idx} className="input-sugestion"
+                                        {...getSuggestionItemProps(suggestion, {                      
                                         style,
                                         })}
                                     >
