@@ -41,9 +41,9 @@ export class Messages extends React.Component {
     socket.emit('leave', this.props.currentUserId)
   }
 
-  emitMessage(other){
+  emitMessage(others){
     console.log(`User is sending a message`)
-    socket.emit('message', [other, this.props.currentUserId])
+    socket.emit('message', [...others, this.props.currentUserId])
   }
 
   toggleConversationsShown() {
@@ -80,7 +80,8 @@ export class Messages extends React.Component {
           </div>
         </div>
 
-        {this.state.conversationModal ? <ConversationModalContainer emitMessage={this.emitMessage} closeModal={this.openOrCloseConversationModal} chatgroup={this.state.conversationModal}/> : null }
+        {this.state.conversationModal ? <ConversationModalContainer emitMessage={this.emitMessage} closeModal={this.openOrCloseConversationModal} 
+        messages={this.state.conversationModal.chat.messages} read={this.state.conversationModal.read} _id={this.state.conversationModal.chat._id}/> : null }
       </div>
     )
   }

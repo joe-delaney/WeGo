@@ -38,7 +38,7 @@ export class Chatgroup extends React.Component {
       <li className="chat-group-list-item">
         <img onClick={this.openModal} className="chat-group-img" src={chatGroupImg}></img>
         <div onClick={this.openModal} className="chat-group-list-item-right">
-          <span className="chat-group-list-item-name">`${chatGroupDisplayName} ${this.props.chatgroup.read ? "" : '[Unread]'}`</span>
+          <span className="chat-group-list-item-name">{chatGroupDisplayName} {this.props.chatgroup.read ? "" : '[Unread]'}</span>
           <span className="chat-group-list-item-message">{`${lastSender}: ${lastMessage}`}</span>
         </div>
         <div className='hide-chat-group-button-container'>

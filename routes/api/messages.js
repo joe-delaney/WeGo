@@ -34,6 +34,7 @@ router.post("/", async (req, res) => {
 
     chatGroup.subscribers.forEach( async sub => {
         console.log(sub.id)
+        console.log(req.body.senderId)
         if (sub.id !== req.body.senderId) {
             await User.findByIdAndUpdate(sub.id, {$pull:{chatGroups: req.body.chatGroupId}})
             await User.findByIdAndUpdate(sub.id, {$pull:{chatSubscriptions: {chat: req.body.chatGroupId}}})
@@ -42,7 +43,7 @@ router.post("/", async (req, res) => {
         }
     });
 
-    User.findById(req.body.userId)
+    User.findById(req.body.senderId)
                         .populate({
                             path: "allActivities",
                             populate: {

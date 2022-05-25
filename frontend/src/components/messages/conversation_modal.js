@@ -3,6 +3,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import MessageItem from "./message";
 
+
+
+// this.props.chatgroup
+
 export class ConversationModal extends React.Component {
   constructor(props) {
     super(props);
@@ -18,9 +22,9 @@ export class ConversationModal extends React.Component {
   }
 
   componentDidMount(){
-    if (this.props.chatgroup.read === false) {this.props.readMessage({
+    if (this.props.read === false) {this.props.readMessage({
       userId: this.props.currentUserId,
-      chatGroupId: this.props.chatgroup.chat._id
+      chatGroupId: this.props._id
     })}
   }
 
@@ -29,24 +33,25 @@ export class ConversationModal extends React.Component {
     this.setState({text: e.target.value})
   }
 
-  emitMessage(e){
-    let lastMessageObj = this.props.chatgroup.chat.messages[this.props.chatgroup.chat.messages.length - 1]
+  async emitMessage(e){
+    let lastMessageObj = this.props.messages[this.props.messages.length - 1]
     let chatgroup = lastMessageObj.chatGroup
     let chatGroupObj = this.props.user.chatGroups.find( group => group._id === chatgroup)
     // debugger
     let other = chatGroupObj.subscribers.find( subscriber => subscriber._id !== this.props.currentUserId)._id
     e.preventDefault()
-    this.props.createMessage({
-      userId: this.props.currentUserId,
-      chatGroupId: this.props.chatgroup.chat._id,
+    await this.props.createMessage({
+      senderId: this.props.currentUserId,
+      chatGroupId: this.props._id,
       text: this.state.text
     })
-    this.props.emitMessage(other)
+    this.setState({text: ''})
+    this.props.emitMessage([other])
   }
 
   render() {
     // debugger
-    let lastMessageObj = this.props.chatgroup.chat.messages[this.props.chatgroup.chat.messages.length - 1]
+    let lastMessageObj = this.props.messages[this.props.messages.length - 1]
 
     let chatgroup = lastMessageObj.chatGroup
     let chatGroupObj = this.props.user.chatGroups.find( group => group._id === chatgroup)
@@ -68,7 +73,7 @@ export class ConversationModal extends React.Component {
           </div>
         </div>
         <div className='messages-container'>
-            {this.props.chatgroup.chat.messages.map((message, idx) => {
+            {this.props.messages.map((message, idx) => {
               return <MessageItem key={idx} message={message}/>
             })}
         </div>
