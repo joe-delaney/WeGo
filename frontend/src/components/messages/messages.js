@@ -43,7 +43,7 @@ export class Messages extends React.Component {
 
   emitMessage(other){
     console.log(`User is sending a message`)
-    socket.emit('message', [other])
+    socket.emit('message', [other, this.props.currentUserId])
   }
 
   toggleConversationsShown() {
@@ -56,7 +56,6 @@ export class Messages extends React.Component {
     let conversationsListShown = this.state.conversationsCollapsed ? "hidden" : "";
     let conversationsContainerClass  = this.state.conversationsCollapsed ? "conversations-container-collapsed" : "conversations-container";
     let numberOfConvsWithNewMessages
-    // debugger
     if (this.props.user) {
       (this.props.user.chatSubscriptions) ? numberOfConvsWithNewMessages = this.props.user.chatSubscriptions.filter( chatSubscription => chatSubscription.read === false ).length : numberOfConvsWithNewMessages = 0
     }

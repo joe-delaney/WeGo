@@ -209,23 +209,24 @@ router.post("/:id", upload.single('image'), (req, res) => {
                     user.allActivities.push(req.body.hostedActivity);
                 }
                 
-                if(req.body.fromRequesterGroupId) {
-                    if (_.includes(user.chatGroups, req.body.fromRequesterGroupId)) {
-                        user.chatSubscriptions = [{chat: req.body.fromRequesterGroupId, read: true}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.fromRequesterGroupId))
-                    ))} else {
-                        user.chatGroups.push(req.body.fromRequesterGroupId)
-                        user.chatSubscriptions.push({chat: req.body.fromRequesterGroupId, read: true})
-                    }
-                }
+                // if(req.body.fromRequesterGroupId) {
+                //     if (_.includes(user.chatGroups, req.body.fromRequesterGroupId)) {
+                //         user.chatSubscriptions = [{chat: req.body.fromRequesterGroupId, read: true}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.fromRequesterGroupId))
 
-                if(req.body.fromHostChatGroupId) {
-                    if (_.includes(user.chatGroups, req.body.fromHostChatGroupId)) {
-                        user.chatSubscriptions = [{chat: req.body.fromHostChatGroupId, read: false}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.fromHostChatGroupId))
-                    ))} else {
-                        user.chatGroups.push(req.body.fromHostChatGroupId)
-                        user.chatSubscriptions.push({chat: req.body.fromHostChatGroupId, read: false})
-                    }
-                }
+                //     ))} else {
+                //         user.chatGroups.push(req.body.fromRequesterGroupId)
+                //         user.chatSubscriptions.push({chat: req.body.fromRequesterGroupId, read: true})
+                //     }
+                // }
+
+                // if(req.body.fromHostChatGroupId) {
+                //     if (_.includes(user.chatGroups, req.body.fromHostChatGroupId)) {
+                //         user.chatSubscriptions = [{chat: req.body.fromHostChatGroupId, read: false}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.fromHostChatGroupId))
+                //     ))} else {
+                //         user.chatGroups.push(req.body.fromHostChatGroupId)
+                //         user.chatSubscriptions.push({chat: req.body.fromHostChatGroupId, read: false})
+                //     }
+                // }
                 
                 
                 user.save().then(user => {

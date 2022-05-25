@@ -7,38 +7,41 @@ const userShow = require("../../jbuilder/users");
 const User = require('../../models/User');
 
 var _ = require('lodash');
+const { updateOne } = require("../../models/ChatGroup");
 
+// userId
+// chatGroupId
+// text
 router.post("/", async (req, res) => {
-    // const user = await User.findById(req.body.userId)
-    // if (!user) {return res.status(404).json({ nouserfound: "No user found with that ID" })}
-    // let chatGroup = await ChatGroup.findById(req.body.chatGroupId).populate('subscribers')
-    // if (!chatGroup) {return res.status(404).json({ nochatfound: "No chat found with that ID" })}
-    // if (!validText(req.body.text)){return res.status(400).json({ invalidmessage: "Invalid message" })}
-    // const newMessage = new Message({
-    //     text: req.body.text,
-    //     author: req.body.userId,
-    //     chatGroup: req.body.chatGroupId
-    // })
-    // user.chatSubscriptions = [{chat: req.body.chatGroupId, read: true}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.chatGroupId))))
-    // await user.save().then( async user => console.log('test'))
-    // chatGroup.subscribers.forEach( async sub => {
-    //     if (sub._id !== user.id ) {
-    //         sub.chatSubscriptions = [{chat: req.body.chatGroupId, read: false}].concat(_.filter(sub.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.chatGroupId))))
-    //         await sub.save()
-    //     }
-    // });
-    // newMessage.save().then( () => console.log('message sent'))})
+    console.log('in message')
+    const host = await User.findById(req.body.hostId)
+    const chatGroup = await ChatGroup.findById(req.body.chatGroupId).populate('subscribers')
     const newMessage = new Message({
         text: req.body.text,
-        author: req.body.userId,
+        author: req.body.senderId,
         chatGroup: req.body.chatGroupId
     })
-    await newMessage.save().then( async message => {
-        const user = await User.findById(req.body.userId)
-        let newSubscriptions = [{chat: req.body.chatGroupId, read: true}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.chatGroupId))))
-        User.updateOne({id: req.body.userId}, {subscriptions: newSubscriptions})
-        ChatGroup.updateOne({id: req.body.chatGroupId}, {$push: {messages: message}})
-    })
+    await newMessage.save()
+
+    console.log('after message save')
+    console.log(newMessage)
+
+    await ChatGroup.findByIdAndUpdate(req.body.chatGroupId, {$push: {messages: newMessage._id}})
+    await User.findByIdAndUpdate(req.body.senderId, {$pull:{chatGroups: req.body.chatGroupId}})
+    await User.findByIdAndUpdate(req.body.senderId, {$pull:{chatSubscriptions: {chat: req.body.chatGroupId}}})
+    await User.findByIdAndUpdate(req.body.senderId, {$push:{chatGroups: req.body.chatGroupId}})
+    await User.findByIdAndUpdate(req.body.senderId, {$push:{chatSubscriptions: {chat: req.body.chatGroupId, read: true}}})
+
+    chatGroup.subscribers.forEach( async sub => {
+        console.log(sub.id)
+        if (sub.id !== req.body.senderId) {
+            await User.findByIdAndUpdate(sub.id, {$pull:{chatGroups: req.body.chatGroupId}})
+            await User.findByIdAndUpdate(sub.id, {$pull:{chatSubscriptions: {chat: req.body.chatGroupId}}})
+            await User.findByIdAndUpdate(sub.id, {$push:{chatGroups: req.body.chatGroupId}})
+            await User.findByIdAndUpdate(sub.id, {$push:{chatSubscriptions: {chat: req.body.chatGroupId, read: false}}})
+        }
+    });
+
     User.findById(req.body.userId)
                         .populate({
                             path: "allActivities",
@@ -55,30 +58,25 @@ router.post("/", async (req, res) => {
                         .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));
                 })
 
-// mark a message as read chatGroupId and userId
+// mark a message as read
+// chatGroupId
+// userId
 router.post('/read', async (req, res) => {
-    debugger
-    const user = await User.findById(req.body.userId)
-    if (!user) {return res.status(406).json({ nouserfound: "No user found with that ID" })}
-    let chatGroup = await ChatGroup.findById(req.body.chatGroupId).populate('subscribers')
-    console.log(req.body.chatGroupId)
-    if (!chatGroup) {return res.status(405).json({ nochatfound: "No chat found with that ID" })}
-    user.chatSubscriptions = [{chat: req.body.chatGroupId, read: true}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.chatGroupId))))
-    await user.save()
-    .then( async user => {
-        await User.findById(user.id)
-            .populate({
-                path: "allActivities",
-                populate: {
-                    path:"tag"
-                }
-            })
-            .populate({
-                path: "chatGroups",
-                populate: {
-                    path: "messages"
-                }
-            })
-            .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))))})})
+    await User.updateOne({id: req.body.userId, 'chatSubscriptions.chat': req.body.chatGroupId}, {"chatSubscriptions.$": {chat:req.body.chatGroupId, read: true}})
+    User.findById(req.body.userId)
+                        .populate({
+                            path: "allActivities",
+                            populate: {
+                                path:"tag"
+                            }
+                        })
+                        .populate({
+                            path: "chatGroups",
+                            populate: {
+                                path: "messages"
+                            }
+                        })
+                        .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));
+                })
 
 module.exports = router;

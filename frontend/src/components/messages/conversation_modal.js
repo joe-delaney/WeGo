@@ -33,7 +33,8 @@ export class ConversationModal extends React.Component {
     let lastMessageObj = this.props.chatgroup.chat.messages[this.props.chatgroup.chat.messages.length - 1]
     let chatgroup = lastMessageObj.chatGroup
     let chatGroupObj = this.props.user.chatGroups.find( group => group._id === chatgroup)
-    let other = chatGroupObj.subscribers.find( subscriber => subscriber._id !== this.props.currentUserId)
+    // debugger
+    let other = chatGroupObj.subscribers.find( subscriber => subscriber._id !== this.props.currentUserId)._id
     e.preventDefault()
     this.props.createMessage({
       userId: this.props.currentUserId,
