@@ -89,7 +89,7 @@ export default class Footer extends React.Component {
                     </div>
                     <div>
                         <div className='team__info--detail info--name'>
-                            Janic Shih
+                            Janice Shih
                         </div>
                         <div className='team__info--detail'>
                             <GitHubIcon sx={{ fontSize: 24 }} />
