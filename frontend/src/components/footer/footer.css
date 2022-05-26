@@ -49,6 +49,14 @@
     margin-left: 10px;
 }
 
+.team-info-angellist{
+   padding: 2px 2px;
+   width: 22px;
+   height: 22px;
+   background-color: #fff;
+   border-radius: 50%;
+}
+
 @media screen and (min-width: 950px) {
     .footer{
         display: flex;
