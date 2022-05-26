@@ -47,11 +47,11 @@ export default class Footer extends React.Component {
                         </div>
                         <div className='team__info--detail'>
                             <GitHubIcon sx={{ fontSize: 24 }}/> 
-                            <span className='team-info-label'>GitHub</span>
+                            <a href="https://github.com/N-Angleton"  className='team-info-label' target="_blank">GitHub</a>
                         </div>
                         <div className='team__info--detail'>
                             <LinkedInIcon sx={{ fontSize: 24 }}/>
-                            <span className='team-info-label'>LinkedIn</span>    
+                            <a href="https://www.linkedin.com/in/nhangleton/" className='team-info-label' target="_blank">LinkedIn</a>  
                         </div>
                         <div className='team__info--detail'>
                             <img src='https://simpleicons.org/icons/angellist.svg'  className='team-info-angellist'/>
@@ -70,11 +70,11 @@ export default class Footer extends React.Component {
                         </div>
                         <div className='team__info--detail'>
                             <GitHubIcon sx={{ fontSize: 24 }} />
-                            <span className='team-info-label'>GitHub</span>
+                            <a href="https://github.com/hisrael1"  className='team-info-label' target="_blank">GitHub</a>
                         </div>
                         <div className='team__info--detail'>
                             <LinkedInIcon sx={{ fontSize: 24 }} />
-                            <span className='team-info-label'>LinkedIn</span>
+                            <a href="https://www.linkedin.com/in/harrison-israel/" className='team-info-label' target="_blank">LinkedIn</a>
                         </div>
                         <div className='team__info--detail'>
                             <img src='https://simpleicons.org/icons/angellist.svg'  className='team-info-angellist'/>
