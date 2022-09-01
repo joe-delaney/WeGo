@@ -61,6 +61,8 @@ export class ConversationModal extends React.Component {
     let chatGroupImg = other.profilePhotoPath
     let chatGroupDisplayName = `${other.fname} ${other.lname}`
 
+    console.log(this.props.messages)
+
     return (
       <div className='chat-container'>
         <div className="chat-header">

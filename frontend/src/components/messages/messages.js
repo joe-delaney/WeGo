@@ -27,6 +27,7 @@ export class Messages extends React.Component {
 
   openOrCloseConversationModal(message){
     this.setState({conversationModal: message})
+    console.log(message)
   }
 
   componentDidMount(){
