@@ -23,11 +23,15 @@ export default class Footer extends React.Component {
                         </div>
                         <div className='team__info--detail'>
                             <GitHubIcon sx={{ fontSize: 24 }} />
-                            <a href="https://github.com/joe-delaney/WeGo" className='team-info-label'>GitHub</a>
+                            <a href="https://github.com/joe-delaney/WeGo" className='team-info-label' target="_blank">GitHub</a>
                         </div>
                         <div className='team__info--detail'>
                             <LinkedInIcon sx={{ fontSize: 24 }} />
-                            <a href="https://www.linkedin.com/in/joseph-delaney-46985b76/" className='team-info-label'>LinkedIn</a>
+                            <a href="https://www.linkedin.com/in/joseph-delaney-46985b76/" className='team-info-label' target="_blank">LinkedIn</a>
+                        </div>
+                        <div className='team__info--detail'>
+                            <img src='https://simpleicons.org/icons/angellist.svg'  className='team-info-angellist'/>
+                            <a href="https://angel.co/u/joe-delaney-6" className='team-info-label'  target="_blank">AngelList</a>
                         </div>
                     </div>
                          
@@ -43,11 +47,15 @@ export default class Footer extends React.Component {
                         </div>
                         <div className='team__info--detail'>
                             <GitHubIcon sx={{ fontSize: 24 }}/> 
-                            <span className='team-info-label'>GitHub</span>
+                            <a href="https://github.com/N-Angleton"  className='team-info-label' target="_blank">GitHub</a>
                         </div>
                         <div className='team__info--detail'>
                             <LinkedInIcon sx={{ fontSize: 24 }}/>
-                            <span className='team-info-label'>LinkedIn</span>    
+                            <a href="https://www.linkedin.com/in/nhangleton/" className='team-info-label' target="_blank">LinkedIn</a>  
+                        </div>
+                        <div className='team__info--detail'>
+                            <img src='https://simpleicons.org/icons/angellist.svg'  className='team-info-angellist'/>
+                            <a href="#" className='team-info-label'  target="_blank">AngelList</a>
                         </div>
                     </div>
                 </div>
@@ -62,11 +70,15 @@ export default class Footer extends React.Component {
                         </div>
                         <div className='team__info--detail'>
                             <GitHubIcon sx={{ fontSize: 24 }} />
-                            <span className='team-info-label'>GitHub</span>
+                            <a href="https://github.com/hisrael1"  className='team-info-label' target="_blank">GitHub</a>
                         </div>
                         <div className='team__info--detail'>
                             <LinkedInIcon sx={{ fontSize: 24 }} />
-                            <span className='team-info-label'>LinkedIn</span>
+                            <a href="https://www.linkedin.com/in/harrison-israel/" className='team-info-label' target="_blank">LinkedIn</a>
+                        </div>
+                        <div className='team__info--detail'>
+                            <img src='https://simpleicons.org/icons/angellist.svg'  className='team-info-angellist'/>
+                            <a href="#" className='team-info-label'  target="_blank">AngelList</a>
                         </div>
                     </div>
                 </div>
@@ -77,15 +89,19 @@ export default class Footer extends React.Component {
                     </div>
                     <div>
                         <div className='team__info--detail info--name'>
-                            Janic Shih
+                            Janice Shih
                         </div>
                         <div className='team__info--detail'>
                             <GitHubIcon sx={{ fontSize: 24 }} />
-                            <span className='team-info-label'>GitHub</span>
+                            <a href="https://github.com/JaniceShih" className='team-info-label'  target="_blank">GitHub</a>
                         </div>
                         <div className='team__info--detail'>
                             <LinkedInIcon sx={{ fontSize: 24 }} />
-                            <span className='team-info-label'>LinkedIn</span>
+                            <a href="https://www.linkedin.com/in/hsiu-chuan-shih-466b22236/" className='team-info-label'  target="_blank">LinkedIn</a>
+                        </div>
+                        <div className='team__info--detail'>
+                            <img src='https://simpleicons.org/icons/angellist.svg'  className='team-info-angellist'/>
+                            <a href="https://angel.co/u/hsiu-chuan-shih" className='team-info-label'  target="_blank">AngelList</a>
                         </div>
                     </div>
                 </div>

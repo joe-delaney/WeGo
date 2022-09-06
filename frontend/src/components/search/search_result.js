@@ -16,7 +16,6 @@ export default class SearchResult extends React.Component {
         let activityLocation = activity ? activity.location : "";
         let activityAttendees = activity ? activity.approvedAttendees.length : 0;
         let attendeesLabel = activityAttendees === 1 ? "attendee" : "attendees";
-
         return (
             <li className="search-result-container">
                 <div className="search-img-container">

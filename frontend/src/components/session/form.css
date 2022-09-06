@@ -80,6 +80,11 @@
     background-color: #dfdede;
 }
 
+.form__group > .input-group >.input{
+    width: 100%;
+          
+ }
+
 
 
 @media screen and (min-width: 600px) {
@@ -99,10 +104,7 @@
              
     }
 
-    .form__group > .input-group >.input{
-       width: 90%;
-             
-    }
+    
 }
 
 
@@ -122,6 +124,7 @@
 
 .signup__form{
     margin-bottom: 20px;
+    margin-right: 30px;
 }
 
 .form__box > .input-group{
@@ -134,34 +137,35 @@
     font-size: 1.5rem;
 }
 
+
 .fnameError {
   
-    top: 150px;
+    top: 340px;
     left: 50px;
 }
 
 .lnameError {
-    top: 150px;
+    top: 340px;
     left: 255px;
 }
 
 .emailError {
-    top: 215px;
+    top: 410px;
     left:  50px;
 }
 
 .passwordError {
-    top: 280px;
+    top: 470px;
     left:  50px;
 }
 
 .passwor2dError{
-    top: 345px;
+    top: 535px;
     left:  50px;
 }
 
 .ageError{
-    top: 410px;
+    top: 600px;
     left:  50px;
 }
 
@@ -175,6 +179,8 @@
 .profile__file{
 
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     position: relative;
        
     padding: 10px 0px;
@@ -193,9 +199,18 @@
 
 .edit__avatar{
     position: absolute;
-    top: 140px;
-    left: 230px;
+    top: -25px;
+    left: 360px;
     z-index: 99;
+    cursor: pointer;
+}
+
+.delete__avatar{
+    position: absolute;
+    top: -25px;
+    left: 400px;
+    z-index: 99;
+    cursor: pointer;
 }
 
 .profile__file--edit{

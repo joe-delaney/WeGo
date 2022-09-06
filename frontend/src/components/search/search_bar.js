@@ -42,8 +42,9 @@ class Search extends React.Component {
 
     render() {
         return(
-          <>
-            <div className="container ">          
+          <> 
+            <div className="container ">  
+                    <h2 className='feed-header'>Find new activities. Make new friends.</h2>  
                     <div className={`feed__search ${this.props.search}`} id="feed__search">
                         <input onKeyPress={this.handleEnter} value={this.state.query} onChange={this.handleInput("query")} type="text" className="search__input" placeholder="Find your next adventure..." />
                         <button onClick={this.handleSearch} className="search-btn btn--blue-dark "><SearchIcon sx={{fontSize: 30 }}/></button>

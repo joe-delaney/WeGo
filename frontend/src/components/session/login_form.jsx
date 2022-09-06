@@ -48,14 +48,12 @@ export default class LoginForm extends React.Component {
         }
 
         this.props.login(demoUser).then(
-            () => {
-                if (this.props.isAuthenticated === true) {
+            () => {               
                     this.props.closeModal();
                     this.setState({
                         email: "",
                         password: ""
-                    })
-                }
+                    })                
             }
         )
     }
@@ -71,6 +69,9 @@ export default class LoginForm extends React.Component {
                 ))}
             </ul>
         );
+    }
+    componentWillUnmount() {
+        this.props.resetErrors();
     }
 
     render() {

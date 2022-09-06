@@ -44,6 +44,9 @@ export class Chatgroup extends React.Component {
         <div className='hide-chat-group-button-container'>
           <CloseIcon className="hide-chat-group-button"/>
         </div>
+        <div className='hide-chat-group-button-container'>
+          <CloseIcon className="hide-chat-group-button"/>
+        </div>
       </li>
     )
   }

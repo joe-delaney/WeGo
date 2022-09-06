@@ -77,8 +77,38 @@ export default class SignupForm extends React.Component {
         formData.append("interests", this.state.interests)
         formData.append('image', this.state.files)
         
-        this.props.signup(formData);
-        this.props.closeModal();
+        this.props.signup(formData).then(
+            ()=>{
+
+                if (this.props.isAuthenticated === true) {
+                    this.props.closeModal();                 
+                }
+            }
+        )
+      
+    }
+
+    handleDemo() {
+        let demoUser = {
+            email: "joe@test.com",
+            password: "123456"
+        }
+
+        this.props.login(demoUser).then(
+            () => {
+                if (this.props.isAuthenticated === true) {
+                    this.props.closeModal();
+                    this.setState({
+                        email: "",
+                        password: ""
+                    });                   
+                }
+            }
+        )
+    }
+
+    componentWillUnmount() {
+        this.props.resetErrors();
     }
 
     handleDemo() {
@@ -137,7 +167,7 @@ export default class SignupForm extends React.Component {
                                     
                 </div>
 
-                <div className="form__group">
+                <div className="form__group signup__form">
                     <div className="input-group">
                         <input
                             className="input form__input"

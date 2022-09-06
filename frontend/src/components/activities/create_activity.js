@@ -1,5 +1,7 @@
 import React from "react";
-import './create_activity.css'
+import PlacesAutocomplete from 'react-places-autocomplete';
+import './create_activity.css';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 export default class CreateActivity extends React.Component {
     constructor(props) {
@@ -12,9 +14,10 @@ export default class CreateActivity extends React.Component {
             location: "",
             description: "",
             tag: "",
-            price: 1,
-            duration: 1,
-            capacity: 2
+            price: 0,
+            duration: 0,
+            capacity: 2,
+            address: '' 
         }
 
         this.handleInput = this.handleInput.bind(this);
@@ -28,6 +31,10 @@ export default class CreateActivity extends React.Component {
             })
         }
     }
+
+    handleChange = location => {
+        this.setState({ location });
+      };
 
     handleSubmit(e) {
         e.preventDefault();
@@ -53,37 +60,55 @@ export default class CreateActivity extends React.Component {
                             className="input"
                         />
                     </div>
-                    <div className="create-activity">
-                        <div>
-                            <label className="input-label">When</label>   
-                            <div className="input-group">
-                                <input
-                                    type="datetime-local"
-                                    placeholder="time"
-                                    value={this.state.time}
-                                    onChange={this.handleInput("time")}
-                                    className="input"
-                                    />
-                            </div>
-
-
-                        </div>
-                        <div>
-                            
-                            <label className="input-label">Where</label> 
-                            <div className="input-group">
-                                <input
-                                    type="text"
-                                    placeholder="Location"
-                                    value={this.state.location}
-                                    onChange={this.handleInput("location")}
-                                    className="input"
-                                />
-                            </div> 
-
-
-                        </div>
+                    <label className="input-label">When</label>   
+                    <div className="input-group">
+                        <input
+                            type="datetime-local"
+                            placeholder="time"
+                            value={this.state.time}
+                            onChange={this.handleInput("time")}
+                            className="input"
+                            />  
                     </div>
+                    <label className="input-label">Where</label> 
+                    <div className="input-group">                
+                            <PlacesAutocomplete
+                            value={this.state.location}
+                            onChange={this.handleChange}
+                            >
+                            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                            <div>
+                                <input
+                                {...getInputProps({
+                                    placeholder: 'Search Places ...',
+                                    className: 'input',
+                                })}
+                                />
+                                <div className="autocomplete-dropdown-container">
+                                {loading && <div>Loading...</div>}
+                                {suggestions.map((suggestion,idx) => {
+                                    const className = suggestion.active
+                                    ? 'suggestion-item--active'
+                                    : 'suggestion-item';
+                                    // inline style for demonstration purpose
+                                    const style = suggestion.active
+                                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                                    return (
+                                    <div key={idx} className="input-sugestion"
+                                        {...getSuggestionItemProps(suggestion, {                      
+                                        style,
+                                        })}
+                                    >
+                                        <span><LocationOnIcon />{suggestion.description}</span>
+                                    </div>
+                                    );
+                                })}
+                                </div>
+                            </div>
+                            )}
+                        </PlacesAutocomplete>
+                    </div> 
                     <label className="input-label">Tell everyone a little more (optional)</label>
                         <div className="input-group">
                             <textarea
@@ -94,7 +119,7 @@ export default class CreateActivity extends React.Component {
                                 rows="3"
                                 className="input"
                             />
-                        </div>
+                    </div>
                     
                     <label className="input-label">Maximum number of participants</label>
                     <div className="input-group">
