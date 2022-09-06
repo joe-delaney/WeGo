@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import { Messages } from './messages';
 import {fetchUser} from'../../actions/user_actions';
+import { deleteChatGroup } from '../../actions/chat_group_actions';
+import { createMessage, readMessage } from '../../actions/message_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return ({

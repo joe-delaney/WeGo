@@ -2,28 +2,82 @@ const express = require("express");
 const router = express.Router();
 const Message = require('../../models/Message');
 const ChatGroup = require('../../models/ChatGroup');
+const validText = require("../../validation/valid-text");
+const userShow = require("../../jbuilder/users");
+const User = require('../../models/User');
 
-//create a new message
-router.post("/", (req, res) => { 
+var _ = require('lodash');
+const { updateOne } = require("../../models/ChatGroup");
+
+// userId
+// chatGroupId
+// text
+router.post("/", async (req, res) => {
+    console.log('in message')
+    const host = await User.findById(req.body.hostId)
+    const chatGroup = await ChatGroup.findById(req.body.chatGroupId).populate('subscribers')
     const newMessage = new Message({
         text: req.body.text,
-        author: req.body.author,
-        chatGroup: req.body.chatGroup
+        author: req.body.senderId,
+        chatGroup: req.body.chatGroupId
     })
-    newMessage.save().then(message => res.json(message));
-})
+    await newMessage.save()
 
-//update a message
-router.post("/:id", (req, res) => {
-    Message.findById(req.params.id)
-        .then(message => {
-            if (!message) {
-                return res.status(404).json({ nomessagefound: "No message found with that ID" })
-            } else {
-                if(req.body.text) message.text = req.body.text;
-                message.save().then(message => res.json(message));
-            }
-        })
-})
+    console.log('after message save')
+    console.log(newMessage)
+
+    await ChatGroup.findByIdAndUpdate(req.body.chatGroupId, {$push: {messages: newMessage._id}})
+    await User.findByIdAndUpdate(req.body.senderId, {$pull:{chatGroups: req.body.chatGroupId}})
+    await User.findByIdAndUpdate(req.body.senderId, {$pull:{chatSubscriptions: {chat: req.body.chatGroupId}}})
+    await User.findByIdAndUpdate(req.body.senderId, {$push:{chatGroups: req.body.chatGroupId}})
+    await User.findByIdAndUpdate(req.body.senderId, {$push:{chatSubscriptions: {chat: req.body.chatGroupId, read: true}}})
+
+    chatGroup.subscribers.forEach( async sub => {
+        console.log(sub.id)
+        console.log(req.body.senderId)
+        if (sub.id !== req.body.senderId) {
+            await User.findByIdAndUpdate(sub.id, {$pull:{chatGroups: req.body.chatGroupId}})
+            await User.findByIdAndUpdate(sub.id, {$pull:{chatSubscriptions: {chat: req.body.chatGroupId}}})
+            await User.findByIdAndUpdate(sub.id, {$push:{chatGroups: req.body.chatGroupId}})
+            await User.findByIdAndUpdate(sub.id, {$push:{chatSubscriptions: {chat: req.body.chatGroupId, read: false}}})
+        }
+    });
+
+    User.findById(req.body.senderId)
+                        .populate({
+                            path: "allActivities",
+                            populate: {
+                                path:"tag"
+                            }
+                        })
+                        .populate({
+                            path: "chatGroups",
+                            populate: {
+                                path: "messages"
+                            }
+                        })
+                        .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));
+                })
+
+// mark a message as read
+// chatGroupId
+// userId
+router.post('/read', async (req, res) => {
+    await User.updateOne({id: req.body.userId, 'chatSubscriptions.chat': req.body.chatGroupId}, {"chatSubscriptions.$": {chat:req.body.chatGroupId, read: true}})
+    User.findById(req.body.userId)
+                        .populate({
+                            path: "allActivities",
+                            populate: {
+                                path:"tag"
+                            }
+                        })
+                        .populate({
+                            path: "chatGroups",
+                            populate: {
+                                path: "messages"
+                            }
+                        })
+                        .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));
+                })
 
 module.exports = router;

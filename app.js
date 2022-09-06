@@ -15,8 +15,8 @@ const passport = require('passport');
 const app = express();
 const http = require('http')
 const server = http.createServer(app)
-const { Server } = require('socket.io')
-const io = new Server(server)
+// const { Server } = require('socket.io')
+// const io = new Server(server)
 
 const path = require('path');
 if (process.env.NODE_ENV === 'production') {
@@ -49,23 +49,23 @@ app.use("/api/messages", messages);
 // Server
 const port = process.env.PORT || 5000;
 
-io.on('connection', (socket) => {
-  console.log('User connected');
-  socket.on('join', function(room) {
-    console.log(`User has joined room ${room}`)
-    socket.join(room)
-  });
-  socket.on('message', function(rooms) {
-    console.log(`User has sent a message to ${rooms}`)
-    io.to(rooms).emit('message')
-  })
-  socket.on('leave', function(room) {
-    console.log(`User has left room ${room}`)
-    socket.leave(room)
-  });
-  socket.on('disconnect', () => {
-    console.log('User disconnected');
-  });
-});
+// io.on('connection', (socket) => {
+//   console.log('User connected');
+//   socket.on('join', function(room) {
+//     console.log(`User has joined room ${room}`)
+//     socket.join(room)
+//   });
+//   socket.on('message', function(rooms) {
+//     console.log(`User has sent a message to ${rooms}`)
+//     io.to(rooms).emit('message')
+//   })
+//   socket.on('leave', function(room) {
+//     console.log(`User has left room ${room}`)
+//     socket.leave(room)
+//   });
+//   socket.on('disconnect', () => {
+//     console.log('User disconnected');
+//   });
+// });
 
 server.listen(port, () => console.log(`Server is running on port ${port}`));

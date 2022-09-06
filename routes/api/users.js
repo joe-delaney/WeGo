@@ -15,6 +15,9 @@ const fs = require('fs')
 const util = require('util')
 const unlinkFile = util.promisify(fs.unlink)
 
+var _ = require('lodash');
+const { populate } = require("../../models/User");
+
 //User sign up backend route
 
 router.post('/signup', upload.single('image'), async (req, res) => {
@@ -151,18 +154,32 @@ router.get("/:id", (req, res) => {
         .populate({
             path: "chatGroups",
             populate: {
-                path: "messages"
+                path: 'subscribers',
+                select: ['fname', 'lname', 'profilePhotoPath']
+            }
+        })
+        .populate({
+            path: 'chatSubscriptions',
+            populate: {
+                path: 'chat',
+                populate: {
+                    path: "messages",
+                    populate: {
+                        path: 'author',
+                        select: ['fname', 'lname', 'profilePhotoPath']
+                    }
+                }
             }
         })
         .then(user => res.json(JSON.parse(userShow(user))))
-        .catch(err => 
-            res.status(404).json({ nouserfound: "No user found with that ID" })
-        );
-});
+            .catch(err => 
+                res.status(404).json({ nouserfound: "No user found with that ID" })
+            );
+        })
+
 
 // Update a user profile
 router.post("/:id", upload.single('image'), (req, res) => {
-    console.log(req.body)
     User.findById(req.params.id)
         .then(async (user) => {
             if (!user) {
@@ -191,9 +208,27 @@ router.post("/:id", upload.single('image'), (req, res) => {
                     user.hostedActivities.push(req.body.hostedActivity);
                     user.allActivities.push(req.body.hostedActivity);
                 }
-                if(req.body.chatGroupId) {
-                    user.chatGroups.push(req.body.chatGroupId);
-                }
+                
+                // if(req.body.fromRequesterGroupId) {
+                //     if (_.includes(user.chatGroups, req.body.fromRequesterGroupId)) {
+                //         user.chatSubscriptions = [{chat: req.body.fromRequesterGroupId, read: true}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.fromRequesterGroupId))
+
+                //     ))} else {
+                //         user.chatGroups.push(req.body.fromRequesterGroupId)
+                //         user.chatSubscriptions.push({chat: req.body.fromRequesterGroupId, read: true})
+                //     }
+                // }
+
+                // if(req.body.fromHostChatGroupId) {
+                //     if (_.includes(user.chatGroups, req.body.fromHostChatGroupId)) {
+                //         user.chatSubscriptions = [{chat: req.body.fromHostChatGroupId, read: false}].concat(_.filter(user.chatSubscriptions, obj => !(_.isEqual(obj.chat, req.body.fromHostChatGroupId))
+                //     ))} else {
+                //         user.chatGroups.push(req.body.fromHostChatGroupId)
+                //         user.chatSubscriptions.push({chat: req.body.fromHostChatGroupId, read: false})
+                //     }
+                // }
+                
+                
                 user.save().then(user => {
                     User.findById(user.id)
                         .populate({

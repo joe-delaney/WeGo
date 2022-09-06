@@ -111,6 +111,25 @@ export default class SignupForm extends React.Component {
         this.props.resetErrors();
     }
 
+    handleDemo() {
+        let demoUser = {
+            email: "joe@test.com",
+            password: "123456"
+        }
+
+        this.props.login(demoUser).then(
+            () => {
+                if (this.props.isAuthenticated === true) {
+                    this.props.closeModal();
+                    this.setState({
+                        email: "",
+                        password: ""
+                    })
+                }
+            }
+        )
+    }
+
     getSignUpPage1() {
         const errors = Object.values(this.props.errors);
         

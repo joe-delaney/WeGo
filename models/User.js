@@ -73,6 +73,16 @@ const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'ChatGroup'
     }],
+    chatSubscriptions: [{
+        chat: {
+            type: Schema.Types.ObjectId,
+            ref: 'ChatGroup'
+        },
+        read: {
+            type: Boolean,
+            default: false
+        }
+    }],
     thumbsUp: {
         type: Number,
         default: 0
@@ -110,5 +120,3 @@ const UserSchema = new Schema({
 });
 
 module.exports = User = mongoose.model('User', UserSchema);
-
-

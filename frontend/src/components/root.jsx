@@ -22,15 +22,21 @@ class Root extends React.Component {
 
     render(){
         return (
-            <SocketContext.Provider value={this.state.socket} >
-                <Provider store={this.props.store}>
-                    <HashRouter>
-                        <App />
-                    </HashRouter>
-                </Provider>
-            </SocketContext.Provider>
+            <Provider store={this.props.store}>
+                <HashRouter>
+                    <App />
+                </HashRouter>
+            </Provider>
         )
     }
 }
 
 export default Root;
+
+{/* <SocketContext.Provider value={this.state.socket} >
+    <Provider store={this.props.store}>
+        <HashRouter>
+            <App />
+        </HashRouter>
+    </Provider>
+</SocketContext.Provider> */}
