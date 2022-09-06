@@ -55,7 +55,7 @@ export default class Footer extends React.Component {
                         </div>
                         <div className='team__info--detail'>
                             <img src='https://simpleicons.org/icons/angellist.svg'  className='team-info-angellist'/>
-                            <a href="#" className='team-info-label'  target="_blank">AngelList</a>
+                            <a href="https://angel.co/nicholas-angleton" className='team-info-label' target="_blank">AngelList</a>
                         </div>
                     </div>
                 </div>
