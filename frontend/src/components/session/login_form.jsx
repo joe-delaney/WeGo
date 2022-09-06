@@ -41,7 +41,9 @@ export default class LoginForm extends React.Component {
         )
     }
 
-    handleDemo() {
+    handleDemo(e) {
+      e.preventDefault();
+      
         let demoUser = {
             email: "joe@test.com",
             password: "123456"
