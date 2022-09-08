@@ -93,12 +93,12 @@ router.post('/login', (req, res) => {
                 path: "tag"
             }
         })
-        .populate({
-            path: "chatGroups",
-            populate: {
-                path: "messages"
-            }
-        })
+        // .populate({
+        //     path: "chatGroups",
+        //     populate: {
+        //         path: "messages"
+        //     }
+        // })
         .then(user => {
             if (!user) {
                 return res.status(404).json({ email: 'This user does not exist' });
@@ -151,26 +151,26 @@ router.get("/:id", (req, res) => {
                 path: "tag"
             }
         })
-        .populate({
-            path: "chatGroups",
-            populate: {
-                path: 'subscribers',
-                select: ['fname', 'lname', 'profilePhotoPath']
-            }
-        })
-        .populate({
-            path: 'chatSubscriptions',
-            populate: {
-                path: 'chat',
-                populate: {
-                    path: "messages",
-                    populate: {
-                        path: 'author',
-                        select: ['fname', 'lname', 'profilePhotoPath']
-                    }
-                }
-            }
-        })
+        // .populate({
+        //     path: "chatGroups",
+        //     populate: {
+        //         path: 'subscribers',
+        //         select: ['fname', 'lname', 'profilePhotoPath']
+        //     }
+        // })
+        // .populate({
+        //     path: 'chatSubscriptions',
+        //     populate: {
+        //         path: 'chat',
+        //         populate: {
+        //             path: "messages",
+        //             populate: {
+        //                 path: 'author',
+        //                 select: ['fname', 'lname', 'profilePhotoPath']
+        //             }
+        //         }
+        //     }
+        // })
         .then(user => res.json(JSON.parse(userShow(user))))
             .catch(err => 
                 res.status(404).json({ nouserfound: "No user found with that ID" })
@@ -237,12 +237,12 @@ router.post("/:id", upload.single('image'), (req, res) => {
                                 path:"tag"
                             }
                         })
-                        .populate({
-                            path: "chatGroups",
-                            populate: {
-                                path: "messages"
-                            }
-                        })
+                        // .populate({
+                        //     path: "chatGroups",
+                        //     populate: {
+                        //         path: "messages"
+                        //     }
+                        // })
                         .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));
                 })
             }
@@ -267,12 +267,12 @@ router.post('/:id/upload', upload.single('image'), async (req, res) => {
                                 path: "tag"
                             }
                         })
-                        .populate({
-                            path: "chatGroups",
-                            populate: {
-                                path: "messages"
-                            }
-                        })
+                        // .populate({
+                        //     path: "chatGroups",
+                        //     populate: {
+                        //         path: "messages"
+                        //     }
+                        // })
                         .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));
                 }
             }
@@ -294,12 +294,12 @@ router.patch('/:id/delete', (req, res) => {
                                 path: "tag"
                             }
                         })
-                        .populate({
-                            path: "chatGroups",
-                            populate: {
-                                path: "messages"
-                            }
-                        })
+                        // .populate({
+                        //     path: "chatGroups",
+                        //     populate: {
+                        //         path: "messages"
+                        //     }
+                        // })
                         .then(populatedUser => res.json(JSON.parse(userShow(populatedUser))));
                 })
             }

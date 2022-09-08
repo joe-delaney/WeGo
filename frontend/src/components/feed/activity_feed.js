@@ -112,7 +112,7 @@ export default class ActivityFeed extends React.Component {
                             currentUserId={this.props.currentUserId}
                             currentUser={this.props.currentUser}
                             updateActivity={this.props.updateActivity}
-                            createChatGroup={this.props.createChatGroup} 
+                            // createChatGroup={this.props.createChatGroup} 
                         />
                     ))}
                 </div>
@@ -136,7 +136,7 @@ export default class ActivityFeed extends React.Component {
                                 currentUserId={this.props.currentUserId}
                                 currentUser={this.props.currentUser}
                                 updateActivity={this.props.updateActivity}
-                                createChatGroup={this.props.createChatGroup} 
+                                // createChatGroup={this.props.createChatGroup} 
                             />
                         ))}
                     </div>
