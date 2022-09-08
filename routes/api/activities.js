@@ -117,7 +117,8 @@ router.put('/search', async (req, res) => {
     let searchBarArr = []
     let searchBarObj = undefined;
     if (req.body.title) {
-        const words = req.body.title.trim().split(' ').filter( word => word.length > 3)
+        const words = req.body.title.trim().split(' ')
+        // .filter( word => word.length > 3)
         searchBarArr = words.map( word => {     
             return {
                 'title': { $regex: new RegExp(word, 'i') }

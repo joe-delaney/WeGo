@@ -43,8 +43,8 @@ require('./config/passport')(passport);
 app.use("/api/users", users);
 app.use("/api/images", images)
 app.use("/api/activities", activities);
-// app.use("/api/chatgroups", chatgroups);
-// app.use("/api/messages", messages);
+app.use("/api/chatgroups", chatgroups);
+app.use("/api/messages", messages);
 
 // Server
 const port = process.env.PORT || 5000;
