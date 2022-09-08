@@ -23,7 +23,7 @@ export default class ActivityItem extends React.Component {
     }
 
       this.props.updateActivity(activity);
-      this.props.createChatGroup(chatGroupInfo);
+      // this.props.createChatGroup(chatGroupInfo);
   }
 
   render() {

@@ -24,7 +24,8 @@ const FeedIndex = ({activities, currentUser, currentUserId, updateActivity, crea
                     currentUserId={currentUserId}
                     currentUser={currentUser} 
                     updateActivity={updateActivity}
-                    createChatGroup={createChatGroup} />
+                    // createChatGroup={createChatGroup}
+                    />
 
                 <Feature />              
 

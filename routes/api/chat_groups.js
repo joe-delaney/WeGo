@@ -12,7 +12,6 @@ const { ObjectId } = require('mongodb')
 // requesterName
 // activityName
 router.post("/", async (req, res) => {
-    console.log(req.body.requesterId)
     ChatGroup.findOne({ $and: [{subscribers: {$all: [req.body.hostId, req.body.requesterId]}}, {subscriber: {$size: 2}}]}).then(async chatGroup => {
         console.log(`chatgroup: ${chatGroup}`)
         if (chatGroup) return res.json({id: chatGroup._id})

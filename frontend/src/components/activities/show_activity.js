@@ -64,7 +64,7 @@ export default class ShowActivity extends React.Component {
         }
 
         this.props.updateActivity(activity);
-        this.props.createChatGroup(chatGroupInfo);
+        // this.props.createChatGroup(chatGroupInfo);
     }
 
     approveUser(userId) {
@@ -79,13 +79,13 @@ export default class ShowActivity extends React.Component {
         }
         this.props.updateActivity(activity);
         this.props.updateUser(user);
-        let chatGroups = this.props.currentUser.chatGroups
-        let correctChatGroup = chatGroups.filter( el => el.subscribers.includes(userId))
-        this.props.createMessage({
-            text: 'Looking forward to you joining!',
-            userId: this.props.currentUserId,
-            chatGroupId: correctChatGroup._id
-        })
+        // let chatGroups = this.props.currentUser.chatGroups
+        // let correctChatGroup = chatGroups.filter( el => el.subscribers.includes(userId))
+        // this.props.createMessage({
+        //     text: 'Looking forward to you joining!',
+        //     userId: this.props.currentUserId,
+        //     chatGroupId: correctChatGroup._id
+        // })
     }
 
     denyUser(userId) {
