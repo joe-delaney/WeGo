@@ -27,6 +27,9 @@ router.get('/user/:userId/', (req, res) => {
 
 // create an activity
 router.post("/", (req, res) => {
+  if (!req.body.tag) {
+    return res.status(404)
+  } else {
     Tag.findOne({ title: req.body.tag }).then(tag => {
         const newActivity = new Activity({
             title: req.body.title,
@@ -45,8 +48,10 @@ router.post("/", (req, res) => {
             .populate("host", ["id", "fname", "lname", "profilePhotoPath"])
             .populate("tag")
             .populate("approvedAttendees", ["id", "fname", "lname", "profilePhotoPath"])
-            .then(activity => res.json(JSON.parse(activityShow(activity)))));
+            .then(activity => res.json(JSON.parse(activityShow(activity)))))
+            .catch(err => res.status(404));
     })
+  }
 
 });
 
