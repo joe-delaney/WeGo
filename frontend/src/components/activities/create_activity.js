@@ -53,6 +53,7 @@ export default class CreateActivity extends React.Component {
                     <label className="input-label">What</label> 
                     <div className="input-group">
                         <input
+                        required
                             type="text"
                             placeholder="Title"
                             value={this.state.title}
@@ -63,6 +64,7 @@ export default class CreateActivity extends React.Component {
                     <label className="input-label">When</label>   
                     <div className="input-group">
                         <input
+                        required
                             type="datetime-local"
                             placeholder="time"
                             value={this.state.time}
@@ -73,6 +75,7 @@ export default class CreateActivity extends React.Component {
                     <label className="input-label">Where</label> 
                     <div className="input-group">                
                             <PlacesAutocomplete
+                            required
                             value={this.state.location}
                             onChange={this.handleChange}
                             >
@@ -112,6 +115,7 @@ export default class CreateActivity extends React.Component {
                     <label className="input-label">Tell everyone a little more (optional)</label>
                         <div className="input-group">
                             <textarea
+                            required
                                 type="text"
                                 placeholder="Activity description"
                                 value={this.state.description}
@@ -135,6 +139,7 @@ export default class CreateActivity extends React.Component {
                     <div className="form__group">
                         <div className="input-group">
                             <select 
+                                required
                                 defaultValue="DEFAULT"
                                 name="tag" 
                                 id="tag-select" 
@@ -155,6 +160,7 @@ export default class CreateActivity extends React.Component {
                         </div>
                         <div className="input-group">
                             <select 
+                            required
                                 defaultValue="DEFAULT"
                                 name="cost" 
                                 id="activity-cost" 
@@ -170,6 +176,7 @@ export default class CreateActivity extends React.Component {
                         </div>
                         <div className="input-group">
                             <select 
+                            required
                                 defaultValue="DEFAULT"
                                 name="duration" 
                                 id="activity-duration" 
